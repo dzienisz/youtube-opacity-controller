@@ -2,6 +2,8 @@
 
 A Chrome extension that allows you to control the opacity of YouTube's transparent player overlays, making them less transparent and more visible.
 
+**Current Version:** 1.1 | [Changelog](CHANGELOG.md) | [Privacy Policy](PRIVACY.md)
+
 ## Features
 
 - Adjust opacity of YouTube player overlays with a simple slider (0-100%)
@@ -95,6 +97,8 @@ The extension intelligently detects and modifies ANY element with reduced opacit
 - `popup.js` - Popup functionality
 - `popup.css` - Popup styling
 - `icons/` - Extension icons in multiple sizes
+- `CHANGELOG.md` - Version history and release notes
+- `PRIVACY.md` - Privacy policy and permissions explanation
 
 ## Privacy
 
