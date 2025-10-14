@@ -1,0 +1,109 @@
+/* YouTube Overlay Opacity Controller CSS */
+/* This CSS adds black backgrounds to NEW YouTube transparent player elements */
+
+/* Smooth transitions for background and opacity changes on all player elements */
+.ytp-transparent *,
+#movie_player *,
+.yt-spec-button-shape-next,
+.ytSpecButtonViewModelHost,
+.ytp-button,
+.ytp-chrome-controls,
+.ytp-chrome-top,
+.ytp-chrome-bottom,
+.ytp-gradient-top,
+.ytp-gradient-bottom {
+  transition: background-color 0.3s ease-in-out, background 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+}
+
+/* Target NEW modern YouTube button system */
+.yt-spec-button-shape-next,
+.yt-spec-button-shape-next__icon,
+.yt-spec-button-shape-next__button-text-content,
+.ytSpecButtonViewModelHost,
+.ytSpecButtonViewModelHost button,
+.ytPlayerQuickActionButtonsHost button,
+.ytLikeButtonViewModelHost button,
+.ytDislikeButtonViewModelHost button {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target icon wrappers and shapes */
+.ytIconWrapperHost,
+.yt-icon-shape,
+.yt-spec-button-shape-next__icon svg,
+.yt-spec-button-shape-next__icon path {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target traditional YTP buttons */
+.ytp-button,
+.ytp-button svg,
+.ytp-button path,
+.ytp-play-button,
+.ytp-volume-panel,
+.ytp-settings-button,
+.ytp-subtitles-button,
+.ytp-fullscreen-button {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target progress bar and scrubber */
+.ytp-progress-bar,
+.ytp-progress-list,
+.ytp-play-progress,
+.ytp-load-progress,
+.ytp-scrubber-container,
+.ytp-scrubber-button {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target time displays */
+.ytp-time-display,
+.ytp-time-current,
+.ytp-time-duration,
+.ytp-chapter-container,
+.ytp-chapter-title {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target chrome controls */
+.ytp-chrome-controls,
+.ytp-chrome-top,
+.ytp-chrome-bottom,
+.ytp-left-controls,
+.ytp-right-controls {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target gradient overlays */
+.ytp-gradient-top,
+.ytp-gradient-bottom {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target title and metadata */
+.ytp-title,
+.ytp-title-text,
+.ytp-title-link,
+.ytp-title-channel {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target watermark and branding */
+.ytp-watermark,
+.branding-img,
+.branding-img-container {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Target quick actions in fullscreen */
+.ytp-fullscreen-quick-actions,
+.ytp-fullscreen-quick-actions button {
+  /* Opacity will be set by JavaScript */
+}
+
+/* Ensure all semi-transparent elements in transparent player can be controlled */
+#movie_player.ytp-transparent *,
+#movie_player * {
+  /* Opacity will be controlled by JavaScript for elements with opacity < 1 */
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Overlay Opacity</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Overlay Background</h1>
+    <p class="description">Add black background to YouTube player controls</p>
+
+    <div class="control-group">
+      <label for="opacitySlider">
+        Background: <span id="opacityValue">100</span>%
+      </label>
+      <input
+        type="range"
+        id="opacitySlider"
+        min="0"
+        max="100"
+        value="100"
+        step="5"
+        class="slider"
+      >
+      <div class="slider-labels">
+        <span>Transparent</span>
+        <span>Solid Black</span>
+      </div>
+    </div>
+
+    <div class="presets">
+      <h3>Quick Presets</h3>
+      <div class="preset-buttons">
+        <button class="preset-btn" data-value="100">Solid Black</button>
+        <button class="preset-btn" data-value="75">Dark Gray</button>
+        <button class="preset-btn" data-value="50">Medium Gray</button>
+        <button class="preset-btn" data-value="25">Light Gray</button>
+      </div>
+    </div>
+
+    <div class="info">
+      <p>This extension adds a black background to YouTube's transparent player controls and overlays.</p>
+      <p class="tip"><strong>Tip:</strong> Set to 100% for a solid black background behind all controls.</p>
+    </div>
+
+    <button id="resetBtn" class="reset-btn">Reset to Default</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
