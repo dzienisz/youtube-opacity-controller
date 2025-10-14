@@ -21,40 +21,30 @@ function applyOpacity(opacity) {
   const bgColor = `rgba(0, 0, 0, ${opacity})`;
   const buttonBgColor = opacity > 0.5 ? `rgba(0, 0, 0, ${opacity * 0.3})` : '';
 
-  // Main containers - combined selector for efficiency
+  // Main containers - use setProperty to preserve layout styles
   const mainContainers = '.ytp-chrome-controls, .ytp-chrome-top, .ytp-chrome-bottom, .ytp-gradient-top, .ytp-gradient-bottom';
   playerContainer.querySelectorAll(mainContainers).forEach(el => {
-    el.style.cssText = `
-      background: ${bgColor} !important;
-      background-color: ${bgColor} !important;
-      background-image: none !important;
-      opacity: 1 !important;
-    `;
+    el.style.setProperty('background', bgColor, 'important');
+    el.style.setProperty('background-color', bgColor, 'important');
+    el.style.setProperty('background-image', 'none', 'important');
+    el.style.setProperty('opacity', '1', 'important');
   });
 
-  // Secondary containers - combined selector
+  // Secondary containers - use setProperty to preserve layout styles
   const secondaryContainers = '.ytp-left-controls, .ytp-right-controls, .ytp-time-display, .ytp-chapter-container, .ytp-volume-area, .ytp-volume-panel, .ytp-settings-menu, .ytp-popup, .ytp-panel, .ytp-panel-menu, .ytp-popup-content, .ytp-tooltip, .ytp-tooltip-bg';
   playerContainer.querySelectorAll(secondaryContainers).forEach(el => {
-    el.style.cssText = `
-      background: ${bgColor} !important;
-      background-color: ${bgColor} !important;
-      opacity: 1 !important;
-    `;
+    el.style.setProperty('background', bgColor, 'important');
+    el.style.setProperty('background-color', bgColor, 'important');
+    el.style.setProperty('opacity', '1', 'important');
   });
 
-  // Buttons with optional background
-  if (buttonBgColor) {
-    playerContainer.querySelectorAll('.yt-spec-button-shape-next, .ytp-button').forEach(el => {
-      el.style.cssText = `
-        opacity: 1 !important;
-        background-color: ${buttonBgColor} !important;
-      `;
-    });
-  } else {
-    playerContainer.querySelectorAll('.yt-spec-button-shape-next, .ytp-button').forEach(el => {
-      el.style.opacity = '1';
-    });
-  }
+  // Buttons with optional background - use setProperty to preserve other styles
+  playerContainer.querySelectorAll('.yt-spec-button-shape-next, .ytp-button').forEach(el => {
+    el.style.setProperty('opacity', '1', 'important');
+    if (buttonBgColor) {
+      el.style.setProperty('background-color', buttonBgColor, 'important');
+    }
+  });
 
   // Text and icons - make opaque
   const opaqueElements = '.ytp-time-current, .ytp-time-duration, .ytp-chapter-title, .ytp-title, .ytp-menuitem, .yt-spec-button-shape-next__icon, .ytIconWrapperHost, .yt-spec-button-shape-next__button-text-content';
@@ -67,21 +57,22 @@ function applyOpacity(opacity) {
     el.style.opacity = '1';
   });
 
-  // Progress bar z-index fix
+  // Progress bar z-index fix - use setProperty to preserve existing styles
   const scrubberElements = '.ytp-scrubber-container, .ytp-scrubber-button, .ytp-play-progress';
   playerContainer.querySelectorAll(scrubberElements).forEach(el => {
-    el.style.cssText = `
-      z-index: 100 !important;
-      position: relative !important;
-    `;
+    el.style.setProperty('z-index', '100', 'important');
+    // Only set position if not already positioned
+    if (!el.style.position || el.style.position === 'static') {
+      el.style.setProperty('position', 'relative', 'important');
+    }
   });
 
   const progressBar = playerContainer.querySelector('.ytp-progress-bar');
   if (progressBar) {
-    progressBar.style.cssText = `
-      position: relative !important;
-      z-index: 50 !important;
-    `;
+    progressBar.style.setProperty('z-index', '50', 'important');
+    if (!progressBar.style.position || progressBar.style.position === 'static') {
+      progressBar.style.setProperty('position', 'relative', 'important');
+    }
   }
 }
 
