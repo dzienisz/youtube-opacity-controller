@@ -76,8 +76,19 @@ Shows on the extension's detail page
 ### 6. Language
 **English** (and/or **Polish** if you want to add Polish localization)
 
-### 7. Privacy Policy
-We don't collect data, but we should state this clearly.
+### 7. Privacy Policy (REQUIRED)
+Chrome Web Store requires a privacy policy URL.
+
+**Use this URL:**
+```
+https://github.com/dzienisz/youtube-opacity-controller/blob/main/PRIVACY.md
+```
+
+The PRIVACY.md file in the repository contains:
+- Clear statement: NO data collection
+- Detailed explanation of all permissions
+- What the extension does and doesn't do
+- Open source transparency
 
 ## Chrome Web Store Developer Account
 
@@ -100,7 +111,14 @@ We don't collect data, but we should state this clearly.
 5. Upload screenshots and promotional images
 6. Select category and language
 7. Set pricing (Free)
-8. Submit for review
+8. **Privacy practices** - Fill in:
+   - Privacy policy: `https://github.com/dzienisz/youtube-opacity-controller/blob/main/PRIVACY.md`
+   - Data usage: Select "Does not collect user data"
+9. **Justification for permissions** (Chrome will ask):
+   - **storage**: "To save user's opacity preference setting (0-100%) locally"
+   - **activeTab**: "To apply CSS style changes to YouTube player elements"
+   - **youtube.com host**: "To inject content script that adds black backgrounds to transparent player controls"
+10. Submit for review
 
 ## Review Time
 Typically **1-3 days** for first review, sometimes up to a week.
