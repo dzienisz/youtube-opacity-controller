@@ -1,8 +1,12 @@
 # YouTube Overlay Opacity Controller
 
+[![Version](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Chrome](https://img.shields.io/badge/chrome-extension-yellow.svg)](https://chrome.google.com/webstore)
+
 A Chrome extension that allows you to control the opacity of YouTube's transparent player overlays, making them less transparent and more visible.
 
-**Current Version:** 1.1 | [Changelog](CHANGELOG.md) | [Privacy Policy](PRIVACY.md)
+**📖 [Changelog](CHANGELOG.md)** • **🔒 [Privacy Policy](PRIVACY.md)** • **🤝 [Contributing](CONTRIBUTING.md)**
 
 ## Features
 
