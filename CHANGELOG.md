@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Critical:** Fixed progress bar scrubber appearing displaced vertically
 - **Critical:** Fixed fullscreen button layout being disrupted by extension (from v1.1)
 - **Critical:** Fixed button styles being overwritten causing layout issues (from v1.1)
+- **Critical:** Fixed video preview thumbnail getting black overlay on hover
+- **Critical:** Fixed black box/frame appearing around video
 - Progress bar container now has transparent background to prevent visual interference
 - Removed z-index modifications that were causing scrubber to float over entire player
 - Scrubber now stays properly positioned within progress bar context
+- Tooltips and preview elements excluded from background styling
 
 ### Added
 - Smooth hover animation on progress bar scrubber
@@ -28,6 +31,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Switched from `cssText` to `style.setProperty()` for all style modifications (from v1.1)
 - Only modifies specific CSS properties instead of overwriting entire inline styles
 - Added CSS transitions for scrubber: transform and box-shadow
+- Excluded `.ytp-gradient-top`, `.ytp-gradient-bottom`, and `.ytp-chrome-controls` from background styling to prevent black box
+- Excluded tooltip elements (`.ytp-tooltip`, `.ytp-tooltip-bg`, `.ytp-storyboard-framepreview`, `.ytp-preview`) from background styling
+- Preview thumbnails now display correctly without opacity overlay
 
 ### Why This Update?
 Version 1.1 attempted to fix scrubber visibility with z-index changes, but this caused the scrubber to appear displaced vertically (floating too high). This version removes those z-index modifications and instead uses transparent background on the progress bar container, allowing YouTube's native positioning to work correctly while still maintaining black backgrounds on other controls. Additionally, smooth hover animations improve user experience when interacting with the progress bar.

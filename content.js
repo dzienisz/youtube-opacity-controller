@@ -39,20 +39,20 @@ function applyOpacity(opacity) {
     progressBarContainer.style.setProperty('background-color', 'transparent', 'important');
   }
 
-  // Exclude video preview thumbnail from background styling
-  const previewElements = playerContainer.querySelectorAll('.ytp-tooltip, .ytp-tooltip-bg, .ytp-storyboard-framepreview, .ytp-preview, .ytp-videowall-still-image');
-  previewElements.forEach(el => {
-    el.style.setProperty('background', 'transparent', 'important');
-    el.style.setProperty('background-color', 'transparent', 'important');
-  });
-
   // Secondary containers - use setProperty to preserve layout styles
-  // Note: tooltip excluded because it contains video preview thumbnails
   const secondaryContainers = '.ytp-left-controls, .ytp-right-controls, .ytp-time-display, .ytp-chapter-container, .ytp-volume-area, .ytp-volume-panel, .ytp-settings-menu, .ytp-popup, .ytp-panel, .ytp-panel-menu, .ytp-popup-content';
   playerContainer.querySelectorAll(secondaryContainers).forEach(el => {
     el.style.setProperty('background', bgColor, 'important');
     el.style.setProperty('background-color', bgColor, 'important');
     el.style.setProperty('opacity', '1', 'important');
+  });
+
+  // Tooltip needs background but NOT opacity override (to preserve thumbnail visibility)
+  const tooltipElements = playerContainer.querySelectorAll('.ytp-tooltip, .ytp-tooltip-bg');
+  tooltipElements.forEach(el => {
+    el.style.setProperty('background', bgColor, 'important');
+    el.style.setProperty('background-color', bgColor, 'important');
+    // Don't set opacity - let YouTube handle it for thumbnail visibility
   });
 
   // Buttons with optional background - use setProperty to preserve other styles
