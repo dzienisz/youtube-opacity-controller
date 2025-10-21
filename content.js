@@ -22,7 +22,8 @@ function applyOpacity(opacity) {
   const buttonBgColor = opacity > 0.5 ? `rgba(0, 0, 0, ${opacity * 0.3})` : '';
 
   // Main containers - use setProperty to preserve layout styles
-  const mainContainers = '.ytp-chrome-controls, .ytp-chrome-top, .ytp-chrome-bottom, .ytp-gradient-top, .ytp-gradient-bottom';
+  // Note: we target specific control bars, NOT gradients to avoid black box around video
+  const mainContainers = '.ytp-chrome-top, .ytp-chrome-bottom';
   playerContainer.querySelectorAll(mainContainers).forEach(el => {
     el.style.setProperty('background', bgColor, 'important');
     el.style.setProperty('background-color', bgColor, 'important');
