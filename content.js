@@ -30,6 +30,14 @@ function applyOpacity(opacity) {
     el.style.setProperty('opacity', '1', 'important');
   });
 
+  // Exclude progress bar area from background to prevent scrubber visual issues
+  const progressBarContainer = playerContainer.querySelector('.ytp-progress-bar-container');
+  if (progressBarContainer) {
+    // Remove background from progress bar container
+    progressBarContainer.style.setProperty('background', 'transparent', 'important');
+    progressBarContainer.style.setProperty('background-color', 'transparent', 'important');
+  }
+
   // Secondary containers - use setProperty to preserve layout styles
   const secondaryContainers = '.ytp-left-controls, .ytp-right-controls, .ytp-time-display, .ytp-chapter-container, .ytp-volume-area, .ytp-volume-panel, .ytp-settings-menu, .ytp-popup, .ytp-panel, .ytp-panel-menu, .ytp-popup-content, .ytp-tooltip, .ytp-tooltip-bg';
   playerContainer.querySelectorAll(secondaryContainers).forEach(el => {
@@ -57,23 +65,8 @@ function applyOpacity(opacity) {
     el.style.opacity = '1';
   });
 
-  // Progress bar z-index fix - use setProperty to preserve existing styles
-  const scrubberElements = '.ytp-scrubber-container, .ytp-scrubber-button, .ytp-play-progress';
-  playerContainer.querySelectorAll(scrubberElements).forEach(el => {
-    el.style.setProperty('z-index', '100', 'important');
-    // Only set position if not already positioned
-    if (!el.style.position || el.style.position === 'static') {
-      el.style.setProperty('position', 'relative', 'important');
-    }
-  });
-
-  const progressBar = playerContainer.querySelector('.ytp-progress-bar');
-  if (progressBar) {
-    progressBar.style.setProperty('z-index', '50', 'important');
-    if (!progressBar.style.position || progressBar.style.position === 'static') {
-      progressBar.style.setProperty('position', 'relative', 'important');
-    }
-  }
+  // Progress bar is handled above - we set transparent background on progress-bar-container
+  // This ensures scrubber remains properly positioned and visible
 }
 
 // Debounced apply function

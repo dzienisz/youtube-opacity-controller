@@ -5,7 +5,34 @@ All notable changes to YouTube Overlay Opacity Controller will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1] - 2024-10-14
+## [1.2] - 2024-10-21
+
+### Fixed
+- **Critical:** Fixed progress bar scrubber appearing displaced vertically
+- **Critical:** Fixed fullscreen button layout being disrupted by extension (from v1.1)
+- **Critical:** Fixed button styles being overwritten causing layout issues (from v1.1)
+- Progress bar container now has transparent background to prevent visual interference
+- Removed z-index modifications that were causing scrubber to float over entire player
+- Scrubber now stays properly positioned within progress bar context
+
+### Added
+- Smooth hover animation on progress bar scrubber
+- Scrubber scales up (1.3x) with smooth transition on hover
+- Red glow effect on scrubber hover for better visual feedback
+- Container hover also triggers subtle scale (1.2x)
+
+### Technical Changes
+- Set transparent background on `.ytp-progress-bar-container` to prevent black background from affecting scrubber position
+- Removed all z-index modifications on scrubber elements - YouTube's default stacking now works correctly
+- Improved scrubber positioning by not interfering with YouTube's native absolute/fixed positioning
+- Switched from `cssText` to `style.setProperty()` for all style modifications (from v1.1)
+- Only modifies specific CSS properties instead of overwriting entire inline styles
+- Added CSS transitions for scrubber: transform and box-shadow
+
+### Why This Update?
+Version 1.1 attempted to fix scrubber visibility with z-index changes, but this caused the scrubber to appear displaced vertically (floating too high). This version removes those z-index modifications and instead uses transparent background on the progress bar container, allowing YouTube's native positioning to work correctly while still maintaining black backgrounds on other controls. Additionally, smooth hover animations improve user experience when interacting with the progress bar.
+
+## [1.1] - 2024-10-14 (Not deployed)
 
 ### Fixed
 - **Critical:** Fixed fullscreen button layout being disrupted by extension

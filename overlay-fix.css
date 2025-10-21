@@ -57,6 +57,21 @@
   /* Opacity will be set by JavaScript */
 }
 
+/* Smooth animation for scrubber on hover */
+.ytp-scrubber-button {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out !important;
+}
+
+.ytp-scrubber-button:hover {
+  transform: scale(1.3) !important;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6), 0 0 16px rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Smooth animation for scrubber container */
+.ytp-scrubber-container:hover .ytp-scrubber-button {
+  transform: scale(1.2) !important;
+}
+
 /* Target time displays */
 .ytp-time-display,
 .ytp-time-current,
