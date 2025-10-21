@@ -1,12 +1,12 @@
 # YouTube Overlay Opacity Controller
 
 [![Version](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Chrome](https://img.shields.io/badge/chrome-extension-yellow.svg)](https://chrome.google.com/webstore)
 
 A Chrome extension that allows you to control the opacity of YouTube's transparent player overlays, making them less transparent and more visible.
 
-**📖 [Changelog](CHANGELOG.md)** • **🔒 [Privacy Policy](PRIVACY.md)** • **🤝 [Contributing](CONTRIBUTING.md)**
+**🌐 [Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** • **📖 [Changelog](CHANGELOG.md)** • **🔒 [Privacy Policy](PRIVACY.md)** • **🤝 [Contributing](CONTRIBUTING.md)**
 
 ## Features
 
@@ -19,7 +19,16 @@ A Chrome extension that allows you to control the opacity of YouTube's transpare
 
 ## Installation
 
-### Install from Source (Developer Mode)
+### 🌐 Install from Chrome Web Store (Recommended)
+
+**[→ Install YouTube Overlay Opacity Controller](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)**
+
+1. Click the link above or visit the Chrome Web Store
+2. Click "Add to Chrome"
+3. Confirm by clicking "Add extension"
+4. Done! The extension is now installed
+
+### 🔧 Install from Source (Developer Mode)
 
 1. Download or clone this extension folder to your computer
 

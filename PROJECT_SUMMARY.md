@@ -3,9 +3,11 @@
 ## 📊 Project Overview
 
 **Name:** YouTube Overlay Opacity Controller
-**Version:** 1.1
+**Version:** 1.1 (ready to deploy)
+**Live Version:** 1.0 (currently on Chrome Web Store)
 **Type:** Chrome Extension (Manifest V3)
-**Status:** Submitted to Chrome Web Store (Under Review)
+**Status:** ✅ LIVE on Chrome Web Store
+**Chrome Web Store:** https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh
 **Repository:** https://github.com/dzienisz/youtube-opacity-controller
 **Release:** https://github.com/dzienisz/youtube-opacity-controller/releases/tag/v1.1
 
