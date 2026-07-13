@@ -1,43 +1,58 @@
 <svg width="440" height="280" viewBox="0 0 440 280" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12101f"/>
+      <stop offset="55%" stop-color="#26224a"/>
+      <stop offset="100%" stop-color="#161326"/>
     </linearGradient>
+    <linearGradient id="videoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3e50"/>
+      <stop offset="100%" stop-color="#1a252f"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
   </defs>
 
   <!-- Background -->
-  <rect width="440" height="280" fill="url(#bgGrad)"/>
+  <rect width="440" height="280" fill="url(#bg)"/>
+  <circle cx="30" cy="270" r="110" fill="#667eea" opacity="0.10"/>
+  <circle cx="420" cy="10" r="90" fill="#ff0000" opacity="0.07"/>
 
-  <!-- YouTube Player Mockup -->
-  <rect x="40" y="60" width="180" height="100" rx="4" fill="#000" opacity="0.8"/>
+  <!-- Player mockup -->
+  <g transform="translate(60, 34)" filter="url(#shadow)">
+    <!-- video area -->
+    <rect x="0" y="0" width="320" height="180" rx="10" fill="url(#videoBg)"/>
+    <!-- fake scenery -->
+    <circle cx="255" cy="46" r="18" fill="#f1c40f" opacity="0.75"/>
+    <path d="M 0 130 L 70 78 L 130 122 L 200 66 L 260 112 L 320 84 L 320 170 L 0 170 Z" fill="#1a252f" opacity="0.85"/>
 
-  <!-- Controls bar with gradient opacity -->
-  <rect x="40" y="140" width="180" height="20" fill="#000" opacity="0.3"/>
-  <rect x="60" y="140" width="140" height="20" fill="#000" opacity="0.6"/>
-  <rect x="100" y="140" width="100" height="20" fill="#000" opacity="0.9"/>
+    <!-- solid dark control bar (the extension's effect) -->
+    <path d="M 0 138 L 320 138 L 320 170 Q 320 180 310 180 L 10 180 Q 0 180 0 170 Z" fill="#000" opacity="0.88"/>
 
-  <!-- Play icon -->
-  <path d="M 65 75 L 65 95 L 80 85 Z" fill="white" opacity="0.9"/>
+    <!-- progress bar -->
+    <rect x="12" y="141" width="296" height="3" rx="1.5" fill="#ffffff" opacity="0.25"/>
+    <rect x="12" y="141" width="120" height="3" rx="1.5" fill="#ff0000"/>
+    <circle cx="132" cy="142.5" r="5" fill="#ff0000"/>
 
-  <!-- Opacity slider representation -->
-  <line x1="110" y1="85" x2="180" y2="85" stroke="white" stroke-width="2" opacity="0.7"/>
-  <circle cx="145" cy="85" r="6" fill="white"/>
+    <!-- controls: play, next, volume -->
+    <path d="M 18 154 L 18 172 L 32 163 Z" fill="#fff"/>
+    <path d="M 42 156 L 42 170 L 52 163 Z M 53 156 L 56 156 L 56 170 L 53 170 Z" fill="#fff"/>
+    <path d="M 66 160 L 71 160 L 78 154 L 78 172 L 71 166 L 66 166 Z" fill="#fff"/>
+    <path d="M 82 158 Q 87 163 82 168" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="96" y="167" font-family="Arial, sans-serif" font-size="10" fill="#fff">3:32 / 10:24</text>
 
-  <!-- Title Text -->
-  <text x="240" y="100" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
-    YouTube Overlay
+    <!-- right controls: settings + fullscreen -->
+    <circle cx="272" cy="163" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+    <circle cx="272" cy="163" r="2" fill="#fff"/>
+    <rect x="292" y="157" width="16" height="12" fill="none" stroke="#fff" stroke-width="2" rx="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="220" y="248" font-family="Arial, sans-serif" font-size="21" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.3">
+    YouTube Overlay Opacity
   </text>
-  <text x="240" y="130" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
-    Opacity Controller
+  <text x="220" y="268" font-family="Arial, sans-serif" font-size="12.5" fill="#b8b3d9" text-anchor="middle">
+    Solid, readable player controls — your way
   </text>
-
-  <!-- Subtitle -->
-  <text x="240" y="160" font-family="Arial, sans-serif" font-size="14" fill="white" opacity="0.9">
-    Make player controls visible
-  </text>
-
-  <!-- Icon in corner -->
-  <circle cx="400" cy="40" r="30" fill="white" opacity="0.2"/>
-  <path d="M 390 30 L 390 50 L 405 40 Z" fill="white" opacity="0.9"/>
 </svg>

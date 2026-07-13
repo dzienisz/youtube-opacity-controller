@@ -1,124 +1,81 @@
-/* YouTube Overlay Opacity Controller CSS */
-/* This CSS adds black backgrounds to NEW YouTube transparent player elements */
+/* YouTube Player Accessibility */
 
-/* Smooth transitions for background and opacity changes on all player elements */
-.ytp-transparent *,
-#movie_player *,
-.yt-spec-button-shape-next,
-.ytSpecButtonViewModelHost,
-.ytp-button,
-.ytp-chrome-controls,
-.ytp-chrome-top,
-.ytp-chrome-bottom,
-.ytp-gradient-top,
-.ytp-gradient-bottom {
-  transition: background-color 0.3s ease-in-out, background 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+:root[data-ytoc-enabled] {
+  --ytoc-overlay-opacity: 0.7;
+  --ytoc-button-opacity-factor: 0.3;
+  --ytoc-icon-scale: 1;
+  --ytoc-time-size: inherit;
 }
 
-/* Target NEW modern YouTube button system */
-.yt-spec-button-shape-next,
-.yt-spec-button-shape-next__icon,
-.yt-spec-button-shape-next__button-text-content,
-.ytSpecButtonViewModelHost,
-.ytSpecButtonViewModelHost button,
-.ytPlayerQuickActionButtonsHost button,
-.ytLikeButtonViewModelHost button,
-.ytDislikeButtonViewModelHost button {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-profile="high-contrast"] {
+  --ytoc-button-opacity-factor: 0.55;
 }
 
-/* Target icon wrappers and shapes */
-.ytIconWrapperHost,
-.yt-icon-shape,
-.yt-spec-button-shape-next__icon svg,
-.yt-spec-button-shape-next__icon path {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] {
+  --ytoc-button-opacity-factor: 0.65;
+  --ytoc-icon-scale: 1.15;
+  --ytoc-time-size: 15px;
 }
 
-/* Target traditional YTP buttons */
-.ytp-button,
-.ytp-button svg,
-.ytp-button path,
-.ytp-play-button,
-.ytp-volume-panel,
-.ytp-settings-button,
-.ytp-subtitles-button,
-.ytp-fullscreen-button {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled] #movie_player .ytp-chrome-top,
+:root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom {
+  background: rgba(0, 0, 0, var(--ytoc-overlay-opacity)) !important;
+  transition: background-color 0.2s ease-in-out !important;
 }
 
-/* Target progress bar and scrubber */
-.ytp-progress-bar,
-.ytp-progress-list,
-.ytp-play-progress,
-.ytp-load-progress,
-.ytp-scrubber-container,
-.ytp-scrubber-button {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled] #movie_player .ytp-progress-bar-container {
+  background: transparent !important;
 }
 
-/* Smooth animation for scrubber on hover */
-.ytp-scrubber-button {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out !important;
+:root[data-ytoc-enabled] #movie_player .ytp-settings-menu,
+:root[data-ytoc-enabled] #movie_player .ytp-popup,
+:root[data-ytoc-enabled] #movie_player .ytp-panel,
+:root[data-ytoc-enabled] #movie_player .ytp-panel-menu,
+:root[data-ytoc-enabled] #movie_player .ytp-tooltip:not(.ytp-preview) {
+  background-color: rgba(0, 0, 0, var(--ytoc-overlay-opacity)) !important;
 }
 
-.ytp-scrubber-button:hover {
-  transform: scale(1.3) !important;
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6), 0 0 16px rgba(255, 0, 0, 0.3) !important;
+:root[data-ytoc-enabled] #movie_player .ytp-button,
+:root[data-ytoc-enabled] #movie_player .yt-spec-button-shape-next {
+  background-color: rgba(0, 0, 0, calc(var(--ytoc-overlay-opacity) * var(--ytoc-button-opacity-factor))) !important;
 }
 
-/* Smooth animation for scrubber container */
-.ytp-scrubber-container:hover .ytp-scrubber-button {
-  transform: scale(1.2) !important;
+:root[data-ytoc-enabled] #movie_player .ytp-time-display,
+:root[data-ytoc-enabled] #movie_player .ytp-time-current,
+:root[data-ytoc-enabled] #movie_player .ytp-time-duration,
+:root[data-ytoc-enabled] #movie_player .ytp-chapter-title,
+:root[data-ytoc-enabled] #movie_player .ytp-title,
+:root[data-ytoc-enabled] #movie_player .ytp-menuitem,
+:root[data-ytoc-enabled] #movie_player .ytp-button svg,
+:root[data-ytoc-enabled] #movie_player .yt-spec-button-shape-next__icon,
+:root[data-ytoc-enabled] #movie_player .yt-spec-button-shape-next__button-text-content,
+:root[data-ytoc-enabled] #movie_player .ytIconWrapperHost {
+  opacity: 1 !important;
 }
 
-/* Target time displays */
-.ytp-time-display,
-.ytp-time-current,
-.ytp-time-duration,
-.ytp-chapter-container,
-.ytp-chapter-title {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-button {
+  min-width: 48px !important;
+  min-height: 48px !important;
 }
 
-/* Target chrome controls */
-.ytp-chrome-controls,
-.ytp-chrome-top,
-.ytp-chrome-bottom,
-.ytp-left-controls,
-.ytp-right-controls {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-button svg {
+  transform: scale(var(--ytoc-icon-scale));
+  transform-origin: center;
 }
 
-/* Target gradient overlays */
-.ytp-gradient-top,
-.ytp-gradient-bottom {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-time-display {
+  font-size: var(--ytoc-time-size) !important;
+  font-weight: 600 !important;
 }
 
-/* Target title and metadata */
-.ytp-title,
-.ytp-title-text,
-.ytp-title-link,
-.ytp-title-channel {
-  /* Opacity will be set by JavaScript */
+:root[data-ytoc-enabled][data-ytoc-always-show] #movie_player .ytp-chrome-top,
+:root[data-ytoc-enabled][data-ytoc-always-show] #movie_player .ytp-chrome-bottom {
+  opacity: 1 !important;
 }
 
-/* Target watermark and branding */
-.ytp-watermark,
-.branding-img,
-.branding-img-container {
-  /* Opacity will be set by JavaScript */
-}
-
-/* Target quick actions in fullscreen */
-.ytp-fullscreen-quick-actions,
-.ytp-fullscreen-quick-actions button {
-  /* Opacity will be set by JavaScript */
-}
-
-/* Ensure all semi-transparent elements in transparent player can be controlled */
-#movie_player.ytp-transparent *,
-#movie_player * {
-  /* Opacity will be controlled by JavaScript for elements with opacity < 1 */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-ytoc-enabled] #movie_player .ytp-chrome-top,
+  :root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom {
+    transition: none !important;
+  }
 }

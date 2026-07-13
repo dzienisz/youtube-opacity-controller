@@ -1,134 +1,99 @@
-# Testing Checklist
+# Release Testing Checklist
 
-Po zainstalowaniu/aktualizacji rozszerzenia, przetestuj następujące rzeczy:
+Run `npm run check` before manual testing. Load the repository through **Load unpacked** at `chrome://extensions/`, then refresh every existing YouTube tab.
 
-## ✅ Podstawowa funkcjonalność
+## Automated Gate
 
-1. **Otwórz dowolny film YouTube**
-   - Przykład: https://www.youtube.com/watch?v=YmcACIOQdDc
+- [ ] `npm run check` exits successfully.
+- [ ] All settings migration tests pass.
+- [ ] `manifest.json` loads without Chrome errors.
+- [ ] The console contains no content-script or popup errors.
 
-2. **Sprawdź czy rozszerzenie działa**
-   - Czy kontrolki mają czarne tło?
-   - Czy domyślnie opacity jest ustawione na 70%?
+## Migration
 
-3. **Testuj slider**
-   - Kliknij ikonę rozszerzenia
-   - Przesuń slider od 0% do 100%
-   - Czy zmiany są widoczne natychmiast?
-   - Czy slider odpowiada płynnie?
+Test with an installation that already contains `overlayOpacity` and `alwaysShowControls`.
 
-## 🎯 Krytyczne elementy do sprawdzenia
+- [ ] Version 1.5 opens with the Standard profile selected.
+- [ ] Existing background strength is preserved.
+- [ ] Existing always-show preference is preserved.
+- [ ] New schema, enabled state, and profile values persist after restarting Chrome.
+- [ ] Reset restores Standard, 70%, enabled, and auto-hide allowed.
 
-### 1. Przycisk pełnego ekranu (Fullscreen button)
-- ✅ Czy przycisk fullscreen jest widoczny?
-- ✅ Czy przycisk ma prawidłowy rozmiar i pozycję?
-- ✅ Czy ikona (4 strzałki) jest wyraźna?
-- ✅ Czy przycisk działa po kliknięciu?
-- ✅ Czy w trybie fullscreen kontrolki też mają czarne tło?
+## Popup Accessibility
 
-### 2. Czerwony scrubber (Progress bar dot)
-- ✅ Czy czerwona kropka jest widoczna NA WIERZCHU czarnego tła?
-- ✅ Czy możesz przesuwać scrubber bez problemów?
-- ✅ Czy scrubber reaguje na hover (powiększa się)?
-- ✅ Czy progress bar (czerwona linia) jest widoczna?
+Complete the following using only the keyboard.
 
-### 3. Inne przyciski
-- ✅ Play/Pause - działa i jest widoczny?
-- ✅ Volume - slider głośności działa?
-- ✅ Settings (gear icon) - otwiera menu?
-- ✅ Captions/Subtitles - przycisk działa?
-- ✅ Quality settings - można zmienić jakość?
+- [ ] Tab order reaches the master switch, all profiles, always-show option, customization disclosure, slider, and reset button.
+- [ ] Every focused element has a visible focus indicator.
+- [ ] Arrow keys select radio profiles and adjust the slider.
+- [ ] Space toggles checkboxes and opens the customization disclosure.
+- [ ] Status changes are announced by a screen reader.
+- [ ] Disabling the master switch removes the settings panel from keyboard interaction.
+- [ ] Re-enabling restores the saved settings.
+- [ ] Reduced-motion mode removes nonessential transitions.
 
-## 🎨 Różne poziomy opacity
+## Profiles
 
-Test z różnymi ustawieniami:
+Use bright and visually busy footage for comparison.
 
-### 0% (Transparent)
-- Powinno wyglądać jak oryginalny YouTube (przezroczyste)
+### Standard
 
-### 25% (Light Gray)
-- Lekkie ciemne tło
-- Kontrolki bardziej widoczne niż przy 0%
+- [ ] The background defaults to 70% for a new installation.
+- [ ] Native control dimensions remain unchanged.
+- [ ] Custom background changes apply immediately from 0% through 100%.
 
-### 50% (Medium Gray)
-- Wyraźne ciemne tło
-- Dobry balans widoczności
+### High Contrast
 
-### 70% (Default)
-- Mocne ciemne tło
-- Wszystkie kontrolki bardzo wyraźne
+- [ ] Control bars, menus, tooltips, and buttons have stronger dark backgrounds.
+- [ ] Text and icons remain fully visible.
+- [ ] Selecting the profile sets the initial background to 90%.
 
-### 100% (Solid Black)
-- Kompletnie czarne, nieprzezroczyste tło
-- Maksymalna widoczność kontrolek
+### Low Vision
 
-## 🔧 Menu i popupy
+- [ ] Buttons retain correct alignment and have the intended 48px target size.
+- [ ] Icons and timestamps are visibly larger.
+- [ ] The bottom bar does not overflow or hide essential controls.
+- [ ] Selecting the profile sets the initial background to 95%.
 
-1. **Settings menu**
-   - Kliknij ikonkę zębatki (Settings)
-   - Czy menu ma czarne tło?
-   - Czy opcje są czytelne?
+## Player Regression Matrix
 
-2. **Volume slider**
-   - Hover nad ikoną głośnika
-   - Czy slider głośności ma czarne tło?
+Repeat critical checks in normal, theater, and fullscreen modes at 100%, 125%, and 150% browser zoom.
 
-3. **Quality menu**
-   - Settings → Quality
-   - Czy wszystkie opcje są widoczne?
+- [ ] Play and pause work.
+- [ ] Volume button and volume slider work.
+- [ ] Captions button works.
+- [ ] Settings, quality, and playback-speed menus work.
+- [ ] Fullscreen enters and exits correctly.
+- [ ] Progress bar remains aligned.
+- [ ] Scrubbing works across the full timeline.
+- [ ] Seek-preview thumbnail remains visible and unmodified.
+- [ ] Chapter title and text tooltip remain readable.
+- [ ] Native auto-hide works when always-show is disabled.
+- [ ] Top and bottom bars stay visible when always-show is enabled.
+- [ ] No button changes position unexpectedly.
+- [ ] No player node is moved or duplicated.
 
-4. **Speed menu**
-   - Settings → Playback speed
-   - Czy menu działa prawidłowo?
+## Navigation and Persistence
 
-## 📱 Różne rozmiary okna
+- [ ] Navigate between at least three videos without a page reload.
+- [ ] Allow autoplay to advance to another video.
+- [ ] Open a video in a new tab.
+- [ ] Restart Chrome.
+- [ ] The selected profile and custom settings persist in every case.
+- [ ] Master off removes all `data-ytoc-*` effects and the inline `--ytoc-overlay-opacity` property.
 
-Testuj w różnych rozdzielczościach:
-- ✅ Normalny rozmiar okna
-- ✅ Okno zmaksymalizowane
-- ✅ Małe okno (500px szerokości)
-- ✅ Tryb teatru (Theater mode)
-- ✅ Tryb pełnego ekranu (Fullscreen)
+## Performance
 
-## 🔄 Nawigacja
+In Chrome DevTools while a video plays:
 
-1. **Zmiana filmu**
-   - Przejdź do innego filmu
-   - Czy rozszerzenie nadal działa?
-   - Czy ustawienia są zachowane?
+- [ ] No repeating extension timer runs while idle.
+- [ ] No extension `MutationObserver` is active.
+- [ ] No continuous style or DOM mutations are attributed to the extension.
+- [ ] Dragging the background slider does not trigger storage quota errors.
+- [ ] The Network panel shows no extension-origin external requests.
 
-2. **Autoplay**
-   - Pozwól filmowi się skończyć
-   - Czy przy następnym filmie rozszerzenie działa?
+## Release Gate
 
-## ❌ Co NIE powinno się zdarzyć
+Do not publish when any critical player control fails, the Low Vision profile causes overflow, migration loses a preference, or console/storage errors occur.
 
-- ❌ Przyciski NIE powinny się "rozjechać" (zmienić pozycji)
-- ❌ Scrubber NIE powinien zniknąć pod tłem
-- ❌ Kontrolki NIE powinny przestać działać
-- ❌ Layout playera NIE powinien się zepsuć
-- ❌ Nic NIE powinno migać ani skakać
-
-## 🐛 Jeśli coś nie działa
-
-1. **Odśwież stronę** (F5 lub Cmd+R)
-2. **Przeładuj rozszerzenie** w chrome://extensions/
-3. **Sprawdź Console** (F12 → Console) czy są błędy
-4. **Zgłoś bug** na GitHub z:
-   - Opisem problemu
-   - Link do filmu YouTube
-   - Screenshot problemu
-   - Jakie masz ustawienie opacity
-   - Konsola (czy są błędy)
-
-## ✨ Jeśli wszystko działa
-
-Oznacza to że:
-- Kod poprawnie modyfikuje style
-- Nie nadpisuje krytycznych layoutów YouTube
-- setProperty() działa lepiej niż cssText
-- Z-index dla scrubbera jest prawidłowy
-
----
-
-**Ostatnia aktualizacja:** Po poprawce z setProperty() zamiast cssText
+Record the Chrome version, operating system, YouTube URL, player mode, browser zoom, selected profile, and screenshot for every failure.

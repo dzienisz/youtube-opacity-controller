@@ -1,85 +1,104 @@
-// Popup script for YouTube Overlay Opacity Controller
-
-const opacitySlider = document.getElementById('opacitySlider');
+const settingsModel = globalThis.YtocSettings;
+const extensionEnabled = document.getElementById('extensionEnabled');
+const settingsPanel = document.getElementById('settingsPanel');
+const profileInputs = Array.from(document.querySelectorAll('[name="accessibilityProfile"]'));
+const alwaysShowControls = document.getElementById('alwaysShowControls');
+const overlayOpacity = document.getElementById('overlayOpacity');
 const opacityValue = document.getElementById('opacityValue');
-const resetBtn = document.getElementById('resetBtn');
-const presetButtons = document.querySelectorAll('.preset-btn');
+const resetSettings = document.getElementById('resetSettings');
+const status = document.getElementById('status');
+let currentSettings = settingsModel.DEFAULTS;
+let saveTimeout = null;
 
-// Default opacity value
-const DEFAULT_OPACITY = 100;
+function updateControls(settings) {
+  extensionEnabled.checked = settings.extensionEnabled;
+  settingsPanel.setAttribute('aria-disabled', String(!settings.extensionEnabled));
+  settingsPanel.inert = !settings.extensionEnabled;
+  settingsPanel.querySelectorAll('input').forEach(input => {
+    input.disabled = !settings.extensionEnabled;
+  });
 
-// Load saved opacity value
-chrome.storage.sync.get(['overlayOpacity'], function(result) {
-  let opacity = DEFAULT_OPACITY;
-  if (result.overlayOpacity !== undefined) {
-    // Convert from 0-1 range to 0-100 range
-    opacity = Math.round(result.overlayOpacity * 100);
+  profileInputs.forEach(input => {
+    input.checked = input.value === settings.accessibilityProfile;
+  });
+  alwaysShowControls.checked = settings.alwaysShowControls;
+
+  const opacityPercent = Math.round(settings.overlayOpacity * 100);
+  overlayOpacity.value = opacityPercent;
+  opacityValue.value = `${opacityPercent}%`;
+}
+
+function previewSettings() {
+  chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+    const tab = tabs[0];
+    if (!tab?.id || !tab.url?.includes('youtube.com')) return;
+
+    chrome.tabs.sendMessage(tab.id, {
+      action: 'previewSettings',
+      settings: currentSettings
+    }).catch(() => {});
+  });
+}
+
+function persistSettings(message) {
+  chrome.storage.sync.set(currentSettings, () => {
+    status.textContent = message;
+  });
+  previewSettings();
+}
+
+function applyUpdate(update, message) {
+  currentSettings = settingsModel.normalizeSettings({ ...currentSettings, ...update });
+  updateControls(currentSettings);
+  persistSettings(message);
+}
+
+chrome.storage.sync.get(null, result => {
+  currentSettings = settingsModel.migrateSettings(result);
+  updateControls(currentSettings);
+
+  const requiresMigration = Object.keys(settingsModel.DEFAULTS)
+    .some(key => result[key] !== currentSettings[key]);
+  if (requiresMigration) {
+    chrome.storage.sync.set(currentSettings);
   }
-  opacitySlider.value = opacity;
-  opacityValue.textContent = opacity;
 });
 
-// Update opacity when slider changes
-opacitySlider.addEventListener('input', function() {
-  const value = parseInt(this.value);
-  opacityValue.textContent = value;
+extensionEnabled.addEventListener('change', () => {
+  applyUpdate({ extensionEnabled: extensionEnabled.checked }, extensionEnabled.checked ? 'Enhancements enabled' : 'Enhancements disabled');
+});
 
-  // Convert from 0-100 range to 0-1 range for CSS
-  const opacityDecimal = value / 100;
+profileInputs.forEach(input => {
+  input.addEventListener('change', () => {
+    if (!input.checked) return;
 
-  // Save to storage
-  chrome.storage.sync.set({ overlayOpacity: opacityDecimal }, function() {
-    // Update active tab
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-      if (tabs[0] && tabs[0].url && tabs[0].url.includes('youtube.com')) {
-        chrome.tabs.sendMessage(tabs[0].id, {
-          action: 'updateOpacity',
-          opacity: opacityDecimal
-        }).catch(() => {
-          // Tab might not be ready yet, that's okay
-        });
-      }
+    applyUpdate({
+      accessibilityProfile: input.value,
+      overlayOpacity: settingsModel.getProfileOpacity(input.value)
+    }, `${input.closest('.profile-card').querySelector('strong').textContent} profile selected`);
+  });
+});
+
+alwaysShowControls.addEventListener('change', () => {
+  applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, alwaysShowControls.checked ? 'Controls will stay visible' : 'Controls can auto-hide');
+});
+
+overlayOpacity.addEventListener('input', () => {
+  const overlayOpacityValue = Number(overlayOpacity.value) / 100;
+  currentSettings = settingsModel.normalizeSettings({ ...currentSettings, overlayOpacity: overlayOpacityValue });
+  opacityValue.value = `${overlayOpacity.value}%`;
+  previewSettings();
+
+  if (saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    chrome.storage.sync.set(currentSettings, () => {
+      status.textContent = 'Background strength saved';
     });
-  });
-});
-
-// Handle preset buttons
-presetButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    const value = parseInt(this.dataset.value);
-    opacitySlider.value = value;
-    opacityValue.textContent = value;
-
-    // Trigger change event
-    opacitySlider.dispatchEvent(new Event('input'));
-
-    // Visual feedback
-    this.classList.add('active');
-    setTimeout(() => {
-      this.classList.remove('active');
-    }, 200);
-  });
-});
-
-// Reset button
-resetBtn.addEventListener('click', function() {
-  opacitySlider.value = DEFAULT_OPACITY;
-  opacityValue.textContent = DEFAULT_OPACITY;
-  opacitySlider.dispatchEvent(new Event('input'));
-
-  // Visual feedback
-  this.classList.add('active');
-  setTimeout(() => {
-    this.classList.remove('active');
   }, 200);
 });
 
-// Add keyboard support for slider
-opacitySlider.addEventListener('keydown', function(e) {
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
-      e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-    setTimeout(() => {
-      opacityValue.textContent = this.value;
-    }, 0);
-  }
+resetSettings.addEventListener('click', () => {
+  currentSettings = { ...settingsModel.DEFAULTS };
+  updateControls(currentSettings);
+  persistSettings('Settings reset');
 });

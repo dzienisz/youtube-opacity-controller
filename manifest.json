@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Overlay Opacity Controller",
-  "version": "1.2",
-  "description": "Control the opacity of YouTube's transparent player overlays",
+  "name": "YouTube Player Accessibility",
+  "version": "1.5",
+  "description": "Make YouTube player controls easier to see and use with accessible viewing profiles.",
   "permissions": ["storage", "activeTab"],
   "host_permissions": [
     "https://www.youtube.com/*"
@@ -18,7 +18,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
-      "js": ["content.js"],
+      "js": ["settings.js", "content.js"],
       "css": ["overlay-fix.css"],
       "run_at": "document_end"
     }

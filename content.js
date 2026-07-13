@@ -1,187 +1,54 @@
-// YouTube Overlay Opacity Controller
-// Adds black backgrounds to YouTube's transparent player elements
+// YouTube Player Accessibility
+// All visual changes are driven by namespaced attributes and custom properties
+// on <html>. The script never moves or clones YouTube-owned DOM nodes.
 
-const DEFAULT_OPACITY = 0.7;
-let currentOpacity = DEFAULT_OPACITY;
-let applyTimeout = null;
-let playerObserver = null;
-let urlObserver = null;
-let lastUrl = location.href;
+const settingsModel = globalThis.YtocSettings;
+let currentSettings = settingsModel.DEFAULTS;
 
-// Single function to apply styles using CSS custom property
-function applyOpacity(opacity) {
-  currentOpacity = opacity;
-  const playerContainer = document.querySelector('#movie_player');
-  if (!playerContainer) return;
+function applySettings(value) {
+  currentSettings = settingsModel.normalizeSettings(value);
+  const root = document.documentElement;
 
-  // Use CSS custom property for efficiency
-  playerContainer.style.setProperty('--yt-overlay-bg-opacity', opacity);
-
-  // Apply background colors in one pass
-  const bgColor = `rgba(0, 0, 0, ${opacity})`;
-  const buttonBgColor = opacity > 0.5 ? `rgba(0, 0, 0, ${opacity * 0.3})` : '';
-
-  // Main containers - use setProperty to preserve layout styles
-  // Note: we target specific control bars, NOT gradients to avoid black box around video
-  const mainContainers = '.ytp-chrome-top, .ytp-chrome-bottom';
-  playerContainer.querySelectorAll(mainContainers).forEach(el => {
-    el.style.setProperty('background', bgColor, 'important');
-    el.style.setProperty('background-color', bgColor, 'important');
-    el.style.setProperty('background-image', 'none', 'important');
-    el.style.setProperty('opacity', '1', 'important');
-  });
-
-  // Exclude progress bar area from background to prevent scrubber visual issues
-  const progressBarContainer = playerContainer.querySelector('.ytp-progress-bar-container');
-  if (progressBarContainer) {
-    // Remove background from progress bar container
-    progressBarContainer.style.setProperty('background', 'transparent', 'important');
-    progressBarContainer.style.setProperty('background-color', 'transparent', 'important');
-  }
-
-  // Secondary containers - use setProperty to preserve layout styles
-  const secondaryContainers = '.ytp-left-controls, .ytp-right-controls, .ytp-time-display, .ytp-chapter-container, .ytp-volume-area, .ytp-volume-panel, .ytp-settings-menu, .ytp-popup, .ytp-panel, .ytp-panel-menu, .ytp-popup-content';
-  playerContainer.querySelectorAll(secondaryContainers).forEach(el => {
-    el.style.setProperty('background', bgColor, 'important');
-    el.style.setProperty('background-color', bgColor, 'important');
-    el.style.setProperty('opacity', '1', 'important');
-  });
-
-  // Tooltip needs background but NOT opacity override (to preserve thumbnail visibility)
-  const tooltipElements = playerContainer.querySelectorAll('.ytp-tooltip, .ytp-tooltip-bg');
-  tooltipElements.forEach(el => {
-    el.style.setProperty('background', bgColor, 'important');
-    el.style.setProperty('background-color', bgColor, 'important');
-    // Don't set opacity - let YouTube handle it for thumbnail visibility
-  });
-
-  // Buttons with optional background - use setProperty to preserve other styles
-  playerContainer.querySelectorAll('.yt-spec-button-shape-next, .ytp-button').forEach(el => {
-    el.style.setProperty('opacity', '1', 'important');
-    if (buttonBgColor) {
-      el.style.setProperty('background-color', buttonBgColor, 'important');
-    }
-  });
-
-  // Text and icons - make opaque
-  const opaqueElements = '.ytp-time-current, .ytp-time-duration, .ytp-chapter-title, .ytp-title, .ytp-menuitem, .yt-spec-button-shape-next__icon, .ytIconWrapperHost, .yt-spec-button-shape-next__button-text-content';
-  playerContainer.querySelectorAll(opaqueElements).forEach(el => {
-    el.style.opacity = '1';
-  });
-
-  // SVG elements
-  playerContainer.querySelectorAll('svg, svg path').forEach(el => {
-    el.style.opacity = '1';
-  });
-
-  // Progress bar is handled above - we set transparent background on progress-bar-container
-  // This ensures scrubber remains properly positioned and visible
-}
-
-// Debounced apply function
-function applyOpacityDebounced(opacity) {
-  if (applyTimeout) clearTimeout(applyTimeout);
-  applyTimeout = setTimeout(() => applyOpacity(opacity), 100);
-}
-
-// Get opacity from storage
-function getStoredOpacity(callback) {
-  chrome.storage.sync.get(['overlayOpacity'], result => {
-    const opacity = result.overlayOpacity !== undefined ? result.overlayOpacity : DEFAULT_OPACITY;
-    callback(opacity);
-  });
-}
-
-// Initialize opacity
-function initializeOpacity() {
-  getStoredOpacity(opacity => {
-    currentOpacity = opacity;
-    applyOpacity(opacity);
-  });
-}
-
-// Listen for opacity changes from popup
-chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (namespace === 'sync' && changes.overlayOpacity) {
-    applyOpacity(changes.overlayOpacity.newValue);
-  }
-});
-
-// Start observing player for dynamic changes
-function startObserving() {
-  const playerContainer = document.querySelector('#movie_player');
-
-  if (!playerContainer) {
-    setTimeout(startObserving, 500);
+  if (!currentSettings.extensionEnabled) {
+    root.removeAttribute('data-ytoc-enabled');
+    root.removeAttribute('data-ytoc-profile');
+    root.removeAttribute('data-ytoc-always-show');
+    root.style.removeProperty('--ytoc-overlay-opacity');
     return;
   }
 
-  // Clean up existing observer
-  if (playerObserver) {
-    playerObserver.disconnect();
-  }
-
-  // Create observer with debounced callback
-  playerObserver = new MutationObserver(() => {
-    applyOpacityDebounced(currentOpacity);
-  });
-
-  playerObserver.observe(playerContainer, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['class', 'style']
-  });
+  root.setAttribute('data-ytoc-enabled', 'true');
+  root.setAttribute('data-ytoc-profile', currentSettings.accessibilityProfile);
+  root.toggleAttribute('data-ytoc-always-show', currentSettings.alwaysShowControls);
+  root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
 }
 
-// Handle SPA navigation
-function setupUrlObserver() {
-  if (urlObserver) {
-    urlObserver.disconnect();
-  }
+function initializeSettings() {
+  chrome.storage.sync.get(null, result => {
+    const migrated = settingsModel.migrateSettings(result);
+    applySettings(migrated);
 
-  // Use more efficient approach - listen to yt-navigate-finish event
-  window.addEventListener('yt-navigate-finish', handleNavigation);
+    const requiresMigration = Object.keys(settingsModel.DEFAULTS)
+      .some(key => result[key] !== migrated[key]);
 
-  // Fallback: observe for URL changes
-  urlObserver = new MutationObserver(() => {
-    if (location.href !== lastUrl) {
-      handleNavigation();
+    if (requiresMigration) {
+      chrome.storage.sync.set(migrated);
     }
   });
-
-  urlObserver.observe(document.querySelector('ytd-app') || document.body, {
-    childList: true,
-    subtree: true
-  });
 }
 
-function handleNavigation() {
-  lastUrl = location.href;
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if (namespace !== 'sync') return;
 
-  // Clean up
-  if (playerObserver) {
-    playerObserver.disconnect();
-    playerObserver = null;
-  }
+  applySettings(settingsModel.applyStorageChanges(currentSettings, changes));
+});
 
-  // Re-initialize
-  setTimeout(() => {
-    initializeOpacity();
-    startObserving();
-  }, 1000);
-}
+// Direct messages provide instant preview while storage remains authoritative.
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action !== 'previewSettings') return;
 
-// Initialize
-function init() {
-  initializeOpacity();
-  startObserving();
-  setupUrlObserver();
-}
+  applySettings(request.settings);
+  sendResponse({ status: 'ok' });
+});
 
-// Start when ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+initializeSettings();

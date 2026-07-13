@@ -1,128 +1,132 @@
 # Chrome Web Store Submission Guide
 
-## Required Items
+## Release
 
-### 1. Extension ZIP File
-✅ Will be created automatically from the project files
+- **Product name:** YouTube Player Accessibility
+- **Version:** 1.5
+- **Category:** Accessibility
+- **Language:** English
+- **Pricing:** Free
+- **Existing item ID:** `dcmmcbdcbpaoefhnlogalnfnnmjolfbh`
 
-### 2. Store Listing Information
+## Store Listing
 
-#### Short Description (max 132 characters)
-```
-Control opacity of YouTube player overlays. Add black backgrounds to transparent controls for better visibility.
-```
-(126 characters)
+### Short Description
 
-#### Detailed Description
-```
-YouTube Overlay Opacity Controller allows you to customize the transparency of YouTube's new player controls by adding adjustable black backgrounds.
-
-🎯 FEATURES:
-• Adjustable opacity slider (0-100%)
-• Quick preset buttons for common settings
-• Real-time updates as you adjust
-• Works on all YouTube video pages
-• Settings persist across browser sessions
-• Clean, modern user interface
-• Default 70% opacity for optimal visibility
-
-🎨 WHAT IT CONTROLS:
-This extension adds black backgrounds to YouTube's transparent player elements:
-• Player control buttons (play, pause, volume, settings, etc.)
-• Progress bar and time displays
-• Video title and channel name overlays
-• Tooltips and chapter titles
-• Menu panels and settings popups
-• Gradient overlays
-• All other semi-transparent UI elements within the player
-
-🔒 PRIVACY:
-• Only runs on YouTube.com
-• Does not collect any data
-• Does not track your viewing history
-• Does not communicate with external servers
-• Only stores your opacity preference locally
-
-💡 HOW TO USE:
-1. Navigate to any YouTube video
-2. Click the extension icon in your Chrome toolbar
-3. Use the slider to adjust opacity or choose a preset
-4. Changes apply instantly
-5. Your preference is saved automatically
-
-Perfect for users who find YouTube's transparent player controls hard to see or prefer a more solid, classic look!
+```text
+Make YouTube player controls easier to see and use with high-contrast and low-vision viewing profiles.
 ```
 
-### 3. Screenshots (REQUIRED)
-You need **1-5 screenshots** of size **1280x800px** or **640x400px**
+### Detailed Description
 
-Screenshots to take:
-1. YouTube video with extension popup open showing the slider
-2. Before/After comparison (transparent controls vs. with black background)
-3. Settings menu with black background applied
-4. Different opacity levels demonstration
+```text
+Make YouTube player controls easier to see and use without changing your whole browser or operating system.
 
-### 4. Promotional Images (OPTIONAL but recommended)
+YouTube Player Accessibility improves the existing player interface on bright and visually busy videos. Choose a ready-made viewing profile, keep controls visible when needed, or customize the background strength.
 
-#### Small Promotional Tile (440x280px)
-Shows in search results and category pages
+FEATURES
 
-#### Marquee Promotional Tile (1400x560px)
-Shows on the extension's detail page
+• Standard profile with an adjustable dark control background
+• High Contrast profile for stronger, clearer controls
+• Low Vision profile with larger buttons, icons, and timestamps
+• Optional Always Show Controls setting
+• Instant preview and settings synchronized through Chrome
+• Master switch to return to the original YouTube appearance
+• Lightweight CSS-only visual changes
 
-### 5. Category
-**Accessibility** or **Productivity**
+SAFE BY DESIGN
 
-### 6. Language
-**English** (and/or **Polish** if you want to add Polish localization)
+• Does not move, clone, or replace YouTube controls
+• Leaves the progress bar layout and seek-preview thumbnails untouched
+• Runs only on youtube.com
+• No account, analytics, tracking, advertisements, or external requests
+• Open source at github.com/dzienisz/youtube-opacity-controller
 
-### 7. Privacy Policy (REQUIRED)
-Chrome Web Store requires a privacy policy URL.
+HOW TO USE
 
-**Use this URL:**
+1. Open a YouTube video.
+2. Select the extension icon.
+3. Choose Standard, High Contrast, or Low Vision.
+4. Optionally keep controls visible or customize the background.
+5. Use the master switch at any time to restore the original appearance.
+
+Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
 ```
+
+## Screenshots
+
+Upload 1–5 screenshots at 1280×800 or 640×400. Replace opacity-only screenshots with the release UI.
+
+1. Before/after on bright footage with **See Every Control Clearly**.
+2. Popup showing all three viewing profiles with **Choose the View That Works for You**.
+3. Low Vision profile with **Larger Controls & Timestamps**.
+4. High Contrast and Always Show Controls with **Keep Controls Easy to Find**.
+5. Privacy message with **No Tracking. No Account.**
+
+Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or support outside desktop Chrome/Chromium.
+
+## Promotional Images
+
+- Small tile: 440×280
+- Large tile: 920×680
+- Marquee tile: 1400×560
+
+Existing opacity-controller artwork must be replaced or withheld because it does not represent the three-profile release.
+
+## Privacy
+
+Use:
+
+```text
 https://github.com/dzienisz/youtube-opacity-controller/blob/main/PRIVACY.md
 ```
 
-The PRIVACY.md file in the repository contains:
-- Clear statement: NO data collection
-- Detailed explanation of all permissions
-- What the extension does and doesn't do
-- Open source transparency
+Select **Does not collect user data**.
 
-## Chrome Web Store Developer Account
+## Permission Justifications
 
-### Cost
-**$5 USD one-time registration fee**
+### `storage`
 
-### Steps
-1. Go to https://chrome.google.com/webstore/devconsole
-2. Sign in with your Google account
-3. Pay the $5 registration fee
-4. Accept developer agreement
-5. Complete account setup
+```text
+Stores and synchronizes the enabled state, selected accessibility profile, control-background strength, always-show preference, and settings schema version. No browsing or viewing data is stored.
+```
 
-## Submission Process
+### `activeTab`
 
-1. Log in to Chrome Web Store Developer Dashboard
-2. Click "New Item"
-3. Upload the ZIP file
-4. Fill in store listing information
-5. Upload screenshots and promotional images
-6. Select category and language
-7. Set pricing (Free)
-8. **Privacy practices** - Fill in:
-   - Privacy policy: `https://github.com/dzienisz/youtube-opacity-controller/blob/main/PRIVACY.md`
-   - Data usage: Select "Does not collect user data"
-9. **Justification for permissions** (Chrome will ask):
-   - **storage**: "To save user's opacity preference setting (0-100%) locally"
-   - **activeTab**: "To apply CSS style changes to YouTube player elements"
-   - **youtube.com host**: "To inject content script that adds black backgrounds to transparent player controls"
-10. Submit for review
+```text
+Sends an immediate preview of settings chosen in the extension popup to the active YouTube tab. It is not used to collect page content or browsing history.
+```
 
-## Review Time
-Typically **1-3 days** for first review, sometimes up to a week.
+### `https://www.youtube.com/*`
 
-## After Approval
-Your extension will be live at:
-`https://chromewebstore.google.com/detail/[unique-id]`
+```text
+Loads the extension's content script and CSS on YouTube so it can style existing player controls. Host access is restricted to YouTube and no page or video data is extracted.
+```
+
+## Package Contents
+
+Include only:
+
+- `manifest.json`
+- `settings.js`
+- `content.js`
+- `overlay-fix.css`
+- `popup.html`
+- `popup.css`
+- `popup.js`
+- `icons/`
+
+Exclude source tests, `package.json`, documentation, store assets, screenshots, Git metadata, and previous ZIP files.
+
+## Submission Steps
+
+1. Complete every item in `TESTING.md`.
+2. Build and inspect a fresh release ZIP.
+3. Open the existing item in the Chrome Web Store Developer Dashboard.
+4. Upload the ZIP as version 1.5.
+5. Replace the product name, short description, detailed description, and screenshots.
+6. Select Accessibility and English.
+7. Confirm the privacy-policy URL and permission justifications.
+8. Confirm **Does not collect user data**.
+9. Submit for review.
+10. After approval, compare active users and acquisition with the saved baseline after 30 days.

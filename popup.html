@@ -1,52 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YouTube Overlay Opacity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Player Accessibility</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <h1>YouTube Overlay Background</h1>
-    <p class="description">Add black background to YouTube player controls</p>
-
-    <div class="control-group">
-      <label for="opacitySlider">
-        Background: <span id="opacityValue">100</span>%
+  <main class="container">
+    <header class="header">
+      <div>
+        <p class="eyebrow">Accessibility controls</p>
+        <h1>YouTube Controls</h1>
+        <p class="description">Make player controls easier to see and use.</p>
+      </div>
+      <label class="switch" aria-label="Enable YouTube control enhancements">
+        <input type="checkbox" id="extensionEnabled" name="extensionEnabled" autocomplete="off" aria-label="Enable YouTube control enhancements">
+        <span class="switch-track" aria-hidden="true"></span>
       </label>
-      <input
-        type="range"
-        id="opacitySlider"
-        min="0"
-        max="100"
-        value="100"
-        step="5"
-        class="slider"
-      >
-      <div class="slider-labels">
-        <span>Transparent</span>
-        <span>Solid Black</span>
-      </div>
-    </div>
+    </header>
 
-    <div class="presets">
-      <h3>Quick Presets</h3>
-      <div class="preset-buttons">
-        <button class="preset-btn" data-value="100">Solid Black</button>
-        <button class="preset-btn" data-value="75">Dark Gray</button>
-        <button class="preset-btn" data-value="50">Medium Gray</button>
-        <button class="preset-btn" data-value="25">Light Gray</button>
-      </div>
-    </div>
+    <section id="settingsPanel" aria-label="Accessibility settings">
+      <fieldset class="profiles">
+        <legend>Choose a Viewing Profile</legend>
 
-    <div class="info">
-      <p>This extension adds a black background to YouTube's transparent player controls and overlays.</p>
-      <p class="tip"><strong>Tip:</strong> Set to 100% for a solid black background behind all controls.</p>
-    </div>
+        <label class="profile-card">
+          <input type="radio" name="accessibilityProfile" autocomplete="off" value="standard">
+          <span class="profile-copy">
+            <strong>Standard</strong>
+            <small>Adjustable dark background</small>
+          </span>
+          <span class="profile-check" aria-hidden="true">✓</span>
+        </label>
 
-    <button id="resetBtn" class="reset-btn">Reset to Default</button>
-  </div>
+        <label class="profile-card">
+          <input type="radio" name="accessibilityProfile" autocomplete="off" value="high-contrast">
+          <span class="profile-copy">
+            <strong>High contrast</strong>
+            <small>Darker controls and clearer buttons</small>
+          </span>
+          <span class="profile-check" aria-hidden="true">✓</span>
+        </label>
 
+        <label class="profile-card">
+          <input type="radio" name="accessibilityProfile" autocomplete="off" value="low-vision">
+          <span class="profile-copy">
+            <strong>Low vision</strong>
+            <small>Larger controls, text, and strong contrast</small>
+          </span>
+          <span class="profile-check" aria-hidden="true">✓</span>
+        </label>
+      </fieldset>
+
+      <label class="option-row">
+        <span>
+          <strong>Always Show Controls</strong>
+          <small>Keeps controls over part of the video</small>
+        </span>
+        <input type="checkbox" id="alwaysShowControls" name="alwaysShowControls" autocomplete="off">
+      </label>
+
+      <details class="customize">
+        <summary>Customize Background</summary>
+        <div class="slider-group">
+          <label for="overlayOpacity">Background strength <output id="opacityValue" for="overlayOpacity">70%</output></label>
+          <input type="range" id="overlayOpacity" name="overlayOpacity" min="0" max="100" value="70" step="5" autocomplete="off">
+          <div class="slider-labels" aria-hidden="true">
+            <span>Transparent</span>
+            <span>Solid</span>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <footer>
+      <p id="status" class="status" role="status" aria-live="polite">Settings ready</p>
+      <button id="resetSettings" class="reset-button" type="button">Reset Settings</button>
+    </footer>
+  </main>
+
+  <script src="settings.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

@@ -1,28 +1,28 @@
-# Project Summary - YouTube Overlay Opacity Controller
+# Project Summary - YouTube Player Accessibility
 
 ## 📊 Project Overview
 
-**Name:** YouTube Overlay Opacity Controller
-**Version:** 1.1 (ready to deploy)
-**Live Version:** 1.0 (currently on Chrome Web Store)
+**Name:** YouTube Player Accessibility
+**Version:** 1.5 (release candidate)
+**Live Version:** Verify in the Chrome Web Store dashboard before submission
 **Type:** Chrome Extension (Manifest V3)
-**Status:** ✅ LIVE on Chrome Web Store
+**Status:** Release candidate; manual Chrome matrix and store submission pending
 **Chrome Web Store:** https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh
 **Repository:** https://github.com/dzienisz/youtube-opacity-controller
-**Release:** https://github.com/dzienisz/youtube-opacity-controller/releases/tag/v1.1
+**Releases:** https://github.com/dzienisz/youtube-opacity-controller/releases
 
 ## 🎯 Purpose
 
-This Chrome extension allows users to add adjustable black backgrounds to YouTube's transparent player controls, improving visibility and readability of control elements.
+This Chrome extension makes existing YouTube player controls easier to see and use through Standard, High Contrast, and Low Vision profiles without moving or replacing YouTube-owned elements.
 
 ## 📈 Project Statistics
 
 ### Code Metrics
-- **Total Lines of Code:** 662 lines
-  - JavaScript: 270 lines (content.js + popup.js)
-  - CSS: 309 lines (overlay-fix.css + popup.css)
-  - HTML: 52 lines (popup.html)
-  - JSON: 31 lines (manifest.json)
+- **Runtime and tests:** 798 lines
+  - JavaScript: 306 lines (`settings.js`, `content.js`, `popup.js`, `settings.test.js`)
+  - CSS: 376 lines (`overlay-fix.css`, `popup.css`)
+  - HTML: 85 lines (`popup.html`)
+  - JSON: 31 lines (`manifest.json`)
 
 ### Documentation
 - **Total Documentation:** ~2,000+ lines
@@ -37,7 +37,7 @@ This Chrome extension allows users to add adjustable black backgrounds to YouTub
 
 ### Assets
 - 4 icon files (SVG + PNG in 16px, 48px, 128px)
-- 2 promotional images (440x280, 1400x560)
+- 3 promotional images (440x280, 920x680, 1400x560)
 - 1 deployment package (ZIP)
 
 ## 🏗️ Project Structure
@@ -45,11 +45,14 @@ This Chrome extension allows users to add adjustable black backgrounds to YouTub
 ```
 youtube-opacity-controller/
 ├── manifest.json              # Extension configuration
-├── content.js                 # Main content script (185 lines)
-├── popup.html                 # Popup UI (52 lines)
-├── popup.js                   # Popup logic (85 lines)
-├── popup.css                  # Popup styling (200 lines)
-├── overlay-fix.css            # YouTube player styling (109 lines)
+├── settings.js                # Defaults, validation, and migration
+├── content.js                 # Namespaced state application
+├── popup.html                 # Accessible popup UI
+├── popup.js                   # Popup state and preview logic
+├── popup.css                  # Popup styling and focus states
+├── overlay-fix.css            # Profile-driven player styling
+├── settings.test.js           # Settings model tests
+├── package.json               # Development checks
 │
 ├── icons/                     # Extension icons
 │   ├── icon.svg               # Source SVG
@@ -59,6 +62,7 @@ youtube-opacity-controller/
 │
 ├── store-assets/              # Chrome Web Store materials
 │   ├── promotional-small.png/.svg       # 440x280 tile
+│   ├── promotional-large.png/.svg       # 920x680 tile
 │   ├── promotional-marquee.png/.svg     # 1400x560 banner
 │   └── SCREENSHOTS_GUIDE.md             # Screenshot instructions
 │
@@ -74,26 +78,27 @@ youtube-opacity-controller/
 │   └── PROJECT_SUMMARY.md     # This file
 │
 ├── .gitignore                 # Git ignore rules
-└── youtube-opacity-controller.zip  # Distribution package
+└── youtube-player-accessibility-1.5.zip  # Runtime-only release package
 
 ```
 
 ## 🔧 Technical Architecture
 
 ### Technologies
-- **JavaScript (ES6+):** Modern JavaScript with async/await, arrow functions
+- **JavaScript (ES6+):** Shared, testable settings model and Chrome API adapters
 - **Chrome Extension API:** Manifest V3, Storage API, Content Scripts
-- **HTML5 & CSS3:** Modern web standards
-- **MutationObserver:** For detecting YouTube's dynamic DOM changes
+- **HTML5 & CSS3:** Semantic controls, namespaced attributes, and profile tokens
+- **Node.js test runner:** Dependency-free settings migration tests
 
 ### Key Features
-1. **Opacity Control:** 0-100% adjustable via slider
-2. **Quick Presets:** One-click buttons (25%, 50%, 75%, 100%)
-3. **Real-time Updates:** Instant visual feedback
-4. **Settings Persistence:** Chrome Storage Sync
-5. **SPA Navigation:** Handles YouTube's single-page app navigation
-6. **Performance:** Debounced DOM updates (100ms)
-7. **Non-invasive:** Uses setProperty() to preserve YouTube's native styles
+1. **Viewing Profiles:** Standard, High Contrast, and Low Vision
+2. **Master Switch:** Remove all extension-owned styling
+3. **Background Control:** Optional 0–100% customization
+4. **Always Show Controls:** Keep player controls visible when needed
+5. **Settings Migration:** Preserve legacy opacity and visibility preferences
+6. **Real-time Preview:** Direct message to the active YouTube tab
+7. **Settings Persistence:** Chrome Sync storage
+8. **Non-invasive Styling:** No DOM movement, cloning, observers, or idle timers
 
 ### Permissions Required
 - `storage` - Save user preferences
@@ -102,18 +107,48 @@ youtube-opacity-controller/
 
 ## 📝 Version History
 
-### v1.1 (2024-10-14) - Current
+### v1.5 (2026-07-13) - Current
+- **Added:** Standard, High Contrast, and Low Vision profiles
+- **Added:** Master switch, settings schema, migration, and automated tests
+- **Changed:** Accessible profile-first popup and runtime-only CSS state
+- **Removed:** Outside-bar DOM movement and broad observers
+- **Status:** Release candidate; manual Chrome matrix required
+
+### v1.4 (2026-07-08)
+- **Added:** Always Show Player Controls feature
+- **Added:** Toggle control in popup UI
+- **Fixed:** Popup default opacity now matches content script (70%)
+- **Fixed:** Popup now communicates directly with content script for instant updates
+- **Changed:** Updated Chrome Web Store promotional images (small, large, marquee)
+- **Status:** Ready to deploy
+
+### v1.3 (2024-10-23)
+- **Added:** Move Player Bar Outside Video feature
+- **Added:** Toggle control in popup UI
+- **Added:** Flexbox layout for outside bar mode
+- **Added:** CSS styling for outside bar positioning
+- **Improved:** Settings management to handle multiple preferences
+- **Status:** Released
+
+### v1.2 (2024-10-21)
+- **Fixed:** Progress bar scrubber displacement
+- **Fixed:** Black box around video
+- **Fixed:** Preview thumbnail opacity issues
+- **Added:** Smooth scrubber hover animations
+- **Status:** Released
+
+### v1.1 (2024-10-14)
 - **Fixed:** Fullscreen button layout issues
 - **Fixed:** Red progress bar scrubber positioning
 - **Improved:** Switched from cssText to setProperty() for better style preservation
-- **Status:** Submitted to Chrome Web Store
+- **Status:** Released to Chrome Web Store
 
 ### v1.0 (2024-10-14) - Initial Release
 - **Added:** Core functionality - opacity control
 - **Added:** Popup UI with slider and presets
 - **Added:** Black backgrounds for player controls
 - **Added:** Settings persistence
-- **Status:** Submitted to Chrome Web Store (later updated to v1.1)
+- **Status:** Released to Chrome Web Store
 
 ## 🎨 Design Decisions
 
@@ -157,18 +192,16 @@ youtube-opacity-controller/
 - [ ] Zero critical bugs reported
 - [ ] Positive user feedback
 
-### Future Enhancements
-- Keyboard shortcuts
-- Per-channel settings
-- Custom opacity for different elements
-- Dark mode popup theme
-- Internationalization (Polish, etc.)
+### Release Discipline
+- Do not expand scope until the v1.5 release has 30 days of store data.
+- Prioritize selector maintenance and critical regressions over new features.
+- Revalidate value with users before adding another feature category.
 
 ## 🔒 Privacy & Security
 
 ### Data Collection
 - **Collected:** None
-- **Stored:** Only user's opacity preference (single number)
+- **Stored:** Enabled state, selected profile, background strength, always-show preference, and schema version
 - **Transmitted:** Nothing sent to external servers
 - **Tracked:** No analytics, no tracking
 

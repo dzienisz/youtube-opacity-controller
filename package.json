@@ -1,0 +1,9 @@
+{
+  "name": "youtube-player-accessibility",
+  "version": "1.5.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check settings.js && node --check content.js && node --check popup.js && node --test"
+  }
+}

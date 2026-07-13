@@ -1,135 +1,100 @@
-# YouTube Overlay Opacity Controller
+# YouTube Player Accessibility
 
-[![Version](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Version](https://img.shields.io/badge/version-1.5-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-A Chrome extension that allows you to control the opacity of YouTube's transparent player overlays, making them less transparent and more visible.
+A privacy-first Chrome extension that makes YouTube player controls easier to see and use. Choose a viewing profile, keep controls visible when needed, or customize the dark background strength.
 
-**🌐 [Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** • **📖 [Changelog](CHANGELOG.md)** • **🔒 [Privacy Policy](PRIVACY.md)** • **🤝 [Contributing](CONTRIBUTING.md)**
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** · **[Changelog](CHANGELOG.md)** · **[Privacy Policy](PRIVACY.md)** · **[Contributing](CONTRIBUTING.md)**
 
 ## Features
 
-- Adjust opacity of YouTube player overlays with a simple slider (0-100%)
-- Quick preset buttons for common opacity levels
-- Real-time updates as you adjust the slider
-- Works on all YouTube video pages
-- Persists your settings across browser sessions
-- Clean, modern user interface
+- Three viewing profiles: Standard, High Contrast, and Low Vision
+- Adjustable dark background behind player controls
+- Larger controls and timestamps in the Low Vision profile
+- Optional always-visible player controls
+- Master switch that removes all extension styling
+- Settings synchronized through Chrome Sync
+- No accounts, analytics, tracking, or external requests
+- CSS-only visual changes without moving or cloning YouTube elements
 
 ## Installation
 
-### 🌐 Install from Chrome Web Store (Recommended)
+### Chrome Web Store
 
-**[→ Install YouTube Overlay Opacity Controller](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)**
+1. Open the [Chrome Web Store listing](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh).
+2. Select **Add to Chrome**.
+3. Confirm by selecting **Add extension**.
+4. Refresh an open YouTube tab after updating from an older version.
 
-1. Click the link above or visit the Chrome Web Store
-2. Click "Add to Chrome"
-3. Confirm by clicking "Add extension"
-4. Done! The extension is now installed
+### Install from Source
 
-### 🔧 Install from Source (Developer Mode)
-
-1. Download or clone this extension folder to your computer
-
-2. Open Google Chrome and navigate to `chrome://extensions/`
-
-3. Enable "Developer mode" by toggling the switch in the top-right corner
-
-4. Click "Load unpacked" button
-
-5. Navigate to and select the `youtube-opacity-controller` folder
-
-6. The extension should now be installed and active
+1. Download or clone this repository.
+2. Open `chrome://extensions/` in Chrome.
+3. Enable **Developer mode**.
+4. Select **Load unpacked**.
+5. Select the repository directory.
 
 ## Usage
 
-1. Navigate to any YouTube video (e.g., https://www.youtube.com/watch?v=YmcACIOQdDc)
+1. Open a YouTube video.
+2. Select the extension icon in the Chrome toolbar.
+3. Keep the master switch enabled and choose a profile:
+   - **Standard:** Adjustable dark background with the native control size.
+   - **High Contrast:** Stronger backgrounds behind bars, menus, and buttons.
+   - **Low Vision:** High contrast with larger buttons, icons, and timestamps.
+4. Enable **Always Show Controls** if native auto-hide makes controls difficult to find.
+5. Expand **Customize Background** to set the background from 0% to 100%.
+6. Select **Reset Settings** to restore the Standard profile at 70%.
 
-2. Click the extension icon in your Chrome toolbar
+Changes apply immediately and persist across browser sessions.
 
-3. Use the slider to adjust the opacity:
-   - **0%** = Completely transparent (invisible)
-   - **50%** = Half transparent
-   - **100%** = Fully opaque (no transparency)
+## Scope
 
-4. Or use the quick preset buttons:
-   - **Fully Opaque** (100%) - No transparency at all
-   - **Less Transparent** (75%) - Mostly opaque
-   - **Half Transparent** (50%) - Balanced visibility
-   - **Very Transparent** (25%) - Mostly transparent
+The extension styles only existing YouTube player UI:
 
-5. Changes apply instantly to the current video
+- top and bottom control bars;
+- player buttons, icons, and timestamps;
+- settings menus and panels;
+- text tooltips and chapter titles.
 
-6. Click "Reset to Default" to restore 100% opacity
+It leaves seek-preview thumbnails and progress-bar layout untouched. It does not move, clone, or replace YouTube controls and does not modify video content.
 
-## What It Controls
+## Compatibility and Migration
 
-This extension modifies the opacity of **inner elements** within YouTube's player that are semi-transparent, including:
+Version 1.5 preserves existing `overlayOpacity` and `alwaysShowControls` preferences. Existing installations start on the Standard profile with prior values retained.
 
-- Player control buttons (play, pause, volume, settings, etc.)
-- Progress bar and time displays
-- Video title and channel name overlays
-- SVG icons within buttons
-- Tooltips and chapter titles
-- Menu panels and settings
-- Gradient overlays (top and bottom)
-- Channel watermark
-- Cards and end screen elements
-- All other semi-transparent UI elements within the player
+The release targets desktop Chrome and Chromium-based browsers on `youtube.com`. YouTube interface experiments may require selector updates.
 
-The extension intelligently detects and modifies ANY element with reduced opacity (< 100%) within the YouTube player container.
+## Development
 
-## Troubleshooting
+Requires Node.js with the built-in `node:test` runner.
 
-### Extension not working?
+```bash
+npm test
+npm run check
+```
 
-1. Refresh the YouTube page after installing the extension
-2. Make sure the extension is enabled in `chrome://extensions/`
-3. Check that you're on a YouTube video page (not the homepage)
-
-### Changes not appearing?
-
-- Some overlay elements may load dynamically. Try pausing and playing the video.
-- The extension works best when you adjust the opacity while the video is playing.
+`npm run check` validates JavaScript syntax and runs settings migration tests.
 
 ## Technical Details
 
-- **Manifest Version**: 3
-- **Permissions**: Storage, Active Tab
-- **Host Permissions**: YouTube only
-- **Content Scripts**: Runs on all YouTube pages
-- **Storage**: Uses Chrome Sync Storage to persist settings
-
-## Files
-
-- `manifest.json` - Extension configuration
-- `content.js` - Main script that modifies YouTube overlays
-- `overlay-fix.css` - CSS styles for overlay modifications
-- `popup.html` - Extension popup interface
-- `popup.js` - Popup functionality
-- `popup.css` - Popup styling
-- `icons/` - Extension icons in multiple sizes
-- `CHANGELOG.md` - Version history and release notes
-- `PRIVACY.md` - Privacy policy and permissions explanation
+- Manifest V3
+- `storage` and `activeTab` permissions
+- host access restricted to `https://www.youtube.com/*`
+- versioned settings schema stored in `chrome.storage.sync`
+- namespaced `data-ytoc-*` attributes and `--ytoc-*` CSS properties
+- no background service worker, remote code, or external network calls
 
 ## Privacy
 
-This extension:
-- Only runs on YouTube.com
-- Does not collect any data
-- Does not track your viewing history
-- Does not communicate with external servers
-- Only stores your opacity preference locally
-
-## License
-
-Free to use and modify for personal use.
+The extension runs only on YouTube, stores only its settings through Chrome Sync, and does not collect browsing or viewing data. See the [Privacy Policy](PRIVACY.md) for details.
 
 ## Support
 
-If you encounter any issues or have suggestions, please create an issue in the repository.
+Report issues at [GitHub Issues](https://github.com/dzienisz/youtube-opacity-controller/issues). Include the Chrome version, YouTube URL, selected profile, screenshot, and relevant console errors.
 
----
+## License
 
-Made with care for those who prefer their overlays less transparent!
+MIT. See [LICENSE](LICENSE).

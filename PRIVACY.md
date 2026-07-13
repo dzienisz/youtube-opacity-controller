@@ -1,55 +1,67 @@
 # Privacy Policy & Permissions
 
+**Last updated: July 13, 2026**
+
 ## Data Collection
-**This extension does NOT collect, store, or transmit any personal data.**
+
+YouTube Player Accessibility does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests.
+
+## Stored Settings
+
+The extension stores only the following preferences in `chrome.storage.sync`:
+
+- whether enhancements are enabled;
+- selected accessibility profile;
+- player-control background strength;
+- whether player controls should remain visible;
+- settings schema version used for safe migration.
+
+Chrome may synchronize these settings between browsers when you are signed in. The extension developer does not receive or control that synchronization data.
 
 ## Required Permissions
 
-### Storage Permission
-- **Why needed:** To save your opacity preference (0-100%)
-- **What is stored:** A single numeric value representing your chosen opacity level
-- **Where stored:** Locally in your browser using Chrome's storage API
-- **Sync:** Settings sync across your Chrome devices if you're signed in
+### Storage
 
-### Active Tab Permission
-- **Why needed:** To apply opacity changes to the YouTube page you're viewing
-- **When used:** Only when you click the extension icon
-- **What it accesses:** The current YouTube tab to modify player CSS styles
-- **Limitations:** Cannot access other tabs or your browsing history
+- **Purpose:** Save and synchronize extension preferences.
+- **Data:** The five settings listed above.
+- **Limitation:** No video URLs, titles, searches, account details, or viewing history are stored.
 
-### YouTube Host Permission (`https://www.youtube.com/*`)
-- **Why needed:** To inject the content script that modifies player overlay opacity
-- **What it does:** Adds black backgrounds to YouTube player controls
-- **Scope:** Only YouTube.com - no access to any other websites
-- **Method:** CSS style modifications only - no data extraction
+### Active Tab
 
-## What This Extension Does NOT Do
+- **Purpose:** Send an immediate settings preview to the active YouTube tab while the popup is open.
+- **Use:** Only after you interact with the extension popup.
+- **Limitation:** The extension does not read or store browsing history and cannot use this permission on unrelated inactive tabs.
 
-❌ Does NOT collect your viewing history
-❌ Does NOT track which videos you watch
-❌ Does NOT send any data to external servers
-❌ Does NOT display ads or analytics
-❌ Does NOT access your personal information
-❌ Does NOT access other websites besides YouTube
-❌ Does NOT modify video content or inject advertisements
+### YouTube Host Access (`https://www.youtube.com/*`)
 
-## What This Extension DOES Do
+- **Purpose:** Load the content script and CSS that improve existing player controls.
+- **Scope:** Restricted to `youtube.com`; no other website host access is requested.
+- **Behavior:** Applies namespaced attributes and CSS properties. It does not extract page or video data, move player elements, or modify video content.
 
-✅ Modifies CSS styles of YouTube player controls
-✅ Adds black backgrounds to transparent elements
-✅ Saves your opacity preference locally
-✅ Listens for changes to your settings
-✅ Re-applies styles when YouTube's player updates
+## The Extension Does Not
+
+- collect or transmit viewing history;
+- track videos, searches, channels, or clicks;
+- contact analytics or advertising services;
+- access websites other than YouTube;
+- inject remote code;
+- create user profiles or identifiers;
+- sell or share user data.
 
 ## Open Source
-This extension is open source and available for review at:
+
+The source code is available at:
+
 https://github.com/dzienisz/youtube-opacity-controller
 
-You can inspect the code to verify these privacy claims.
+You can inspect the implementation to verify these claims.
+
+## Policy Changes
+
+Material privacy changes will be documented in the repository and reflected by the date at the top of this policy. A future release that collects data would require an explicit policy update and appropriate disclosure before publication.
 
 ## Contact
-If you have questions or concerns about privacy, please open an issue on GitHub.
 
----
+Open a privacy question or issue at:
 
-**Last Updated:** October 2024
+https://github.com/dzienisz/youtube-opacity-controller/issues
