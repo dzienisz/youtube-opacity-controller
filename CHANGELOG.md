@@ -5,6 +5,17 @@ All notable changes to YouTube Player Accessibility will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6] - 2026-07-14
+
+### Added
+- Localization into 9 languages based on Chrome Web Store user regions: Portuguese (Brazil), Spanish, German, Japanese, Korean, Arabic, Ukrainian, Vietnamese, and Hindi
+- `_locales/` message catalogs with English as the default locale; extension name, description, popup labels, aria-labels, and status messages all translated
+- Right-to-left layout support for Arabic via `@@bidi_dir`
+- Translated Chrome Web Store listing copy in `store-assets/store-descriptions.md`
+
+### Changed
+- Popup status messages now use `chrome.i18n` message keys with placeholders instead of hardcoded English strings
+
 ## [1.5] - 2026-07-13
 
 ### Added

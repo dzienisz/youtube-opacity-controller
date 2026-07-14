@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Player Accessibility",
-  "version": "1.5",
-  "description": "Make YouTube player controls easier to see and use with accessible viewing profiles.",
+  "name": "__MSG_appName__",
+  "version": "1.6",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "permissions": ["storage", "activeTab"],
   "host_permissions": [
     "https://www.youtube.com/*"

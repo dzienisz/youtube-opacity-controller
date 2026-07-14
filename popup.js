@@ -1,3 +1,23 @@
+const t = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
+
+document.documentElement.lang = t('@@ui_locale').replace('_', '-');
+document.documentElement.dir = t('@@bidi_dir');
+document.title = t('appName') || document.title;
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  const message = t(el.dataset.i18n);
+  if (message) el.textContent = message;
+});
+document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+  const message = t(el.dataset.i18nAriaLabel);
+  if (message) el.setAttribute('aria-label', message);
+});
+
+const PROFILE_NAME_KEYS = {
+  standard: 'profileStandard',
+  'high-contrast': 'profileHighContrast',
+  'low-vision': 'profileLowVision'
+};
+
 const settingsModel = globalThis.YtocSettings;
 const extensionEnabled = document.getElementById('extensionEnabled');
 const settingsPanel = document.getElementById('settingsPanel');
@@ -65,7 +85,7 @@ chrome.storage.sync.get(null, result => {
 });
 
 extensionEnabled.addEventListener('change', () => {
-  applyUpdate({ extensionEnabled: extensionEnabled.checked }, extensionEnabled.checked ? 'Enhancements enabled' : 'Enhancements disabled');
+  applyUpdate({ extensionEnabled: extensionEnabled.checked }, t(extensionEnabled.checked ? 'statusEnabled' : 'statusDisabled'));
 });
 
 profileInputs.forEach(input => {
@@ -75,12 +95,12 @@ profileInputs.forEach(input => {
     applyUpdate({
       accessibilityProfile: input.value,
       overlayOpacity: settingsModel.getProfileOpacity(input.value)
-    }, `${input.closest('.profile-card').querySelector('strong').textContent} profile selected`);
+    }, t('statusProfileSelected', [t(PROFILE_NAME_KEYS[input.value])]));
   });
 });
 
 alwaysShowControls.addEventListener('change', () => {
-  applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, alwaysShowControls.checked ? 'Controls will stay visible' : 'Controls can auto-hide');
+  applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, t(alwaysShowControls.checked ? 'statusControlsVisible' : 'statusControlsAutoHide'));
 });
 
 overlayOpacity.addEventListener('input', () => {
@@ -92,7 +112,7 @@ overlayOpacity.addEventListener('input', () => {
   if (saveTimeout) clearTimeout(saveTimeout);
   saveTimeout = setTimeout(() => {
     chrome.storage.sync.set(currentSettings, () => {
-      status.textContent = 'Background strength saved';
+      status.textContent = t('statusStrengthSaved');
     });
   }, 200);
 });
@@ -100,5 +120,5 @@ overlayOpacity.addEventListener('input', () => {
 resetSettings.addEventListener('click', () => {
   currentSettings = { ...settingsModel.DEFAULTS };
   updateControls(currentSettings);
-  persistSettings('Settings reset');
+  persistSettings(t('statusReset'));
 });
