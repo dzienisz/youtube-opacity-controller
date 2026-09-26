@@ -10,9 +10,9 @@
   <main class="container">
     <header class="header">
       <div>
-        <p class="eyebrow" data-i18n="eyebrow">Accessibility controls</p>
-        <h1 data-i18n="headerTitle">YouTube Controls</h1>
-        <p class="description" data-i18n="headerDescription">Make player controls easier to see and use.</p>
+        <p class="eyebrow" data-i18n="eyebrow">YouTube controls</p>
+        <h1 data-i18n="headerTitle">See controls clearly</h1>
+        <p class="description" data-i18n="headerDescription">Keep controls visible, darker, or larger when you need them.</p>
       </div>
       <label class="switch" aria-label="Enable YouTube control enhancements" data-i18n-aria-label="enableToggleLabel">
         <input type="checkbox" id="extensionEnabled" name="extensionEnabled" autocomplete="off" aria-label="Enable YouTube control enhancements" data-i18n-aria-label="enableToggleLabel">
@@ -20,15 +20,23 @@
       </label>
     </header>
 
-    <section id="settingsPanel" aria-label="Accessibility settings" data-i18n-aria-label="settingsPanelLabel">
+    <section id="settingsPanel" aria-label="YouTube control settings" data-i18n-aria-label="settingsPanelLabel">
+      <label class="option-row primary-option">
+        <span>
+          <strong data-i18n="alwaysShowControls">Keep controls visible</strong>
+          <small data-i18n="alwaysShowControlsDesc">Stops controls from disappearing while you use them</small>
+        </span>
+        <input type="checkbox" id="alwaysShowControls" name="alwaysShowControls" autocomplete="off">
+      </label>
+
       <fieldset class="profiles">
-        <legend data-i18n="profilesLegend">Choose a Viewing Profile</legend>
+        <legend data-i18n="profilesLegend">Choose a control style</legend>
 
         <label class="profile-card">
           <input type="radio" name="accessibilityProfile" autocomplete="off" value="standard">
           <span class="profile-copy">
-            <strong data-i18n="profileStandard">Standard</strong>
-            <small data-i18n="profileStandardDesc">Adjustable dark background</small>
+            <strong data-i18n="profileStandard">Clear controls</strong>
+            <small data-i18n="profileStandardDesc">Balanced visibility for everyday viewing</small>
           </span>
           <span class="profile-check" aria-hidden="true">✓</span>
         </label>
@@ -36,7 +44,7 @@
         <label class="profile-card">
           <input type="radio" name="accessibilityProfile" autocomplete="off" value="high-contrast">
           <span class="profile-copy">
-            <strong data-i18n="profileHighContrast">High contrast</strong>
+            <strong data-i18n="profileHighContrast">Strong contrast</strong>
             <small data-i18n="profileHighContrastDesc">Darker controls and clearer buttons</small>
           </span>
           <span class="profile-check" aria-hidden="true">✓</span>
@@ -45,25 +53,17 @@
         <label class="profile-card">
           <input type="radio" name="accessibilityProfile" autocomplete="off" value="low-vision">
           <span class="profile-copy">
-            <strong data-i18n="profileLowVision">Low vision</strong>
-            <small data-i18n="profileLowVisionDesc">Larger controls, text, and strong contrast</small>
+            <strong data-i18n="profileLowVision">Larger controls</strong>
+            <small data-i18n="profileLowVisionDesc">Bigger buttons, text, and stronger contrast</small>
           </span>
           <span class="profile-check" aria-hidden="true">✓</span>
         </label>
       </fieldset>
 
-      <label class="option-row">
-        <span>
-          <strong data-i18n="alwaysShowControls">Always Show Controls</strong>
-          <small data-i18n="alwaysShowControlsDesc">Keeps controls over part of the video</small>
-        </span>
-        <input type="checkbox" id="alwaysShowControls" name="alwaysShowControls" autocomplete="off">
-      </label>
-
       <details class="customize">
-        <summary data-i18n="customizeBackground">Customize Background</summary>
+        <summary data-i18n="customizeBackground">More visibility options</summary>
         <div class="slider-group">
-          <label for="overlayOpacity"><span data-i18n="backgroundStrength">Background strength</span> <output id="opacityValue" for="overlayOpacity">70%</output></label>
+          <label for="overlayOpacity"><span data-i18n="backgroundStrength">Control background strength</span> <output id="opacityValue" for="overlayOpacity">70%</output></label>
           <input type="range" id="overlayOpacity" name="overlayOpacity" min="0" max="100" value="70" step="5" autocomplete="off">
           <div class="slider-labels" aria-hidden="true">
             <span data-i18n="sliderTransparent">Transparent</span>
@@ -75,7 +75,7 @@
 
     <footer>
       <p id="status" class="status" role="status" aria-live="polite" data-i18n="statusReady">Settings ready</p>
-      <button id="resetSettings" class="reset-button" type="button" data-i18n="resetSettings">Reset Settings</button>
+      <button id="resetSettings" class="reset-button" type="button" data-i18n="resetSettings">Use recommended settings</button>
     </footer>
   </main>
 

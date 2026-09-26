@@ -5,6 +5,14 @@ All notable changes to YouTube Player Accessibility will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7] - 2026-09-21
+
+### Changed
+- Reframed the popup around everyday outcomes: clearer, larger, and visible controls
+- Promoted the keep-controls-visible option for faster first-use value
+- Moved background customization further into advanced settings
+- Updated the extension name and description to be easier for casual users to understand
+
 ## [1.6] - 2026-07-14
 
 ### Added

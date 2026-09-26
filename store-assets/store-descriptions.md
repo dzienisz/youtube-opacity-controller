@@ -13,22 +13,22 @@ Dashboard language names: Portuguese (Brazil), Spanish (Latin America), German, 
 ### Short Description
 
 ```text
-Torne os controles do player do YouTube mais fáceis de ver e usar com perfis de alto contraste e baixa visão.
+Deixe os controles do YouTube mais fáceis de ver, clicar e manter visíveis.
 ```
 
 ### Detailed Description
 
 ```text
-Torne os controles do player do YouTube mais fáceis de ver e usar sem alterar todo o navegador ou sistema operacional.
+Deixe os controles do player do YouTube mais fáceis de ver e usar sem alterar todo o navegador ou sistema operacional.
 
-O YouTube Player Accessibility melhora a interface existente do player em vídeos claros e visualmente carregados. Escolha um perfil de visualização pronto, mantenha os controles visíveis quando necessário ou personalize a intensidade do fundo.
+O Controles do YouTube: Mais Claros e Maiores melhora a interface existente do player em vídeos claros e visualmente carregados. Escolha um estilo de controles pronto, mantenha os controles visíveis quando necessário ou personalize a intensidade do fundo.
 
 RECURSOS
 
-• Perfil Padrão com fundo escuro ajustável para os controles
-• Perfil Alto Contraste para controles mais fortes e nítidos
-• Perfil Baixa Visão com botões, ícones e marcações de tempo maiores
-• Opção de manter os controles sempre visíveis
+• Estilo Controles Claros com fundo escuro ajustável para os controles
+• Estilo Contraste Forte para controles mais fortes e nítidos
+• Estilo Controles Maiores com botões, ícones e marcações de tempo maiores
+• Opção de manter os controles visíveis
 • Pré-visualização instantânea e configurações sincronizadas pelo Chrome
 • Interruptor principal para voltar à aparência original do YouTube
 • Alterações visuais leves, feitas apenas com CSS
@@ -45,7 +45,7 @@ COMO USAR
 
 1. Abra um vídeo no YouTube.
 2. Clique no ícone da extensão.
-3. Escolha Padrão, Alto Contraste ou Baixa Visão.
+3. Escolha Controles Claros, Contraste Forte ou Controles Maiores.
 4. Se quiser, mantenha os controles visíveis ou personalize o fundo.
 5. Use o interruptor principal a qualquer momento para restaurar a aparência original.
 
@@ -59,7 +59,7 @@ Criado para quem tem dificuldade em localizar, ler ou usar controles transparent
 ### Short Description
 
 ```text
-Haz que los controles del reproductor de YouTube sean más fáciles de ver y usar con perfiles de alto contraste y baja visión.
+Haz que los controles de YouTube sean más fáciles de ver, pulsar y mantener visibles.
 ```
 
 ### Detailed Description
@@ -67,14 +67,14 @@ Haz que los controles del reproductor de YouTube sean más fáciles de ver y usa
 ```text
 Haz que los controles del reproductor de YouTube sean más fáciles de ver y usar sin cambiar todo el navegador ni el sistema operativo.
 
-YouTube Player Accessibility mejora la interfaz existente del reproductor en videos brillantes y visualmente recargados. Elige un perfil de visualización listo para usar, mantén los controles visibles cuando lo necesites o personaliza la intensidad del fondo.
+Controles de YouTube: Más Claros y Grandes mejora la interfaz existente del reproductor en videos brillantes y visualmente recargados. Elige un estilo de controles listo para usar, mantén los controles visibles cuando lo necesites o personaliza la intensidad del fondo.
 
 FUNCIONES
 
-• Perfil Estándar con fondo oscuro ajustable para los controles
-• Perfil Alto Contraste para controles más fuertes y nítidos
-• Perfil Baja Visión con botones, íconos y marcas de tiempo más grandes
-• Opción para mostrar siempre los controles
+• Estilo Controles Claros con fondo oscuro ajustable para los controles
+• Estilo Contraste Fuerte para controles más fuertes y nítidos
+• Estilo Controles Más Grandes con botones, íconos y marcas de tiempo más grandes
+• Opción para mantener los controles visibles
 • Vista previa instantánea y configuración sincronizada mediante Chrome
 • Interruptor principal para volver a la apariencia original de YouTube
 • Cambios visuales ligeros, solo con CSS
@@ -91,7 +91,7 @@ CÓMO USARLO
 
 1. Abre un video de YouTube.
 2. Haz clic en el ícono de la extensión.
-3. Elige Estándar, Alto Contraste o Baja Visión.
+3. Elige Controles Claros, Contraste Fuerte o Controles Más Grandes.
 4. Si quieres, mantén los controles visibles o personaliza el fondo.
 5. Usa el interruptor principal en cualquier momento para restaurar la apariencia original.
 
@@ -105,7 +105,7 @@ Diseñado para quienes tienen dificultad para ubicar, leer o usar controles tran
 ### Short Description
 
 ```text
-Mach die YouTube-Player-Steuerung mit Profilen für hohen Kontrast und Sehschwäche leichter sichtbar und bedienbar.
+Mach die YouTube-Steuerelemente leichter sichtbar, klickbar und dauerhaft verfügbar.
 ```
 
 ### Detailed Description
@@ -113,14 +113,14 @@ Mach die YouTube-Player-Steuerung mit Profilen für hohen Kontrast und Sehschwä
 ```text
 Mach die YouTube-Player-Steuerung leichter sichtbar und bedienbar, ohne den ganzen Browser oder das Betriebssystem umzustellen.
 
-YouTube Player Accessibility verbessert die vorhandene Player-Oberfläche bei hellen und visuell unruhigen Videos. Wähle ein fertiges Anzeigeprofil, halte die Steuerelemente bei Bedarf sichtbar oder passe die Hintergrundstärke an.
+YouTube-Steuerung: Klarer & Größer verbessert die vorhandene Player-Oberfläche bei hellen und visuell unruhigen Videos. Wähle einen fertigen Steuerungsstil, halte die Steuerelemente bei Bedarf sichtbar oder passe die Hintergrundstärke an.
 
 FUNKTIONEN
 
-• Standard-Profil mit anpassbarem dunklem Hintergrund für die Steuerelemente
-• Profil „Hoher Kontrast“ für kräftigere, klarere Steuerelemente
-• Profil „Sehschwäche“ mit größeren Schaltflächen, Symbolen und Zeitangaben
-• Optionale Einstellung „Steuerelemente immer anzeigen“
+• Stil „Klare Steuerung“ mit anpassbarem dunklem Hintergrund für die Steuerelemente
+• Stil „Starker Kontrast“ für kräftigere, klarere Steuerelemente
+• Stil „Größere Steuerung“ mit größeren Schaltflächen, Symbolen und Zeitangaben
+• Optionale Einstellung „Steuerelemente sichtbar halten“
 • Sofortige Vorschau und über Chrome synchronisierte Einstellungen
 • Hauptschalter, um zur ursprünglichen YouTube-Darstellung zurückzukehren
 • Leichtgewichtige, rein CSS-basierte visuelle Änderungen
@@ -137,7 +137,7 @@ SO GEHT'S
 
 1. Öffne ein YouTube-Video.
 2. Klicke auf das Symbol der Erweiterung.
-3. Wähle Standard, Hoher Kontrast oder Sehschwäche.
+3. Wähle Klare Steuerung, Starker Kontrast oder Größere Steuerung.
 4. Halte optional die Steuerelemente sichtbar oder passe den Hintergrund an.
 5. Nutze jederzeit den Hauptschalter, um die ursprüngliche Darstellung wiederherzustellen.
 
@@ -151,7 +151,7 @@ Entwickelt für alle, denen transparente Steuerelemente auf hellen und unruhigen
 ### Short Description
 
 ```text
-ハイコントラストやロービジョン向けの表示プロファイルで、YouTube プレーヤーの操作ボタンを見やすく使いやすくします。
+YouTube の操作ボタンを見やすく、押しやすく、常に表示できるようにします。
 ```
 
 ### Detailed Description
@@ -159,14 +159,14 @@ Entwickelt für alle, denen transparente Steuerelemente auf hellen und unruhigen
 ```text
 ブラウザや OS 全体の設定を変えることなく、YouTube プレーヤーの操作ボタンを見やすく、使いやすくします。
 
-YouTube Player Accessibility は、明るい映像や視覚的に情報量の多い映像でも、既存のプレーヤー UI を見やすく改善します。用意された表示プロファイルを選ぶだけでも、コントロールを常に表示したままにしたり、背景の濃さを細かく調整したりすることもできます。
+YouTube コントロール: より見やすく、より大きく は、明るい映像や視覚的に情報量の多い映像でも、既存のプレーヤー UI を見やすく改善します。用意されたコントロールのスタイルを選ぶだけでも、コントロールを常に表示したままにしたり、背景の濃さを細かく調整したりすることもできます。
 
 機能
 
-• 調整可能な暗い背景を備えた「標準」プロファイル
-• より濃く、はっきりしたコントロールの「ハイコントラスト」プロファイル
-• ボタン・アイコン・タイムスタンプを大きくする「ロービジョン」プロファイル
-• コントロールを常に表示するオプション
+• 調整可能な暗い背景を備えた「クリアなコントロール」スタイル
+• より濃く、はっきりしたコントロールの「強いコントラスト」スタイル
+• ボタン・アイコン・タイムスタンプを大きくする「大きなコントロール」スタイル
+• コントロールを表示したままにするオプション
 • 即時プレビューと Chrome 経由での設定同期
 • ワンタッチで元の YouTube の外観に戻せるマスタースイッチ
 • CSS のみの軽量な見た目の変更
@@ -183,7 +183,7 @@ YouTube Player Accessibility は、明るい映像や視覚的に情報量の多
 
 1. YouTube の動画を開きます。
 2. 拡張機能のアイコンをクリックします。
-3. 「標準」「ハイコントラスト」「ロービジョン」から選択します。
+3. 「クリアなコントロール」「強いコントラスト」「大きなコントロール」から選択します。
 4. 必要に応じて、コントロールの常時表示や背景の調整を行います。
 5. マスタースイッチでいつでも元の外観に戻せます。
 
@@ -197,7 +197,7 @@ YouTube Player Accessibility は、明るい映像や視覚的に情報量の多
 ### Short Description
 
 ```text
-고대비 및 저시력 보기 프로필로 YouTube 플레이어 컨트롤을 더 잘 보이고 사용하기 쉽게 만드세요.
+YouTube 컨트롤을 더 잘 보이고, 누르기 쉽고, 계속 표시되게 하세요.
 ```
 
 ### Detailed Description
@@ -205,14 +205,14 @@ YouTube Player Accessibility は、明るい映像や視覚的に情報量の多
 ```text
 브라우저나 운영체제 전체 설정을 바꾸지 않고도 YouTube 플레이어 컨트롤을 더 잘 보이고 사용하기 쉽게 만드세요.
 
-YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서 기존 플레이어 인터페이스를 개선합니다. 미리 준비된 보기 프로필을 선택하고, 필요할 때 컨트롤을 계속 표시하거나 배경 강도를 직접 조절할 수 있습니다.
+YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡한 영상에서 기존 플레이어 인터페이스를 개선합니다. 미리 준비된 컨트롤 스타일을 선택하고, 필요할 때 컨트롤을 계속 표시하거나 배경 강도를 직접 조절할 수 있습니다.
 
 기능
 
-• 조절 가능한 어두운 컨트롤 배경을 제공하는 표준 프로필
-• 더 진하고 선명한 컨트롤을 위한 고대비 프로필
-• 더 큰 버튼, 아이콘, 시간 표시를 제공하는 저시력 프로필
-• 컨트롤 항상 표시 옵션
+• 조절 가능한 어두운 컨트롤 배경을 제공하는 선명한 컨트롤 스타일
+• 더 진하고 선명한 컨트롤을 위한 강한 대비 스타일
+• 더 큰 버튼, 아이콘, 시간 표시를 제공하는 더 큰 컨트롤 스타일
+• 컨트롤 계속 표시 옵션
 • 즉시 미리보기 및 Chrome을 통한 설정 동기화
 • 원래 YouTube 모습으로 되돌리는 마스터 스위치
 • CSS만 사용하는 가벼운 시각적 변경
@@ -229,7 +229,7 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 
 1. YouTube 동영상을 엽니다.
 2. 확장 프로그램 아이콘을 클릭합니다.
-3. 표준, 고대비, 저시력 중에서 선택합니다.
+3. 선명한 컨트롤, 강한 대비, 더 큰 컨트롤 중에서 선택합니다.
 4. 필요하면 컨트롤을 계속 표시하거나 배경을 조절합니다.
 5. 언제든지 마스터 스위치로 원래 모습을 복원할 수 있습니다.
 
@@ -243,7 +243,7 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 ### Short Description
 
 ```text
-اجعل عناصر تحكم مشغّل YouTube أسهل في الرؤية والاستخدام مع ملفات عرض عالية التباين ولضعف البصر.
+اجعل عناصر تحكم YouTube أسهل في الرؤية والنقر والإبقاء ظاهرة.
 ```
 
 ### Detailed Description
@@ -251,14 +251,14 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 ```text
 اجعل عناصر تحكم مشغّل YouTube أسهل في الرؤية والاستخدام دون تغيير إعدادات المتصفح أو نظام التشغيل بالكامل.
 
-يحسّن YouTube Player Accessibility واجهة المشغّل الحالية في الفيديوهات الساطعة والمزدحمة بصريًا. اختر ملف عرض جاهزًا، أو أبقِ عناصر التحكم ظاهرة عند الحاجة، أو خصّص قوة الخلفية بنفسك.
+يحسّن "أدوات تحكم YouTube: أوضح وأكبر" واجهة المشغّل الحالية في الفيديوهات الساطعة والمزدحمة بصريًا. اختر نمط عناصر تحكم جاهزًا، أو أبقِ عناصر التحكم ظاهرة عند الحاجة، أو خصّص قوة الخلفية بنفسك.
 
 الميزات
 
-• ملف "قياسي" مع خلفية داكنة قابلة للتعديل لعناصر التحكم
-• ملف "تباين عالٍ" لعناصر تحكم أقوى وأوضح
-• ملف "ضعف البصر" مع أزرار ورموز وطوابع زمنية أكبر
-• خيار إظهار عناصر التحكم دائمًا
+• نمط "عناصر تحكم واضحة" مع خلفية داكنة قابلة للتعديل لعناصر التحكم
+• نمط "تباين قوي" لعناصر تحكم أقوى وأوضح
+• نمط "عناصر تحكم أكبر" مع أزرار ورموز وطوابع زمنية أكبر
+• خيار إبقاء عناصر التحكم ظاهرة
 • معاينة فورية ومزامنة الإعدادات عبر Chrome
 • مفتاح رئيسي للعودة إلى مظهر YouTube الأصلي
 • تغييرات بصرية خفيفة تعتمد على CSS فقط
@@ -275,7 +275,7 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 
 1. افتح فيديو على YouTube.
 2. انقر على رمز الإضافة.
-3. اختر: قياسي، أو تباين عالٍ، أو ضعف البصر.
+3. اختر: عناصر تحكم واضحة، أو تباين قوي، أو عناصر تحكم أكبر.
 4. اختياريًا، أبقِ عناصر التحكم ظاهرة أو خصّص الخلفية.
 5. استخدم المفتاح الرئيسي في أي وقت لاستعادة المظهر الأصلي.
 
@@ -289,7 +289,7 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 ### Short Description
 
 ```text
-Зробіть елементи керування YouTube помітнішими та зручнішими завдяки профілям високого контрасту та для слабкого зору.
+Зробіть елементи керування YouTube помітнішими, зручнішими для натискання та завжди видимими.
 ```
 
 ### Detailed Description
@@ -297,14 +297,14 @@ YouTube Player Accessibility는 밝거나 시각적으로 복잡한 영상에서
 ```text
 Зробіть елементи керування програвачем YouTube помітнішими та зручнішими, не змінюючи налаштування всього браузера чи операційної системи.
 
-YouTube Player Accessibility покращує наявний інтерфейс програвача на яскравих і візуально перевантажених відео. Виберіть готовий профіль перегляду, залишайте елементи керування видимими за потреби або налаштуйте насиченість фону.
+"Елементи керування YouTube: чіткіші та більші" покращує наявний інтерфейс програвача на яскравих і візуально перевантажених відео. Оберіть готовий стиль елементів керування, залишайте їх видимими за потреби або налаштуйте насиченість фону.
 
 МОЖЛИВОСТІ
 
-• Профіль «Стандартний» із регульованим темним фоном елементів керування
-• Профіль «Високий контраст» — виразніші та чіткіші елементи керування
-• Профіль «Слабкий зір» — більші кнопки, значки та мітки часу
-• Опція «Завжди показувати елементи керування»
+• Стиль «Чіткі елементи керування» із регульованим темним фоном
+• Стиль «Сильний контраст» — виразніші та чіткіші елементи керування
+• Стиль «Більші елементи керування» — більші кнопки, значки та мітки часу
+• Опція «Залишати елементи керування видимими»
 • Миттєвий попередній перегляд і синхронізація налаштувань через Chrome
 • Головний перемикач для повернення до оригінального вигляду YouTube
 • Легкі візуальні зміни виключно через CSS
@@ -321,7 +321,7 @@ YouTube Player Accessibility покращує наявний інтерфейс 
 
 1. Відкрийте відео на YouTube.
 2. Натисніть значок розширення.
-3. Виберіть «Стандартний», «Високий контраст» або «Слабкий зір».
+3. Виберіть «Чіткі елементи керування», «Сильний контраст» або «Більші елементи керування».
 4. За бажанням залишайте елементи керування видимими або налаштуйте фон.
 5. Будь-коли поверніть оригінальний вигляд головним перемикачем.
 
@@ -335,7 +335,7 @@ YouTube Player Accessibility покращує наявний інтерфейс 
 ### Short Description
 
 ```text
-Giúp các nút điều khiển trình phát YouTube dễ nhìn và dễ dùng hơn với cấu hình tương phản cao và thị lực kém.
+Giúp các nút điều khiển YouTube dễ nhìn, dễ nhấn và luôn hiển thị.
 ```
 
 ### Detailed Description
@@ -343,14 +343,14 @@ Giúp các nút điều khiển trình phát YouTube dễ nhìn và dễ dùng h
 ```text
 Giúp các nút điều khiển trình phát YouTube dễ nhìn và dễ dùng hơn mà không cần thay đổi toàn bộ trình duyệt hay hệ điều hành.
 
-YouTube Player Accessibility cải thiện giao diện trình phát hiện có trên những video sáng và rối mắt. Chọn một cấu hình xem có sẵn, giữ các nút điều khiển luôn hiển thị khi cần, hoặc tự tùy chỉnh độ đậm của nền.
+Điều khiển YouTube: Rõ hơn & Lớn hơn cải thiện giao diện trình phát hiện có trên những video sáng và rối mắt. Chọn một kiểu điều khiển có sẵn, giữ các nút điều khiển luôn hiển thị khi cần, hoặc tự tùy chỉnh độ đậm của nền.
 
 TÍNH NĂNG
 
-• Cấu hình Tiêu chuẩn với nền tối có thể điều chỉnh cho các nút điều khiển
-• Cấu hình Tương phản cao cho các nút điều khiển đậm và rõ hơn
-• Cấu hình Thị lực kém với nút, biểu tượng và mốc thời gian lớn hơn
-• Tùy chọn luôn hiển thị các nút điều khiển
+• Kiểu Điều khiển rõ ràng với nền tối có thể điều chỉnh cho các nút điều khiển
+• Kiểu Tương phản mạnh cho các nút điều khiển đậm và rõ hơn
+• Kiểu Điều khiển lớn hơn với nút, biểu tượng và mốc thời gian lớn hơn
+• Tùy chọn giữ các nút điều khiển luôn hiển thị
 • Xem trước tức thì và đồng bộ cài đặt qua Chrome
 • Công tắc chính để quay lại giao diện YouTube gốc
 • Thay đổi giao diện nhẹ, chỉ dùng CSS
@@ -367,7 +367,7 @@ CÁCH DÙNG
 
 1. Mở một video trên YouTube.
 2. Nhấp vào biểu tượng tiện ích.
-3. Chọn Tiêu chuẩn, Tương phản cao hoặc Thị lực kém.
+3. Chọn Điều khiển rõ ràng, Tương phản mạnh hoặc Điều khiển lớn hơn.
 4. Tùy chọn: giữ các nút điều khiển luôn hiển thị hoặc tùy chỉnh nền.
 5. Dùng công tắc chính bất cứ lúc nào để khôi phục giao diện gốc.
 
@@ -381,7 +381,7 @@ Dành cho người xem gặp khó khăn khi tìm, đọc hoặc thao tác với 
 ### Short Description
 
 ```text
-हाई कंट्रास्ट और कम दृष्टि व्यूइंग प्रोफ़ाइल के साथ YouTube प्लेयर कंट्रोल को देखने और उपयोग करने में आसान बनाएं।
+YouTube कंट्रोल को देखना, दबाना और दिखाए रखना आसान बनाएं।
 ```
 
 ### Detailed Description
@@ -389,14 +389,14 @@ Dành cho người xem gặp khó khăn khi tìm, đọc hoặc thao tác với 
 ```text
 पूरे ब्राउज़र या ऑपरेटिंग सिस्टम को बदले बिना YouTube प्लेयर कंट्रोल को देखने और उपयोग करने में आसान बनाएं।
 
-YouTube Player Accessibility चमकीले और दृश्य रूप से व्यस्त वीडियो पर मौजूदा प्लेयर इंटरफ़ेस को बेहतर बनाता है। कोई तैयार व्यूइंग प्रोफ़ाइल चुनें, ज़रूरत पड़ने पर कंट्रोल दिखाए रखें, या बैकग्राउंड की गहराई खुद तय करें।
+YouTube कंट्रोल: साफ़ और बड़े चमकीले और दृश्य रूप से व्यस्त वीडियो पर मौजूदा प्लेयर इंटरफ़ेस को बेहतर बनाता है। कोई तैयार कंट्रोल स्टाइल चुनें, ज़रूरत पड़ने पर कंट्रोल दिखाए रखें, या बैकग्राउंड की गहराई खुद तय करें।
 
 विशेषताएं
 
-• समायोज्य गहरे कंट्रोल बैकग्राउंड के साथ मानक प्रोफ़ाइल
-• अधिक गहरे और स्पष्ट कंट्रोल के लिए हाई कंट्रास्ट प्रोफ़ाइल
-• बड़े बटन, आइकन और टाइमस्टैम्प के साथ कम दृष्टि प्रोफ़ाइल
-• कंट्रोल हमेशा दिखाने का वैकल्पिक सेटिंग
+• समायोज्य गहरे कंट्रोल बैकग्राउंड के साथ साफ़ कंट्रोल स्टाइल
+• अधिक गहरे और स्पष्ट कंट्रोल के लिए तेज़ कंट्रास्ट स्टाइल
+• बड़े बटन, आइकन और टाइमस्टैम्प के साथ बड़े कंट्रोल स्टाइल
+• कंट्रोल दिखाए रखने का वैकल्पिक सेटिंग
 • तुरंत प्रीव्यू और Chrome के ज़रिए सिंक होने वाली सेटिंग
 • मूल YouTube स्वरूप पर लौटने के लिए मास्टर स्विच
 • केवल CSS पर आधारित हल्के विज़ुअल बदलाव
@@ -413,7 +413,7 @@ YouTube Player Accessibility चमकीले और दृश्य रूप
 
 1. YouTube पर कोई वीडियो खोलें।
 2. एक्सटेंशन आइकन पर क्लिक करें।
-3. मानक, हाई कंट्रास्ट या कम दृष्टि में से चुनें।
+3. साफ़ कंट्रोल, तेज़ कंट्रास्ट या बड़े कंट्रोल में से चुनें।
 4. चाहें तो कंट्रोल दिखाए रखें या बैकग्राउंड कस्टमाइज़ करें।
 5. मूल स्वरूप वापस लाने के लिए कभी भी मास्टर स्विच का उपयोग करें।
 

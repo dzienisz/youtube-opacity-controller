@@ -1,18 +1,18 @@
 # YouTube Player Accessibility
 
-[![Version](https://img.shields.io/badge/version-1.5-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Version](https://img.shields.io/badge/version-1.7-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-A privacy-first Chrome extension that makes YouTube player controls easier to see and use. Choose a viewing profile, keep controls visible when needed, or customize the dark background strength.
+A privacy-first Chrome extension that makes YouTube player controls easier to see, click, and keep visible. Choose a clear control style, keep controls visible when needed, or customize the dark background strength.
 
 **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** · **[Changelog](CHANGELOG.md)** · **[Privacy Policy](PRIVACY.md)** · **[Contributing](CONTRIBUTING.md)**
 
 ## Features
 
-- Three viewing profiles: Standard, High Contrast, and Low Vision
+- Three control styles: Clear Controls, Strong Contrast, and Larger Controls
 - Adjustable dark background behind player controls
-- Larger controls and timestamps in the Low Vision profile
+- Larger controls and timestamps in the Larger Controls style
 - Optional always-visible player controls
 - Master switch that removes all extension styling
 - Settings synchronized through Chrome Sync
@@ -41,12 +41,12 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 1. Open a YouTube video.
 2. Select the extension icon in the Chrome toolbar.
 3. Keep the master switch enabled and choose a profile:
-   - **Standard:** Adjustable dark background with the native control size.
-   - **High Contrast:** Stronger backgrounds behind bars, menus, and buttons.
-   - **Low Vision:** High contrast with larger buttons, icons, and timestamps.
-4. Enable **Always Show Controls** if native auto-hide makes controls difficult to find.
-5. Expand **Customize Background** to set the background from 0% to 100%.
-6. Select **Reset Settings** to restore the Standard profile at 70%.
+   - **Clear Controls:** Balanced visibility for everyday viewing.
+   - **Strong Contrast:** Darker controls and clearer buttons.
+   - **Larger Controls:** Bigger buttons, icons, and timestamps with stronger contrast.
+4. Enable **Keep Controls Visible** if native auto-hide makes controls difficult to find.
+5. Expand **More Visibility Options** to set the background from 0% to 100%.
+6. Select **Use Recommended Settings** to restore the Clear Controls style at 70%.
 
 Changes apply immediately and persist across browser sessions.
 
@@ -63,7 +63,7 @@ It leaves seek-preview thumbnails and progress-bar layout untouched. It does not
 
 ## Compatibility and Migration
 
-Version 1.5 preserves existing `overlayOpacity` and `alwaysShowControls` preferences. Existing installations start on the Standard profile with prior values retained.
+Version 1.7 preserves existing `overlayOpacity` and `alwaysShowControls` preferences. Existing installations start on the Clear Controls style with prior values retained.
 
 The release targets desktop Chrome and Chromium-based browsers on `youtube.com`. YouTube interface experiments may require selector updates.
 

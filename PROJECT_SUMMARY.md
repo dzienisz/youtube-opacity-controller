@@ -3,7 +3,7 @@
 ## 📊 Project Overview
 
 **Name:** YouTube Player Accessibility
-**Version:** 1.5 (release candidate)
+**Version:** 1.7
 **Live Version:** Verify in the Chrome Web Store dashboard before submission
 **Type:** Chrome Extension (Manifest V3)
 **Status:** Release candidate; manual Chrome matrix and store submission pending
@@ -13,7 +13,7 @@
 
 ## 🎯 Purpose
 
-This Chrome extension makes existing YouTube player controls easier to see and use through Standard, High Contrast, and Low Vision profiles without moving or replacing YouTube-owned elements.
+This Chrome extension makes existing YouTube player controls easier to see, click, and keep visible through Clear Controls, Strong Contrast, and Larger Controls styles without moving or replacing YouTube-owned elements.
 
 ## 📈 Project Statistics
 
@@ -91,10 +91,10 @@ youtube-opacity-controller/
 - **Node.js test runner:** Dependency-free settings migration tests
 
 ### Key Features
-1. **Viewing Profiles:** Standard, High Contrast, and Low Vision
+1. **Control Styles:** Clear Controls, Strong Contrast, and Larger Controls
 2. **Master Switch:** Remove all extension-owned styling
 3. **Background Control:** Optional 0–100% customization
-4. **Always Show Controls:** Keep player controls visible when needed
+4. **Keep Controls Visible:** Keep player controls visible when needed
 5. **Settings Migration:** Preserve legacy opacity and visibility preferences
 6. **Real-time Preview:** Direct message to the active YouTube tab
 7. **Settings Persistence:** Chrome Sync storage
@@ -107,8 +107,13 @@ youtube-opacity-controller/
 
 ## 📝 Version History
 
-### v1.5 (2026-07-13) - Current
-- **Added:** Standard, High Contrast, and Low Vision profiles
+### v1.7 (2026-09-21) - Current
+- **Changed:** Reframed the popup around clearer, larger, and visible controls for casual users
+- **Changed:** Promoted the keep-controls-visible option and moved customization into advanced settings
+- **Changed:** Updated product naming and messaging to describe user outcomes
+
+### v1.5 (2026-07-13)
+- **Added:** Standard, High Contrast, and Low Vision profiles (renamed in v1.7 for clearer user-facing language)
 - **Added:** Master switch, settings schema, migration, and automated tests
 - **Changed:** Accessible profile-first popup and runtime-only CSS state
 - **Removed:** Outside-bar DOM movement and broad observers

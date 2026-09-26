@@ -4,14 +4,14 @@
 
 ## Data Collection
 
-YouTube Player Accessibility does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests.
+YouTube Controls: Clearer & Larger does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests.
 
 ## Stored Settings
 
 The extension stores only the following preferences in `chrome.storage.sync`:
 
 - whether enhancements are enabled;
-- selected accessibility profile;
+- selected control style;
 - player-control background strength;
 - whether player controls should remain visible;
 - settings schema version used for safe migration.

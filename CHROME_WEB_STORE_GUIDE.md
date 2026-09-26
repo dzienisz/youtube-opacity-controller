@@ -2,8 +2,8 @@
 
 ## Release
 
-- **Product name:** YouTube Player Accessibility
-- **Version:** 1.5
+- **Product name:** YouTube Controls: Clearer & Larger
+- **Version:** 1.7
 - **Category:** Accessibility
 - **Language:** English
 - **Pricing:** Free
@@ -14,7 +14,7 @@
 ### Short Description
 
 ```text
-Make YouTube player controls easier to see and use with high-contrast and low-vision viewing profiles.
+Make YouTube controls easier to see, click, and keep visible.
 ```
 
 ### Detailed Description
@@ -22,14 +22,14 @@ Make YouTube player controls easier to see and use with high-contrast and low-vi
 ```text
 Make YouTube player controls easier to see and use without changing your whole browser or operating system.
 
-YouTube Player Accessibility improves the existing player interface on bright and visually busy videos. Choose a ready-made viewing profile, keep controls visible when needed, or customize the background strength.
+YouTube Controls: Clearer & Larger improves the existing player interface on bright and visually busy videos. Choose a ready-made control style, keep controls visible when needed, or customize the background strength.
 
 FEATURES
 
-• Standard profile with an adjustable dark control background
-• High Contrast profile for stronger, clearer controls
-• Low Vision profile with larger buttons, icons, and timestamps
-• Optional Always Show Controls setting
+• Clear Controls style with an adjustable dark control background
+• Strong Contrast style for stronger, clearer controls
+• Larger Controls style with bigger buttons, icons, and timestamps
+• Optional Keep Controls Visible setting
 • Instant preview and settings synchronized through Chrome
 • Master switch to return to the original YouTube appearance
 • Lightweight CSS-only visual changes
@@ -46,7 +46,7 @@ HOW TO USE
 
 1. Open a YouTube video.
 2. Select the extension icon.
-3. Choose Standard, High Contrast, or Low Vision.
+3. Choose Clear Controls, Strong Contrast, or Larger Controls.
 4. Optionally keep controls visible or customize the background.
 5. Use the master switch at any time to restore the original appearance.
 
@@ -58,9 +58,9 @@ Designed for viewers who find transparent controls difficult to locate, read, or
 Upload 1–5 screenshots at 1280×800 or 640×400. Replace opacity-only screenshots with the release UI.
 
 1. Before/after on bright footage with **See Every Control Clearly**.
-2. Popup showing all three viewing profiles with **Choose the View That Works for You**.
-3. Low Vision profile with **Larger Controls & Timestamps**.
-4. High Contrast and Always Show Controls with **Keep Controls Easy to Find**.
+2. Popup showing all three control styles with **Choose the View That Works for You**.
+3. Larger Controls style with **Bigger Controls & Timestamps**.
+4. Strong Contrast and Keep Controls Visible with **Keep Controls Easy to Find**.
 5. Privacy message with **No Tracking. No Account.**
 
 Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or support outside desktop Chrome/Chromium.
@@ -115,6 +115,7 @@ Include only:
 - `popup.css`
 - `popup.js`
 - `icons/`
+- `_locales/`
 
 Exclude source tests, `package.json`, documentation, store assets, screenshots, Git metadata, and previous ZIP files.
 
@@ -123,7 +124,7 @@ Exclude source tests, `package.json`, documentation, store assets, screenshots, 
 1. Complete every item in `TESTING.md`.
 2. Build and inspect a fresh release ZIP.
 3. Open the existing item in the Chrome Web Store Developer Dashboard.
-4. Upload the ZIP as version 1.5.
+4. Upload the ZIP as version 1.7.
 5. Replace the product name, short description, detailed description, and screenshots.
 6. Select Accessibility and English.
 7. Confirm the privacy-policy URL and permission justifications.

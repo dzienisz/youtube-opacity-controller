@@ -13,47 +13,47 @@ Run `npm run check` before manual testing. Load the repository through **Load un
 
 Test with an installation that already contains `overlayOpacity` and `alwaysShowControls`.
 
-- [ ] Version 1.5 opens with the Standard profile selected.
+- [ ] Version 1.7 opens with the Clear Controls style selected.
 - [ ] Existing background strength is preserved.
 - [ ] Existing always-show preference is preserved.
-- [ ] New schema, enabled state, and profile values persist after restarting Chrome.
-- [ ] Reset restores Standard, 70%, enabled, and auto-hide allowed.
+- [ ] New schema, enabled state, and style values persist after restarting Chrome.
+- [ ] Reset restores Clear Controls, 70%, enabled, and auto-hide allowed.
 
 ## Popup Accessibility
 
 Complete the following using only the keyboard.
 
-- [ ] Tab order reaches the master switch, all profiles, always-show option, customization disclosure, slider, and reset button.
+- [ ] Tab order reaches the master switch, all control styles, keep-visible option option, customization disclosure, slider, and reset button.
 - [ ] Every focused element has a visible focus indicator.
-- [ ] Arrow keys select radio profiles and adjust the slider.
+- [ ] Arrow keys select control-style radios and adjust the slider.
 - [ ] Space toggles checkboxes and opens the customization disclosure.
 - [ ] Status changes are announced by a screen reader.
 - [ ] Disabling the master switch removes the settings panel from keyboard interaction.
 - [ ] Re-enabling restores the saved settings.
 - [ ] Reduced-motion mode removes nonessential transitions.
 
-## Profiles
+## Control Styles
 
 Use bright and visually busy footage for comparison.
 
-### Standard
+### Clear Controls
 
 - [ ] The background defaults to 70% for a new installation.
 - [ ] Native control dimensions remain unchanged.
 - [ ] Custom background changes apply immediately from 0% through 100%.
 
-### High Contrast
+### Strong Contrast
 
 - [ ] Control bars, menus, tooltips, and buttons have stronger dark backgrounds.
 - [ ] Text and icons remain fully visible.
-- [ ] Selecting the profile sets the initial background to 90%.
+- [ ] Selecting the style sets the initial background to 90%.
 
-### Low Vision
+### Larger Controls
 
 - [ ] Buttons retain correct alignment and have the intended 48px target size.
 - [ ] Icons and timestamps are visibly larger.
 - [ ] The bottom bar does not overflow or hide essential controls.
-- [ ] Selecting the profile sets the initial background to 95%.
+- [ ] Selecting the style sets the initial background to 95%.
 
 ## Player Regression Matrix
 
@@ -79,7 +79,7 @@ Repeat critical checks in normal, theater, and fullscreen modes at 100%, 125%, a
 - [ ] Allow autoplay to advance to another video.
 - [ ] Open a video in a new tab.
 - [ ] Restart Chrome.
-- [ ] The selected profile and custom settings persist in every case.
+- [ ] The selected style and custom settings persist in every case.
 - [ ] Master off removes all `data-ytoc-*` effects and the inline `--ytoc-overlay-opacity` property.
 
 ## Performance
@@ -94,6 +94,6 @@ In Chrome DevTools while a video plays:
 
 ## Release Gate
 
-Do not publish when any critical player control fails, the Low Vision profile causes overflow, migration loses a preference, or console/storage errors occur.
+Do not publish when any critical player control fails, the Larger Controls style causes overflow, migration loses a preference, or console/storage errors occur.
 
-Record the Chrome version, operating system, YouTube URL, player mode, browser zoom, selected profile, and screenshot for every failure.
+Record the Chrome version, operating system, YouTube URL, player mode, browser zoom, selected style, and screenshot for every failure.
