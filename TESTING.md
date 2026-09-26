@@ -23,7 +23,7 @@ Test with an installation that already contains `overlayOpacity` and `alwaysShow
 
 Complete the following using only the keyboard.
 
-- [ ] Tab order reaches the master switch, all control styles, keep-visible option option, customization disclosure, slider, and reset button.
+- [ ] Tab order reaches the master switch, all control styles, keep-visible option, customization disclosure, slider, and reset button.
 - [ ] Every focused element has a visible focus indicator.
 - [ ] Arrow keys select control-style radios and adjust the slider.
 - [ ] Space toggles checkboxes and opens the customization disclosure.
