@@ -43,7 +43,7 @@ function applySettings(value) {
 }
 
 function showHud(title, detail) {
-  const player = document.getElementById('player-controls') || document.getElementById('movie_player');
+  const player = document.getElementById('movie_player');
   if (!player) return;
 
   if (!hudElement || !hudElement.isConnected) {
