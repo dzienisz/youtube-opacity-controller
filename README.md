@@ -79,7 +79,7 @@ It leaves seek-preview thumbnails untouched and only changes progress-bar thickn
 
 Version 2.0 migrates settings to schema v3, preserving existing preferences and adding the new progress bar, highlight color, and pointer options with their defaults. Existing installations keep their prior values.
 
-The release targets desktop Chrome and Chromium-based browsers on `youtube.com`. YouTube interface experiments may require selector updates.
+The release targets desktop Chrome and Chromium-based browsers on `youtube.com`, including embedded YouTube players. YouTube interface experiments may require selector updates.
 
 ## Development
 

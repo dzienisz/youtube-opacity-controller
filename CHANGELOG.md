@@ -5,6 +5,11 @@ All notable changes to YouTube Player Accessibility will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-09-27
+
+### Added
+- Newer embedded-player controls (youtube.com/embed) are now styled: overlay opacity, larger timeline + handle, highlight colors, low-vision sizing, always-visible controls, focus rings, larger pointer, HUD.
+
 ## [2.0] - 2026-09-27
 
 ### Added
@@ -14,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Larger mouse pointer option over the video
 - Visible keyboard focus ring on player buttons, progress bar, and menu items
 - Larger menu, tooltip, and chapter text in the Larger Controls style
-- Content script now also loads in embedded YouTube players (iframes); classic-player embeds get the overlay treatment, newer embed control layouts are not yet styled
+- Content script now also loads in embedded YouTube players (iframes)
 - 5 new languages: Polish, French, Italian, Russian, and Simplified Chinese
 - What's-new banner shown in the popup after an update
 

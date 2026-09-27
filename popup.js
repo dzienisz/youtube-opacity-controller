@@ -165,14 +165,18 @@ editShortcuts.addEventListener('click', () => {
   chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
 });
 
+// The banner describes a feature release ("New in 2.0"), so it is keyed to the
+// major.minor version and does not resurface on patch bumps like 2.0.1.
+const featureVersion = version => String(version).split('.').slice(0, 2).join('.');
+
 whatsNewDismiss.addEventListener('click', () => {
   whatsNew.hidden = true;
-  chrome.storage.local.set({ whatsNewDismissed: chrome.runtime.getManifest().version });
+  chrome.storage.local.set({ whatsNewDismissed: featureVersion(chrome.runtime.getManifest().version) });
 });
 
 chrome.storage.local.get(['whatsNewVersion', 'whatsNewDismissed'], result => {
-  const version = chrome.runtime.getManifest().version;
-  if (result.whatsNewVersion === version && result.whatsNewDismissed !== version) {
+  const version = featureVersion(chrome.runtime.getManifest().version);
+  if (featureVersion(result.whatsNewVersion) === version && result.whatsNewDismissed !== version) {
     whatsNew.hidden = false;
     customize.open = true;
   }
