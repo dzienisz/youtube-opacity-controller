@@ -4,6 +4,8 @@
 
 const settingsModel = globalThis.YtocSettings;
 let currentSettings = settingsModel.DEFAULTS;
+let hudElement = null;
+let hudTimer = null;
 
 function applySettings(value) {
   currentSettings = settingsModel.normalizeSettings(value);
@@ -13,6 +15,9 @@ function applySettings(value) {
     root.removeAttribute('data-ytoc-enabled');
     root.removeAttribute('data-ytoc-profile');
     root.removeAttribute('data-ytoc-always-show');
+    root.removeAttribute('data-ytoc-progress');
+    root.removeAttribute('data-ytoc-highlight');
+    root.removeAttribute('data-ytoc-large-cursor');
     root.style.removeProperty('--ytoc-overlay-opacity');
     return;
   }
@@ -20,7 +25,48 @@ function applySettings(value) {
   root.setAttribute('data-ytoc-enabled', 'true');
   root.setAttribute('data-ytoc-profile', currentSettings.accessibilityProfile);
   root.toggleAttribute('data-ytoc-always-show', currentSettings.alwaysShowControls);
+  root.toggleAttribute('data-ytoc-large-cursor', currentSettings.largeCursor);
+
+  if (currentSettings.progressBarSize === settingsModel.PROGRESS_SIZES.LARGE) {
+    root.setAttribute('data-ytoc-progress', 'large');
+  } else {
+    root.removeAttribute('data-ytoc-progress');
+  }
+
+  if (currentSettings.highlightColor !== settingsModel.HIGHLIGHT_COLORS.DEFAULT) {
+    root.setAttribute('data-ytoc-highlight', currentSettings.highlightColor);
+  } else {
+    root.removeAttribute('data-ytoc-highlight');
+  }
+
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
+}
+
+function showHud(title, detail) {
+  const player = document.getElementById('movie_player');
+  if (!player) return;
+
+  if (!hudElement || !hudElement.isConnected) {
+    hudElement = document.createElement('div');
+    hudElement.className = 'ytoc-hud';
+    hudElement.setAttribute('role', 'status');
+    hudElement.setAttribute('aria-live', 'polite');
+    player.appendChild(hudElement);
+  }
+
+  hudElement.replaceChildren();
+  hudElement.appendChild(document.createTextNode(title));
+  if (detail) {
+    const detailLine = document.createElement('small');
+    detailLine.textContent = detail;
+    hudElement.appendChild(detailLine);
+  }
+
+  hudElement.setAttribute('data-visible', '');
+  if (hudTimer) clearTimeout(hudTimer);
+  hudTimer = setTimeout(() => {
+    if (hudElement) hudElement.removeAttribute('data-visible');
+  }, 1800);
 }
 
 function initializeSettings() {
@@ -45,10 +91,16 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 
 // Direct messages provide instant preview while storage remains authoritative.
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action !== 'previewSettings') return;
+  if (request.action === 'previewSettings') {
+    applySettings(request.settings);
+    sendResponse({ status: 'ok' });
+    return;
+  }
 
-  applySettings(request.settings);
-  sendResponse({ status: 'ok' });
+  if (request.action === 'showHud') {
+    showHud(request.title, request.detail);
+    sendResponse({ status: 'ok' });
+  }
 });
 
 initializeSettings();
