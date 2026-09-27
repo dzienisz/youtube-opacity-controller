@@ -42,7 +42,7 @@ FEATURES
 SAFE BY DESIGN
 
 • Does not move, clone, or replace YouTube controls — adds only one small on-player status overlay
-• Runs only on youtube.com, including embedded players
+• Runs only on youtube.com
 • No account, analytics, tracking, advertisements, or external requests
 • Open source at github.com/dzienisz/youtube-opacity-controller
 

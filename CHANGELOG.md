@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Larger mouse pointer option over the video
 - Visible keyboard focus ring on player buttons, progress bar, and menu items
 - Larger menu, tooltip, and chapter text in the Larger Controls style
-- Styling now also applies to embedded YouTube players (iframes)
+- Content script now also loads in embedded YouTube players (iframes); classic-player embeds get the overlay treatment, newer embed control layouts are not yet styled
 - 5 new languages: Polish, French, Italian, Russian, and Simplified Chinese
 - What's-new banner shown in the popup after an update
 

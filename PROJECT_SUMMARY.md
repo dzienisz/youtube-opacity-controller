@@ -108,7 +108,7 @@ youtube-opacity-controller/
 ## 📝 Version History
 
 ### v2.0 (2026-09-27) - Current
-- **Added:** Bigger progress bar, highlight colors, larger pointer, keyboard shortcuts with on-player HUD, visible focus ring, embedded-player styling
+- **Added:** Bigger progress bar, highlight colors, larger pointer, keyboard shortcuts with on-player HUD, visible focus ring
 - **Added:** 5 new languages (Polish, French, Italian, Russian, Simplified Chinese), what's-new banner
 - **Changed:** Settings schema v3 with migration
 - **Internal:** Playwright smoke test, GitHub Actions CI, release ZIP build
