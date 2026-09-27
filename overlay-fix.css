@@ -173,8 +173,98 @@
   font-size: 15px !important;
 }
 
+/* Embedded player (youtube.com/embed) renders its controls in #player-controls
+   with a different class vocabulary than the watch page. */
+:root[data-ytoc-enabled] #player-control-overlay .player-controls-background {
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, var(--ytoc-overlay-opacity)), rgba(0, 0, 0, 0) 35%),
+    linear-gradient(to top, rgba(0, 0, 0, var(--ytoc-overlay-opacity)), rgba(0, 0, 0, 0) 35%) !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+}
+
+:root[data-ytoc-enabled] #player-controls button.icon-button,
+:root[data-ytoc-enabled] #player-controls .ytmMuteButtonButton,
+:root[data-ytoc-enabled] #player-controls .ytmClosedCaptioningButtonButton,
+:root[data-ytoc-enabled] #player-controls .ytwPlayerTimeDisplayTimeChunks {
+  background-color: rgba(0, 0, 0, calc(var(--ytoc-overlay-opacity) * var(--ytoc-button-opacity-factor))) !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-controls button.icon-button,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-controls .ytmMuteButtonButton,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-controls .ytmClosedCaptioningButtonButton {
+  min-width: 48px !important;
+  min-height: 48px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-control-overlay button svg {
+  transform: scale(var(--ytoc-icon-scale));
+  transform-origin: center;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-controls .ytwPlayerTimeDisplayTimeChunks,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #player-controls .ytwPlayerTimeDisplayChapterText {
+  font-size: var(--ytoc-time-size) !important;
+  font-weight: 600 !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-content {
+  visibility: visible !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-background {
+  opacity: 1 !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarHost,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarChapter,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarLoaded,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarFill {
+  height: var(--ytoc-progress-height) !important;
+  border-radius: 6px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarPlayheadProgressBarPlayheadDot:not(.ytProgressBarPlayheadProgressBarPlayheadDotHide) {
+  transform: scale(1.8) !important;
+  border: 1px solid #fff !important;
+  box-sizing: border-box !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytChapteredProgressBarChapteredPlayerBarFill,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytChapteredProgressBarChapteredPlayerBarChapterSeen,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytProgressBarPlayheadProgressBarPlayheadDot {
+  background-color: var(--ytoc-highlight) !important;
+  background-image: none !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay button.icon-button,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay button.icon-button svg,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay button.icon-button svg path,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay .ytmMuteButtonButton,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay .ytmMuteButtonButton svg path,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay .ytmClosedCaptioningButtonButton,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-control-overlay .ytmClosedCaptioningButtonButton svg path,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytwPlayerTimeDisplayTimeChunks {
+  color: var(--ytoc-highlight) !important;
+  fill: var(--ytoc-highlight) !important;
+}
+
+:root[data-ytoc-enabled] #player-controls button:focus-visible,
+:root[data-ytoc-enabled] #player-controls .ytPlayerProgressBarHost:focus-visible,
+:root[data-ytoc-enabled] #player-controls [tabindex]:focus-visible {
+  outline: 3px solid var(--ytoc-focus-ring) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px #000 !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-large-cursor] #player-controls,
+:root[data-ytoc-enabled][data-ytoc-large-cursor] #player-control-overlay {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewBox='0 0 40 48'><path d='M4 2 L4 40 L14 30 L22 46 L30 42 L22 27 L36 27 Z' fill='white' stroke='black' stroke-width='3' stroke-linejoin='round'/></svg>") 4 2, auto !important;
+}
+
 /* Status HUD shown for keyboard command feedback */
-#movie_player .ytoc-hud {
+#movie_player .ytoc-hud,
+#player-controls .ytoc-hud {
   position: absolute;
   top: 12%;
   left: 50%;
@@ -191,11 +281,13 @@
   transition: opacity 0.2s;
 }
 
-#movie_player .ytoc-hud[data-visible] {
+#movie_player .ytoc-hud[data-visible],
+#player-controls .ytoc-hud[data-visible] {
   opacity: 1;
 }
 
-#movie_player .ytoc-hud small {
+#movie_player .ytoc-hud small,
+#player-controls .ytoc-hud small {
   display: block;
   font-size: 14px;
   font-weight: 400;
@@ -205,7 +297,8 @@
 @media (prefers-reduced-motion: reduce) {
   :root[data-ytoc-enabled] #movie_player .ytp-chrome-top,
   :root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom,
-  #movie_player .ytoc-hud {
+  #movie_player .ytoc-hud,
+  #player-controls .ytoc-hud {
     transition: none !important;
   }
 }

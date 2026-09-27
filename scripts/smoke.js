@@ -7,6 +7,7 @@ const { chromium } = require('playwright');
 
 const root = path.join(__dirname, '..');
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
+const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 
 function fail(message) {
   console.error(`SMOKE FAILED: ${message}`);
@@ -38,7 +39,8 @@ async function main() {
 
     const page = await context.newPage();
     await context.route('https://www.youtube.com/**', route => {
-      route.fulfill({ contentType: 'text/html', body: fixture });
+      const body = route.request().url().includes('/embed/') ? embedFixture : fixture;
+      route.fulfill({ contentType: 'text/html', body });
     });
     await page.goto('https://www.youtube.com/watch?v=smoke');
     await page.waitForSelector('html[data-ytoc-enabled]', { timeout: 15000 });
@@ -78,6 +80,70 @@ async function main() {
       .evaluate(el => getComputedStyle(el).backgroundColor);
     if (progressColor !== 'rgb(255, 212, 0)') {
       fail(`expected play-progress rgb(255, 212, 0), got ${progressColor}`);
+    }
+
+    // --- Embed scenario: same settings applied to the newer embed control DOM ---
+    const embed = await context.newPage();
+    await embed.goto('https://www.youtube.com/embed/test');
+    await embed.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-profile') === 'low-vision'
+        && html.getAttribute('data-ytoc-progress') === 'large'
+        && html.getAttribute('data-ytoc-highlight') === 'yellow';
+    }, null, { timeout: 15000 });
+
+    const fillStyle = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarFill')
+      .evaluate(el => {
+        const style = getComputedStyle(el);
+        return { height: style.height, backgroundColor: style.backgroundColor, backgroundImage: style.backgroundImage };
+      });
+    if (fillStyle.height !== '12px') {
+      fail(`expected embed fill height 12px, got ${fillStyle.height}`);
+    }
+    if (fillStyle.backgroundColor !== 'rgb(255, 212, 0)') {
+      fail(`expected embed fill background-color rgb(255, 212, 0), got ${fillStyle.backgroundColor}`);
+    }
+    if (fillStyle.backgroundImage !== 'none') {
+      fail(`expected embed fill background-image none, got ${fillStyle.backgroundImage}`);
+    }
+
+    const chapterSeenColor = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarChapterSeen')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (chapterSeenColor !== 'rgb(255, 212, 0)') {
+      fail(`expected embed chapter background-color rgb(255, 212, 0), got ${chapterSeenColor}`);
+    }
+
+    const dotTransform = await embed.locator('.ytProgressBarPlayheadProgressBarPlayheadDot')
+      .evaluate(el => getComputedStyle(el).transform);
+    if (dotTransform !== 'matrix(1.8, 0, 0, 1.8, 0, 0)') {
+      fail(`expected embed playhead transform matrix(1.8, 0, 0, 1.8, 0, 0), got ${dotTransform}`);
+    }
+
+    const iconFill = await embed.locator('button.icon-button svg path')
+      .evaluate(el => getComputedStyle(el).fill);
+    if (iconFill !== 'rgb(255, 212, 0)') {
+      fail(`expected embed icon fill rgb(255, 212, 0), got ${iconFill}`);
+    }
+
+    // --- Reset: highlight and progress back to default restores embed styling ---
+    await popup.locator('input[name="highlightColor"][value="default"]').check();
+    await popup.locator('#progressBarSize').uncheck();
+
+    await embed.waitForFunction(() => {
+      const html = document.documentElement;
+      return !html.hasAttribute('data-ytoc-highlight') && !html.hasAttribute('data-ytoc-progress');
+    }, null, { timeout: 15000 });
+
+    const resetFill = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarFill')
+      .evaluate(el => {
+        const style = getComputedStyle(el);
+        return { height: style.height, backgroundImage: style.backgroundImage };
+      });
+    if (resetFill.height !== '3px') {
+      fail(`expected embed fill height back to 3px, got ${resetFill.height}`);
+    }
+    if (resetFill.backgroundImage === 'none') {
+      fail('expected embed fill background-image restored to a gradient, got none');
     }
 
     console.log('SMOKE PASSED');

@@ -3,7 +3,7 @@
 ## 📊 Project Overview
 
 **Name:** YouTube Player Accessibility
-**Version:** 2.0
+**Version:** 2.0.1
 **Live Version:** Verify in the Chrome Web Store dashboard before submission
 **Type:** Chrome Extension (Manifest V3)
 **Status:** Release candidate; manual Chrome matrix and store submission pending

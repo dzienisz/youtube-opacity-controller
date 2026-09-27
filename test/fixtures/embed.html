@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Smoke test embed player</title>
+  <style>
+    #movie_player {
+      position: relative;
+      width: 640px;
+      height: 360px;
+      background: #000;
+    }
+    #player-control-overlay {
+      position: absolute;
+      inset: 0;
+    }
+    .player-controls-background {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+    }
+    #player-controls {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .player-controls-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+    }
+    .ytPlayerProgressBarHost {
+      display: block;
+      flex: 1;
+      position: relative;
+      height: 5px;
+    }
+    .ytPlayerProgressBarDragContainer {
+      position: relative;
+      height: 100%;
+    }
+    .ytPlayerProgressBarProgressBar {
+      position: relative;
+      height: 100%;
+    }
+    .ytChapteredProgressBarHost {
+      display: block;
+      position: relative;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .ytChapteredProgressBarChapteredPlayerBarChapter {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 60%;
+      background-color: transparent;
+    }
+    .ytChapteredProgressBarChapteredPlayerBarFill {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 40%;
+      background-color: transparent;
+    }
+    .ytProgressBarPlayheadHost {
+      display: block;
+      position: absolute;
+      top: -4px;
+      left: 40%;
+    }
+    .ytProgressBarPlayheadProgressBarPlayheadDot {
+      border-radius: 50%;
+    }
+    #player-controls button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+    #player-controls button svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+    .ytwPlayerTimeDisplayTimeChunks {
+      color: #eee;
+      font: 12px Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="movie_player"><div id="player-control-overlay" class="fadein"><div class="player-controls-background"></div><div id="player-controls"><div class="player-controls-bottom"><yt-progress-bar class="ytPlayerProgressBarHost"><div class="ytPlayerProgressBarDragContainer"><div class="ytPlayerProgressBarProgressBar"><yt-chaptered-progress-bar-line class="ytChapteredProgressBarHost" style="height:3px"><div class="ytChapteredProgressBarChapteredPlayerBarChapter ytChapteredProgressBarChapteredPlayerBarChapterSeen" style="height:3px;background-image:linear-gradient(90deg,rgb(255,0,51) 80%,rgb(255,39,145))"></div><div class="ytChapteredProgressBarChapteredPlayerBarFill" style="height:3px;background-image:linear-gradient(90deg,rgb(255,0,51) 80%,rgb(255,39,145))"></div></yt-chaptered-progress-bar-line><yt-progress-bar-playhead class="ytProgressBarPlayheadHost"><div class="ytProgressBarPlayheadProgressBarPlayheadDot" style="width:12px;height:12px;background:rgb(255,0,51)"></div></yt-progress-bar-playhead></div></div></yt-progress-bar><button class="icon-button player-control-play-pause-icon"><svg><path d="M0 0h10v10H0z"/></svg></button><button class="ytmMuteButtonButton"><svg><path d="M0 0h10v10H0z"/></svg></button><div class="ytwPlayerTimeDisplayTimeChunks">0:05 / 0:19</div></div></div></div></div>
+</body>
+</html>
