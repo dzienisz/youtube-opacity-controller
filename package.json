@@ -1,9 +1,14 @@
 {
   "name": "youtube-player-accessibility",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "test": "node --test",
-    "check": "node --check settings.js && node --check content.js && node --check popup.js && node --test"
+    "check": "node --check settings.js && node --check content.js && node --check popup.js && node --check background.js && node --test",
+    "build": "node scripts/build.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.1"
   }
 }
