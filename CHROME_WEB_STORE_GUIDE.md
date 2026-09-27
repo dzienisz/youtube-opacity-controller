@@ -3,7 +3,7 @@
 ## Release
 
 - **Product name:** YouTube Controls: Clearer & Larger
-- **Version:** 1.7
+- **Version:** 2.0
 - **Category:** Accessibility
 - **Language:** English
 - **Pricing:** Free
@@ -28,7 +28,11 @@ FEATURES
 
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
-• Larger Controls style with bigger buttons, icons, and timestamps
+• Larger Controls style with bigger buttons, icons, timestamps, and menu text
+• Bigger progress bar with a larger, easier-to-grab handle
+• Highlight colors for the progress bar, handle, icons, and time
+• Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
+• Larger mouse pointer over the video
 • Optional Keep Controls Visible setting
 • Instant preview and settings synchronized through Chrome
 • Master switch to return to the original YouTube appearance
@@ -36,9 +40,8 @@ FEATURES
 
 SAFE BY DESIGN
 
-• Does not move, clone, or replace YouTube controls
-• Leaves the progress bar layout and seek-preview thumbnails untouched
-• Runs only on youtube.com
+• Does not move, clone, or replace YouTube controls — adds only one small on-player status overlay
+• Runs only on youtube.com, including embedded players
 • No account, analytics, tracking, advertisements, or external requests
 • Open source at github.com/dzienisz/youtube-opacity-controller
 
@@ -47,8 +50,9 @@ HOW TO USE
 1. Open a YouTube video.
 2. Select the extension icon.
 3. Choose Clear Controls, Strong Contrast, or Larger Controls.
-4. Optionally keep controls visible or customize the background.
-5. Use the master switch at any time to restore the original appearance.
+4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
+5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
+6. Use the master switch at any time to restore the original appearance.
 
 Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
 ```
@@ -88,7 +92,7 @@ Select **Does not collect user data**.
 ### `storage`
 
 ```text
-Stores and synchronizes the enabled state, selected accessibility profile, control-background strength, always-show preference, and settings schema version. No browsing or viewing data is stored.
+Stores and synchronizes the enabled state, selected accessibility profile, control-background strength, always-show preference, progress bar size, highlight color, pointer size, and settings schema version. No browsing or viewing data is stored.
 ```
 
 ### `activeTab`
@@ -110,6 +114,7 @@ Include only:
 - `manifest.json`
 - `settings.js`
 - `content.js`
+- `background.js`
 - `overlay-fix.css`
 - `popup.html`
 - `popup.css`
@@ -124,7 +129,7 @@ Exclude source tests, `package.json`, documentation, store assets, screenshots, 
 1. Complete every item in `TESTING.md`.
 2. Build and inspect a fresh release ZIP.
 3. Open the existing item in the Chrome Web Store Developer Dashboard.
-4. Upload the ZIP as version 1.7.
+4. Upload the ZIP as version 2.0.
 5. Replace the product name, short description, detailed description, and screenshots.
 6. Select Accessibility and English.
 7. Confirm the privacy-policy URL and permission justifications.

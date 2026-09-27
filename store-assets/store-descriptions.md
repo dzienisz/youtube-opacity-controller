@@ -4,7 +4,59 @@ Translations of the store listing from [CHROME_WEB_STORE_GUIDE.md](../CHROME_WEB
 In the Developer Dashboard: **Store listing → Add languages**, then paste the matching block.
 Short descriptions are all under the 132-character limit. Languages match `_locales/` in the extension, so the name/short description shown in the store header will agree with what users see after install.
 
-Dashboard language names: Portuguese (Brazil), Spanish (Latin America), German, Japanese, Korean, Arabic, Ukrainian, Vietnamese, Hindi.
+Dashboard language names: English, Portuguese (Brazil), Spanish (Latin America), German, Japanese, Korean, Arabic, Ukrainian, Vietnamese, Hindi.
+
+> **Note:** the English block below reflects version 2.0. The translated blocks that follow are still the 1.7 copy and need to be refreshed with the 2.0 features before the next store update.
+
+---
+
+## English — `en`
+
+### Short Description
+
+```text
+Make YouTube controls easier to see, click, and keep visible.
+```
+
+### Detailed Description
+
+```text
+Make YouTube player controls easier to see and use without changing your whole browser or operating system.
+
+YouTube Controls: Clearer & Larger improves the existing player interface on bright and visually busy videos. Choose a ready-made control style, keep controls visible when needed, or customize the background strength.
+
+FEATURES
+
+• Clear Controls style with an adjustable dark control background
+• Strong Contrast style for stronger, clearer controls
+• Larger Controls style with bigger buttons, icons, timestamps, and menu text
+• Bigger progress bar with a larger, easier-to-grab handle
+• Highlight colors for the progress bar, handle, icons, and time
+• Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
+• Larger mouse pointer over the video
+• Optional Keep Controls Visible setting
+• Instant preview and settings synchronized through Chrome
+• Master switch to return to the original YouTube appearance
+• Lightweight CSS-only visual changes
+
+SAFE BY DESIGN
+
+• Does not move, clone, or replace YouTube controls — adds only one small on-player status overlay
+• Runs only on youtube.com, including embedded players
+• No account, analytics, tracking, advertisements, or external requests
+• Open source at github.com/dzienisz/youtube-opacity-controller
+
+HOW TO USE
+
+1. Open a YouTube video.
+2. Select the extension icon.
+3. Choose Clear Controls, Strong Contrast, or Larger Controls.
+4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
+5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
+6. Use the master switch at any time to restore the original appearance.
+
+Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
+```
 
 ---
 

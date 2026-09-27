@@ -3,7 +3,7 @@
 ## 📊 Project Overview
 
 **Name:** YouTube Player Accessibility
-**Version:** 1.7
+**Version:** 2.0
 **Live Version:** Verify in the Chrome Web Store dashboard before submission
 **Type:** Chrome Extension (Manifest V3)
 **Status:** Release candidate; manual Chrome matrix and store submission pending
@@ -107,7 +107,13 @@ youtube-opacity-controller/
 
 ## 📝 Version History
 
-### v1.7 (2026-09-21) - Current
+### v2.0 (2026-09-27) - Current
+- **Added:** Bigger progress bar, highlight colors, larger pointer, keyboard shortcuts with on-player HUD, visible focus ring, embedded-player styling
+- **Added:** 5 new languages (Polish, French, Italian, Russian, Simplified Chinese), what's-new banner
+- **Changed:** Settings schema v3 with migration
+- **Internal:** Playwright smoke test, GitHub Actions CI, release ZIP build
+
+### v1.7 (2026-09-21)
 - **Changed:** Reframed the popup around clearer, larger, and visible controls for casual users
 - **Changed:** Promoted the keep-controls-visible option and moved customization into advanced settings
 - **Changed:** Updated product naming and messaging to describe user outcomes
