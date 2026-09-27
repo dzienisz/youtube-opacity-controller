@@ -133,8 +133,8 @@
   background-color: var(--ytoc-highlight) !important;
 }
 
-:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button svg,
-:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button svg path,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button:not(.ytp-large-play-button) svg,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button:not(.ytp-large-play-button) svg path,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-display,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-chapter-title,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-title-link {
