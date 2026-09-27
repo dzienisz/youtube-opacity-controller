@@ -5,6 +5,24 @@
   --ytoc-button-opacity-factor: 0.3;
   --ytoc-icon-scale: 1;
   --ytoc-time-size: inherit;
+  --ytoc-progress-height: 12px;
+  --ytoc-focus-ring: #ffd400;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight="yellow"] {
+  --ytoc-highlight: #ffd400;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight="cyan"] {
+  --ytoc-highlight: #00e5ff;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight="green"] {
+  --ytoc-highlight: #39ff6a;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) {
+  --ytoc-focus-ring: var(--ytoc-highlight);
 }
 
 :root[data-ytoc-enabled][data-ytoc-profile="high-contrast"] {
@@ -73,9 +91,120 @@
   opacity: 1 !important;
 }
 
+/* Larger progress bar */
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-progress-bar-container,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-progress-bar,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-progress-list,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-play-progress,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-load-progress,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-hover-progress {
+  height: var(--ytoc-progress-height) !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-progress-list {
+  transform: none !important;
+  border-radius: 6px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-progress-bar-container {
+  top: -6px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-scrubber-container {
+  height: 22px !important;
+  top: -5px !important;
+  width: 22px !important;
+  margin-left: -11px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytp-scrubber-button {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 11px !important;
+  transform: none !important;
+  border: 2px solid #fff !important;
+  box-sizing: border-box !important;
+}
+
+/* Highlight color */
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-swatch-background-color,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-play-progress,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-scrubber-button {
+  background-color: var(--ytoc-highlight) !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button svg,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button svg path,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-display,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-chapter-title,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-title-link {
+  color: var(--ytoc-highlight) !important;
+  fill: var(--ytoc-highlight) !important;
+}
+
+/* Focus ring */
+:root[data-ytoc-enabled] #movie_player .ytp-button:focus-visible,
+:root[data-ytoc-enabled] #movie_player .ytp-progress-bar:focus-visible,
+:root[data-ytoc-enabled] #movie_player .ytp-menuitem:focus-visible {
+  outline: 3px solid var(--ytoc-focus-ring) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 5px #000 !important;
+}
+
+/* Larger pointer over the player */
+:root[data-ytoc-enabled][data-ytoc-large-cursor] #movie_player,
+:root[data-ytoc-enabled][data-ytoc-large-cursor] #movie_player video,
+:root[data-ytoc-enabled][data-ytoc-large-cursor] #movie_player .ytp-chrome-bottom {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewBox='0 0 40 48'><path d='M4 2 L4 40 L14 30 L22 46 L30 42 L22 27 L36 27 Z' fill='white' stroke='black' stroke-width='3' stroke-linejoin='round'/></svg>") 4 2, auto !important;
+}
+
+/* Larger text in the low-vision profile */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-menuitem-label,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-menuitem-content {
+  font-size: 15px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-tooltip-text {
+  font-size: 15px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player .ytp-chapter-title-content {
+  font-size: 15px !important;
+}
+
+/* Status HUD shown for keyboard command feedback */
+#movie_player .ytoc-hud {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  font: 600 18px/1.3 "Roboto", Arial, sans-serif;
+  border: 2px solid var(--ytoc-focus-ring);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#movie_player .ytoc-hud[data-visible] {
+  opacity: 1;
+}
+
+#movie_player .ytoc-hud small {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root[data-ytoc-enabled] #movie_player .ytp-chrome-top,
-  :root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom {
+  :root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom,
+  #movie_player .ytoc-hud {
     transition: none !important;
   }
 }
