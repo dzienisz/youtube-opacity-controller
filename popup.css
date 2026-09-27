@@ -233,6 +233,147 @@ button:focus-visible {
   cursor: pointer;
 }
 
+.whats-new {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid #b8c7f7;
+  border-radius: 10px;
+  background: #edf2ff;
+}
+
+.whats-new[hidden] {
+  display: none;
+}
+
+.whats-new-copy strong {
+  font-size: 13px;
+}
+
+.whats-new-copy p {
+  margin: 4px 0 0;
+  color: #4d576a;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.whats-new-dismiss {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border: 1px solid #3156d3;
+  border-radius: 8px;
+  background: #3156d3;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.whats-new-dismiss:hover {
+  background: #2244b4;
+}
+
+.highlight-colors {
+  margin: 14px 0 0;
+  padding: 12px;
+  border: 1px solid #d9dee8;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.highlight-colors legend {
+  padding: 0 4px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.swatch input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #3156d3;
+}
+
+.swatch-dot {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+}
+
+.swatch-default {
+  background: #f03;
+}
+
+.swatch-yellow {
+  background: #ffd400;
+}
+
+.swatch-cyan {
+  background: #00e5ff;
+}
+
+.swatch-green {
+  background: #39ff6a;
+}
+
+.field-desc {
+  display: block;
+  margin-top: 8px;
+  color: #667085;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.shortcuts {
+  margin: 0;
+  color: #5d6678;
+  font-size: 11px;
+}
+
+.shortcuts kbd {
+  padding: 1px 5px;
+  border: 1px solid #aeb6c5;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #3156d3;
+  font-size: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: #2244b4;
+}
+
 .slider-group {
   padding: 2px 12px 14px;
 }
