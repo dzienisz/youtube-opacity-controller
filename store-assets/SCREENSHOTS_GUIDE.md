@@ -6,6 +6,18 @@ Chrome Web Store requires **1-5 screenshots** of your extension in action.
 - **1280x800 pixels** (recommended)
 - OR **640x400 pixels**
 
+## Current screenshots (v2.0)
+
+`screenshot1.png`–`screenshot5.png` are 1280×800 composites generated from real YouTube captures (Big Buck Bunny, CC-BY) of the v2.0 UI:
+
+1. Popup next to the player — Larger Controls, bigger progress bar, cyan highlight
+2. Before/after control strip — no extension vs Strong Contrast
+3. Bigger progress bar in yellow / cyan / green
+4. Keyboard shortcuts with the on-player HUD
+5. Embedded player (youtube.com/embed) with the same styling
+
+Regenerate them by capturing the player/popup with the unpacked extension loaded and re-compositing at 1280×800.
+
 ## Recommended Screenshots to Take
 
 ### Screenshot 1: Extension Popup with Slider (REQUIRED)
