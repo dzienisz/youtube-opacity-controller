@@ -1,6 +1,6 @@
 # YouTube Player Accessibility
 
-[![Version](https://img.shields.io/badge/version-1.7-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -14,6 +14,10 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 - Adjustable dark background behind player controls
 - Larger controls and timestamps in the Larger Controls style
 - Optional always-visible player controls
+- Bigger progress bar with a larger, easier-to-grab handle
+- Highlight colors for the progress bar, handle, icons, and time display
+- Larger mouse pointer over the video
+- Keyboard shortcuts with on-player confirmation (HUD)
 - Master switch that removes all extension styling
 - Settings synchronized through Chrome Sync
 - No accounts, analytics, tracking, or external requests
@@ -50,6 +54,16 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 
 Changes apply immediately and persist across browser sessions.
 
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+| --- | --- |
+| `Alt+Shift+Y` | Toggle all control enhancements on or off |
+| `Alt+Shift+P` | Cycle to the next control style |
+| `Alt+Shift+V` | Toggle Keep Controls Visible |
+
+Each press shows a small confirmation on the player. Shortcuts can be rebound at `chrome://extensions/shortcuts`.
+
 ## Scope
 
 The extension styles only existing YouTube player UI:
@@ -59,11 +73,11 @@ The extension styles only existing YouTube player UI:
 - settings menus and panels;
 - text tooltips and chapter titles.
 
-It leaves seek-preview thumbnails and progress-bar layout untouched. It does not move, clone, or replace YouTube controls and does not modify video content.
+It leaves seek-preview thumbnails untouched and only changes progress-bar thickness when the Bigger progress bar option is on. It does not move, clone, or replace YouTube controls and does not modify video content. The only element it adds is one small on-player status overlay (`.ytoc-hud`) that confirms keyboard commands.
 
 ## Compatibility and Migration
 
-Version 1.7 preserves existing `overlayOpacity` and `alwaysShowControls` preferences. Existing installations start on the Clear Controls style with prior values retained.
+Version 2.0 migrates settings to schema v3, preserving existing preferences and adding the new progress bar, highlight color, and pointer options with their defaults. Existing installations keep their prior values.
 
 The release targets desktop Chrome and Chromium-based browsers on `youtube.com`. YouTube interface experiments may require selector updates.
 
@@ -72,11 +86,14 @@ The release targets desktop Chrome and Chromium-based browsers on `youtube.com`.
 Requires Node.js with the built-in `node:test` runner.
 
 ```bash
-npm test
-npm run check
+npm install
+npm test        # unit tests (settings model, locale catalogs)
+npm run check   # syntax checks + tests
+npm run build   # release ZIP in dist/
+npm run smoke   # Playwright end-to-end test in Chromium
 ```
 
-`npm run check` validates JavaScript syntax and runs settings migration tests.
+`npm run check` validates JavaScript syntax and runs settings migration and locale tests. `npm run smoke` loads the unpacked extension in Chromium and verifies styling end to end — it needs `xvfb-run -a` on machines without a display.
 
 ## Technical Details
 
@@ -85,7 +102,7 @@ npm run check
 - host access restricted to `https://www.youtube.com/*`
 - versioned settings schema stored in `chrome.storage.sync`
 - namespaced `data-ytoc-*` attributes and `--ytoc-*` CSS properties
-- no background service worker, remote code, or external network calls
+- background service worker handles only keyboard commands and update bookkeeping — no remote code or external network calls
 
 ## Privacy
 

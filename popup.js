@@ -23,7 +23,14 @@ const extensionEnabled = document.getElementById('extensionEnabled');
 const settingsPanel = document.getElementById('settingsPanel');
 const profileInputs = Array.from(document.querySelectorAll('[name="accessibilityProfile"]'));
 const alwaysShowControls = document.getElementById('alwaysShowControls');
+const progressBarSize = document.getElementById('progressBarSize');
+const highlightColorInputs = Array.from(document.querySelectorAll('[name="highlightColor"]'));
+const largeCursor = document.getElementById('largeCursor');
 const overlayOpacity = document.getElementById('overlayOpacity');
+const whatsNew = document.getElementById('whatsNew');
+const whatsNewDismiss = document.getElementById('whatsNewDismiss');
+const editShortcuts = document.getElementById('editShortcuts');
+const customize = document.querySelector('details.customize');
 const opacityValue = document.getElementById('opacityValue');
 const resetSettings = document.getElementById('resetSettings');
 const status = document.getElementById('status');
@@ -42,6 +49,11 @@ function updateControls(settings) {
     input.checked = input.value === settings.accessibilityProfile;
   });
   alwaysShowControls.checked = settings.alwaysShowControls;
+  progressBarSize.checked = settings.progressBarSize === settingsModel.PROGRESS_SIZES.LARGE;
+  highlightColorInputs.forEach(input => {
+    input.checked = input.value === settings.highlightColor;
+  });
+  largeCursor.checked = settings.largeCursor;
 
   const opacityPercent = Math.round(settings.overlayOpacity * 100);
   overlayOpacity.value = opacityPercent;
@@ -103,6 +115,32 @@ alwaysShowControls.addEventListener('change', () => {
   applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, t(alwaysShowControls.checked ? 'statusControlsVisible' : 'statusControlsAutoHide'));
 });
 
+progressBarSize.addEventListener('change', () => {
+  const large = progressBarSize.checked;
+  applyUpdate(
+    { progressBarSize: large ? settingsModel.PROGRESS_SIZES.LARGE : settingsModel.PROGRESS_SIZES.DEFAULT },
+    t(large ? 'statusProgressBarLarge' : 'statusProgressBarDefault')
+  );
+});
+
+const HIGHLIGHT_NAME_KEYS = {
+  default: 'highlightDefault',
+  yellow: 'highlightYellow',
+  cyan: 'highlightCyan',
+  green: 'highlightGreen'
+};
+
+highlightColorInputs.forEach(input => {
+  input.addEventListener('change', () => {
+    if (!input.checked) return;
+    applyUpdate({ highlightColor: input.value }, t('statusHighlight', [t(HIGHLIGHT_NAME_KEYS[input.value])]));
+  });
+});
+
+largeCursor.addEventListener('change', () => {
+  applyUpdate({ largeCursor: largeCursor.checked }, t(largeCursor.checked ? 'statusCursorLarge' : 'statusCursorDefault'));
+});
+
 overlayOpacity.addEventListener('input', () => {
   const overlayOpacityValue = Number(overlayOpacity.value) / 100;
   currentSettings = settingsModel.normalizeSettings({ ...currentSettings, overlayOpacity: overlayOpacityValue });
@@ -121,4 +159,21 @@ resetSettings.addEventListener('click', () => {
   currentSettings = { ...settingsModel.DEFAULTS };
   updateControls(currentSettings);
   persistSettings(t('statusReset'));
+});
+
+editShortcuts.addEventListener('click', () => {
+  chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+});
+
+whatsNewDismiss.addEventListener('click', () => {
+  whatsNew.hidden = true;
+  chrome.storage.local.set({ whatsNewDismissed: chrome.runtime.getManifest().version });
+});
+
+chrome.storage.local.get(['whatsNewVersion', 'whatsNewDismissed'], result => {
+  const version = chrome.runtime.getManifest().version;
+  if (result.whatsNewVersion === version && result.whatsNewDismissed !== version) {
+    whatsNew.hidden = false;
+    customize.open = true;
+  }
 });

@@ -8,6 +8,13 @@
 </head>
 <body>
   <main class="container">
+    <div id="whatsNew" class="whats-new" hidden>
+      <div class="whats-new-copy">
+        <strong data-i18n="whatsNewTitle">New in 2.0</strong>
+        <p data-i18n="whatsNewBody">Bigger progress bar, highlight colors, keyboard shortcuts and a larger pointer — find them under More visibility options.</p>
+      </div>
+      <button type="button" id="whatsNewDismiss" class="whats-new-dismiss" data-i18n="whatsNewDismiss">Got it</button>
+    </div>
     <header class="header">
       <div>
         <p class="eyebrow" data-i18n="eyebrow">YouTube controls</p>
@@ -70,10 +77,53 @@
             <span data-i18n="sliderSolid">Solid</span>
           </div>
         </div>
+
+        <label class="option-row">
+          <span>
+            <strong data-i18n="progressBarLarge">Bigger progress bar</strong>
+            <small data-i18n="progressBarLargeDesc">Thicker timeline and a larger, easier-to-grab handle</small>
+          </span>
+          <input type="checkbox" id="progressBarSize" name="progressBarSize" autocomplete="off">
+        </label>
+
+        <fieldset class="highlight-colors">
+          <legend data-i18n="highlightColorLegend">Highlight color</legend>
+          <div class="swatch-grid">
+            <label class="swatch">
+              <input type="radio" name="highlightColor" value="default" autocomplete="off">
+              <span class="swatch-dot swatch-default" aria-hidden="true"></span>
+              <span data-i18n="highlightDefault">YouTube red</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="highlightColor" value="yellow" autocomplete="off">
+              <span class="swatch-dot swatch-yellow" aria-hidden="true"></span>
+              <span data-i18n="highlightYellow">Yellow</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="highlightColor" value="cyan" autocomplete="off">
+              <span class="swatch-dot swatch-cyan" aria-hidden="true"></span>
+              <span data-i18n="highlightCyan">Cyan</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="highlightColor" value="green" autocomplete="off">
+              <span class="swatch-dot swatch-green" aria-hidden="true"></span>
+              <span data-i18n="highlightGreen">Green</span>
+            </label>
+          </div>
+          <small class="field-desc" data-i18n="highlightColorDesc">Colors the progress bar, handle, icons and time</small>
+        </fieldset>
+
+        <label class="option-row">
+          <span>
+            <strong data-i18n="largeCursorLabel">Larger mouse pointer over the video</strong>
+          </span>
+          <input type="checkbox" id="largeCursor" name="largeCursor" autocomplete="off">
+        </label>
       </details>
     </section>
 
     <footer>
+      <p class="shortcuts"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd> <span data-i18n="shortcutHint">toggles enhancements</span> · <button type="button" class="link-button" id="editShortcuts" data-i18n="editShortcuts">Edit shortcuts</button></p>
       <p id="status" class="status" role="status" aria-live="polite" data-i18n="statusReady">Settings ready</p>
       <button id="resetSettings" class="reset-button" type="button" data-i18n="resetSettings">Use recommended settings</button>
     </footer>

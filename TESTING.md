@@ -13,7 +13,7 @@ Run `npm run check` before manual testing. Load the repository through **Load un
 
 Test with an installation that already contains `overlayOpacity` and `alwaysShowControls`.
 
-- [ ] Version 1.7 opens with the Clear Controls style selected.
+- [ ] Version 2.0 opens with the Clear Controls style selected.
 - [ ] Existing background strength is preserved.
 - [ ] Existing always-show preference is preserved.
 - [ ] New schema, enabled state, and style values persist after restarting Chrome.

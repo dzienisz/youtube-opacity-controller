@@ -1,13 +1,30 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "1.7",
+  "version": "2.0",
   "description": "__MSG_appDesc__",
   "default_locale": "en",
   "permissions": ["storage", "activeTab"],
   "host_permissions": [
     "https://www.youtube.com/*"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle-enhancements": {
+      "suggested_key": { "default": "Alt+Shift+Y" },
+      "description": "__MSG_cmdToggleEnhancements__"
+    },
+    "cycle-profile": {
+      "suggested_key": { "default": "Alt+Shift+P" },
+      "description": "__MSG_cmdCycleProfile__"
+    },
+    "toggle-always-show": {
+      "suggested_key": { "default": "Alt+Shift+V" },
+      "description": "__MSG_cmdToggleAlwaysShow__"
+    }
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -21,7 +38,8 @@
       "matches": ["https://www.youtube.com/*"],
       "js": ["settings.js", "content.js"],
       "css": ["overlay-fix.css"],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
   "icons": {

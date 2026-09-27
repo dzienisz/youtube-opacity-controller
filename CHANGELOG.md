@@ -5,6 +5,27 @@ All notable changes to YouTube Player Accessibility will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0] - 2026-09-27
+
+### Added
+- Bigger progress bar option with a thicker timeline and a larger, easier-to-grab handle
+- Highlight colors (yellow, cyan, green) for the progress bar, handle, icons, and time display
+- Keyboard shortcuts — Alt+Shift+Y toggles enhancements, Alt+Shift+P cycles control styles, Alt+Shift+V toggles keep-controls-visible — with an on-player confirmation HUD, rebindable at chrome://extensions/shortcuts
+- Larger mouse pointer option over the video
+- Visible keyboard focus ring on player buttons, progress bar, and menu items
+- Larger menu, tooltip, and chapter text in the Larger Controls style
+- Content script now also loads in embedded YouTube players (iframes); classic-player embeds get the overlay treatment, newer embed control layouts are not yet styled
+- 5 new languages: Polish, French, Italian, Russian, and Simplified Chinese
+- What's-new banner shown in the popup after an update
+
+### Changed
+- Settings schema v3 with migration for the new options
+
+### Internal
+- Playwright end-to-end smoke test that loads the extension in Chromium
+- GitHub Actions CI (check, build, smoke)
+- `npm run build` produces the release ZIP in `dist/`
+
 ## [1.7] - 2026-09-21
 
 ### Changed
