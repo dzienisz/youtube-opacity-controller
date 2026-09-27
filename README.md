@@ -73,7 +73,7 @@ The extension styles only existing YouTube player UI:
 - settings menus and panels;
 - text tooltips and chapter titles.
 
-It leaves seek-preview thumbnails and progress-bar layout untouched. It does not move, clone, or replace YouTube controls and does not modify video content. The only element it adds is one small on-player status overlay (`.ytoc-hud`) that confirms keyboard commands.
+It leaves seek-preview thumbnails untouched and only changes progress-bar thickness when the Bigger progress bar option is on. It does not move, clone, or replace YouTube controls and does not modify video content. The only element it adds is one small on-player status overlay (`.ytoc-hud`) that confirms keyboard commands.
 
 ## Compatibility and Migration
 
