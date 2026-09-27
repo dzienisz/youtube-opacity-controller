@@ -131,6 +131,7 @@
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-play-progress,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-scrubber-button {
   background-color: var(--ytoc-highlight) !important;
+  background-image: none !important;
 }
 
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button:not(.ytp-large-play-button) svg,
