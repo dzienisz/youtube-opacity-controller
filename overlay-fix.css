@@ -263,8 +263,7 @@
 }
 
 /* Status HUD shown for keyboard command feedback */
-#movie_player .ytoc-hud,
-#player-controls .ytoc-hud {
+#movie_player .ytoc-hud {
   position: absolute;
   top: 12%;
   left: 50%;
@@ -281,13 +280,11 @@
   transition: opacity 0.2s;
 }
 
-#movie_player .ytoc-hud[data-visible],
-#player-controls .ytoc-hud[data-visible] {
+#movie_player .ytoc-hud[data-visible] {
   opacity: 1;
 }
 
-#movie_player .ytoc-hud small,
-#player-controls .ytoc-hud small {
+#movie_player .ytoc-hud small {
   display: block;
   font-size: 14px;
   font-weight: 400;
@@ -297,8 +294,7 @@
 @media (prefers-reduced-motion: reduce) {
   :root[data-ytoc-enabled] #movie_player .ytp-chrome-top,
   :root[data-ytoc-enabled] #movie_player .ytp-chrome-bottom,
-  #movie_player .ytoc-hud,
-  #player-controls .ytoc-hud {
+  #movie_player .ytoc-hud {
     transition: none !important;
   }
 }
