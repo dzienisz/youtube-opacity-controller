@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![I Ship This](https://ishipthis.com/badge/dzienisz.svg)](https://ishipthis.com/dzienisz?utm_source=badge)
 
 A privacy-first Chrome extension that makes YouTube player controls easier to see, click, and keep visible. Choose a clear control style, keep controls visible when needed, or customize the dark background strength.
 
