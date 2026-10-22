@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "Độ hiển thị cân bằng cho việc xem hằng ngày" },
   "profileHighContrast": { "message": "Tương phản mạnh" },
   "profileHighContrastDesc": { "message": "Điều khiển tối hơn, nút rõ hơn" },
-  "profileLowVision": { "message": "Điều khiển lớn hơn" },
-  "profileLowVisionDesc": { "message": "Nút và chữ lớn hơn, tương phản mạnh hơn" },
   "alwaysShowControls": { "message": "Giữ các nút điều khiển luôn hiển thị" },
   "alwaysShowControlsDesc": { "message": "Ngăn các nút điều khiển biến mất khi bạn đang dùng" },
   "customizeBackground": { "message": "Thêm tùy chọn hiển thị" },

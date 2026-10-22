@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "रोज़ाना देखने के लिए संतुलित दृश्यता" },
   "profileHighContrast": { "message": "तेज़ कंट्रास्ट" },
   "profileHighContrastDesc": { "message": "गहरे कंट्रोल और अधिक स्पष्ट बटन" },
-  "profileLowVision": { "message": "बड़े कंट्रोल" },
-  "profileLowVisionDesc": { "message": "बड़े बटन और टेक्स्ट, तेज़ कंट्रास्ट" },
   "alwaysShowControls": { "message": "कंट्रोल दिखाए रखें" },
   "alwaysShowControlsDesc": { "message": "उपयोग के दौरान कंट्रोल गायब होने से रोकता है" },
   "customizeBackground": { "message": "अधिक दृश्यता विकल्प" },

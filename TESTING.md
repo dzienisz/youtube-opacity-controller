@@ -54,13 +54,6 @@ Use bright and visually busy footage for comparison.
 - [ ] Text and icons remain fully visible.
 - [ ] Selecting the style sets the initial background to 90%.
 
-### Larger Controls
-
-- [ ] Buttons retain correct alignment and have the intended 48px target size.
-- [ ] Icons and timestamps are visibly larger.
-- [ ] The bottom bar does not overflow or hide essential controls.
-- [ ] Selecting the style sets the initial background to 95%.
-
 ## Player Regression Matrix
 
 Repeat critical checks in normal, theater, and fullscreen modes at 100%, 125%, and 150% browser zoom.
@@ -100,6 +93,6 @@ In Chrome DevTools while a video plays:
 
 ## Release Gate
 
-Do not publish when any critical player control fails, the Larger Controls style causes overflow, migration loses a preference, or console/storage errors occur.
+Do not publish when any critical player control fails, a control style causes overflow, migration loses a preference, or console/storage errors occur.
 
 Record the Chrome version, operating system, YouTube URL, player mode, browser zoom, selected style, and screenshot for every failure.

@@ -11,9 +11,8 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 
 ## Features
 
-- Three control styles: Clear Controls, Strong Contrast, and Larger Controls
+- Two control styles: Clear Controls and Strong Contrast
 - Adjustable dark background behind player controls
-- Larger controls and timestamps in the Larger Controls style
 - Optional always-visible player controls
 - Bigger progress bar with a larger, easier-to-grab handle
 - Highlight colors for the progress bar, handle, icons, and time display
@@ -46,10 +45,9 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 
 1. Open a YouTube video.
 2. Select the extension icon in the Chrome toolbar.
-3. Keep the master switch enabled and choose a profile:
+3. Keep the master switch enabled and choose a style:
    - **Clear Controls:** Balanced visibility for everyday viewing.
    - **Strong Contrast:** Darker controls and clearer buttons.
-   - **Larger Controls:** Bigger buttons, icons, and timestamps with stronger contrast.
 4. Enable **Keep Controls Visible** if native auto-hide makes controls difficult to find.
 5. Expand **More Visibility Options** to set the background from 0% to 100%.
 6. Select **Use Recommended Settings** to restore the Clear Controls style at 70%.
@@ -61,7 +59,7 @@ Changes apply immediately and persist across browser sessions.
 | Shortcut | Action |
 | --- | --- |
 | `Alt+Shift+Y` | Toggle all control enhancements on or off |
-| `Alt+Shift+P` | Cycle to the next control style |
+| `Alt+Shift+P` | Cycle between Clear Controls and Strong Contrast |
 | `Alt+Shift+V` | Toggle Keep Controls Visible |
 
 Each press shows a small confirmation on the player. Shortcuts can be rebound at `chrome://extensions/shortcuts`.

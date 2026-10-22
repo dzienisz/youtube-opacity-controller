@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "日常使いにバランスのよい見やすさ" },
   "profileHighContrast": { "message": "強いコントラスト" },
   "profileHighContrastDesc": { "message": "より暗いコントロールと見やすいボタン" },
-  "profileLowVision": { "message": "大きなコントロール" },
-  "profileLowVisionDesc": { "message": "ボタンと文字を大きく、コントラストも強化" },
   "alwaysShowControls": { "message": "コントロールを表示したままにする" },
   "alwaysShowControlsDesc": { "message": "使用中にコントロールが消えないようにします" },
   "customizeBackground": { "message": "その他の表示オプション" },

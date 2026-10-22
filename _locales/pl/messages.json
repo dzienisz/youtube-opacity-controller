@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "Zrównoważona widoczność na co dzień" },
   "profileHighContrast": { "message": "Silny kontrast" },
   "profileHighContrastDesc": { "message": "Ciemniejsze elementy sterowania i wyraźniejsze przyciski" },
-  "profileLowVision": { "message": "Większe sterowanie" },
-  "profileLowVisionDesc": { "message": "Większe przyciski, tekst i silniejszy kontrast" },
   "alwaysShowControls": { "message": "Utrzymuj elementy sterowania widoczne" },
   "alwaysShowControlsDesc": { "message": "Zapobiega znikania elementów sterowania podczas korzystania" },
   "customizeBackground": { "message": "Więcej opcji widoczności" },
