@@ -88,7 +88,8 @@ async function main() {
         playButton: backgroundColor('.ytp-play-button'),
         settingsButton: backgroundColor('.ytp-settings-button'),
         branding: backgroundColor('.branding-img-container'),
-        rightControlsRadius: getComputedStyle(player.querySelector('.ytp-right-controls')).borderRadius
+        rightControlsRadius: getComputedStyle(player.querySelector('.ytp-right-controls')).borderRadius,
+        rightControlsMarginTop: getComputedStyle(player.querySelector('.ytp-right-controls')).marginTop
       };
     });
     const expectedModernDefaultStyles = {
@@ -99,7 +100,8 @@ async function main() {
       playButton: 'rgba(0, 0, 0, 0.7)',
       settingsButton: 'rgba(0, 0, 0, 0)',
       branding: 'rgba(0, 0, 0, 0)',
-      rightControlsRadius: '28px'
+      rightControlsRadius: '28px',
+      rightControlsMarginTop: '8px'
     };
     for (const [style, expected] of Object.entries(expectedModernDefaultStyles)) {
       const actual = modernDefaultStyles[style];
@@ -153,13 +155,39 @@ async function main() {
     const modernLargeStyles = await modern.locator('.ytp-right-controls')
       .evaluate(el => {
         const style = getComputedStyle(el);
-        return { minHeight: style.minHeight, backgroundColor: style.backgroundColor };
+        return {
+          minHeight: style.minHeight,
+          backgroundColor: style.backgroundColor,
+          marginTop: style.marginTop
+        };
       });
     if (modernLargeStyles.minHeight !== '48px') {
       fail(`expected modern right controls min-height 48px, got ${modernLargeStyles.minHeight}`);
     }
     if (modernLargeStyles.backgroundColor !== 'rgba(0, 0, 0, 0.95)') {
       fail(`expected modern right controls background rgba(0, 0, 0, 0.95), got ${modernLargeStyles.backgroundColor}`);
+    }
+    if (modernLargeStyles.marginTop !== '4px') {
+      fail(`expected modern right controls margin-top 4px, got ${modernLargeStyles.marginTop}`);
+    }
+    const modernPillGaps = await modern.locator('.ytp-chrome-controls')
+      .evaluate(controls => {
+        const controlsBottom = controls.getBoundingClientRect().bottom;
+        const selectors = {
+          playButton: '.ytp-play-button',
+          volumeArea: '.ytp-volume-area',
+          timeWrapper: '.ytp-time-wrapper',
+          rightControls: '.ytp-right-controls'
+        };
+        return Object.fromEntries(Object.entries(selectors).map(([name, selector]) => {
+          const bottom = controls.querySelector(selector).getBoundingClientRect().bottom;
+          return [name, controlsBottom - bottom];
+        }));
+      });
+    for (const [pill, bottomGap] of Object.entries(modernPillGaps)) {
+      if (bottomGap < 3.5) {
+        fail(`expected modern ${pill} bottom at least 3.5px above the controls row, got ${bottomGap}px`);
+      }
     }
 
     // --- Embed scenario: same settings applied to the newer embed control DOM ---

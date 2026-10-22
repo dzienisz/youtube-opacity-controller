@@ -209,6 +209,19 @@
   border-radius: 24px !important;
 }
 
+/* 48px pills in the 56px controls row: split the spare space evenly instead
+   of letting the pills sit on the player's bottom edge. */
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player.ytp-delhi-modern:not(.ytp-big-mode) .ytp-chrome-bottom .ytp-play-button,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player.ytp-delhi-modern:not(.ytp-big-mode) .ytp-volume-area,
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player.ytp-delhi-modern:not(.ytp-big-mode) .ytp-right-controls {
+  margin-top: 4px !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-profile="low-vision"] #movie_player.ytp-delhi-modern:not(.ytp-big-mode) .ytp-time-display {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
 /* Embedded player (youtube.com/embed) renders its controls in #player-controls
    with a different class vocabulary than the watch page. */
 :root[data-ytoc-enabled] #player-control-overlay .player-controls-background {

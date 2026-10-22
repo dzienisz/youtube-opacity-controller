@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Larger Controls no longer pushes the rounded control pills onto the bottom edge of the video
 - Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band, keep rounded shapes in Larger Controls, and stop painting a box behind the channel logo
 - Bigger progress bar and highlight color now apply to the newer embedded player's progress bar
 - Highlight color now also colors the time display on the watch page
