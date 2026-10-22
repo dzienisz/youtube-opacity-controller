@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "Visibilità bilanciata per l'uso quotidiano" },
   "profileHighContrast": { "message": "Contrasto forte" },
   "profileHighContrastDesc": { "message": "Controlli più scuri e pulsanti più nitidi" },
-  "profileLowVision": { "message": "Controlli più grandi" },
-  "profileLowVisionDesc": { "message": "Pulsanti e testo più grandi, contrasto più forte" },
   "alwaysShowControls": { "message": "Mantieni i controlli visibili" },
   "alwaysShowControlsDesc": { "message": "Impedisce ai controlli di scomparire durante l'uso" },
   "customizeBackground": { "message": "Altre opzioni di visibilità" },

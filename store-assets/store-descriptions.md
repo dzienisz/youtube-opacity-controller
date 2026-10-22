@@ -27,7 +27,6 @@ FEATURES
 
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
-• Larger Controls style with bigger buttons, icons, timestamps, and menu text
 • Bigger progress bar with a larger, easier-to-grab handle
 • Highlight colors for the progress bar, handle, icons, and time
 • Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
@@ -48,7 +47,7 @@ HOW TO USE
 
 1. Open a YouTube video.
 2. Select the extension icon.
-3. Choose Clear Controls, Strong Contrast, or Larger Controls.
+3. Choose Clear Controls or Strong Contrast.
 4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
 5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
 6. Use the master switch at any time to restore the original appearance.
@@ -77,7 +76,6 @@ RECURSOS
 
 • Estilo Controles Claros com fundo escuro ajustável para os controles
 • Estilo Contraste Forte para controles mais fortes e nítidos
-• Estilo Controles Maiores com botões, ícones, marcações de tempo e textos de menu maiores
 • Barra de progresso maior com um controle maior e mais fácil de segurar
 • Cores de destaque para a barra de progresso, o controle, os ícones e o tempo
 • Atalhos de teclado com confirmação no player, reconfiguráveis em chrome://extensions/shortcuts
@@ -98,7 +96,7 @@ COMO USAR
 
 1. Abra um vídeo no YouTube.
 2. Clique no ícone da extensão.
-3. Escolha Controles Claros, Contraste Forte ou Controles Maiores.
+3. Escolha Controles Claros ou Contraste Forte.
 4. Se quiser, mantenha os controles visíveis, aumente a barra de progresso ou o ponteiro, escolha uma cor de destaque ou personalize o fundo.
 5. Pressione Alt+Shift+Y para alternar as melhorias, Alt+Shift+P para alternar os estilos, Alt+Shift+V para alternar os controles sempre visíveis.
 6. Use o interruptor principal a qualquer momento para restaurar a aparência original.
@@ -127,7 +125,6 @@ FUNCIONES
 
 • Estilo Controles Claros con fondo oscuro ajustable para los controles
 • Estilo Contraste Fuerte para controles más fuertes y nítidos
-• Estilo Controles Más Grandes con botones, íconos, marcas de tiempo y textos de menú más grandes
 • Barra de progreso más grande con un control mayor y más fácil de agarrar
 • Colores de resaltado para la barra de progreso, el control, los íconos y el tiempo
 • Atajos de teclado con confirmación en el reproductor, reconfigurables en chrome://extensions/shortcuts
@@ -148,7 +145,7 @@ CÓMO USARLO
 
 1. Abre un video de YouTube.
 2. Haz clic en el ícono de la extensión.
-3. Elige Controles Claros, Contraste Fuerte o Controles Más Grandes.
+3. Elige Controles Claros o Contraste Fuerte.
 4. Si quieres, mantén los controles visibles, agranda la barra de progreso o el puntero, elige un color de resaltado o personaliza el fondo.
 5. Pulsa Alt+Shift+Y para alternar las mejoras, Alt+Shift+P para cambiar de estilo, Alt+Shift+V para alternar los controles siempre visibles.
 6. Usa el interruptor principal en cualquier momento para restaurar la apariencia original.
@@ -177,7 +174,6 @@ FUNKTIONEN
 
 • Stil „Klare Steuerung“ mit anpassbarem dunklem Hintergrund für die Steuerelemente
 • Stil „Starker Kontrast“ für kräftigere, klarere Steuerelemente
-• Stil „Größere Steuerung“ mit größeren Schaltflächen, Symbolen, Zeitangaben und Menütexten
 • Größere Fortschrittsleiste mit einem größeren, leichter greifbaren Regler
 • Hervorhebungsfarben für Fortschrittsleiste, Regler, Symbole und Zeitangaben
 • Tastenkürzel mit Bestätigung im Player, anpassbar unter chrome://extensions/shortcuts
@@ -198,7 +194,7 @@ SO GEHT'S
 
 1. Öffne ein YouTube-Video.
 2. Klicke auf das Symbol der Erweiterung.
-3. Wähle Klare Steuerung, Starker Kontrast oder Größere Steuerung.
+3. Wähle „Klare Steuerung“ oder „Starker Kontrast“.
 4. Halte optional die Steuerelemente sichtbar, vergrößere Fortschrittsleiste oder Zeiger, wähle eine Hervorhebungsfarbe oder passe den Hintergrund an.
 5. Drücke Alt+Shift+Y, um die Verbesserungen umzuschalten, Alt+Shift+P, um den Stil zu wechseln, Alt+Shift+V, um „sichtbar halten“ umzuschalten.
 6. Nutze jederzeit den Hauptschalter, um die ursprüngliche Darstellung wiederherzustellen.
@@ -227,7 +223,6 @@ YouTube コントロール: より見やすく、より大きく は、明るい
 
 • 調整可能な暗い背景を備えた「クリアなコントロール」スタイル
 • より濃く、はっきりしたコントロールの「強いコントラスト」スタイル
-• ボタン・アイコン・タイムスタンプ・メニュー文字を大きくする「大きなコントロール」スタイル
 • つかみやすい大きなハンドル付きの大きなプログレスバー
 • プログレスバー、ハンドル、アイコン、時間表示に適用できるハイライトカラー
 • プレーヤー上で確認表示が出るキーボードショートカット（chrome://extensions/shortcuts で変更可能）
@@ -248,7 +243,7 @@ YouTube コントロール: より見やすく、より大きく は、明るい
 
 1. YouTube の動画を開きます。
 2. 拡張機能のアイコンをクリックします。
-3. 「クリアなコントロール」「強いコントラスト」「大きなコントロール」から選択します。
+3. 「クリアなコントロール」または「強いコントラスト」を選択します。
 4. 必要に応じて、コントロールの常時表示、プログレスバーやポインターの拡大、ハイライトカラーの選択、背景の調整を行います。
 5. Alt+Shift+Y で拡張表示の切り替え、Alt+Shift+P でスタイルの切り替え、Alt+Shift+V で常時表示の切り替えができます。
 6. マスタースイッチでいつでも元の外観に戻せます。
@@ -277,7 +272,6 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 • 조절 가능한 어두운 컨트롤 배경을 제공하는 선명한 컨트롤 스타일
 • 더 진하고 선명한 컨트롤을 위한 강한 대비 스타일
-• 더 큰 버튼, 아이콘, 시간 표시, 메뉴 글자를 제공하는 더 큰 컨트롤 스타일
 • 크고 잡기 쉬운 핸들이 있는 더 큰 진행 바
 • 진행 바, 핸들, 아이콘, 시간 표시에 적용되는 강조 색상
 • 플레이어에서 확인 표시가 나타나는 키보드 단축키(chrome://extensions/shortcuts에서 변경 가능)
@@ -298,7 +292,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 1. YouTube 동영상을 엽니다.
 2. 확장 프로그램 아이콘을 클릭합니다.
-3. 선명한 컨트롤, 강한 대비, 더 큰 컨트롤 중에서 선택합니다.
+3. 선명한 컨트롤 또는 강한 대비를 선택합니다.
 4. 필요하면 컨트롤을 계속 표시하고, 진행 바나 포인터를 키우고, 강조 색상을 고르거나 배경을 조절합니다.
 5. Alt+Shift+Y로 개선 기능을, Alt+Shift+P로 스타일을, Alt+Shift+V로 계속 표시를 전환합니다.
 6. 언제든지 마스터 스위치로 원래 모습을 복원할 수 있습니다.
@@ -327,7 +321,6 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 • نمط "عناصر تحكم واضحة" مع خلفية داكنة قابلة للتعديل لعناصر التحكم
 • نمط "تباين قوي" لعناصر تحكم أقوى وأوضح
-• نمط "عناصر تحكم أكبر" مع أزرار ورموز وطوابع زمنية ونصوص قوائم أكبر
 • شريط تقدم أكبر مع مقبض أكبر يسهل الإمساك به
 • ألوان تمييز لشريط التقدم والمقبض والأيقونات والوقت
 • اختصارات لوحة مفاتيح مع تأكيد داخل المشغّل، ويمكن تغييرها في chrome://extensions/shortcuts
@@ -348,7 +341,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 1. افتح فيديو على YouTube.
 2. انقر على رمز الإضافة.
-3. اختر: عناصر تحكم واضحة، أو تباين قوي، أو عناصر تحكم أكبر.
+3. اختر: عناصر تحكم واضحة أو تباين قوي.
 4. اختياريًا، أبقِ عناصر التحكم ظاهرة، أو كبّر شريط التقدم أو المؤشر، أو اختر لون تمييز، أو خصّص الخلفية.
 5. اضغط Alt+Shift+Y للتبديل بين التحسينات، وAlt+Shift+P لتبديل الأنماط، وAlt+Shift+V لتبديل إبقاء عناصر التحكم ظاهرة.
 6. استخدم المفتاح الرئيسي في أي وقت لاستعادة المظهر الأصلي.
@@ -377,7 +370,6 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 • Стиль «Чіткі елементи керування» із регульованим темним фоном
 • Стиль «Сильний контраст» — виразніші та чіткіші елементи керування
-• Стиль «Більші елементи керування» — більші кнопки, значки, мітки часу та текст меню
 • Більша смуга відтворення з більшим повзунком, який легше захопити
 • Кольори підсвічування для смуги відтворення, повзунка, значків і часу
 • Поєднання клавіш із підтвердженням у програвачі; їх можна змінити на chrome://extensions/shortcuts
@@ -398,7 +390,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 
 1. Відкрийте відео на YouTube.
 2. Натисніть значок розширення.
-3. Виберіть «Чіткі елементи керування», «Сильний контраст» або «Більші елементи керування».
+3. Виберіть «Чіткі елементи керування» або «Сильний контраст».
 4. За бажанням залишайте елементи керування видимими, збільште смугу відтворення чи вказівник, оберіть колір підсвічування або налаштуйте фон.
 5. Натисніть Alt+Shift+Y, щоб увімкнути чи вимкнути покращення, Alt+Shift+P — щоб змінити стиль, Alt+Shift+V — щоб перемкнути постійну видимість.
 6. Будь-коли поверніть оригінальний вигляд головним перемикачем.
@@ -427,7 +419,6 @@ TÍNH NĂNG
 
 • Kiểu Điều khiển rõ ràng với nền tối có thể điều chỉnh cho các nút điều khiển
 • Kiểu Tương phản mạnh cho các nút điều khiển đậm và rõ hơn
-• Kiểu Điều khiển lớn hơn với nút, biểu tượng, mốc thời gian và chữ menu lớn hơn
 • Thanh tiến trình lớn hơn với tay cầm lớn, dễ nắm hơn
 • Màu tô sáng cho thanh tiến trình, tay cầm, biểu tượng và thời gian
 • Phím tắt có xác nhận trên trình phát, đổi được tại chrome://extensions/shortcuts
@@ -448,7 +439,7 @@ CÁCH DÙNG
 
 1. Mở một video trên YouTube.
 2. Nhấp vào biểu tượng tiện ích.
-3. Chọn Điều khiển rõ ràng, Tương phản mạnh hoặc Điều khiển lớn hơn.
+3. Chọn Điều khiển rõ ràng hoặc Tương phản mạnh.
 4. Tùy chọn: giữ các nút điều khiển luôn hiển thị, phóng to thanh tiến trình hoặc con trỏ, chọn màu tô sáng hoặc tùy chỉnh nền.
 5. Nhấn Alt+Shift+Y để bật/tắt tính năng cải tiến, Alt+Shift+P để đổi kiểu, Alt+Shift+V để bật/tắt giữ hiển thị.
 6. Dùng công tắc chính bất cứ lúc nào để khôi phục giao diện gốc.
@@ -477,7 +468,6 @@ YouTube कंट्रोल: साफ़ और बड़े चमकील�
 
 • समायोज्य गहरे कंट्रोल बैकग्राउंड के साथ साफ़ कंट्रोल स्टाइल
 • अधिक गहरे और स्पष्ट कंट्रोल के लिए तेज़ कंट्रास्ट स्टाइल
-• बड़े बटन, आइकन, टाइमस्टैम्प और मेनू टेक्स्ट के साथ बड़े कंट्रोल स्टाइल
 • बड़े, आसानी से पकड़ने योग्य हैंडल के साथ बड़ा प्रोग्रेस बार
 • प्रोग्रेस बार, हैंडल, आइकन और समय के लिए हाइलाइट रंग
 • प्लेयर पर पुष्टि दिखाने वाले कीबोर्ड शॉर्टकट, जिन्हें chrome://extensions/shortcuts पर बदला जा सकता है
@@ -498,7 +488,7 @@ YouTube कंट्रोल: साफ़ और बड़े चमकील�
 
 1. YouTube पर कोई वीडियो खोलें।
 2. एक्सटेंशन आइकन पर क्लिक करें।
-3. साफ़ कंट्रोल, तेज़ कंट्रास्ट या बड़े कंट्रोल में से चुनें।
+3. साफ़ कंट्रोल या तेज़ कंट्रास्ट चुनें।
 4. चाहें तो कंट्रोल दिखाए रखें, प्रोग्रेस बार या पॉइंटर बड़ा करें, हाइलाइट रंग चुनें या बैकग्राउंड कस्टमाइज़ करें।
 5. एन्हांसमेंट के लिए Alt+Shift+Y, स्टाइल बदलने के लिए Alt+Shift+P, कंट्रोल दिखाए रखने के लिए Alt+Shift+V दबाएं।
 6. मूल स्वरूप वापस लाने के लिए कभी भी मास्टर स्विच का उपयोग करें।
@@ -527,7 +517,6 @@ FUNKCJE
 
 • Styl Wyraźne sterowanie z regulowanym ciemnym tłem elementów
 • Styl Silny kontrast — wyrazistsze, wyraźniejsze elementy sterowania
-• Styl Większe sterowanie — większe przyciski, ikony, znaczniki czasu i teksty menu
 • Większy pasek postępu z większym, łatwiejszym do uchwycenia uchwytem
 • Kolory wyróżnienia dla paska postępu, uchwytu, ikon i czasu
 • Skróty klawiszowe z potwierdzeniem na odtwarzaczu, możliwe do zmiany na chrome://extensions/shortcuts
@@ -548,7 +537,7 @@ JAK UŻYWAĆ
 
 1. Otwórz film na YouTube.
 2. Kliknij ikonę rozszerzenia.
-3. Wybierz Wyraźne sterowanie, Silny kontrast lub Większe sterowanie.
+3. Wybierz Wyraźne sterowanie lub Silny kontrast.
 4. Opcjonalnie utrzymaj elementy widoczne, powiększ pasek postępu lub wskaźnik, wybierz kolor wyróżnienia albo dostosuj tło.
 5. Naciśnij Alt+Shift+Y, by przełączyć ulepszenia, Alt+Shift+P, by zmienić styl, Alt+Shift+V, by przełączyć stałą widoczność.
 6. Użyj głównego przełącznika w dowolnym momencie, by przywrócić oryginalny wygląd.
@@ -577,7 +566,6 @@ FONCTIONNALITÉS
 
 • Style Contrôles clairs avec un fond sombre réglable
 • Style Contraste fort pour des contrôles plus marqués et plus nets
-• Style Contrôles plus grands avec de plus gros boutons, icônes, horodatages et textes de menu
 • Barre de progression plus grande avec une poignée plus facile à saisir
 • Couleurs de surbrillance pour la barre de progression, la poignée, les icônes et le temps
 • Raccourcis clavier avec confirmation sur le lecteur, modifiables sur chrome://extensions/shortcuts
@@ -598,7 +586,7 @@ COMMENT L'UTILISER
 
 1. Ouvrez une vidéo YouTube.
 2. Cliquez sur l'icône de l'extension.
-3. Choisissez Contrôles clairs, Contraste fort ou Contrôles plus grands.
+3. Choisissez Contrôles clairs ou Contraste fort.
 4. Si vous voulez, gardez les contrôles visibles, agrandissez la barre de progression ou le pointeur, choisissez une couleur de surbrillance ou personnalisez le fond.
 5. Appuyez sur Alt+Shift+Y pour activer ou désactiver les améliorations, Alt+Shift+P pour changer de style, Alt+Shift+V pour la visibilité permanente.
 6. Utilisez l'interrupteur principal à tout moment pour retrouver l'apparence d'origine.
@@ -627,7 +615,6 @@ FUNZIONALITÀ
 
 • Stile Controlli chiari con sfondo scuro regolabile
 • Stile Contrasto forte per controlli più decisi e nitidi
-• Stile Controlli più grandi con pulsanti, icone, timestamp e testi dei menu più grandi
 • Barra di avanzamento più grande con un cursore più facile da afferrare
 • Colori di evidenziazione per barra di avanzamento, cursore, icone e tempo
 • Scorciatoie da tastiera con conferma sul lettore, modificabili su chrome://extensions/shortcuts
@@ -648,7 +635,7 @@ COME USARLO
 
 1. Apri un video di YouTube.
 2. Clicca sull'icona dell'estensione.
-3. Scegli Controlli chiari, Contrasto forte o Controlli più grandi.
+3. Scegli Controlli chiari o Contrasto forte.
 4. Se vuoi, mantieni i controlli visibili, ingrandisci la barra di avanzamento o il puntatore, scegli un colore di evidenziazione o personalizza lo sfondo.
 5. Premi Alt+Shift+Y per attivare o disattivare i miglioramenti, Alt+Shift+P per cambiare stile, Alt+Shift+V per la visibilità permanente.
 6. Usa l'interruttore principale in qualsiasi momento per ripristinare l'aspetto originale.
@@ -677,7 +664,6 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 
 • Стиль «Чёткие элементы управления» с регулируемым тёмным фоном
 • Стиль «Сильный контраст» — более выразительные и чёткие элементы
-• Стиль «Крупные элементы управления» — крупные кнопки, значки, метки времени и текст меню
 • Большая полоса воспроизведения с крупным, удобным ползунком
 • Цвета подсветки для полосы воспроизведения, ползунка, значков и времени
 • Сочетания клавиш с подтверждением в плеере; их можно изменить на chrome://extensions/shortcuts
@@ -698,7 +684,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 
 1. Откройте видео на YouTube.
 2. Нажмите значок расширения.
-3. Выберите «Чёткие элементы управления», «Сильный контраст» или «Крупные элементы управления».
+3. Выберите «Чёткие элементы управления» или «Сильный контраст».
 4. При желании оставьте элементы видимыми, увеличьте полосу воспроизведения или указатель, выберите цвет подсветки или настройте фон.
 5. Нажмите Alt+Shift+Y, чтобы переключить улучшения, Alt+Shift+P — чтобы сменить стиль, Alt+Shift+V — чтобы переключить постоянную видимость.
 6. В любой момент верните исходный вид главным переключателем.
@@ -727,7 +713,6 @@ YouTube 控件：更清晰、更大 可在明亮且画面复杂的视频中改�
 
 • 带有可调节深色控件背景的“清晰控件”样式
 • 控件更深邃清晰的“强对比度”样式
-• 按钮、图标、时间戳和菜单文字更大的“更大控件”样式
 • 更大的进度条，配有更大、更易抓取的拖动手柄
 • 可为进度条、手柄、图标和时间着色的高亮颜色
 • 在播放器上显示确认提示的键盘快捷键，可在 chrome://extensions/shortcuts 重新绑定
@@ -748,7 +733,7 @@ YouTube 控件：更清晰、更大 可在明亮且画面复杂的视频中改�
 
 1. 打开一个 YouTube 视频。
 2. 点击扩展程序图标。
-3. 选择“清晰控件”“强对比度”或“更大控件”。
+3. 选择“清晰控件”或“强对比度”。
 4. 根据需要保持控件可见、放大进度条或指针、选择高亮颜色或自定义背景。
 5. 按 Alt+Shift+Y 切换增强功能，Alt+Shift+P 切换样式，Alt+Shift+V 切换控件常显。
 6. 随时使用主开关恢复原始外观。

@@ -10,7 +10,9 @@ Chrome Web Store requires **1-5 screenshots** of your extension in action.
 
 `screenshot1.png`–`screenshot5.png` are 1280×800 composites generated from real YouTube captures (Big Buck Bunny, CC-BY) of the v2.0 UI:
 
-1. Popup next to the player — Larger Controls, bigger progress bar, cyan highlight
+The first composite still shows the retired third style and should be replaced before the next store listing refresh.
+
+1. Popup next to the player — Strong Contrast, bigger progress bar, cyan highlight
 2. Before/after control strip — no extension vs Strong Contrast
 3. Bigger progress bar in yellow / cyan / green
 4. Keyboard shortcuts with the on-player HUD

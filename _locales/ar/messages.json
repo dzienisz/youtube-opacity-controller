@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "وضوح متوازن للمشاهدة اليومية" },
   "profileHighContrast": { "message": "تباين قوي" },
   "profileHighContrastDesc": { "message": "عناصر تحكم أغمق وأزرار أوضح" },
-  "profileLowVision": { "message": "عناصر تحكم أكبر" },
-  "profileLowVisionDesc": { "message": "أزرار ونصوص أكبر وتباين أقوى" },
   "alwaysShowControls": { "message": "إبقاء عناصر التحكم ظاهرة" },
   "alwaysShowControlsDesc": { "message": "يمنع اختفاء عناصر التحكم أثناء استخدامها" },
   "customizeBackground": { "message": "خيارات رؤية إضافية" },

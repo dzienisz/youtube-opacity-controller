@@ -10,19 +10,16 @@
   const SCHEMA_VERSION = 3;
   const PROFILES = Object.freeze({
     STANDARD: 'standard',
-    HIGH_CONTRAST: 'high-contrast',
-    LOW_VISION: 'low-vision'
+    HIGH_CONTRAST: 'high-contrast'
   });
   const PROFILE_VALUES = Object.freeze(Object.values(PROFILES));
   const PROFILE_MESSAGE_KEYS = Object.freeze({
     [PROFILES.STANDARD]: 'profileStandard',
-    [PROFILES.HIGH_CONTRAST]: 'profileHighContrast',
-    [PROFILES.LOW_VISION]: 'profileLowVision'
+    [PROFILES.HIGH_CONTRAST]: 'profileHighContrast'
   });
   const PROFILE_DEFAULT_OPACITY = Object.freeze({
     [PROFILES.STANDARD]: 0.7,
-    [PROFILES.HIGH_CONTRAST]: 0.9,
-    [PROFILES.LOW_VISION]: 0.95
+    [PROFILES.HIGH_CONTRAST]: 0.9
   });
   const PROGRESS_SIZES = Object.freeze({
     DEFAULT: 'default',
@@ -65,14 +62,17 @@
 
   function normalizeSettings(value) {
     const input = value && typeof value === 'object' ? value : {};
+    const accessibilityProfile = input.accessibilityProfile === 'low-vision'
+      ? PROFILES.HIGH_CONTRAST
+      : input.accessibilityProfile;
 
     return {
       settingsSchemaVersion: SCHEMA_VERSION,
       extensionEnabled: typeof input.extensionEnabled === 'boolean'
         ? input.extensionEnabled
         : DEFAULTS.extensionEnabled,
-      accessibilityProfile: PROFILE_VALUES.includes(input.accessibilityProfile)
-        ? input.accessibilityProfile
+      accessibilityProfile: PROFILE_VALUES.includes(accessibilityProfile)
+        ? accessibilityProfile
         : DEFAULTS.accessibilityProfile,
       overlayOpacity: normalizeOpacity(input.overlayOpacity),
       alwaysShowControls: typeof input.alwaysShowControls === 'boolean'

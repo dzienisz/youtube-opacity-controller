@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "日常观看的均衡可见性" },
   "profileHighContrast": { "message": "强对比度" },
   "profileHighContrastDesc": { "message": "更深的控件和更清晰的按钮" },
-  "profileLowVision": { "message": "更大控件" },
-  "profileLowVisionDesc": { "message": "更大的按钮、文字和更强的对比度" },
   "alwaysShowControls": { "message": "保持控件可见" },
   "alwaysShowControlsDesc": { "message": "防止控件在使用过程中消失" },
   "customizeBackground": { "message": "更多可见性选项" },

@@ -14,11 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - More compact popup that fits without scrolling
+- Larger controls is hidden for now while it is redesigned; if you used it, you now get Strong contrast
 
 ### Fixed
 - Popup shows your actual on/off shortcut instead of always Alt+Shift+Y
-- Larger Controls no longer pushes the rounded control pills onto the bottom edge of the video
-- Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band, keep rounded shapes in Larger Controls, and stop painting a box behind the channel logo
+- Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band and stop painting a box behind the channel logo
 - Bigger progress bar and highlight color now apply to the newer embedded player's progress bar
 - Highlight color now also colors the time display on the watch page
 
@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.1] - 2026-09-27
 
 ### Added
-- Newer embedded-player controls (youtube.com/embed) are now styled: overlay opacity, larger timeline + handle, highlight colors, low-vision sizing, always-visible controls, focus rings, larger pointer, HUD.
+- Newer embedded-player controls (youtube.com/embed) are now styled: overlay opacity, larger timeline + handle, highlight colors, Larger Controls sizing, always-visible controls, focus rings, larger pointer, HUD.
 
 ## [2.0] - 2026-09-27
 

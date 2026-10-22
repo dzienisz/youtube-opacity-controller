@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "Ausgewogene Sichtbarkeit für den Alltag" },
   "profileHighContrast": { "message": "Starker Kontrast" },
   "profileHighContrastDesc": { "message": "Dunklere Steuerelemente und klarere Schaltflächen" },
-  "profileLowVision": { "message": "Größere Steuerung" },
-  "profileLowVisionDesc": { "message": "Größere Schaltflächen und Texte mit stärkerem Kontrast" },
   "alwaysShowControls": { "message": "Steuerelemente sichtbar halten" },
   "alwaysShowControlsDesc": { "message": "Verhindert, dass die Steuerelemente während der Nutzung verschwinden" },
   "customizeBackground": { "message": "Weitere Sichtbarkeitsoptionen" },

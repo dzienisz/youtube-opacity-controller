@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "일상적인 시청에 알맞은 균형 잡힌 가시성" },
   "profileHighContrast": { "message": "강한 대비" },
   "profileHighContrastDesc": { "message": "더 어두운 컨트롤과 더 선명한 버튼" },
-  "profileLowVision": { "message": "더 큰 컨트롤" },
-  "profileLowVisionDesc": { "message": "더 큰 버튼과 텍스트, 더 강한 대비" },
   "alwaysShowControls": { "message": "컨트롤 계속 표시" },
   "alwaysShowControlsDesc": { "message": "사용하는 동안 컨트롤이 사라지지 않게 합니다" },
   "customizeBackground": { "message": "추가 표시 옵션" },

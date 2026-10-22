@@ -42,6 +42,20 @@ test('migrates schema 2 settings preserving new option defaults', () => {
   });
 });
 
+test('migrates the removed low-vision profile to high contrast and preserves opacity', () => {
+  const stored = {
+    ...settings.DEFAULTS,
+    accessibilityProfile: 'low-vision',
+    overlayOpacity: 0.95
+  };
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.accessibilityProfile, 'high-contrast');
+  assert.equal(migrated.overlayOpacity, 0.95);
+  assert.equal(settings.needsMigration(stored, migrated), true);
+  assert.equal(settings.needsMigration(migrated, settings.migrateSettings(migrated)), false);
+});
+
 test('readable caption defaults are off with white text', () => {
   assert.equal(settings.DEFAULTS.readableCaptions, false);
   assert.equal(settings.DEFAULTS.captionColor, 'white');
@@ -115,19 +129,18 @@ test('normalizes invalid and out-of-range settings', () => {
 test('returns a defined opacity for every profile', () => {
   assert.equal(settings.getProfileOpacity('standard'), 0.7);
   assert.equal(settings.getProfileOpacity('high-contrast'), 0.9);
-  assert.equal(settings.getProfileOpacity('low-vision'), 0.95);
   assert.equal(settings.getProfileOpacity('missing'), 0.7);
 });
 
 test('applies storage changes and normalizes the result', () => {
   assert.deepEqual(settings.applyStorageChanges(settings.DEFAULTS, {
-    accessibilityProfile: { oldValue: 'standard', newValue: 'low-vision' },
+    accessibilityProfile: { oldValue: 'standard', newValue: 'high-contrast' },
     overlayOpacity: { oldValue: 0.7, newValue: -2 },
     highlightColor: { oldValue: 'default', newValue: 'cyan' }
   }), {
     settingsSchemaVersion: 3,
     extensionEnabled: true,
-    accessibilityProfile: 'low-vision',
+    accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,
     alwaysShowControls: false,
     progressBarSize: 'default',
@@ -154,8 +167,7 @@ test('defaults can be copied for reset without mutation', () => {
 
 test('cycleProfile advances and wraps around', () => {
   assert.equal(settings.cycleProfile('standard'), 'high-contrast');
-  assert.equal(settings.cycleProfile('high-contrast'), 'low-vision');
-  assert.equal(settings.cycleProfile('low-vision'), 'standard');
+  assert.equal(settings.cycleProfile('high-contrast'), 'standard');
   assert.equal(settings.cycleProfile('missing'), 'standard');
 });
 
@@ -169,7 +181,7 @@ test('applyCommand toggles enhancements on and off', () => {
 test('applyCommand cycle-profile advances profile, opacity, and re-enables', () => {
   const disabled = settings.normalizeSettings({
     extensionEnabled: false,
-    accessibilityProfile: 'low-vision',
+    accessibilityProfile: 'high-contrast',
     readableCaptions: true,
     captionColor: 'yellow'
   });

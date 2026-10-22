@@ -215,13 +215,13 @@ async function main() {
       color: 'rgb(255, 212, 0)',
       centered: true
     });
-    await popup.locator('input[name="accessibilityProfile"][value="low-vision"]').check();
+    await popup.locator('input[name="accessibilityProfile"][value="high-contrast"]').check();
     await popup.locator('#progressBarSize').check();
     await popup.locator('input[name="highlightColor"][value="yellow"]').check();
 
     await page.waitForFunction(() => {
       const html = document.documentElement;
-      return html.getAttribute('data-ytoc-profile') === 'low-vision'
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
         && html.getAttribute('data-ytoc-progress') === 'large'
         && html.getAttribute('data-ytoc-highlight') === 'yellow';
     }, null, { timeout: 15000 });
@@ -247,57 +247,13 @@ async function main() {
     if (modernTimeColor !== 'rgb(255, 212, 0)') {
       fail(`expected modern time color rgb(255, 212, 0), got ${modernTimeColor}`);
     }
-    await modern.waitForFunction(() => {
-      const rightControls = document.querySelector('.ytp-right-controls');
-      const style = rightControls && getComputedStyle(rightControls);
-      return document.documentElement.getAttribute('data-ytoc-profile') === 'low-vision'
-        && style?.minHeight === '48px'
-        && style.backgroundColor === 'rgba(0, 0, 0, 0.95)';
-    }, null, { timeout: 15000 });
-    const modernLargeStyles = await modern.locator('.ytp-right-controls')
-      .evaluate(el => {
-        const style = getComputedStyle(el);
-        return {
-          minHeight: style.minHeight,
-          backgroundColor: style.backgroundColor,
-          marginTop: style.marginTop
-        };
-      });
-    if (modernLargeStyles.minHeight !== '48px') {
-      fail(`expected modern right controls min-height 48px, got ${modernLargeStyles.minHeight}`);
-    }
-    if (modernLargeStyles.backgroundColor !== 'rgba(0, 0, 0, 0.95)') {
-      fail(`expected modern right controls background rgba(0, 0, 0, 0.95), got ${modernLargeStyles.backgroundColor}`);
-    }
-    if (modernLargeStyles.marginTop !== '4px') {
-      fail(`expected modern right controls margin-top 4px, got ${modernLargeStyles.marginTop}`);
-    }
-    const modernPillGaps = await modern.locator('.ytp-chrome-controls')
-      .evaluate(controls => {
-        const controlsBottom = controls.getBoundingClientRect().bottom;
-        const selectors = {
-          playButton: '.ytp-play-button',
-          volumeArea: '.ytp-volume-area',
-          timeWrapper: '.ytp-time-wrapper',
-          rightControls: '.ytp-right-controls'
-        };
-        return Object.fromEntries(Object.entries(selectors).map(([name, selector]) => {
-          const bottom = controls.querySelector(selector).getBoundingClientRect().bottom;
-          return [name, controlsBottom - bottom];
-        }));
-      });
-    for (const [pill, bottomGap] of Object.entries(modernPillGaps)) {
-      if (bottomGap < 3.5) {
-        fail(`expected modern ${pill} bottom at least 3.5px above the controls row, got ${bottomGap}px`);
-      }
-    }
 
     // --- Embed scenario: same settings applied to the newer embed control DOM ---
     const embed = await context.newPage();
     await embed.goto('https://www.youtube.com/embed/test');
     await embed.waitForFunction(() => {
       const html = document.documentElement;
-      return html.getAttribute('data-ytoc-profile') === 'low-vision'
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
         && html.getAttribute('data-ytoc-progress') === 'large'
         && html.getAttribute('data-ytoc-highlight') === 'yellow';
     }, null, { timeout: 15000 });
@@ -339,7 +295,7 @@ async function main() {
     await lineEmbed.goto('https://www.youtube.com/embed/line');
     await lineEmbed.waitForFunction(() => {
       const html = document.documentElement;
-      return html.getAttribute('data-ytoc-profile') === 'low-vision'
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
         && html.getAttribute('data-ytoc-progress') === 'large'
         && html.getAttribute('data-ytoc-highlight') === 'yellow';
     }, null, { timeout: 15000 });
@@ -416,6 +372,21 @@ async function main() {
       && !document.documentElement.hasAttribute('data-ytoc-captions'));
     await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled')
       && !document.documentElement.hasAttribute('data-ytoc-captions'));
+
+    await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.set({
+        extensionEnabled: true,
+        accessibilityProfile: 'low-vision',
+        overlayOpacity: 0.95
+      }, resolve);
+    }));
+    await page.reload();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-profile') === 'high-contrast');
+    await popup.reload();
+    await popup.waitForFunction(() => {
+      const profile = document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]');
+      return profile?.checked && document.getElementById('overlayOpacity').value === '95';
+    });
 
     console.log('SMOKE PASSED');
   } finally {

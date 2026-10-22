@@ -10,8 +10,6 @@
   "profileStandardDesc": { "message": "Збалансована видимість для щоденного перегляду" },
   "profileHighContrast": { "message": "Сильний контраст" },
   "profileHighContrastDesc": { "message": "Темніші елементи керування та чіткіші кнопки" },
-  "profileLowVision": { "message": "Більші елементи керування" },
-  "profileLowVisionDesc": { "message": "Більші кнопки й текст із сильнішим контрастом" },
   "alwaysShowControls": { "message": "Залишати елементи керування видимими" },
   "alwaysShowControlsDesc": { "message": "Елементи керування не зникатимуть, поки ви ними користуєтеся" },
   "customizeBackground": { "message": "Більше параметрів видимості" },

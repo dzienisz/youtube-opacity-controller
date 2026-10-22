@@ -28,7 +28,6 @@ FEATURES
 
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
-• Larger Controls style with bigger buttons, icons, timestamps, and menu text
 • Bigger progress bar with a larger, easier-to-grab handle
 • Highlight colors for the progress bar, handle, icons, and time
 • Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
@@ -49,7 +48,7 @@ HOW TO USE
 
 1. Open a YouTube video.
 2. Select the extension icon.
-3. Choose Clear Controls, Strong Contrast, or Larger Controls.
+3. Choose Clear Controls or Strong Contrast.
 4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
 5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
 6. Use the master switch at any time to restore the original appearance.
@@ -62,10 +61,9 @@ Designed for viewers who find transparent controls difficult to locate, read, or
 Upload 1–5 screenshots at 1280×800 or 640×400. Replace opacity-only screenshots with the release UI.
 
 1. Before/after on bright footage with **See Every Control Clearly**.
-2. Popup showing all three control styles with **Choose the View That Works for You**.
-3. Larger Controls style with **Bigger Controls & Timestamps**.
-4. Strong Contrast and Keep Controls Visible with **Keep Controls Easy to Find**.
-5. Privacy message with **No Tracking. No Account.**
+2. Popup showing both control styles with **Choose the View That Works for You**.
+3. Strong Contrast and Keep Controls Visible with **Keep Controls Easy to Find**.
+4. Privacy message with **No Tracking. No Account.**
 
 Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or support outside desktop Chrome/Chromium.
 
