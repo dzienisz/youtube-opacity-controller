@@ -41,6 +41,7 @@
   "highlightColorDesc": { "message": "Färbt Fortschrittsleiste, Regler, Symbole und Zeitangaben" },
   "largeCursorLabel": { "message": "Größerer Mauszeiger über dem Video" },
   "shortcutHint": { "message": "schaltet die Verbesserungen um" },
+  "shortcutUnset": { "message": "Keine Tastenkombination zum Ein- oder Ausschalten der Verbesserungen festgelegt" },
   "editShortcuts": { "message": "Tastenkürzel bearbeiten" },
   "whatsNewTitle": { "message": "Neu in 2.0" },
   "whatsNewBody": { "message": "Größere Fortschrittsleiste, Hervorhebungsfarben, Tastenkürzel und ein größerer Zeiger — zu finden unter Weitere Sichtbarkeitsoptionen." },

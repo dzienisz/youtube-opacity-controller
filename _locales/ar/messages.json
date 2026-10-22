@@ -41,6 +41,7 @@
   "highlightColorDesc": { "message": "يلوّن شريط التقدم والمقبض والأيقونات والوقت" },
   "largeCursorLabel": { "message": "مؤشر فأرة أكبر فوق الفيديو" },
   "shortcutHint": { "message": "يبدّل التحسينات" },
+  "shortcutUnset": { "message": "لم يتم تعيين اختصار لتشغيل التحسينات أو إيقافها" },
   "editShortcuts": { "message": "تعديل الاختصارات" },
   "whatsNewTitle": { "message": "جديد في 2.0" },
   "whatsNewBody": { "message": "شريط تقدم أكبر وألوان تمييز واختصارات لوحة مفاتيح ومؤشر أكبر — تجدها ضمن خيارات رؤية إضافية." },

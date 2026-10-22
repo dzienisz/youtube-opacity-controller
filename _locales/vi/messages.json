@@ -41,6 +41,7 @@
   "highlightColorDesc": { "message": "Tô màu thanh tiến trình, tay cầm, biểu tượng và thời gian" },
   "largeCursorLabel": { "message": "Con trỏ chuột lớn hơn trên video" },
   "shortcutHint": { "message": "bật/tắt tính năng cải tiến" },
+  "shortcutUnset": { "message": "Chưa đặt phím tắt để bật hoặc tắt tính năng cải tiến" },
   "editShortcuts": { "message": "Chỉnh sửa phím tắt" },
   "whatsNewTitle": { "message": "Mới trong 2.0" },
   "whatsNewBody": { "message": "Thanh tiến trình lớn hơn, màu tô sáng, phím tắt và con trỏ lớn hơn — tìm trong mục Tùy chọn hiển thị khác." },

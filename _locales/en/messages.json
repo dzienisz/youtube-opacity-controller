@@ -29,6 +29,7 @@
   "highlightColorDesc": { "message": "Colors the progress bar, handle, icons and time" },
   "largeCursorLabel": { "message": "Larger mouse pointer over the video" },
   "shortcutHint": { "message": "toggles enhancements" },
+  "shortcutUnset": { "message": "No shortcut set for turning enhancements on/off" },
   "editShortcuts": { "message": "Edit shortcuts" },
   "whatsNewTitle": { "message": "New in 2.0" },
   "whatsNewBody": { "message": "Bigger progress bar, highlight colors, keyboard shortcuts and a larger pointer — find them under More visibility options." },

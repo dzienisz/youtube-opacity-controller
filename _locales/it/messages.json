@@ -29,6 +29,7 @@
   "highlightColorDesc": { "message": "Colora barra di avanzamento, cursore, icone e tempo" },
   "largeCursorLabel": { "message": "Puntatore del mouse più grande sul video" },
   "shortcutHint": { "message": "attiva o disattiva i miglioramenti" },
+  "shortcutUnset": { "message": "Nessuna scorciatoia impostata per attivare o disattivare i miglioramenti" },
   "editShortcuts": { "message": "Modifica scorciatoie" },
   "whatsNewTitle": { "message": "Novità della 2.0" },
   "whatsNewBody": { "message": "Barra di avanzamento più grande, colori di evidenziazione, scorciatoie da tastiera e un puntatore più grande — li trovi in Altre opzioni di visibilità." },

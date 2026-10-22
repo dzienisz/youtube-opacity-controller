@@ -9,8 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Easier-to-read subtitles: one switch makes YouTube captions larger on a solid dark background, with white or yellow text
+- Dark mode popup that follows your system theme
+
+### Changed
+- More compact popup that fits without scrolling
 
 ### Fixed
+- Popup shows your actual on/off shortcut instead of always Alt+Shift+Y
 - Larger Controls no longer pushes the rounded control pills onto the bottom edge of the video
 - Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band, keep rounded shapes in Larger Controls, and stop painting a box behind the channel logo
 - Bigger progress bar and highlight color now apply to the newer embedded player's progress bar

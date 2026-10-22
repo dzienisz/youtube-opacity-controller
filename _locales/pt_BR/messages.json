@@ -41,6 +41,7 @@
   "highlightColorDesc": { "message": "Colore a barra de progresso, o controle, os ícones e o tempo" },
   "largeCursorLabel": { "message": "Ponteiro do mouse maior sobre o vídeo" },
   "shortcutHint": { "message": "ativa ou desativa as melhorias" },
+  "shortcutUnset": { "message": "Nenhum atalho definido para ativar ou desativar os aprimoramentos" },
   "editShortcuts": { "message": "Editar atalhos" },
   "whatsNewTitle": { "message": "Novidades da 2.0" },
   "whatsNewBody": { "message": "Barra de progresso maior, cores de destaque, atalhos de teclado e um ponteiro maior — encontre-os em Mais opções de visibilidade." },

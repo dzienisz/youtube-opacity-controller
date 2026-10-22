@@ -29,6 +29,7 @@
   "highlightColorDesc": { "message": "Colore la barre de progression, la poignée, les icônes et le temps" },
   "largeCursorLabel": { "message": "Pointeur de souris plus grand sur la vidéo" },
   "shortcutHint": { "message": "active ou désactive les améliorations" },
+  "shortcutUnset": { "message": "Aucun raccourci défini pour activer ou désactiver les améliorations" },
   "editShortcuts": { "message": "Modifier les raccourcis" },
   "whatsNewTitle": { "message": "Nouveau dans la 2.0" },
   "whatsNewBody": { "message": "Barre de progression plus grande, couleurs de surbrillance, raccourcis clavier et pointeur plus grand — retrouvez-les dans Plus d'options de visibilité." },

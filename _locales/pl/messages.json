@@ -29,6 +29,7 @@
   "highlightColorDesc": { "message": "Koloryzuje pasek postępu, uchwyt, ikony i czas" },
   "largeCursorLabel": { "message": "Większy wskaźnik myszy nad wideo" },
   "shortcutHint": { "message": "przełącza ulepszenia" },
+  "shortcutUnset": { "message": "Brak skrótu do włączania/wyłączania ulepszeń" },
   "editShortcuts": { "message": "Edytuj skróty" },
   "whatsNewTitle": { "message": "Nowości w 2.0" },
   "whatsNewBody": { "message": "Większy pasek postępu, kolory wyróżnienia, skróty klawiszowe i większy wskaźnik — znajdziesz je w Więcej opcji widoczności." },

@@ -41,6 +41,7 @@
   "highlightColorDesc": { "message": "プログレスバー、ハンドル、アイコン、時間表示を着色します" },
   "largeCursorLabel": { "message": "動画上のマウスポインターを大きくする" },
   "shortcutHint": { "message": "拡張表示を切り替え" },
+  "shortcutUnset": { "message": "拡張機能のオン／オフを切り替えるショートカットが設定されていません" },
   "editShortcuts": { "message": "ショートカットを編集" },
   "whatsNewTitle": { "message": "2.0 の新機能" },
   "whatsNewBody": { "message": "大きなプログレスバー、ハイライトカラー、キーボードショートカット、大きなポインター —「その他の表示オプション」から設定できます。" },
