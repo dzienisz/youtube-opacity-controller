@@ -11,9 +11,9 @@ Run `npm run check` before manual testing. Load the repository through **Load un
 
 ## Live Canary
 
-The weekly canary checks the live YouTube watch player and an embedded player for the DOM selectors and key styles used by `overlay-fix.css`. It records the player variants, check results, and screenshots in `canary-artifacts/`. The workflow runs Mondays at 06:00 UTC; it can also be started manually or by changes to the canary script or workflow.
+The weekly canary checks the live YouTube watch player and an embedded player for the DOM selectors and key styles used by `overlay-fix.css`. It records the player variants, check results, and screenshots in `canary-artifacts/`. The workflow runs Mondays at 06:00 UTC; it can also be started manually or by changes to the canary script or workflow. GitHub runners usually receive YouTube's bot wall, so the scheduled canary checks DOM and styles only; its visual result is not verified.
 
-Run it locally with `xvfb-run -a npm run canary`. **INCONCLUSIVE** means YouTube did not expose the player controls or showed a bot/sign-in wall or player error, so the DOM checks could not be assessed; it is not treated as a canary failure.
+Run it locally with `xvfb-run -a npm run canary`. **INCONCLUSIVE** means YouTube did not expose the player controls or a bot/sign-in wall or player error made the result unverified; it is not treated as a canary failure.
 
 ## Migration
 

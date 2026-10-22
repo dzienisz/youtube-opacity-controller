@@ -37,6 +37,7 @@ function createScenario(name, url) {
     name,
     url,
     variant: 'unknown',
+    playability: 'not checked',
     readiness: 'INCONCLUSIVE',
     reason: '',
     checks: [],
@@ -81,16 +82,8 @@ async function acceptConsentIfPresent(scope) {
 async function waitForWatchControls(page) {
   try {
     const handle = await page.waitForFunction(() => {
-      const text = document.body?.innerText?.slice(0, 10000) || '';
-      if (/confirm\s+you(?:['’]re| are)\s+not\s+a\s+bot|sign\s+in\s+to\s+confirm/i.test(text)) {
-        return { state: 'inconclusive', reason: 'YouTube bot/sign-in wall appeared before controls' };
-      }
-
       const player = document.querySelector('#movie_player');
       const controls = player?.querySelector('.ytp-chrome-bottom');
-      if (player?.querySelector('.ytp-error') && !controls) {
-        return { state: 'inconclusive', reason: '.ytp-error appeared before player controls' };
-      }
       if (controls) return { state: 'ready', reason: '' };
       return false;
     }, null, { timeout: 30000, polling: 250 });
@@ -120,22 +113,7 @@ async function waitForEmbedFrame(page) {
       await acceptConsentIfPresent(frame);
       try {
         const state = await frame.evaluate(() => {
-          const text = document.body?.innerText?.slice(0, 10000) || '';
-          if (/confirm\s+you(?:['’]re| are)\s+not\s+a\s+bot|sign\s+in\s+to\s+confirm/i.test(text)) {
-            return { state: 'inconclusive', reason: 'YouTube bot/sign-in wall appeared before embed controls' };
-          }
           const player = document.querySelector('#movie_player');
-          const hasControls = [
-            '.ytp-chrome-bottom',
-            '.ytp-chrome-controls',
-            '.ytp-progress-bar-container',
-            '.ytp-progress-bar',
-            '.ytProgressBarLineHost',
-            '.ytChapteredProgressBarHost'
-          ].some(selector => document.querySelector(selector));
-          if (document.querySelector('.ytp-error') && !hasControls) {
-            return { state: 'inconclusive', reason: '.ytp-error appeared before embed controls' };
-          }
           if (player) return { state: 'ready', reason: '' };
           return { state: 'waiting', reason: '' };
         });
@@ -170,26 +148,11 @@ async function waitForEmbedControls(frame) {
 
   try {
     const handle = await frame.waitForFunction(() => {
-      const text = document.body?.innerText?.slice(0, 10000) || '';
-      if (/confirm\s+you(?:['’]re| are)\s+not\s+a\s+bot|sign\s+in\s+to\s+confirm/i.test(text)) {
-        return { state: 'inconclusive', reason: 'YouTube bot/sign-in wall appeared before embed controls' };
-      }
       const hasProgress = [
         '.ytp-progress-bar',
         '.ytProgressBarLineHost',
         '.ytChapteredProgressBarHost'
       ].some(selector => document.querySelector(selector));
-      const controls = [
-        '.ytp-chrome-bottom',
-        '.ytp-chrome-controls',
-        '.ytp-progress-bar-container',
-        '.ytp-progress-bar',
-        '.ytProgressBarLineHost',
-        '.ytChapteredProgressBarHost'
-      ].some(selector => document.querySelector(selector));
-      if (document.querySelector('.ytp-error') && !controls) {
-        return { state: 'inconclusive', reason: '.ytp-error appeared before embed controls' };
-      }
       if (hasProgress) return { state: 'ready', reason: '' };
       return false;
     }, null, { timeout: 10000, polling: 250 });
@@ -415,6 +378,65 @@ async function saveScreenshot(scope, fallbackPage, selector, filePath, scenario)
   }
 }
 
+async function probePlayability(scope, scenario) {
+  if (!scope) {
+    scenario.playability = 'inconclusive: player frame unavailable';
+    return;
+  }
+
+  let reason;
+  try {
+    reason = await scope.evaluate(() => {
+      const text = document.body?.innerText || '';
+      if (/confirm\s+you(?:['’]re|\s+are)\s+not\s+a\s+bot|sign\s+in\s+to\s+confirm/i.test(text)) {
+        return 'YouTube bot/sign-in wall text detected';
+      }
+      if (document.querySelector('.ytp-error')) return '.ytp-error present';
+
+      const errorRenderer = document.querySelector('yt-playability-error-supported-renderers');
+      if (errorRenderer) {
+        const style = getComputedStyle(errorRenderer);
+        const rect = errorRenderer.getBoundingClientRect();
+        if (
+          style.display !== 'none'
+          && style.visibility !== 'hidden'
+          && Number(style.opacity) !== 0
+          && rect.width > 0
+          && rect.height > 0
+        ) {
+          return 'yt-playability-error-supported-renderers visible';
+        }
+      }
+      return '';
+    });
+  } catch (error) {
+    scenario.playability = `inconclusive: playability probe failed: ${error.message}`;
+    return;
+  }
+
+  const blocked = Boolean(reason);
+  scenario.playability = blocked ? `blocked: ${reason}` : 'ok';
+  if (!blocked) return;
+
+  const styleChecks = new Set([
+    'Yellow play-progress color',
+    'Large progress-bar height',
+    'Right-controls/pill background'
+  ]);
+  for (const check of scenario.checks) {
+    const isSelectorOrStyleCheck = check.check.startsWith('Selector ')
+      || check.check === 'Progress DOM variant'
+      || check.check === 'html[data-ytoc-enabled]'
+      || styleChecks.has(check.check);
+    if (check.status !== 'FAIL' || !isSelectorOrStyleCheck) continue;
+
+    check.status = 'INCONCLUSIVE';
+    check.details = `blocked: ${check.details}`;
+    console.log(`[${scenario.name}] INCONCLUSIVE: ${check.check} — ${check.details}`);
+  }
+  console.warn(`::warning::${scenario.name} YouTube playability blocked: ${reason}`);
+}
+
 function buildReport(scenarios, runnerError) {
   const lines = [
     '# YouTube live canary report',
@@ -435,6 +457,10 @@ function buildReport(scenarios, runnerError) {
       '',
       `- URL: ${scenario.url}`,
       `- Player variant: ${scenario.variant}`,
+      `- Playability: ${scenario.playability}`,
+      ...(scenario.playability.startsWith('blocked:')
+        ? ["- Note: DOM checks ran against the hidden player behind YouTube's bot wall; visual result not verified."]
+        : []),
       `- Readiness: ${scenario.readiness}${scenario.reason ? ` — ${scenario.reason}` : ''}`,
       `- Screenshot: \`${scenario.screenshot || 'not captured'}\``,
       '',
@@ -512,6 +538,7 @@ async function main() {
     } else {
       await recordWatchChecks(watchPage, watch);
     }
+    await probePlayability(watchPage, watch);
     await saveScreenshot(watchPage, watchPage, '#movie_player', path.join(artifactsDir, 'watch-player.png'), watch);
 
     const embedPage = await context.newPage();
@@ -548,6 +575,7 @@ async function main() {
       embed.reason = `embed navigation/check did not complete: ${error.message}`;
       recordInconclusiveEmbed(embed, embed.reason);
     }
+    await probePlayability(embedFrame, embed);
     await saveScreenshot(
       embedFrame,
       embedPage,
@@ -572,7 +600,10 @@ async function main() {
   }
 
   for (const scenario of scenarios) {
-    if (scenario.checks.some(check => check.status === 'INCONCLUSIVE')) {
+    if (
+      scenario.checks.some(check => check.status === 'INCONCLUSIVE')
+      && !scenario.playability.startsWith('blocked:')
+    ) {
       console.warn(`::warning::${scenario.name} canary is INCONCLUSIVE: ${scenario.reason || 'one or more checks could not be assessed'}`);
     }
   }
