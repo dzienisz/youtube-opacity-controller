@@ -49,3 +49,4 @@ node_modules/
 # Distribution / packaging
 dist/
 build/
+canary-artifacts/

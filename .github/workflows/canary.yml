@@ -1,0 +1,64 @@
+name: YouTube live canary
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - scripts/canary.js
+      - .github/workflows/canary.yml
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: CI=true xvfb-run --auto-servernum npm run canary
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: youtube-canary
+          path: canary-artifacts/
+          if-no-files-found: warn
+
+      - name: Open or update canary issue
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create youtube-canary --color d93f0b --force
+          ISSUE_NUMBER="$(gh issue list --state open --label youtube-canary --json number --jq '.[0].number // ""')"
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          BODY_FILE="$RUNNER_TEMP/youtube-canary-issue-body.md"
+          {
+            if [ -f canary-artifacts/report.md ]; then
+              cat canary-artifacts/report.md
+            else
+              printf 'The canary failed before producing canary-artifacts/report.md.\n'
+            fi
+            printf '\n\nWorkflow run: %s\n' "$RUN_URL"
+          } > "$BODY_FILE"
+
+          if [ -n "$ISSUE_NUMBER" ]; then
+            gh issue comment "$ISSUE_NUMBER" --body-file "$BODY_FILE"
+          else
+            gh issue create \
+              --title "YouTube canary: player DOM changed" \
+              --label youtube-canary \
+              --body-file "$BODY_FILE"
+          fi
