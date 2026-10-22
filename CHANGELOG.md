@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Firefox support
 - Easier-to-read subtitles: one switch makes YouTube captions larger on a solid dark background, with white or yellow text
 - Dark mode popup that follows your system theme
+- Restore YouTube's look button
 
 ### Changed
 - More compact popup that fits without scrolling
 - Larger controls is hidden for now while it is redesigned; if you used it, you now get Strong contrast
+- New installs start with recommended settings (Strong contrast, bigger progress bar, easier-to-read subtitles); existing settings are kept
 
 ### Fixed
 - Popup shows your actual on/off shortcut instead of always Alt+Shift+Y

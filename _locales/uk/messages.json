@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "Суцільний" },
   "statusReady": { "message": "Налаштування готові" },
   "resetSettings": { "message": "Використати рекомендовані налаштування" },
+  "restoreYouTube": { "message": "Відновити початковий вигляд YouTube" },
+  "statusRestoredYouTube": { "message": "Початковий вигляд YouTube відновлено" },
   "statusEnabled": { "message": "Покращення ввімкнено" },
   "statusDisabled": { "message": "Покращення вимкнено" },
   "statusProfileSelected": {

@@ -34,6 +34,7 @@ const editShortcutsSeparator = document.getElementById('editShortcutsSeparator')
 const customize = document.querySelector('details.customize');
 const opacityValue = document.getElementById('opacityValue');
 const resetSettings = document.getElementById('resetSettings');
+const restoreYouTube = document.getElementById('restoreYouTube');
 const status = document.getElementById('status');
 let currentSettings = settingsModel.DEFAULTS;
 let saveTimeout = null;
@@ -67,6 +68,7 @@ renderShortcut();
 
 function updateControls(settings) {
   extensionEnabled.checked = settings.extensionEnabled;
+  restoreYouTube.disabled = !settings.extensionEnabled;
   settingsPanel.setAttribute('aria-disabled', String(!settings.extensionEnabled));
   settingsPanel.inert = !settings.extensionEnabled;
   settingsPanel.querySelectorAll('input').forEach(input => {
@@ -205,9 +207,13 @@ overlayOpacity.addEventListener('input', () => {
 });
 
 resetSettings.addEventListener('click', () => {
-  currentSettings = { ...settingsModel.DEFAULTS };
+  currentSettings = { ...settingsModel.RECOMMENDED };
   updateControls(currentSettings);
   persistSettings(t('statusReset'));
+});
+
+restoreYouTube.addEventListener('click', () => {
+  applyUpdate({ extensionEnabled: false }, t('statusRestoredYouTube'));
 });
 
 if (
@@ -217,7 +223,6 @@ if (
   editShortcuts.hidden = true;
   editShortcutsSeparator.hidden = true;
 }
-
 editShortcuts.addEventListener('click', () => {
   if (typeof openShortcutSettings === 'function') {
     openShortcutSettings.call(chrome.commands);

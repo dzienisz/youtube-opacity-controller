@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "Đậm đặc" },
   "statusReady": { "message": "Cài đặt đã sẵn sàng" },
   "resetSettings": { "message": "Dùng cài đặt khuyến nghị" },
+  "restoreYouTube": { "message": "Khôi phục giao diện YouTube" },
+  "statusRestoredYouTube": { "message": "Đã khôi phục giao diện ban đầu của YouTube" },
   "statusEnabled": { "message": "Đã bật tính năng cải tiến" },
   "statusDisabled": { "message": "Đã tắt tính năng cải tiến" },
   "statusProfileSelected": {

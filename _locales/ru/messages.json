@@ -41,6 +41,8 @@
   "cmdToggleAlwaysShow": { "message": "Включить или выключить постоянную видимость элементов управления" },
   "statusReady": { "message": "Настройки готовы" },
   "resetSettings": { "message": "Использовать рекомендуемые настройки" },
+  "restoreYouTube": { "message": "Восстановить исходный вид YouTube" },
+  "statusRestoredYouTube": { "message": "Исходный вид YouTube восстановлен" },
   "statusEnabled": { "message": "Улучшения включены" },
   "statusDisabled": { "message": "Улучшения выключены" },
   "statusProfileSelected": {

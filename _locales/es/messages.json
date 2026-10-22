@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "Sólido" },
   "statusReady": { "message": "Configuración lista" },
   "resetSettings": { "message": "Usar configuración recomendada" },
+  "restoreYouTube": { "message": "Restaurar el aspecto de YouTube" },
+  "statusRestoredYouTube": { "message": "Se restauró el aspecto original de YouTube" },
   "statusEnabled": { "message": "Mejoras activadas" },
   "statusDisabled": { "message": "Mejoras desactivadas" },
   "statusProfileSelected": {

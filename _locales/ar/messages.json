@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "معتم" },
   "statusReady": { "message": "الإعدادات جاهزة" },
   "resetSettings": { "message": "استخدام الإعدادات الموصى بها" },
+  "restoreYouTube": { "message": "استعادة مظهر YouTube" },
+  "statusRestoredYouTube": { "message": "تمت استعادة مظهر YouTube الأصلي" },
   "statusEnabled": { "message": "تم تفعيل التحسينات" },
   "statusDisabled": { "message": "تم إيقاف التحسينات" },
   "statusProfileSelected": {

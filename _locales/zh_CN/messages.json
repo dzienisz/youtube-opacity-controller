@@ -41,6 +41,8 @@
   "cmdToggleAlwaysShow": { "message": "开启或关闭控件常显" },
   "statusReady": { "message": "设置就绪" },
   "resetSettings": { "message": "使用推荐设置" },
+  "restoreYouTube": { "message": "恢复 YouTube 原貌" },
+  "statusRestoredYouTube": { "message": "已恢复 YouTube 原始外观" },
   "statusEnabled": { "message": "增强已启用" },
   "statusDisabled": { "message": "增强已停用" },
   "statusProfileSelected": {

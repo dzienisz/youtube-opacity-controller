@@ -41,6 +41,8 @@
   "cmdToggleAlwaysShow": { "message": "Activer ou désactiver la visibilité permanente des contrôles" },
   "statusReady": { "message": "Paramètres prêts" },
   "resetSettings": { "message": "Utiliser les paramètres recommandés" },
+  "restoreYouTube": { "message": "Rétablir l’apparence de YouTube" },
+  "statusRestoredYouTube": { "message": "L’apparence d’origine de YouTube a été rétablie" },
   "statusEnabled": { "message": "Améliorations activées" },
   "statusDisabled": { "message": "Améliorations désactivées" },
   "statusProfileSelected": {

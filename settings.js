@@ -7,7 +7,7 @@
 
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
-  const SCHEMA_VERSION = 3;
+  const SCHEMA_VERSION = 4;
   const PROFILES = Object.freeze({
     STANDARD: 'standard',
     HIGH_CONTRAST: 'high-contrast'
@@ -38,8 +38,7 @@
     YELLOW: 'yellow'
   });
   const CAPTION_COLOR_VALUES = Object.freeze(Object.values(CAPTION_COLORS));
-  const DEFAULTS = Object.freeze({
-    settingsSchemaVersion: SCHEMA_VERSION,
+  const LEGACY_DEFAULTS = Object.freeze({
     extensionEnabled: true,
     accessibilityProfile: PROFILES.STANDARD,
     overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.STANDARD],
@@ -50,6 +49,19 @@
     readableCaptions: false,
     captionColor: CAPTION_COLORS.WHITE
   });
+  const RECOMMENDED = Object.freeze({
+    settingsSchemaVersion: SCHEMA_VERSION,
+    extensionEnabled: true,
+    accessibilityProfile: PROFILES.HIGH_CONTRAST,
+    overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.HIGH_CONTRAST],
+    alwaysShowControls: false,
+    progressBarSize: PROGRESS_SIZES.LARGE,
+    highlightColor: HIGHLIGHT_COLORS.DEFAULT,
+    largeCursor: false,
+    readableCaptions: true,
+    captionColor: CAPTION_COLORS.WHITE
+  });
+  const DEFAULTS = RECOMMENDED;
 
   function isFiniteNumber(value) {
     return typeof value === 'number' && Number.isFinite(value);
@@ -97,7 +109,16 @@
   }
 
   function migrateSettings(value) {
-    return normalizeSettings(value);
+    const stored = value && typeof value === 'object' ? value : {};
+    const hasStoredSettings = Object.keys(LEGACY_DEFAULTS)
+      .some(key => Object.prototype.hasOwnProperty.call(stored, key));
+    const schemaVersion = stored.settingsSchemaVersion;
+
+    if (hasStoredSettings && (!Number.isFinite(schemaVersion) || schemaVersion < SCHEMA_VERSION)) {
+      return normalizeSettings({ ...LEGACY_DEFAULTS, ...stored });
+    }
+
+    return normalizeSettings(stored);
   }
 
   function needsMigration(stored, migrated) {
@@ -166,6 +187,8 @@
     CAPTION_COLORS,
     CAPTION_COLOR_VALUES,
     COMMANDS,
+    LEGACY_DEFAULTS,
+    RECOMMENDED,
     DEFAULTS,
     normalizeOpacity,
     normalizeSettings,

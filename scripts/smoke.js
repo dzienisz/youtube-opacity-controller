@@ -85,22 +85,23 @@ async function main() {
     // The overlay background transitions in over 0.2s; wait for the final alpha.
     await page.waitForFunction(() => {
       const el = document.querySelector('.ytp-chrome-bottom');
-      return getComputedStyle(el).backgroundColor === 'rgba(0, 0, 0, 0.7)';
+      return getComputedStyle(el).backgroundColor === 'rgba(0, 0, 0, 0.9)';
     }, null, { timeout: 15000 });
     const overlay = await page.locator('.ytp-chrome-bottom')
       .evaluate(el => getComputedStyle(el).backgroundColor);
-    if (overlay !== 'rgba(0, 0, 0, 0.7)') {
-      fail(`expected overlay rgba(0, 0, 0, 0.7), got ${overlay}`);
+    if (overlay !== 'rgba(0, 0, 0, 0.9)') {
+      fail(`expected overlay rgba(0, 0, 0, 0.9), got ${overlay}`);
     }
     const brandingBackground = await page.locator('.branding-img-container')
       .evaluate(el => getComputedStyle(el).backgroundColor);
     if (brandingBackground !== 'rgba(0, 0, 0, 0)') {
       fail(`expected classic branding background transparent, got ${brandingBackground}`);
     }
-    await assertCaptionStyles(page, 'classic default', {
-      zoom: '1',
-      backgroundColor: 'rgba(8, 8, 8, 0.75)',
-      color: 'rgb(255, 255, 255)'
+    await assertCaptionStyles(page, 'classic recommended', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 255, 255)',
+      centered: true
     });
 
     const modern = await context.newPage();
@@ -109,7 +110,7 @@ async function main() {
       const rightControls = document.querySelector('.ytp-right-controls');
       return document.documentElement.hasAttribute('data-ytoc-enabled')
         && rightControls
-        && getComputedStyle(rightControls).backgroundColor === 'rgba(0, 0, 0, 0.7)';
+        && getComputedStyle(rightControls).backgroundColor === 'rgba(0, 0, 0, 0.9)';
     }, null, { timeout: 15000 });
     const modernDefaultStyles = await modern.locator('#movie_player').evaluate(player => {
       const backgroundColor = selector => getComputedStyle(player.querySelector(selector)).backgroundColor;
@@ -127,10 +128,10 @@ async function main() {
     });
     const expectedModernDefaultStyles = {
       chromeBottom: 'rgba(0, 0, 0, 0)',
-      volumeArea: 'rgba(0, 0, 0, 0.7)',
-      timeWrapper: 'rgba(0, 0, 0, 0.7)',
-      rightControls: 'rgba(0, 0, 0, 0.7)',
-      playButton: 'rgba(0, 0, 0, 0.7)',
+      volumeArea: 'rgba(0, 0, 0, 0.9)',
+      timeWrapper: 'rgba(0, 0, 0, 0.9)',
+      rightControls: 'rgba(0, 0, 0, 0.9)',
+      playButton: 'rgba(0, 0, 0, 0.9)',
       settingsButton: 'rgba(0, 0, 0, 0)',
       branding: 'rgba(0, 0, 0, 0)',
       rightControlsRadius: '28px',
@@ -142,15 +143,26 @@ async function main() {
         fail(`expected modern ${style} ${expected}, got ${actual}`);
       }
     }
-    await assertCaptionStyles(modern, 'modern default', {
-      zoom: '1',
-      backgroundColor: 'rgba(8, 8, 8, 0.75)',
-      color: 'rgb(255, 255, 255)'
+    await assertCaptionStyles(modern, 'modern recommended', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 255, 255)',
+      centered: true
     });
 
     const popup = await context.newPage();
     await popup.goto(`chrome-extension://${extensionId}/popup.html`);
     await popup.setViewportSize({ width: 360, height: 1 });
+    await popup.waitForFunction(() => {
+      const profile = document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]');
+      return document.getElementById('extensionEnabled').checked
+        && profile?.checked
+        && document.getElementById('progressBarSize').checked
+        && document.getElementById('readableCaptions').checked;
+    });
+    if (!await popup.locator('#extensionEnabled').isChecked()) {
+      fail('expected extension enabled with the recommended settings');
+    }
     await popup.waitForFunction(() => {
       const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
       return keys.join('|') === 'Alt|Shift|Y';
@@ -170,6 +182,18 @@ async function main() {
     if (closedPopupHeight > 600) {
       fail(`expected closed popup height at most 600px, got ${closedPopupHeight}px`);
     }
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
+        && html.getAttribute('data-ytoc-progress') === 'large'
+        && html.getAttribute('data-ytoc-captions') === 'white';
+    }, null, { timeout: 15000 });
+    await modern.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
+        && html.getAttribute('data-ytoc-progress') === 'large'
+        && html.getAttribute('data-ytoc-captions') === 'white';
+    }, null, { timeout: 15000 });
     await popup.emulateMedia({ colorScheme: 'dark' });
     const darkPopupBackground = await popup.locator('body')
       .evaluate(el => getComputedStyle(el).backgroundColor);
@@ -179,6 +203,97 @@ async function main() {
     await popup.emulateMedia({ colorScheme: 'light' });
     await popup.setViewportSize({ width: 360, height: 720 });
     await popup.locator('details.customize > summary').click();
+    await popup.locator('input[name="highlightColor"][value="yellow"]').check();
+    await popup.locator('input[name="captionColor"][value="yellow"]').check();
+    await popup.locator('#alwaysShowControls').check();
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-highlight') === 'yellow'
+        && html.getAttribute('data-ytoc-captions') === 'yellow'
+        && html.hasAttribute('data-ytoc-always-show');
+    }, null, { timeout: 15000 });
+
+    await popup.locator('#restoreYouTube').click();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
+    await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
+    await popup.waitForTimeout(300);
+    const restoredSettings = await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.get(null, resolve);
+    }));
+    if (restoredSettings.extensionEnabled !== false
+      || restoredSettings.accessibilityProfile !== 'high-contrast'
+      || restoredSettings.overlayOpacity !== 0.9
+      || restoredSettings.progressBarSize !== 'large'
+      || restoredSettings.readableCaptions !== true
+      || restoredSettings.captionColor !== 'yellow'
+      || restoredSettings.highlightColor !== 'yellow'
+      || restoredSettings.alwaysShowControls !== true) {
+      fail(`Restore YouTube changed saved choices: ${JSON.stringify(restoredSettings)}`);
+    }
+    const restoreState = await popup.evaluate(() => ({
+      enabled: document.getElementById('extensionEnabled').checked,
+      restoreDisabled: document.getElementById('restoreYouTube').disabled,
+      panelInert: document.getElementById('settingsPanel').inert
+    }));
+    if (restoreState.enabled || !restoreState.restoreDisabled || !restoreState.panelInert) {
+      fail(`expected restored UI disabled with panel inert, got ${JSON.stringify(restoreState)}`);
+    }
+
+    await popup.locator('#extensionEnabled').check();
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-highlight') === 'yellow'
+        && html.getAttribute('data-ytoc-captions') === 'yellow'
+        && html.hasAttribute('data-ytoc-always-show');
+    }, null, { timeout: 15000 });
+    await modern.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-highlight') === 'yellow'
+        && html.getAttribute('data-ytoc-captions') === 'yellow'
+        && html.hasAttribute('data-ytoc-always-show');
+    }, null, { timeout: 15000 });
+    await popup.waitForTimeout(300);
+    if (!await popup.locator('#extensionEnabled').isChecked()) {
+      fail('expected extension toggle on after re-enabling enhancements');
+    }
+    if (await popup.locator('#restoreYouTube').isDisabled()) {
+      fail('expected Restore YouTube button enabled after turning enhancements back on');
+    }
+
+    await popup.locator('#restoreYouTube').click();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
+    await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
+    const inertResetState = await popup.evaluate(() => ({
+      enabled: document.getElementById('extensionEnabled').checked,
+      restoreDisabled: document.getElementById('restoreYouTube').disabled,
+      panelInert: document.getElementById('settingsPanel').inert
+    }));
+    if (inertResetState.enabled || !inertResetState.restoreDisabled || !inertResetState.panelInert) {
+      fail(`expected recommended button available with settings inert, got ${JSON.stringify(inertResetState)}`);
+    }
+
+    await popup.locator('#resetSettings').click();
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-profile') === 'high-contrast'
+        && html.getAttribute('data-ytoc-progress') === 'large'
+        && html.getAttribute('data-ytoc-captions') === 'white'
+        && !html.hasAttribute('data-ytoc-highlight')
+        && !html.hasAttribute('data-ytoc-always-show');
+    }, null, { timeout: 15000 });
+    const recommendedState = await popup.evaluate(() => ({
+      enabled: document.getElementById('extensionEnabled').checked,
+      profile: document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]').checked,
+      progress: document.getElementById('progressBarSize').checked,
+      captions: document.getElementById('readableCaptions').checked,
+      opacity: document.getElementById('overlayOpacity').value,
+      restoreDisabled: document.getElementById('restoreYouTube').disabled
+    }));
+    if (!recommendedState.enabled || !recommendedState.profile || !recommendedState.progress
+      || !recommendedState.captions || recommendedState.opacity !== '90' || recommendedState.restoreDisabled) {
+      fail(`expected recommended popup defaults, got ${JSON.stringify(recommendedState)}`);
+    }
+
     await popup.locator('#readableCaptions').check();
     const readableCaptionsStored = await popup.evaluate(() => new Promise(resolve => {
       chrome.storage.sync.get('readableCaptions', result => resolve(result.readableCaptions));

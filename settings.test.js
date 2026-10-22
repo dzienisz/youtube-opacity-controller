@@ -8,7 +8,7 @@ test('migrates legacy settings without losing user preferences', () => {
     overlayOpacity: 0.42,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 3,
+    settingsSchemaVersion: 4,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.42,
@@ -21,6 +21,49 @@ test('migrates legacy settings without losing user preferences', () => {
   });
 });
 
+test('empty storage gets the recommended settings', () => {
+  assert.deepEqual(settings.migrateSettings({}), settings.RECOMMENDED);
+  assert.equal(settings.DEFAULTS, settings.RECOMMENDED);
+});
+
+test('schema 3 partial settings are filled from legacy defaults', () => {
+  assert.deepEqual(settings.migrateSettings({
+    settingsSchemaVersion: 3,
+    alwaysShowControls: true
+  }), {
+    settingsSchemaVersion: 4,
+    extensionEnabled: true,
+    accessibilityProfile: 'standard',
+    overlayOpacity: 0.7,
+    alwaysShowControls: true,
+    progressBarSize: 'default',
+    highlightColor: 'default',
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: 'white'
+  });
+});
+
+test('schema 3 settings missing readable captions keep that feature off', () => {
+  const stored = {
+    ...settings.LEGACY_DEFAULTS,
+    settingsSchemaVersion: 3
+  };
+  delete stored.readableCaptions;
+
+  assert.equal(settings.migrateSettings(stored).readableCaptions, false);
+});
+
+test('schema 4 settings preserve their stored values', () => {
+  const stored = {
+    ...settings.RECOMMENDED,
+    overlayOpacity: 0.65,
+    alwaysShowControls: true
+  };
+
+  assert.deepEqual(settings.migrateSettings(stored), stored);
+});
+
 test('migrates schema 2 settings preserving new option defaults', () => {
   assert.deepEqual(settings.migrateSettings({
     settingsSchemaVersion: 2,
@@ -29,7 +72,7 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     overlayOpacity: 0.9,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 3,
+    settingsSchemaVersion: 4,
     extensionEnabled: false,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0.9,
@@ -56,8 +99,8 @@ test('migrates the removed low-vision profile to high contrast and preserves opa
   assert.equal(settings.needsMigration(migrated, settings.migrateSettings(migrated)), false);
 });
 
-test('readable caption defaults are off with white text', () => {
-  assert.equal(settings.DEFAULTS.readableCaptions, false);
+test('readable caption defaults are on with white text', () => {
+  assert.equal(settings.DEFAULTS.readableCaptions, true);
   assert.equal(settings.DEFAULTS.captionColor, 'white');
 });
 
@@ -84,13 +127,16 @@ test('needsMigration returns true when a stored setting differs', () => {
   assert.equal(settings.needsMigration(oldSettings, settings.migrateSettings(oldSettings)), true);
 });
 
-test('needsMigration adds readable caption defaults to stored schema 3 settings', () => {
-  const stored = { ...settings.DEFAULTS };
+test('migrates schema 3 settings missing readable captions to the legacy default', () => {
+  const stored = { ...settings.LEGACY_DEFAULTS, settingsSchemaVersion: 3 };
   delete stored.readableCaptions;
   delete stored.captionColor;
 
-  assert.equal(stored.settingsSchemaVersion, 3);
-  assert.equal(settings.needsMigration(stored, settings.migrateSettings(stored)), true);
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.settingsSchemaVersion, 4);
+  assert.equal(migrated.readableCaptions, false);
+  assert.equal(settings.needsMigration(stored, migrated), true);
 });
 
 test('profile message keys cover every profile and exist in English messages', () => {
@@ -113,15 +159,15 @@ test('normalizes invalid and out-of-range settings', () => {
     readableCaptions: 'yes',
     captionColor: 'pink'
   }), {
-    settingsSchemaVersion: 3,
+    settingsSchemaVersion: 4,
     extensionEnabled: true,
-    accessibilityProfile: 'standard',
+    accessibilityProfile: 'high-contrast',
     overlayOpacity: 1,
     alwaysShowControls: false,
-    progressBarSize: 'default',
+    progressBarSize: 'large',
     highlightColor: 'default',
     largeCursor: false,
-    readableCaptions: false,
+    readableCaptions: true,
     captionColor: 'white'
   });
 });
@@ -129,7 +175,7 @@ test('normalizes invalid and out-of-range settings', () => {
 test('returns a defined opacity for every profile', () => {
   assert.equal(settings.getProfileOpacity('standard'), 0.7);
   assert.equal(settings.getProfileOpacity('high-contrast'), 0.9);
-  assert.equal(settings.getProfileOpacity('missing'), 0.7);
+  assert.equal(settings.getProfileOpacity('missing'), 0.9);
 });
 
 test('applies storage changes and normalizes the result', () => {
@@ -138,15 +184,15 @@ test('applies storage changes and normalizes the result', () => {
     overlayOpacity: { oldValue: 0.7, newValue: -2 },
     highlightColor: { oldValue: 'default', newValue: 'cyan' }
   }), {
-    settingsSchemaVersion: 3,
+    settingsSchemaVersion: 4,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,
     alwaysShowControls: false,
-    progressBarSize: 'default',
+    progressBarSize: 'large',
     highlightColor: 'cyan',
     largeCursor: false,
-    readableCaptions: false,
+    readableCaptions: true,
     captionColor: 'white'
   });
 });
@@ -155,7 +201,7 @@ test('defaults can be copied for reset without mutation', () => {
   const reset = { ...settings.DEFAULTS };
   reset.overlayOpacity = 0.2;
 
-  assert.equal(settings.DEFAULTS.overlayOpacity, 0.7);
+  assert.equal(settings.DEFAULTS.overlayOpacity, 0.9);
   assert.equal(settings.areSettingsEqual(settings.DEFAULTS, settings.normalizeSettings({})), true);
   assert.equal(settings.areSettingsEqual(settings.DEFAULTS, {
     ...settings.DEFAULTS,
