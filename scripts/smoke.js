@@ -8,6 +8,7 @@ const { chromium } = require('playwright');
 const root = path.join(__dirname, '..');
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
 const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
+const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 
 function fail(message) {
@@ -41,8 +42,10 @@ async function main() {
     const page = await context.newPage();
     await context.route('https://www.youtube.com/**', route => {
       const url = route.request().url();
-      const body = url.includes('/embed/')
-        ? embedFixture
+      const body = url.includes('/embed/line')
+        ? embedLineFixture
+        : url.includes('/embed/')
+          ? embedFixture
         : url.includes('/modern')
           ? modernFixture
           : fixture;
@@ -130,6 +133,16 @@ async function main() {
     if (progressColor !== 'rgb(255, 212, 0)') {
       fail(`expected play-progress rgb(255, 212, 0), got ${progressColor}`);
     }
+    const classicTimeColor = await page.locator('.ytp-time-current')
+      .evaluate(el => getComputedStyle(el).color);
+    if (classicTimeColor !== 'rgb(255, 212, 0)') {
+      fail(`expected classic time color rgb(255, 212, 0), got ${classicTimeColor}`);
+    }
+    const modernTimeColor = await modern.locator('.ytp-time-current')
+      .evaluate(el => getComputedStyle(el).color);
+    if (modernTimeColor !== 'rgb(255, 212, 0)') {
+      fail(`expected modern time color rgb(255, 212, 0), got ${modernTimeColor}`);
+    }
     await modern.waitForFunction(() => {
       const rightControls = document.querySelector('.ytp-right-controls');
       const style = rightControls && getComputedStyle(rightControls);
@@ -192,11 +205,39 @@ async function main() {
       fail(`expected embed icon fill rgb(255, 212, 0), got ${iconFill}`);
     }
 
+    const lineEmbed = await context.newPage();
+    await lineEmbed.goto('https://www.youtube.com/embed/line');
+    await lineEmbed.waitForFunction(() => {
+      const html = document.documentElement;
+      return html.getAttribute('data-ytoc-profile') === 'low-vision'
+        && html.getAttribute('data-ytoc-progress') === 'large'
+        && html.getAttribute('data-ytoc-highlight') === 'yellow';
+    }, null, { timeout: 15000 });
+
+    const playedLineStyle = await lineEmbed.locator('.ytProgressBarLineProgressBarPlayed')
+      .evaluate(el => {
+        const style = getComputedStyle(el);
+        return { height: style.height, backgroundColor: style.backgroundColor, backgroundImage: style.backgroundImage };
+      });
+    if (playedLineStyle.height !== '12px') {
+      fail(`expected embed line height 12px, got ${playedLineStyle.height}`);
+    }
+    if (playedLineStyle.backgroundColor !== 'rgb(255, 212, 0)') {
+      fail(`expected embed line background-color rgb(255, 212, 0), got ${playedLineStyle.backgroundColor}`);
+    }
+    if (playedLineStyle.backgroundImage !== 'none') {
+      fail(`expected embed line background-image none, got ${playedLineStyle.backgroundImage}`);
+    }
+
     // --- Reset: highlight and progress back to default restores embed styling ---
     await popup.locator('input[name="highlightColor"][value="default"]').check();
     await popup.locator('#progressBarSize').uncheck();
 
     await embed.waitForFunction(() => {
+      const html = document.documentElement;
+      return !html.hasAttribute('data-ytoc-highlight') && !html.hasAttribute('data-ytoc-progress');
+    }, null, { timeout: 15000 });
+    await lineEmbed.waitForFunction(() => {
       const html = document.documentElement;
       return !html.hasAttribute('data-ytoc-highlight') && !html.hasAttribute('data-ytoc-progress');
     }, null, { timeout: 15000 });
@@ -211,6 +252,17 @@ async function main() {
     }
     if (resetFill.backgroundImage === 'none') {
       fail('expected embed fill background-image restored to a gradient, got none');
+    }
+    const resetPlayedLineStyle = await lineEmbed.locator('.ytProgressBarLineProgressBarPlayed')
+      .evaluate(el => {
+        const style = getComputedStyle(el);
+        return { height: style.height, backgroundImage: style.backgroundImage };
+      });
+    if (resetPlayedLineStyle.height !== '3px') {
+      fail(`expected embed line height back to 3px, got ${resetPlayedLineStyle.height}`);
+    }
+    if (!resetPlayedLineStyle.backgroundImage.includes('linear-gradient')) {
+      fail(`expected embed line background-image restored to a gradient, got ${resetPlayedLineStyle.backgroundImage}`);
     }
 
     console.log('SMOKE PASSED');

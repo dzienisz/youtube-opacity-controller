@@ -137,6 +137,9 @@
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button:not(.ytp-large-play-button) svg,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-button:not(.ytp-large-play-button) svg path,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-display,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-current,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-separator,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-time-duration,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-chapter-title,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #movie_player .ytp-title-link {
   color: var(--ytoc-highlight) !important;
@@ -252,7 +255,13 @@
 :root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarHost,
 :root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarChapter,
 :root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarLoaded,
-:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarFill {
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytChapteredProgressBarChapteredPlayerBarFill,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineHost,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineProgressBarLine,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineProgressBarBackground,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineProgressBarLoaded,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineProgressBarHovered,
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #player-controls .ytProgressBarLineProgressBarPlayed {
   height: var(--ytoc-progress-height) !important;
   border-radius: 6px !important;
 }
@@ -265,6 +274,7 @@
 
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytChapteredProgressBarChapteredPlayerBarFill,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytChapteredProgressBarChapteredPlayerBarChapterSeen,
+:root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytProgressBarLineProgressBarPlayed,
 :root[data-ytoc-enabled][data-ytoc-highlight]:not([data-ytoc-highlight="default"]) #player-controls .ytProgressBarPlayheadProgressBarPlayheadDot {
   background-color: var(--ytoc-highlight) !important;
   background-image: none !important;

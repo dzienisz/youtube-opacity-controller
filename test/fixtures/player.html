@@ -76,6 +76,9 @@
       color: #eee;
       font: 12px Arial, sans-serif;
     }
+    .ytp-time-current {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -95,7 +98,11 @@
       </div>
       <div class="ytp-chrome-controls">
         <button class="ytp-play-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
-        <div class="ytp-time-display"><span class="ytp-time-current">0:00</span></div>
+        <div class="ytp-time-display">
+          <span class="ytp-time-current">0:00</span>
+          <span class="ytp-time-separator"> / </span>
+          <span class="ytp-time-duration">0:00</span>
+        </div>
       </div>
     </div>
   </div>
