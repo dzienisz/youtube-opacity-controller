@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "Amarelo" } }
   },
   "statusCursorLarge": { "message": "Ponteiro maior ativado" },
-  "statusCursorDefault": { "message": "Ponteiro padrão" }
+  "statusCursorDefault": { "message": "Ponteiro padrão" },
+  "readableCaptionsLabel": { "message": "Legendas mais fáceis de ler" },
+  "readableCaptionsDesc": { "message": "Legendas maiores em um fundo escuro sólido" },
+  "captionColorLegend": { "message": "Cor do texto das legendas" },
+  "captionColorWhite": { "message": "Branco" },
+  "captionColorYellow": { "message": "Amarelo" },
+  "statusCaptionsOn": { "message": "Legendas mais fáceis de ler ativadas" },
+  "statusCaptionsOff": { "message": "Estilo das legendas do YouTube restaurado" },
+  "statusCaptionColor": {
+    "message": "Cor das legendas: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Branco" } }
+  }
 }

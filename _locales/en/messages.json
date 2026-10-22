@@ -60,5 +60,16 @@
   },
   "statusCursorLarge": { "message": "Larger pointer on" },
   "statusCursorDefault": { "message": "Standard pointer" },
-  "statusReset": { "message": "Settings reset" }
+  "statusReset": { "message": "Settings reset" },
+  "readableCaptionsLabel": { "message": "Easier-to-read subtitles" },
+  "readableCaptionsDesc": { "message": "Larger subtitles on a solid dark background" },
+  "captionColorLegend": { "message": "Subtitle text color" },
+  "captionColorWhite": { "message": "White" },
+  "captionColorYellow": { "message": "Yellow" },
+  "statusCaptionsOn": { "message": "Easier-to-read subtitles on" },
+  "statusCaptionsOff": { "message": "YouTube's subtitle style restored" },
+  "statusCaptionColor": {
+    "message": "Subtitle color: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "White" } }
+  }
 }

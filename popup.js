@@ -18,7 +18,9 @@ const settingsPanel = document.getElementById('settingsPanel');
 const profileInputs = Array.from(document.querySelectorAll('[name="accessibilityProfile"]'));
 const alwaysShowControls = document.getElementById('alwaysShowControls');
 const progressBarSize = document.getElementById('progressBarSize');
+const readableCaptions = document.getElementById('readableCaptions');
 const highlightColorInputs = Array.from(document.querySelectorAll('[name="highlightColor"]'));
+const captionColorInputs = Array.from(document.querySelectorAll('[name="captionColor"]'));
 const largeCursor = document.getElementById('largeCursor');
 const overlayOpacity = document.getElementById('overlayOpacity');
 const whatsNew = document.getElementById('whatsNew');
@@ -44,8 +46,12 @@ function updateControls(settings) {
   });
   alwaysShowControls.checked = settings.alwaysShowControls;
   progressBarSize.checked = settings.progressBarSize === settingsModel.PROGRESS_SIZES.LARGE;
+  readableCaptions.checked = settings.readableCaptions;
   highlightColorInputs.forEach(input => {
     input.checked = input.value === settings.highlightColor;
+  });
+  captionColorInputs.forEach(input => {
+    input.checked = input.value === settings.captionColor;
   });
   largeCursor.checked = settings.largeCursor;
 
@@ -115,6 +121,13 @@ progressBarSize.addEventListener('change', () => {
   );
 });
 
+readableCaptions.addEventListener('change', () => {
+  applyUpdate(
+    { readableCaptions: readableCaptions.checked },
+    t(readableCaptions.checked ? 'statusCaptionsOn' : 'statusCaptionsOff')
+  );
+});
+
 const HIGHLIGHT_NAME_KEYS = {
   default: 'highlightDefault',
   yellow: 'highlightYellow',
@@ -126,6 +139,18 @@ highlightColorInputs.forEach(input => {
   input.addEventListener('change', () => {
     if (!input.checked) return;
     applyUpdate({ highlightColor: input.value }, t('statusHighlight', [t(HIGHLIGHT_NAME_KEYS[input.value])]));
+  });
+});
+
+const CAPTION_COLOR_NAME_KEYS = {
+  white: 'captionColorWhite',
+  yellow: 'captionColorYellow'
+};
+
+captionColorInputs.forEach(input => {
+  input.addEventListener('change', () => {
+    if (!input.checked) return;
+    applyUpdate({ captionColor: input.value }, t('statusCaptionColor', [t(CAPTION_COLOR_NAME_KEYS[input.value])]));
   });
 });
 

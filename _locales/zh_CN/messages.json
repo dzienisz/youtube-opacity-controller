@@ -60,5 +60,16 @@
   },
   "statusCursorLarge": { "message": "大指针已开启" },
   "statusCursorDefault": { "message": "标准指针" },
-  "statusReset": { "message": "设置已重置" }
+  "statusReset": { "message": "设置已重置" },
+  "readableCaptionsLabel": { "message": "更易阅读的字幕" },
+  "readableCaptionsDesc": { "message": "深色纯色背景上的较大字幕" },
+  "captionColorLegend": { "message": "字幕文字颜色" },
+  "captionColorWhite": { "message": "白色" },
+  "captionColorYellow": { "message": "黄色" },
+  "statusCaptionsOn": { "message": "已开启易读字幕" },
+  "statusCaptionsOff": { "message": "已恢复 YouTube 字幕样式" },
+  "statusCaptionColor": {
+    "message": "字幕颜色：$COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "白色" } }
+  }
 }

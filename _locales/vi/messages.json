@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "Vàng" } }
   },
   "statusCursorLarge": { "message": "Đã bật con trỏ lớn" },
-  "statusCursorDefault": { "message": "Con trỏ chuẩn" }
+  "statusCursorDefault": { "message": "Con trỏ chuẩn" },
+  "readableCaptionsLabel": { "message": "Phụ đề dễ đọc hơn" },
+  "readableCaptionsDesc": { "message": "Phụ đề lớn hơn trên nền tối đồng nhất" },
+  "captionColorLegend": { "message": "Màu chữ phụ đề" },
+  "captionColorWhite": { "message": "Trắng" },
+  "captionColorYellow": { "message": "Vàng" },
+  "statusCaptionsOn": { "message": "Đã bật phụ đề dễ đọc hơn" },
+  "statusCaptionsOff": { "message": "Đã khôi phục kiểu phụ đề của YouTube" },
+  "statusCaptionColor": {
+    "message": "Màu phụ đề: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Trắng" } }
+  }
 }

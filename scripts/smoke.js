@@ -16,6 +16,34 @@ function fail(message) {
   process.exit(1);
 }
 
+async function assertCaptionStyles(player, label, expected) {
+  const actual = await player.locator('.caption-window').evaluate(windowEl => {
+    const segment = windowEl.querySelector('.ytp-caption-segment');
+    const container = windowEl.closest('.ytp-caption-window-container');
+    const windowRect = windowEl.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    return {
+      zoom: getComputedStyle(windowEl).zoom,
+      backgroundColor: getComputedStyle(segment).backgroundColor,
+      color: getComputedStyle(segment).color,
+      centerDelta: Math.abs(
+        (windowRect.left + windowRect.width / 2)
+        - (containerRect.left + containerRect.width / 2)
+      )
+    };
+  });
+
+  for (const [property, value] of Object.entries(expected)) {
+    if (property === 'centered') continue;
+    if (actual[property] !== value) {
+      fail(`expected ${label} ${property} ${value}, got ${actual[property]}`);
+    }
+  }
+  if (expected.centered && actual.centerDelta >= 2) {
+    fail(`expected ${label} caption window centered within 2px, got ${actual.centerDelta}px`);
+  }
+}
+
 async function main() {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ytoc-smoke-'));
   const options = {
@@ -69,6 +97,11 @@ async function main() {
     if (brandingBackground !== 'rgba(0, 0, 0, 0)') {
       fail(`expected classic branding background transparent, got ${brandingBackground}`);
     }
+    await assertCaptionStyles(page, 'classic default', {
+      zoom: '1',
+      backgroundColor: 'rgba(8, 8, 8, 0.75)',
+      color: 'rgb(255, 255, 255)'
+    });
 
     const modern = await context.newPage();
     await modern.goto('https://www.youtube.com/modern');
@@ -109,10 +142,51 @@ async function main() {
         fail(`expected modern ${style} ${expected}, got ${actual}`);
       }
     }
+    await assertCaptionStyles(modern, 'modern default', {
+      zoom: '1',
+      backgroundColor: 'rgba(8, 8, 8, 0.75)',
+      color: 'rgb(255, 255, 255)'
+    });
 
     const popup = await context.newPage();
     await popup.goto(`chrome-extension://${extensionId}/popup.html`);
     await popup.locator('details.customize > summary').click();
+    await popup.locator('#readableCaptions').check();
+    const readableCaptionsStored = await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.get('readableCaptions', result => resolve(result.readableCaptions));
+    }));
+    if (readableCaptionsStored !== true) {
+      fail(`expected readableCaptions stored as true, got ${readableCaptionsStored}`);
+    }
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'white');
+    await modern.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'white');
+    await assertCaptionStyles(page, 'classic readable', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 255, 255)',
+      centered: true
+    });
+    await assertCaptionStyles(modern, 'modern readable', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 255, 255)',
+      centered: true
+    });
+    await popup.locator('input[name="captionColor"][value="yellow"]').check();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'yellow');
+    await modern.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'yellow');
+    await assertCaptionStyles(page, 'classic yellow', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 212, 0)',
+      centered: true
+    });
+    await assertCaptionStyles(modern, 'modern yellow', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 212, 0)',
+      centered: true
+    });
     await popup.locator('input[name="accessibilityProfile"][value="low-vision"]').check();
     await popup.locator('#progressBarSize').check();
     await popup.locator('input[name="highlightColor"][value="yellow"]').check();
@@ -260,6 +334,7 @@ async function main() {
     // --- Reset: highlight and progress back to default restores embed styling ---
     await popup.locator('input[name="highlightColor"][value="default"]').check();
     await popup.locator('#progressBarSize').uncheck();
+    await popup.locator('#readableCaptions').uncheck();
 
     await embed.waitForFunction(() => {
       const html = document.documentElement;
@@ -269,6 +344,18 @@ async function main() {
       const html = document.documentElement;
       return !html.hasAttribute('data-ytoc-highlight') && !html.hasAttribute('data-ytoc-progress');
     }, null, { timeout: 15000 });
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-captions'));
+    await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-captions'));
+    await assertCaptionStyles(page, 'classic reset', {
+      zoom: '1',
+      backgroundColor: 'rgba(8, 8, 8, 0.75)',
+      color: 'rgb(255, 255, 255)'
+    });
+    await assertCaptionStyles(modern, 'modern reset', {
+      zoom: '1',
+      backgroundColor: 'rgba(8, 8, 8, 0.75)',
+      color: 'rgb(255, 255, 255)'
+    });
 
     const resetFill = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarFill')
       .evaluate(el => {
@@ -292,6 +379,15 @@ async function main() {
     if (!resetPlayedLineStyle.backgroundImage.includes('linear-gradient')) {
       fail(`expected embed line background-image restored to a gradient, got ${resetPlayedLineStyle.backgroundImage}`);
     }
+
+    await popup.locator('#readableCaptions').check();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'yellow');
+    await modern.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-captions') === 'yellow');
+    await popup.locator('#extensionEnabled').uncheck();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled')
+      && !document.documentElement.hasAttribute('data-ytoc-captions'));
+    await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled')
+      && !document.documentElement.hasAttribute('data-ytoc-captions'));
 
     console.log('SMOKE PASSED');
   } finally {

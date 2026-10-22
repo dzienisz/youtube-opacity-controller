@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "पीला" } }
   },
   "statusCursorLarge": { "message": "बड़ा पॉइंटर चालू" },
-  "statusCursorDefault": { "message": "मानक पॉइंटर" }
+  "statusCursorDefault": { "message": "मानक पॉइंटर" },
+  "readableCaptionsLabel": { "message": "आसानी से पढ़े जाने वाले उपशीर्षक" },
+  "readableCaptionsDesc": { "message": "ठोस गहरे रंग की पृष्ठभूमि पर बड़े उपशीर्षक" },
+  "captionColorLegend": { "message": "उपशीर्षक टेक्स्ट का रंग" },
+  "captionColorWhite": { "message": "सफ़ेद" },
+  "captionColorYellow": { "message": "पीला" },
+  "statusCaptionsOn": { "message": "आसानी से पढ़े जाने वाले उपशीर्षक चालू" },
+  "statusCaptionsOff": { "message": "YouTube की उपशीर्षक शैली बहाल की गई" },
+  "statusCaptionColor": {
+    "message": "उपशीर्षक का रंग: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "सफ़ेद" } }
+  }
 }

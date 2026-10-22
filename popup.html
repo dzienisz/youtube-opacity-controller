@@ -67,6 +67,14 @@
         </label>
       </fieldset>
 
+      <label class="option-row">
+        <span>
+          <strong data-i18n="readableCaptionsLabel">Easier-to-read subtitles</strong>
+          <small data-i18n="readableCaptionsDesc">Larger subtitles on a solid dark background</small>
+        </span>
+        <input type="checkbox" id="readableCaptions" name="readableCaptions" autocomplete="off">
+      </label>
+
       <details class="customize">
         <summary data-i18n="customizeBackground">More visibility options</summary>
         <div class="slider-group">
@@ -111,6 +119,22 @@
             </label>
           </div>
           <small class="field-desc" data-i18n="highlightColorDesc">Colors the progress bar, handle, icons and time</small>
+        </fieldset>
+
+        <fieldset class="highlight-colors caption-colors">
+          <legend data-i18n="captionColorLegend">Subtitle text color</legend>
+          <div class="swatch-grid">
+            <label class="swatch">
+              <input type="radio" name="captionColor" value="white" autocomplete="off">
+              <span class="swatch-dot swatch-white" aria-hidden="true"></span>
+              <span data-i18n="captionColorWhite">White</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="captionColor" value="yellow" autocomplete="off">
+              <span class="swatch-dot swatch-yellow" aria-hidden="true"></span>
+              <span data-i18n="captionColorYellow">Yellow</span>
+            </label>
+          </div>
         </fieldset>
 
         <label class="option-row">

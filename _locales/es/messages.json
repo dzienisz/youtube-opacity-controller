@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "Amarillo" } }
   },
   "statusCursorLarge": { "message": "Puntero más grande activado" },
-  "statusCursorDefault": { "message": "Puntero estándar" }
+  "statusCursorDefault": { "message": "Puntero estándar" },
+  "readableCaptionsLabel": { "message": "Subtítulos más legibles" },
+  "readableCaptionsDesc": { "message": "Subtítulos más grandes sobre un fondo oscuro sólido" },
+  "captionColorLegend": { "message": "Color del texto de los subtítulos" },
+  "captionColorWhite": { "message": "Blanco" },
+  "captionColorYellow": { "message": "Amarillo" },
+  "statusCaptionsOn": { "message": "Subtítulos más legibles activados" },
+  "statusCaptionsOff": { "message": "Se restauró el estilo de subtítulos de YouTube" },
+  "statusCaptionColor": {
+    "message": "Color de los subtítulos: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Blanco" } }
+  }
 }

@@ -15,7 +15,9 @@ test('migrates legacy settings without losing user preferences', () => {
     alwaysShowControls: true,
     progressBarSize: 'default',
     highlightColor: 'default',
-    largeCursor: false
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: 'white'
   });
 });
 
@@ -34,8 +36,15 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     alwaysShowControls: true,
     progressBarSize: 'default',
     highlightColor: 'default',
-    largeCursor: false
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: 'white'
   });
+});
+
+test('readable caption defaults are off with white text', () => {
+  assert.equal(settings.DEFAULTS.readableCaptions, false);
+  assert.equal(settings.DEFAULTS.captionColor, 'white');
 });
 
 test('needsMigration returns false for already-migrated defaults', () => {
@@ -61,6 +70,15 @@ test('needsMigration returns true when a stored setting differs', () => {
   assert.equal(settings.needsMigration(oldSettings, settings.migrateSettings(oldSettings)), true);
 });
 
+test('needsMigration adds readable caption defaults to stored schema 3 settings', () => {
+  const stored = { ...settings.DEFAULTS };
+  delete stored.readableCaptions;
+  delete stored.captionColor;
+
+  assert.equal(stored.settingsSchemaVersion, 3);
+  assert.equal(settings.needsMigration(stored, settings.migrateSettings(stored)), true);
+});
+
 test('profile message keys cover every profile and exist in English messages', () => {
   for (const profile of settings.PROFILE_VALUES) {
     const messageKey = settings.PROFILE_MESSAGE_KEYS[profile];
@@ -77,7 +95,9 @@ test('normalizes invalid and out-of-range settings', () => {
     alwaysShowControls: 1,
     progressBarSize: 'huge',
     highlightColor: 'orange',
-    largeCursor: 'yes'
+    largeCursor: 'yes',
+    readableCaptions: 'yes',
+    captionColor: 'pink'
   }), {
     settingsSchemaVersion: 3,
     extensionEnabled: true,
@@ -86,7 +106,9 @@ test('normalizes invalid and out-of-range settings', () => {
     alwaysShowControls: false,
     progressBarSize: 'default',
     highlightColor: 'default',
-    largeCursor: false
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: 'white'
   });
 });
 
@@ -110,7 +132,9 @@ test('applies storage changes and normalizes the result', () => {
     alwaysShowControls: false,
     progressBarSize: 'default',
     highlightColor: 'cyan',
-    largeCursor: false
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: 'white'
   });
 });
 
@@ -120,6 +144,12 @@ test('defaults can be copied for reset without mutation', () => {
 
   assert.equal(settings.DEFAULTS.overlayOpacity, 0.7);
   assert.equal(settings.areSettingsEqual(settings.DEFAULTS, settings.normalizeSettings({})), true);
+  assert.equal(settings.areSettingsEqual(settings.DEFAULTS, {
+    ...settings.DEFAULTS,
+    readableCaptions: true,
+    captionColor: 'yellow'
+  }), false);
+  assert.equal(settings.areSettingsEqual(settings.DEFAULTS, { ...settings.DEFAULTS }), true);
 });
 
 test('cycleProfile advances and wraps around', () => {
@@ -137,11 +167,18 @@ test('applyCommand toggles enhancements on and off', () => {
 });
 
 test('applyCommand cycle-profile advances profile, opacity, and re-enables', () => {
-  const disabled = settings.normalizeSettings({ extensionEnabled: false, accessibilityProfile: 'low-vision' });
+  const disabled = settings.normalizeSettings({
+    extensionEnabled: false,
+    accessibilityProfile: 'low-vision',
+    readableCaptions: true,
+    captionColor: 'yellow'
+  });
   const next = settings.applyCommand(disabled, 'cycle-profile');
   assert.equal(next.accessibilityProfile, 'standard');
   assert.equal(next.overlayOpacity, 0.7);
   assert.equal(next.extensionEnabled, true);
+  assert.equal(next.readableCaptions, true);
+  assert.equal(next.captionColor, 'yellow');
 });
 
 test('applyCommand toggles always-show controls', () => {
