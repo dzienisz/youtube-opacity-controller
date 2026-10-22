@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Style-cycling shortcut is now Alt+Shift+J on new installs because Chrome reserves Alt+Shift+P; the on-player hint shows your actual shortcut
+- Popup header no longer overlaps the on/off switch in long languages
 - Popup shows your actual on/off shortcut instead of always Alt+Shift+Y
 - Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band and stop painting a box behind the channel logo
 - Bigger progress bar and highlight color now apply to the newer embedded player's progress bar

@@ -11,6 +11,75 @@ const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-mode
 const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 
+async function assertHeaderLayout(popup) {
+  const locales = fs.readdirSync(path.join(root, '_locales'), { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => entry.name)
+    .sort();
+  if (locales.length !== 15) {
+    fail(`expected 15 locales for header geometry checks, found ${locales.length}`);
+  }
+
+  const original = await popup.evaluate(() => ({
+    eyebrow: document.querySelector('.eyebrow').textContent,
+    heading: document.querySelector('h1').textContent,
+    direction: document.documentElement.dir
+  }));
+  try {
+    for (const locale of locales) {
+      const messages = JSON.parse(fs.readFileSync(
+        path.join(root, '_locales', locale, 'messages.json'),
+        'utf8'
+      ));
+      const header = {
+        eyebrow: messages.eyebrow.message,
+        heading: messages.headerTitle.message,
+        direction: locale === 'ar' ? 'rtl' : 'ltr'
+      };
+      const actual = await popup.evaluate(async ({ eyebrow, heading, direction }) => {
+        document.documentElement.dir = direction;
+        document.querySelector('.eyebrow').textContent = eyebrow;
+        document.querySelector('h1').textContent = heading;
+        await document.fonts.ready;
+        await new Promise(resolve => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+
+        const rect = element => {
+          const { top, right, bottom, left } = element.getBoundingClientRect();
+          return { top, right, bottom, left };
+        };
+        const eyebrowElement = document.querySelector('.eyebrow');
+        const headingElement = document.querySelector('h1');
+        return {
+          eyebrow: rect(eyebrowElement),
+          heading: rect(headingElement),
+          toggle: rect(document.querySelector('.switch')),
+          eyebrowOverflow: eyebrowElement.scrollWidth > eyebrowElement.clientWidth + 1,
+          headingOverflow: headingElement.scrollWidth > headingElement.clientWidth + 1
+        };
+      }, header);
+      const overlapsToggle = element => element.left < actual.toggle.right
+        && element.right > actual.toggle.left
+        && element.top < actual.toggle.bottom
+        && element.bottom > actual.toggle.top;
+      if (overlapsToggle(actual.eyebrow) || actual.eyebrowOverflow) {
+        fail(`${locale} eyebrow overlaps the toggle or overflows its column`);
+      }
+      if (overlapsToggle(actual.heading) || actual.headingOverflow) {
+        fail(`${locale} heading overlaps the toggle or overflows its column`);
+      }
+    }
+    console.log(`Popup header geometry passed for ${locales.length} locales`);
+  } finally {
+    await popup.evaluate(({ eyebrow, heading, direction }) => {
+      document.querySelector('.eyebrow').textContent = eyebrow;
+      document.querySelector('h1').textContent = heading;
+      document.documentElement.dir = direction;
+    }, original);
+  }
+}
+
 function fail(message) {
   console.error(`SMOKE FAILED: ${message}`);
   process.exit(1);
@@ -178,6 +247,7 @@ async function main() {
     if (!await popup.locator('#extensionEnabled').isChecked()) {
       fail('expected extension enabled with the recommended settings');
     }
+    await assertHeaderLayout(popup);
     await popup.waitForFunction(() => {
       const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
       return keys.join('|') === 'Alt|Shift|Y';
