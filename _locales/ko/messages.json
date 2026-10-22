@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "불투명" },
   "statusReady": { "message": "설정 준비 완료" },
   "resetSettings": { "message": "권장 설정 사용" },
+  "restoreYouTube": { "message": "YouTube 원래 모습 복원" },
+  "statusRestoredYouTube": { "message": "YouTube 원래 모습으로 복원했습니다" },
   "statusEnabled": { "message": "개선 기능이 사용 설정되었습니다" },
   "statusDisabled": { "message": "개선 기능이 사용 중지되었습니다" },
   "statusProfileSelected": {

@@ -41,6 +41,8 @@
   "cmdToggleAlwaysShow": { "message": "Włącz lub wyłącz stałą widoczność elementów sterowania" },
   "statusReady": { "message": "Ustawienia gotowe" },
   "resetSettings": { "message": "Użyj zalecanych ustawień" },
+  "restoreYouTube": { "message": "Przywróć wygląd YouTube" },
+  "statusRestoredYouTube": { "message": "Przywrócono oryginalny wygląd YouTube" },
   "statusEnabled": { "message": "Ulepszenia włączone" },
   "statusDisabled": { "message": "Ulepszenia wyłączone" },
   "statusProfileSelected": {

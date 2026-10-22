@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "不透明" },
   "statusReady": { "message": "設定の準備ができました" },
   "resetSettings": { "message": "おすすめ設定を使う" },
+  "restoreYouTube": { "message": "YouTubeの元の表示に戻す" },
+  "statusRestoredYouTube": { "message": "YouTubeの元の表示に戻しました" },
   "statusEnabled": { "message": "拡張機能を有効にしました" },
   "statusDisabled": { "message": "拡張機能を無効にしました" },
   "statusProfileSelected": {

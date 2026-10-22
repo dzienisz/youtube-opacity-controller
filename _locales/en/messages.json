@@ -41,6 +41,8 @@
   "cmdToggleAlwaysShow": { "message": "Keep controls visible on or off" },
   "statusReady": { "message": "Settings ready" },
   "resetSettings": { "message": "Use recommended settings" },
+  "restoreYouTube": { "message": "Restore YouTube's look" },
+  "statusRestoredYouTube": { "message": "YouTube's original look restored" },
   "statusEnabled": { "message": "Enhancements enabled" },
   "statusDisabled": { "message": "Enhancements disabled" },
   "statusProfileSelected": {

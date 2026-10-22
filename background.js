@@ -39,6 +39,17 @@ chrome.commands.onCommand.addListener(command => {
 
 chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === 'update') {
+    chrome.storage.sync.get(null, stored => {
+      const hasSettings = Object.keys(YtocSettings.LEGACY_DEFAULTS)
+        .some(key => Object.prototype.hasOwnProperty.call(stored || {}, key));
+
+      if (!hasSettings) {
+        chrome.storage.sync.set({
+          ...YtocSettings.LEGACY_DEFAULTS,
+          settingsSchemaVersion: YtocSettings.SCHEMA_VERSION
+        });
+      }
+    });
     chrome.storage.local.set({ whatsNewVersion: chrome.runtime.getManifest().version });
   }
 });

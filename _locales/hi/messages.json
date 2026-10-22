@@ -18,6 +18,8 @@
   "sliderSolid": { "message": "ठोस" },
   "statusReady": { "message": "सेटिंग तैयार हैं" },
   "resetSettings": { "message": "अनुशंसित सेटिंग इस्तेमाल करें" },
+  "restoreYouTube": { "message": "YouTube का मूल रूप वापस लाएँ" },
+  "statusRestoredYouTube": { "message": "YouTube का मूल रूप बहाल किया गया" },
   "statusEnabled": { "message": "सुधार चालू किए गए" },
   "statusDisabled": { "message": "सुधार बंद किए गए" },
   "statusProfileSelected": {
