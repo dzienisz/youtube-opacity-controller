@@ -7,6 +7,7 @@ const { chromium } = require('playwright');
 
 const root = path.join(__dirname, '..');
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
+const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 
 function fail(message) {
@@ -39,7 +40,12 @@ async function main() {
 
     const page = await context.newPage();
     await context.route('https://www.youtube.com/**', route => {
-      const body = route.request().url().includes('/embed/') ? embedFixture : fixture;
+      const url = route.request().url();
+      const body = url.includes('/embed/')
+        ? embedFixture
+        : url.includes('/modern')
+          ? modernFixture
+          : fixture;
       route.fulfill({ contentType: 'text/html', body });
     });
     await page.goto('https://www.youtube.com/watch?v=smoke');
@@ -54,6 +60,49 @@ async function main() {
       .evaluate(el => getComputedStyle(el).backgroundColor);
     if (overlay !== 'rgba(0, 0, 0, 0.7)') {
       fail(`expected overlay rgba(0, 0, 0, 0.7), got ${overlay}`);
+    }
+    const brandingBackground = await page.locator('.branding-img-container')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (brandingBackground !== 'rgba(0, 0, 0, 0)') {
+      fail(`expected classic branding background transparent, got ${brandingBackground}`);
+    }
+
+    const modern = await context.newPage();
+    await modern.goto('https://www.youtube.com/modern');
+    await modern.waitForFunction(() => {
+      const rightControls = document.querySelector('.ytp-right-controls');
+      return document.documentElement.hasAttribute('data-ytoc-enabled')
+        && rightControls
+        && getComputedStyle(rightControls).backgroundColor === 'rgba(0, 0, 0, 0.7)';
+    }, null, { timeout: 15000 });
+    const modernDefaultStyles = await modern.locator('#movie_player').evaluate(player => {
+      const backgroundColor = selector => getComputedStyle(player.querySelector(selector)).backgroundColor;
+      return {
+        chromeBottom: backgroundColor('.ytp-chrome-bottom'),
+        volumeArea: backgroundColor('.ytp-volume-area'),
+        timeWrapper: backgroundColor('.ytp-time-wrapper'),
+        rightControls: backgroundColor('.ytp-right-controls'),
+        playButton: backgroundColor('.ytp-play-button'),
+        settingsButton: backgroundColor('.ytp-settings-button'),
+        branding: backgroundColor('.branding-img-container'),
+        rightControlsRadius: getComputedStyle(player.querySelector('.ytp-right-controls')).borderRadius
+      };
+    });
+    const expectedModernDefaultStyles = {
+      chromeBottom: 'rgba(0, 0, 0, 0)',
+      volumeArea: 'rgba(0, 0, 0, 0.7)',
+      timeWrapper: 'rgba(0, 0, 0, 0.7)',
+      rightControls: 'rgba(0, 0, 0, 0.7)',
+      playButton: 'rgba(0, 0, 0, 0.7)',
+      settingsButton: 'rgba(0, 0, 0, 0)',
+      branding: 'rgba(0, 0, 0, 0)',
+      rightControlsRadius: '28px'
+    };
+    for (const [style, expected] of Object.entries(expectedModernDefaultStyles)) {
+      const actual = modernDefaultStyles[style];
+      if (actual !== expected) {
+        fail(`expected modern ${style} ${expected}, got ${actual}`);
+      }
     }
 
     const popup = await context.newPage();
@@ -80,6 +129,24 @@ async function main() {
       .evaluate(el => getComputedStyle(el).backgroundColor);
     if (progressColor !== 'rgb(255, 212, 0)') {
       fail(`expected play-progress rgb(255, 212, 0), got ${progressColor}`);
+    }
+    await modern.waitForFunction(() => {
+      const rightControls = document.querySelector('.ytp-right-controls');
+      const style = rightControls && getComputedStyle(rightControls);
+      return document.documentElement.getAttribute('data-ytoc-profile') === 'low-vision'
+        && style?.minHeight === '48px'
+        && style.backgroundColor === 'rgba(0, 0, 0, 0.95)';
+    }, null, { timeout: 15000 });
+    const modernLargeStyles = await modern.locator('.ytp-right-controls')
+      .evaluate(el => {
+        const style = getComputedStyle(el);
+        return { minHeight: style.minHeight, backgroundColor: style.backgroundColor };
+      });
+    if (modernLargeStyles.minHeight !== '48px') {
+      fail(`expected modern right controls min-height 48px, got ${modernLargeStyles.minHeight}`);
+    }
+    if (modernLargeStyles.backgroundColor !== 'rgba(0, 0, 0, 0.95)') {
+      fail(`expected modern right controls background rgba(0, 0, 0, 0.95), got ${modernLargeStyles.backgroundColor}`);
     }
 
     // --- Embed scenario: same settings applied to the newer embed control DOM ---

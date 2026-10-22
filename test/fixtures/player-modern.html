@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Smoke test modern player</title>
+  <style>
+    #movie_player {
+      position: relative;
+      width: 640px;
+      height: 360px;
+      background: #000;
+    }
+    #movie_player video {
+      width: 100%;
+      height: 100%;
+    }
+    .ytp-chrome-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px;
+    }
+    .ytp-progress-bar-container {
+      position: relative;
+      height: 5px;
+    }
+    .ytp-progress-bar {
+      position: relative;
+      height: 5px;
+    }
+    .ytp-progress-list {
+      position: relative;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .ytp-play-progress {
+      height: 6px;
+      width: 40%;
+      background-color: #f03;
+    }
+    .ytp-scrubber-container {
+      position: absolute;
+      top: -3px;
+      left: 40%;
+      width: 12px;
+      height: 12px;
+    }
+    .ytp-scrubber-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+      background-color: #f03;
+    }
+    .ytp-chrome-controls,
+    .ytp-left-controls,
+    .ytp-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ytp-chrome-controls {
+      justify-content: space-between;
+    }
+    .ytp-volume-area,
+    .ytp-time-wrapper,
+    .ytp-right-controls {
+      height: 40px;
+      border-radius: 28px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .ytp-volume-area {
+      display: flex;
+      align-items: center;
+    }
+    .ytp-mute-button {
+      display: flex;
+    }
+    .ytp-play-button {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .ytp-volume-icon,
+    .ytp-settings-button,
+    .ytp-fullscreen-button {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      background: transparent;
+    }
+    .ytp-time-display {
+      color: #eee;
+      font: 12px Arial, sans-serif;
+    }
+    .ytp-time-wrapper {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+    .branding-img-container {
+      border: 0;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div id="movie_player" class="html5-video-player ytp-delhi-modern">
+    <video></video>
+    <button class="branding-img-container ytp-button"></button>
+    <div class="ytp-chrome-bottom">
+      <div class="ytp-progress-bar-container">
+        <div class="ytp-progress-bar" tabindex="0">
+          <div class="ytp-progress-list">
+            <div class="ytp-play-progress ytp-swatch-background-color"></div>
+          </div>
+          <div class="ytp-scrubber-container">
+            <div class="ytp-scrubber-button ytp-swatch-background-color"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ytp-chrome-controls">
+        <div class="ytp-left-controls">
+          <button class="ytp-play-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+          <span class="ytp-volume-area">
+            <div class="ytp-mute-button">
+              <button class="ytp-volume-icon ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+            </div>
+          </span>
+          <div class="ytp-time-display">
+            <div class="ytp-time-wrapper ytp-time-wrapper-delhi">0:00 / 0:00</div>
+          </div>
+        </div>
+        <div class="ytp-right-controls">
+          <button class="ytp-settings-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+          <button class="ytp-fullscreen-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
