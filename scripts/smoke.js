@@ -12,7 +12,10 @@ const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-li
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 const ratePromptReviewsUrl = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
 
-async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
+async function assertHeaderLayout(
+  popup,
+  { ratePromptVisible = false, whatsNewVisible = false } = {}
+) {
   const locales = fs.readdirSync(path.join(root, '_locales'), { withFileTypes: true })
     .filter(entry => entry.isDirectory())
     .map(entry => entry.name)
@@ -26,6 +29,9 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
     heading: document.querySelector('h1').textContent,
     direction: document.documentElement.dir,
     lang: document.documentElement.lang,
+    whatsNewTitle: document.getElementById('whatsNewTitle').textContent,
+    whatsNewBody: document.querySelector('#whatsNew .popup-banner-copy p').textContent,
+    whatsNewDismiss: document.getElementById('whatsNewDismiss').textContent,
     ratePromptHidden: document.getElementById('ratePrompt').hidden,
     ratePromptTitle: document.getElementById('ratePromptTitle').textContent,
     ratePromptBody: document.querySelector('#ratePrompt .popup-banner-copy p').textContent,
@@ -35,6 +41,7 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
     customizeOpen: document.querySelector('details.customize').open
   }));
   const heights = [];
+  const tooTall = [];
   try {
     for (const locale of locales) {
       const messages = JSON.parse(fs.readFileSync(
@@ -46,22 +53,30 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
         heading: messages.headerTitle.message,
         direction: locale === 'ar' ? 'rtl' : 'ltr',
         lang: locale.replace('_', '-'),
+        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.1'),
+        whatsNewBody: messages.whatsNewBody.message,
+        whatsNewDismiss: messages.whatsNewDismiss.message,
         ratePromptTitle: messages.ratePromptTitle.message,
         ratePromptBody: messages.ratePromptBody.message,
         ratePromptRate: messages.ratePromptRate.message,
         ratePromptDismiss: messages.ratePromptDismiss.message,
-        ratePromptVisible
+        ratePromptVisible,
+        whatsNewVisible
       };
       const actual = await popup.evaluate(async ({
         eyebrow,
         heading,
         direction,
         lang,
+        whatsNewTitle,
+        whatsNewBody,
+        whatsNewDismiss,
         ratePromptTitle,
         ratePromptBody,
         ratePromptRate,
         ratePromptDismiss,
-        ratePromptVisible: showRatePrompt
+        ratePromptVisible: showRatePrompt,
+        whatsNewVisible: showWhatsNew
       }) => {
         document.documentElement.dir = direction;
         document.documentElement.lang = lang;
@@ -69,8 +84,17 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
         document.querySelector('h1').textContent = heading;
         const ratePrompt = document.getElementById('ratePrompt');
         ratePrompt.hidden = !showRatePrompt;
+        const whatsNew = document.getElementById('whatsNew');
+        whatsNew.hidden = !showWhatsNew;
+        if (showWhatsNew) {
+          ratePrompt.hidden = true;
+          document.querySelector('details.customize').open = false;
+          document.getElementById('whatsNewTitle').textContent = whatsNewTitle;
+          document.querySelector('#whatsNew .popup-banner-copy p').textContent = whatsNewBody;
+          document.getElementById('whatsNewDismiss').textContent = whatsNewDismiss;
+        }
         if (showRatePrompt) {
-          document.getElementById('whatsNew').hidden = true;
+          whatsNew.hidden = true;
           document.querySelector('details.customize').open = false;
           document.getElementById('ratePromptTitle').textContent = ratePromptTitle;
           document.querySelector('#ratePrompt .popup-banner-copy p').textContent = ratePromptBody;
@@ -107,16 +131,21 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
       if (overlapsToggle(actual.heading) || actual.headingOverflow) {
         fail(`${locale} heading overlaps the toggle or overflows its column`);
       }
-      if (ratePromptVisible) {
+      if (ratePromptVisible || whatsNewVisible) {
         if (actual.height > 600) {
-          fail(`expected ${locale} closed popup with rating banner at most 600px, got ${actual.height}px`);
+          tooTall.push(`${locale}=${actual.height}px`);
         }
         heights.push({ locale, height: actual.height });
       }
     }
-    if (ratePromptVisible) {
-      console.log(`Popup header geometry and rating-banner heights passed: ${heights
+    if (ratePromptVisible || whatsNewVisible) {
+      const banner = whatsNewVisible ? "What's new" : 'rating';
+      console.log(`Popup header geometry and ${banner}-banner heights passed: ${heights
         .map(({ locale, height }) => `${locale}=${height}px`).join(', ')}`);
+      if (tooTall.length) {
+        const banner = whatsNewVisible ? "What's new" : 'rating';
+        fail(`expected ${banner} banner heights at most 600px, got ${tooTall.join(', ')}`);
+      }
     } else {
       console.log(`Popup header geometry passed for ${locales.length} locales`);
     }
@@ -127,6 +156,9 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
       heading,
       direction,
       lang,
+      whatsNewTitle,
+      whatsNewBody,
+      whatsNewDismiss,
       ratePromptHidden,
       ratePromptTitle,
       ratePromptBody,
@@ -139,6 +171,9 @@ async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
       document.querySelector('h1').textContent = heading;
       document.documentElement.dir = direction;
       document.documentElement.lang = lang;
+      document.getElementById('whatsNewTitle').textContent = whatsNewTitle;
+      document.querySelector('#whatsNew .popup-banner-copy p').textContent = whatsNewBody;
+      document.getElementById('whatsNewDismiss').textContent = whatsNewDismiss;
       document.getElementById('ratePrompt').hidden = ratePromptHidden;
       document.getElementById('ratePromptTitle').textContent = ratePromptTitle;
       document.querySelector('#ratePrompt .popup-banner-copy p').textContent = ratePromptBody;
@@ -229,6 +264,89 @@ async function captureRatePromptScreenshots(popup, screenshotDir) {
       document.getElementById('ratePromptDismiss').textContent = dismiss;
       document.getElementById('ratePrompt').hidden = promptHidden;
       document.getElementById('whatsNew').hidden = whatsNewHidden;
+      document.querySelector('details.customize').open = customizeOpen;
+    }, original);
+    await popup.emulateMedia({ colorScheme: 'light' });
+    if (viewport) await popup.setViewportSize(viewport);
+  }
+}
+
+async function captureWhatsNewScreenshots(popup, screenshotDir) {
+  fs.mkdirSync(screenshotDir, { recursive: true });
+  const original = await popup.evaluate(() => ({
+    direction: document.documentElement.dir,
+    lang: document.documentElement.lang,
+    title: document.getElementById('whatsNewTitle').textContent,
+    body: document.querySelector('#whatsNew .popup-banner-copy p').textContent,
+    dismiss: document.getElementById('whatsNewDismiss').textContent,
+    whatsNewHidden: document.getElementById('whatsNew').hidden,
+    ratePromptHidden: document.getElementById('ratePrompt').hidden,
+    customizeOpen: document.querySelector('details.customize').open
+  }));
+  const viewport = popup.viewportSize();
+  const captures = [
+    { locale: 'en', scheme: 'light' },
+    { locale: 'pl', scheme: 'light' },
+    { locale: 'pl', scheme: 'dark' },
+    { locale: 'de', scheme: 'light' }
+  ];
+
+  try {
+    await popup.setViewportSize({ width: 360, height: 600 });
+    for (const { locale, scheme } of captures) {
+      const messages = JSON.parse(fs.readFileSync(
+        path.join(root, '_locales', locale, 'messages.json'),
+        'utf8'
+      ));
+      await popup.evaluate(({
+        locale,
+        title,
+        body,
+        dismiss
+      }) => {
+        document.documentElement.dir = 'ltr';
+        document.documentElement.lang = locale;
+        document.querySelector('details.customize').open = false;
+        document.getElementById('ratePrompt').hidden = true;
+        document.getElementById('whatsNew').hidden = false;
+        document.getElementById('whatsNewTitle').textContent = title;
+        document.querySelector('#whatsNew .popup-banner-copy p').textContent = body;
+        document.getElementById('whatsNewDismiss').textContent = dismiss;
+      }, {
+        locale,
+        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.1'),
+        body: messages.whatsNewBody.message,
+        dismiss: messages.whatsNewDismiss.message
+      });
+      await popup.emulateMedia({ colorScheme: scheme });
+      await popup.evaluate(() => new Promise(resolve => {
+        document.fonts.ready.then(() => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+      }));
+      await popup.screenshot({
+        path: path.join(screenshotDir, `whatsnew-${locale}-${scheme}.png`),
+        fullPage: true
+      });
+    }
+  } finally {
+    await popup.evaluate(({
+      direction,
+      lang,
+      title,
+      body,
+      dismiss,
+      whatsNewHidden,
+      ratePromptHidden,
+      customizeOpen
+    }) => {
+      document.documentElement.dir = direction;
+      document.documentElement.lang = lang;
+      document.getElementById('whatsNewTitle').textContent = title;
+      document.querySelector('#whatsNew .popup-banner-copy p').textContent = body;
+      document.getElementById('whatsNewDismiss').textContent = dismiss;
+      document.getElementById('whatsNew').hidden = whatsNewHidden;
+      document.getElementById('ratePrompt').hidden = ratePromptHidden;
       document.querySelector('details.customize').open = customizeOpen;
     }, original);
     await popup.emulateMedia({ colorScheme: 'light' });
@@ -433,6 +551,24 @@ async function main() {
       fail('expected extension enabled with the recommended settings');
     }
     await assertHeaderLayout(popup, { ratePromptVisible: true });
+    await setLocalStorage(popup, {
+      whatsNewVersion: '2.1.0',
+      whatsNewDismissed: ''
+    });
+    await popup.reload();
+    await popup.waitForFunction(() => !document.getElementById('whatsNew').hidden
+      && document.getElementById('whatsNewTitle').textContent === 'New in 2.1'
+      && document.getElementById('ratePrompt').hidden);
+    await assertHeaderLayout(popup, { whatsNewVisible: true });
+    if (process.env.YTOC_WHATSNEW_SCREENSHOT_DIR) {
+      await captureWhatsNewScreenshots(popup, process.env.YTOC_WHATSNEW_SCREENSHOT_DIR);
+    }
+    await setLocalStorage(popup, {
+      whatsNewVersion: '2.1.0',
+      whatsNewDismissed: '2.1'
+    });
+    await popup.reload();
+    await popup.waitForFunction(() => document.getElementById('whatsNew').hidden);
     await popup.waitForFunction(() => {
       const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
       return keys.join('|') === 'Alt|Shift|Y';
@@ -442,7 +578,7 @@ async function main() {
       fail(`expected shortcut keys Alt, Shift, Y, got ${shortcutKeys.join(', ')}`);
     }
     await popup.evaluate(() => new Promise(resolve => {
-      chrome.storage.local.set({ whatsNewVersion: '2.0', whatsNewDismissed: '2.0' }, resolve);
+      chrome.storage.local.set({ whatsNewVersion: '2.1.0', whatsNewDismissed: '2.1' }, resolve);
     }));
     const closedPopupHeight = await popup.evaluate(() => {
       document.querySelector('details.customize').open = false;
@@ -779,8 +915,8 @@ async function main() {
       popupOpens: 5,
       ratePromptDone: false,
       ratePromptShown: 0,
-      whatsNewVersion: '2.0',
-      whatsNewDismissed: '2.0'
+      whatsNewVersion: '2.1.0',
+      whatsNewDismissed: '2.1'
     };
 
     await setLocalStorage(popup, eligibleRatePromptState);

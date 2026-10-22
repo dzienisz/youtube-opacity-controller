@@ -1,4 +1,5 @@
 const t = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
+const featureVersion = version => String(version).split('.').slice(0, 2).join('.');
 
 document.documentElement.lang = t('@@ui_locale').replace('_', '-');
 document.documentElement.dir = t('@@bidi_dir');
@@ -7,6 +8,10 @@ document.querySelectorAll('[data-i18n]').forEach(el => {
   const message = t(el.dataset.i18n);
   if (message) el.textContent = message;
 });
+document.getElementById('whatsNewTitle').textContent = t(
+  'whatsNewTitle',
+  [featureVersion(chrome.runtime.getManifest().version)]
+);
 document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
   const message = t(el.dataset.i18nAriaLabel);
   if (message) el.setAttribute('aria-label', message);
@@ -234,9 +239,6 @@ editShortcuts.addEventListener('click', () => {
   }
 });
 
-// The banner describes a feature release ("New in 2.0"), so it is keyed to the
-// major.minor version and does not resurface on patch bumps like 2.0.1.
-const featureVersion = version => String(version).split('.').slice(0, 2).join('.');
 const RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
 
 whatsNewDismiss.addEventListener('click', () => {

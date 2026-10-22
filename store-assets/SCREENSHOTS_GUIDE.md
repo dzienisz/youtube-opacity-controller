@@ -6,17 +6,15 @@ Chrome Web Store requires **1-5 screenshots** of your extension in action.
 - **1280x800 pixels** (recommended)
 - OR **640x400 pixels**
 
-## Current screenshots (v2.0)
+## Current screenshots (v2.1)
 
-`screenshot1.png`–`screenshot5.png` are 1280×800 composites generated from real YouTube captures (Big Buck Bunny, CC-BY) of the v2.0 UI:
+`screenshot1.png`–`screenshot5.png` are 1280×800 composites of real YouTube captures (Big Buck Bunny, CC-BY; "Me at the zoo" for the embed) with the v2.1 extension on YouTube's modern pill player:
 
-The first composite still shows the retired third style and should be replaced before the next store listing refresh.
-
-1. Popup next to the player — Strong Contrast, bigger progress bar, cyan highlight
-2. Before/after control strip — no extension vs Strong Contrast
+1. Popup next to the player — Strong contrast, bigger cyan progress bar, easier-to-read subtitles on
+2. Before/after control strip — no extension vs recommended settings (Strong contrast + bigger progress bar)
 3. Bigger progress bar in yellow / cyan / green
-4. Keyboard shortcuts with the on-player HUD
-5. Embedded player (youtube.com/embed) with the same styling
+4. Keyboard shortcuts (Alt+Shift+Y / J / V) with the on-player HUD
+5. YouTube embed on a third-party page with the same styling
 
 Regenerate them by capturing the player/popup with the unpacked extension loaded and re-compositing at 1280×800.
 
