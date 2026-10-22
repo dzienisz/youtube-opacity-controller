@@ -3,6 +3,8 @@ name: Extension Release
 # Chrome Web Store upload requires CWS_CLIENT_ID, CWS_CLIENT_SECRET,
 # CWS_REFRESH_TOKEN, CWS_EXTENSION_ID, and CWS_PUBLISHER_ID. Without these
 # secrets, the workflow still builds and creates the GitHub Release.
+# AMO submission requires AMO_JWT_ISSUER and AMO_JWT_SECRET; without them,
+# the GitHub Release is still created and the submission step is skipped.
 
 on:
   push:
@@ -45,16 +47,21 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Build Firefox
+        run: npm run build:firefox -- --zip
+
       - name: Create or update GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          ZIP="dist/youtube-controls-${GITHUB_REF_NAME#v}.zip"
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP="dist/youtube-controls-${VERSION}.zip"
+          FIREFOX_ZIP="dist/youtube-controls-firefox-${VERSION}.zip"
           # Re-runs (e.g. after a failed store upload) reuse the existing release.
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" "$ZIP" --clobber
+            gh release upload "$GITHUB_REF_NAME" "$ZIP" "$FIREFOX_ZIP" --clobber
           else
-            gh release create "$GITHUB_REF_NAME" "$ZIP" \
+            gh release create "$GITHUB_REF_NAME" "$ZIP" "$FIREFOX_ZIP" \
               --title "$GITHUB_REF_NAME" \
               --generate-notes
           fi
@@ -78,3 +85,18 @@ jobs:
           fi
           npx --yes chrome-webstore-upload-cli@4 \
             --source "dist/youtube-controls-${GITHUB_REF_NAME#v}.zip"
+
+      - name: Submit to addons.mozilla.org
+        if: ${{ !cancelled() }}
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          if [ -z "$WEB_EXT_API_KEY" ] || [ -z "$WEB_EXT_API_SECRET" ]; then
+            echo "::warning::AMO secrets not configured - skipping submission"
+            exit 0
+          fi
+          npx --yes web-ext@10 sign \
+            --source-dir dist/firefox \
+            --channel listed \
+            --approval-timeout 0

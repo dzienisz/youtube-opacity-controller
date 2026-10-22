@@ -2,6 +2,14 @@
 
 Run `npm run check` before manual testing. Load the repository through **Load unpacked** at `chrome://extensions/`, then refresh every existing YouTube tab.
 
+## Firefox Temporary Add-on
+
+- [ ] Run `npm run build:firefox` to generate `dist/firefox/`.
+- [ ] Open `about:debugging#/runtime/this-firefox` in Firefox.
+- [ ] Select **Load Temporary Add-on…** and choose `dist/firefox/manifest.json`.
+- [ ] Refresh an open YouTube tab and verify the popup, player styles, and keyboard shortcuts.
+- [ ] After changing source files, rebuild the package and reload the temporary add-on.
+
 ## Automated Gate
 
 - [ ] `npm run check` exits successfully.

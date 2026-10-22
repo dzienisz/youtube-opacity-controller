@@ -26,9 +26,11 @@ const overlayOpacity = document.getElementById('overlayOpacity');
 const whatsNew = document.getElementById('whatsNew');
 const whatsNewDismiss = document.getElementById('whatsNewDismiss');
 const editShortcuts = document.getElementById('editShortcuts');
+const openShortcutSettings = Reflect.get(chrome.commands, 'openShortcutSettings');
 const shortcutKeys = document.getElementById('shortcutKeys');
 const shortcutHint = document.getElementById('shortcutHint');
 const shortcutUnset = document.getElementById('shortcutUnset');
+const editShortcutsSeparator = document.getElementById('editShortcutsSeparator');
 const customize = document.querySelector('details.customize');
 const opacityValue = document.getElementById('opacityValue');
 const resetSettings = document.getElementById('resetSettings');
@@ -208,8 +210,20 @@ resetSettings.addEventListener('click', () => {
   persistSettings(t('statusReset'));
 });
 
+if (
+  typeof openShortcutSettings !== 'function'
+  && location.protocol !== 'chrome-extension:'
+) {
+  editShortcuts.hidden = true;
+  editShortcutsSeparator.hidden = true;
+}
+
 editShortcuts.addEventListener('click', () => {
-  chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+  if (typeof openShortcutSettings === 'function') {
+    openShortcutSettings.call(chrome.commands);
+  } else if (location.protocol === 'chrome-extension:') {
+    chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+  }
 });
 
 // The banner describes a feature release ("New in 2.0"), so it is keyed to the
