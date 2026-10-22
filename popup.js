@@ -26,12 +26,42 @@ const overlayOpacity = document.getElementById('overlayOpacity');
 const whatsNew = document.getElementById('whatsNew');
 const whatsNewDismiss = document.getElementById('whatsNewDismiss');
 const editShortcuts = document.getElementById('editShortcuts');
+const shortcutKeys = document.getElementById('shortcutKeys');
+const shortcutHint = document.getElementById('shortcutHint');
+const shortcutUnset = document.getElementById('shortcutUnset');
 const customize = document.querySelector('details.customize');
 const opacityValue = document.getElementById('opacityValue');
 const resetSettings = document.getElementById('resetSettings');
 const status = document.getElementById('status');
 let currentSettings = settingsModel.DEFAULTS;
 let saveTimeout = null;
+
+function renderShortcut() {
+  chrome.commands.getAll(commands => {
+    const shortcut = commands.find(command => command.name === 'toggle-enhancements')?.shortcut || '';
+    shortcutKeys.replaceChildren();
+
+    if (!shortcut) {
+      shortcutKeys.hidden = true;
+      shortcutHint.hidden = true;
+      shortcutUnset.hidden = false;
+      return;
+    }
+
+    const keys = shortcut.includes('+') ? shortcut.split('+').map(key => key.trim()) : Array.from(shortcut);
+    keys.forEach((key, index) => {
+      if (index > 0) shortcutKeys.append(document.createTextNode('+'));
+      const keyElement = document.createElement('kbd');
+      keyElement.textContent = key;
+      shortcutKeys.append(keyElement);
+    });
+    shortcutKeys.hidden = false;
+    shortcutHint.hidden = false;
+    shortcutUnset.hidden = true;
+  });
+}
+
+renderShortcut();
 
 function updateControls(settings) {
   extensionEnabled.checked = settings.extensionEnabled;

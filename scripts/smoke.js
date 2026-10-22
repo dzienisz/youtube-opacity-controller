@@ -150,6 +150,34 @@ async function main() {
 
     const popup = await context.newPage();
     await popup.goto(`chrome-extension://${extensionId}/popup.html`);
+    await popup.setViewportSize({ width: 360, height: 1 });
+    await popup.waitForFunction(() => {
+      const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
+      return keys.join('|') === 'Alt|Shift|Y';
+    });
+    const shortcutKeys = await popup.locator('#shortcutKeys kbd').allTextContents();
+    if (JSON.stringify(shortcutKeys) !== JSON.stringify(['Alt', 'Shift', 'Y'])) {
+      fail(`expected shortcut keys Alt, Shift, Y, got ${shortcutKeys.join(', ')}`);
+    }
+    await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.set({ whatsNewVersion: '2.0', whatsNewDismissed: '2.0' }, resolve);
+    }));
+    const closedPopupHeight = await popup.evaluate(() => {
+      document.querySelector('details.customize').open = false;
+      document.getElementById('whatsNew').hidden = true;
+      return document.documentElement.scrollHeight;
+    });
+    if (closedPopupHeight > 600) {
+      fail(`expected closed popup height at most 600px, got ${closedPopupHeight}px`);
+    }
+    await popup.emulateMedia({ colorScheme: 'dark' });
+    const darkPopupBackground = await popup.locator('body')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (darkPopupBackground !== 'rgb(18, 21, 28)') {
+      fail(`expected dark popup background rgb(18, 21, 28), got ${darkPopupBackground}`);
+    }
+    await popup.emulateMedia({ colorScheme: 'light' });
+    await popup.setViewportSize({ width: 360, height: 720 });
     await popup.locator('details.customize > summary').click();
     await popup.locator('#readableCaptions').check();
     const readableCaptionsStored = await popup.evaluate(() => new Promise(resolve => {
