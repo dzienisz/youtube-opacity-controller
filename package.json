@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "test": "node --test",
-    "check": "node --check settings.js && node --check content.js && node --check popup.js && node --check background.js && node --check scripts/canary.js && node --test",
+    "check": "node --check settings.js && node --check content.js && node --check popup.js && node --check background.js && node --check scripts/build-files.js && node --check scripts/build-firefox.js && node --check scripts/canary.js && node --test",
     "build": "node scripts/build.js",
+    "build:firefox": "node scripts/build-firefox.js",
     "smoke": "node scripts/smoke.js",
     "canary": "node scripts/canary.js"
   },

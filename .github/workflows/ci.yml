@@ -16,5 +16,9 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - name: Build Firefox package
+        run: npm run build:firefox
+      - name: Lint Firefox package
+        run: npx --yes web-ext@8 lint --source-dir dist/firefox --warnings-as-errors
       - run: npx playwright install --with-deps chromium
       - run: CI=true xvfb-run --auto-servernum npm run smoke

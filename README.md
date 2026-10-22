@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![I Ship This](https://ishipthis.com/badge/dzienisz.svg)](https://ishipthis.com/dzienisz?utm_source=badge)
 
-A privacy-first Chrome extension that makes YouTube player controls easier to see, click, and keep visible. Choose a clear control style, keep controls visible when needed, or customize the dark background strength.
+A privacy-first Chrome and Firefox extension that makes YouTube player controls easier to see, click, and keep visible. Choose a clear control style, keep controls visible when needed, or customize the dark background strength.
 
 **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** · **[Changelog](CHANGELOG.md)** · **[Privacy Policy](PRIVACY.md)** · **[Contributing](CONTRIBUTING.md)**
 
@@ -34,7 +34,14 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 3. Confirm by selecting **Add extension**.
 4. Refresh an open YouTube tab after updating from an older version.
 
-### Install from Source
+### Firefox (temporary installation)
+
+1. Clone or download this repository.
+2. Run `npm run build:firefox`.
+3. Open `about:debugging#/runtime/this-firefox` in Firefox.
+4. Select **Load Temporary Add-on…** and choose `dist/firefox/manifest.json`.
+
+### Chrome: Install from Source
 
 1. Download or clone this repository.
 2. Open `chrome://extensions/` in Chrome.
@@ -81,7 +88,7 @@ It leaves seek-preview thumbnails untouched and only changes progress-bar thickn
 
 Version 2.0 migrates settings to schema v3, preserving existing preferences and adding the new progress bar, highlight color, and pointer options with their defaults. Existing installations keep their prior values.
 
-The release targets desktop Chrome and Chromium-based browsers on `youtube.com`, including embedded YouTube players. YouTube interface experiments may require selector updates.
+The release targets desktop Chrome and Chromium-based browsers on `youtube.com`, including embedded YouTube players. Firefox 128 and later use the generated Firefox package; Microsoft Edge uses the Chrome package unchanged. YouTube interface experiments may require selector updates.
 
 ## Development
 
@@ -92,6 +99,7 @@ npm install
 npm test        # unit tests (settings model, locale catalogs)
 npm run check   # syntax checks + tests
 npm run build   # release ZIP in dist/
+npm run build:firefox  # Firefox package in dist/firefox/
 npm run smoke   # Playwright end-to-end test in Chromium
 ```
 
@@ -104,7 +112,7 @@ npm run smoke   # Playwright end-to-end test in Chromium
 - host access restricted to `https://www.youtube.com/*`
 - versioned settings schema stored in `chrome.storage.sync`
 - namespaced `data-ytoc-*` attributes and `--ytoc-*` CSS properties
-- background service worker handles only keyboard commands and update bookkeeping — no remote code or external network calls
+- background script handles only keyboard commands and update bookkeeping — no remote code or external network calls
 
 ## Privacy
 

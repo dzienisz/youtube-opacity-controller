@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Firefox support
 - Easier-to-read subtitles: one switch makes YouTube captions larger on a solid dark background, with white or yellow text
 - Dark mode popup that follows your system theme
 
