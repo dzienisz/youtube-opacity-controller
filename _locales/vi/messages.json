@@ -3,7 +3,6 @@
   "appDesc": { "message": "Giúp các nút điều khiển YouTube dễ nhìn, dễ nhấn và luôn hiển thị." },
   "eyebrow": { "message": "Điều khiển YouTube" },
   "headerTitle": { "message": "Nhìn rõ các nút điều khiển" },
-  "headerDescription": { "message": "Giữ các nút điều khiển luôn hiển thị, đậm hơn hoặc lớn hơn khi cần." },
   "enableToggleLabel": { "message": "Bật tính năng cải tiến điều khiển YouTube" },
   "settingsPanelLabel": { "message": "Cài đặt điều khiển YouTube" },
   "profilesLegend": { "message": "Chọn kiểu điều khiển" },

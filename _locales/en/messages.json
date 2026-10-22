@@ -3,7 +3,6 @@
   "appDesc": { "message": "Make YouTube controls easier to see, click, and keep visible." },
   "eyebrow": { "message": "YouTube controls" },
   "headerTitle": { "message": "See controls clearly" },
-  "headerDescription": { "message": "Keep controls visible, darker, or larger when you need them." },
   "enableToggleLabel": { "message": "Enable YouTube control enhancements" },
   "settingsPanelLabel": { "message": "YouTube control settings" },
   "profilesLegend": { "message": "Choose a control style" },

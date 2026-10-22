@@ -3,7 +3,6 @@
   "appDesc": { "message": "Зробіть елементи керування YouTube помітнішими, зручнішими для натискання та завжди видимими." },
   "eyebrow": { "message": "Елементи керування YouTube" },
   "headerTitle": { "message": "Чітко бачте елементи керування" },
-  "headerDescription": { "message": "Залишайте елементи керування видимими, темнішими чи більшими, коли потрібно." },
   "enableToggleLabel": { "message": "Увімкнути покращення елементів керування YouTube" },
   "settingsPanelLabel": { "message": "Налаштування елементів керування YouTube" },
   "profilesLegend": { "message": "Оберіть стиль елементів керування" },

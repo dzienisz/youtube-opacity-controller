@@ -3,7 +3,6 @@
   "appDesc": { "message": "YouTube 컨트롤을 더 잘 보이고, 누르기 쉽고, 계속 표시되게 하세요." },
   "eyebrow": { "message": "YouTube 컨트롤" },
   "headerTitle": { "message": "컨트롤을 선명하게 보기" },
-  "headerDescription": { "message": "필요할 때 컨트롤을 계속 표시하거나 더 진하고 크게 만드세요." },
   "enableToggleLabel": { "message": "YouTube 컨트롤 개선 기능 사용" },
   "settingsPanelLabel": { "message": "YouTube 컨트롤 설정" },
   "profilesLegend": { "message": "컨트롤 스타일 선택" },

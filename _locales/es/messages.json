@@ -3,7 +3,6 @@
   "appDesc": { "message": "Haz que los controles de YouTube sean más fáciles de ver, pulsar y mantener visibles." },
   "eyebrow": { "message": "Controles de YouTube" },
   "headerTitle": { "message": "Ve los controles con claridad" },
-  "headerDescription": { "message": "Mantén los controles visibles, más oscuros o más grandes cuando los necesites." },
   "enableToggleLabel": { "message": "Activar mejoras de los controles de YouTube" },
   "settingsPanelLabel": { "message": "Configuración de los controles de YouTube" },
   "profilesLegend": { "message": "Elige un estilo de controles" },

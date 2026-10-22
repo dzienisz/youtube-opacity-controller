@@ -3,7 +3,6 @@
   "appDesc": { "message": "让 YouTube 控件更易看清、更易点击并保持可见。" },
   "eyebrow": { "message": "YouTube 控件" },
   "headerTitle": { "message": "清晰看清控件" },
-  "headerDescription": { "message": "需要时让控件保持可见、更深或更大。" },
   "enableToggleLabel": { "message": "启用 YouTube 控件增强" },
   "settingsPanelLabel": { "message": "YouTube 控件设置" },
   "profilesLegend": { "message": "选择控件样式" },

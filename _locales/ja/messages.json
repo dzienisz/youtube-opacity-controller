@@ -3,7 +3,6 @@
   "appDesc": { "message": "YouTube の操作ボタンを見やすく、押しやすく、常に表示できるようにします。" },
   "eyebrow": { "message": "YouTube コントロール" },
   "headerTitle": { "message": "コントロールをはっきり表示" },
-  "headerDescription": { "message": "必要なときにコントロールを表示したまま、濃く、大きくできます。" },
   "enableToggleLabel": { "message": "YouTube コントロールの拡張を有効にする" },
   "settingsPanelLabel": { "message": "YouTube コントロールの設定" },
   "profilesLegend": { "message": "コントロールのスタイルを選択" },
