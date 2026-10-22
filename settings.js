@@ -36,6 +36,11 @@
     GREEN: 'green'
   });
   const HIGHLIGHT_VALUES = Object.freeze(Object.values(HIGHLIGHT_COLORS));
+  const CAPTION_COLORS = Object.freeze({
+    WHITE: 'white',
+    YELLOW: 'yellow'
+  });
+  const CAPTION_COLOR_VALUES = Object.freeze(Object.values(CAPTION_COLORS));
   const DEFAULTS = Object.freeze({
     settingsSchemaVersion: SCHEMA_VERSION,
     extensionEnabled: true,
@@ -44,7 +49,9 @@
     alwaysShowControls: false,
     progressBarSize: PROGRESS_SIZES.DEFAULT,
     highlightColor: HIGHLIGHT_COLORS.DEFAULT,
-    largeCursor: false
+    largeCursor: false,
+    readableCaptions: false,
+    captionColor: CAPTION_COLORS.WHITE
   });
 
   function isFiniteNumber(value) {
@@ -79,7 +86,13 @@
         : DEFAULTS.highlightColor,
       largeCursor: typeof input.largeCursor === 'boolean'
         ? input.largeCursor
-        : DEFAULTS.largeCursor
+        : DEFAULTS.largeCursor,
+      readableCaptions: typeof input.readableCaptions === 'boolean'
+        ? input.readableCaptions
+        : DEFAULTS.readableCaptions,
+      captionColor: CAPTION_COLOR_VALUES.includes(input.captionColor)
+        ? input.captionColor
+        : DEFAULTS.captionColor
     };
   }
 
@@ -150,6 +163,8 @@
     PROGRESS_SIZE_VALUES,
     HIGHLIGHT_COLORS,
     HIGHLIGHT_VALUES,
+    CAPTION_COLORS,
+    CAPTION_COLOR_VALUES,
     COMMANDS,
     DEFAULTS,
     normalizeOpacity,

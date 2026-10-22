@@ -341,3 +341,31 @@
     transition: none !important;
   }
 }
+
+/* Readable subtitles: zoom the caption window so YouTube's own layout (line
+   breaks, anchoring above the controls) scales with it. The default bottom
+   window has a fixed inline width/margin computed for the native size, so
+   re-center it on its content instead. */
+:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .caption-window {
+  zoom: 1.4 !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .caption-window.ytp-caption-window-bottom {
+  width: max-content !important;
+  max-width: 64% !important;
+  margin-left: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .ytp-caption-segment {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: #fff !important;
+  fill: #fff !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-captions="yellow"] #movie_player .ytp-caption-segment {
+  color: #ffd400 !important;
+  fill: #ffd400 !important;
+}

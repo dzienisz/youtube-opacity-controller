@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "イエロー" } }
   },
   "statusCursorLarge": { "message": "大きなポインターをオン" },
-  "statusCursorDefault": { "message": "標準のポインター" }
+  "statusCursorDefault": { "message": "標準のポインター" },
+  "readableCaptionsLabel": { "message": "読みやすい字幕" },
+  "readableCaptionsDesc": { "message": "暗い単色の背景に大きな字幕" },
+  "captionColorLegend": { "message": "字幕の文字色" },
+  "captionColorWhite": { "message": "白" },
+  "captionColorYellow": { "message": "黄色" },
+  "statusCaptionsOn": { "message": "読みやすい字幕を有効にしました" },
+  "statusCaptionsOff": { "message": "YouTube の字幕スタイルを復元しました" },
+  "statusCaptionColor": {
+    "message": "字幕の色: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "白" } }
+  }
 }

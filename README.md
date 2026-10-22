@@ -17,6 +17,7 @@ A privacy-first Chrome extension that makes YouTube player controls easier to se
 - Optional always-visible player controls
 - Bigger progress bar with a larger, easier-to-grab handle
 - Highlight colors for the progress bar, handle, icons, and time display
+- Easier-to-read subtitles with a solid dark background and white or yellow text
 - Larger mouse pointer over the video
 - Keyboard shortcuts with on-player confirmation (HUD)
 - Master switch that removes all extension styling

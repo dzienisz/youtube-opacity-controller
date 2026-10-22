@@ -60,5 +60,16 @@
   },
   "statusCursorLarge": { "message": "Крупный указатель включён" },
   "statusCursorDefault": { "message": "Стандартный указатель" },
-  "statusReset": { "message": "Настройки сброшены" }
+  "statusReset": { "message": "Настройки сброшены" },
+  "readableCaptionsLabel": { "message": "Более удобные для чтения субтитры" },
+  "readableCaptionsDesc": { "message": "Более крупные субтитры на сплошном тёмном фоне" },
+  "captionColorLegend": { "message": "Цвет текста субтитров" },
+  "captionColorWhite": { "message": "Белый" },
+  "captionColorYellow": { "message": "Жёлтый" },
+  "statusCaptionsOn": { "message": "Удобные для чтения субтитры включены" },
+  "statusCaptionsOff": { "message": "Стиль субтитров YouTube восстановлен" },
+  "statusCaptionColor": {
+    "message": "Цвет субтитров: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Белый" } }
+  }
 }

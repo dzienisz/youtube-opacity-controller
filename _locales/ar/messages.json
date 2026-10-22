@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "أصفر" } }
   },
   "statusCursorLarge": { "message": "المؤشر الأكبر مفعّل" },
-  "statusCursorDefault": { "message": "المؤشر القياسي" }
+  "statusCursorDefault": { "message": "المؤشر القياسي" },
+  "readableCaptionsLabel": { "message": "ترجمة نصية أسهل قراءة" },
+  "readableCaptionsDesc": { "message": "ترجمة نصية أكبر على خلفية داكنة مصمتة" },
+  "captionColorLegend": { "message": "لون نص الترجمة" },
+  "captionColorWhite": { "message": "أبيض" },
+  "captionColorYellow": { "message": "أصفر" },
+  "statusCaptionsOn": { "message": "تم تفعيل الترجمة النصية الأسهل قراءة" },
+  "statusCaptionsOff": { "message": "تمت استعادة نمط ترجمة YouTube" },
+  "statusCaptionColor": {
+    "message": "لون الترجمة: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "أبيض" } }
+  }
 }

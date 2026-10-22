@@ -18,6 +18,7 @@ function applySettings(value) {
     root.removeAttribute('data-ytoc-progress');
     root.removeAttribute('data-ytoc-highlight');
     root.removeAttribute('data-ytoc-large-cursor');
+    root.removeAttribute('data-ytoc-captions');
     root.style.removeProperty('--ytoc-overlay-opacity');
     return;
   }
@@ -37,6 +38,12 @@ function applySettings(value) {
     root.setAttribute('data-ytoc-highlight', currentSettings.highlightColor);
   } else {
     root.removeAttribute('data-ytoc-highlight');
+  }
+
+  if (currentSettings.readableCaptions) {
+    root.setAttribute('data-ytoc-captions', currentSettings.captionColor);
+  } else {
+    root.removeAttribute('data-ytoc-captions');
   }
 
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);

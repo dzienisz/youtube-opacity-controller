@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "Gelb" } }
   },
   "statusCursorLarge": { "message": "Größerer Zeiger an" },
-  "statusCursorDefault": { "message": "Standard-Zeiger" }
+  "statusCursorDefault": { "message": "Standard-Zeiger" },
+  "readableCaptionsLabel": { "message": "Besser lesbare Untertitel" },
+  "readableCaptionsDesc": { "message": "Größere Untertitel auf einem einheitlich dunklen Hintergrund" },
+  "captionColorLegend": { "message": "Textfarbe der Untertitel" },
+  "captionColorWhite": { "message": "Weiß" },
+  "captionColorYellow": { "message": "Gelb" },
+  "statusCaptionsOn": { "message": "Besser lesbare Untertitel aktiviert" },
+  "statusCaptionsOff": { "message": "YouTubes Untertitelstil wiederhergestellt" },
+  "statusCaptionColor": {
+    "message": "Untertitelfarbe: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Weiß" } }
+  }
 }

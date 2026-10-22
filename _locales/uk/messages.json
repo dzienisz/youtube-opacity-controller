@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "Жовтий" } }
   },
   "statusCursorLarge": { "message": "Великий вказівник увімкнено" },
-  "statusCursorDefault": { "message": "Стандартний вказівник" }
+  "statusCursorDefault": { "message": "Стандартний вказівник" },
+  "readableCaptionsLabel": { "message": "Зручніші для читання субтитри" },
+  "readableCaptionsDesc": { "message": "Збільшені субтитри на суцільному темному тлі" },
+  "captionColorLegend": { "message": "Колір тексту субтитрів" },
+  "captionColorWhite": { "message": "Білий" },
+  "captionColorYellow": { "message": "Жовтий" },
+  "statusCaptionsOn": { "message": "Зручніші для читання субтитри ввімкнено" },
+  "statusCaptionsOff": { "message": "Стиль субтитрів YouTube відновлено" },
+  "statusCaptionColor": {
+    "message": "Колір субтитрів: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Білий" } }
+  }
 }

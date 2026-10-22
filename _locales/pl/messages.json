@@ -60,5 +60,16 @@
   },
   "statusCursorLarge": { "message": "Większy wskaźnik włączony" },
   "statusCursorDefault": { "message": "Standardowy wskaźnik" },
-  "statusReset": { "message": "Ustawienia zresetowane" }
+  "statusReset": { "message": "Ustawienia zresetowane" },
+  "readableCaptionsLabel": { "message": "Czytelniejsze napisy" },
+  "readableCaptionsDesc": { "message": "Większe napisy na pełnym ciemnym tle" },
+  "captionColorLegend": { "message": "Kolor tekstu napisów" },
+  "captionColorWhite": { "message": "Biały" },
+  "captionColorYellow": { "message": "Żółty" },
+  "statusCaptionsOn": { "message": "Czytelniejsze napisy włączone" },
+  "statusCaptionsOff": { "message": "Przywrócono styl napisów YouTube" },
+  "statusCaptionColor": {
+    "message": "Kolor napisów: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Biały" } }
+  }
 }

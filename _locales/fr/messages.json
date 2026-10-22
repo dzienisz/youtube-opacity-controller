@@ -60,5 +60,16 @@
   },
   "statusCursorLarge": { "message": "Pointeur plus grand activé" },
   "statusCursorDefault": { "message": "Pointeur standard" },
-  "statusReset": { "message": "Paramètres réinitialisés" }
+  "statusReset": { "message": "Paramètres réinitialisés" },
+  "readableCaptionsLabel": { "message": "Sous-titres plus lisibles" },
+  "readableCaptionsDesc": { "message": "Sous-titres plus grands sur un fond sombre uni" },
+  "captionColorLegend": { "message": "Couleur du texte des sous-titres" },
+  "captionColorWhite": { "message": "Blanc" },
+  "captionColorYellow": { "message": "Jaune" },
+  "statusCaptionsOn": { "message": "Sous-titres plus lisibles activés" },
+  "statusCaptionsOff": { "message": "Style des sous-titres YouTube restauré" },
+  "statusCaptionColor": {
+    "message": "Couleur des sous-titres : $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "Blanc" } }
+  }
 }

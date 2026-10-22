@@ -60,5 +60,16 @@
     "placeholders": { "color": { "content": "$1", "example": "노란색" } }
   },
   "statusCursorLarge": { "message": "큰 포인터 켜짐" },
-  "statusCursorDefault": { "message": "기본 포인터" }
+  "statusCursorDefault": { "message": "기본 포인터" },
+  "readableCaptionsLabel": { "message": "더 읽기 쉬운 자막" },
+  "readableCaptionsDesc": { "message": "어두운 단색 배경에 더 큰 자막" },
+  "captionColorLegend": { "message": "자막 글자 색상" },
+  "captionColorWhite": { "message": "흰색" },
+  "captionColorYellow": { "message": "노란색" },
+  "statusCaptionsOn": { "message": "읽기 쉬운 자막 사용 설정" },
+  "statusCaptionsOff": { "message": "YouTube 자막 스타일 복원" },
+  "statusCaptionColor": {
+    "message": "자막 색상: $COLOR$",
+    "placeholders": { "color": { "content": "$1", "example": "흰색" } }
+  }
 }
