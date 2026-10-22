@@ -45,15 +45,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Create GitHub Release
+      - name: Create or update GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          gh release create "$GITHUB_REF_NAME" \
-            "dist/youtube-controls-${TAG_VERSION}.zip" \
-            --title "$GITHUB_REF_NAME" \
-            --generate-notes
+          ZIP="dist/youtube-controls-${GITHUB_REF_NAME#v}.zip"
+          # Re-runs (e.g. after a failed store upload) reuse the existing release.
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$ZIP" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$ZIP" \
+              --title "$GITHUB_REF_NAME" \
+              --generate-notes
+          fi
 
       - name: Publish to Chrome Web Store
         if: ${{ env.CWS_CLIENT_ID != '' }}
