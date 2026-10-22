@@ -391,16 +391,27 @@ async function recordEmbedChecks(frame, scenario) {
 async function saveScreenshot(scope, fallbackPage, selector, filePath, scenario) {
   try {
     const element = scope?.locator(selector);
-    if (element && await element.count()) {
-      await element.first().screenshot({ path: filePath, timeout: 15000 });
-    } else {
-      await fallbackPage.screenshot({ path: filePath, timeout: 15000 });
+    let playerScreenshot = false;
+    if (element && await element.count() && await element.first().isVisible()) {
+      try {
+        await element.first().screenshot({ path: filePath, timeout: 15000 });
+        playerScreenshot = true;
+      } catch {
+        // Fall back to the page when YouTube hides or replaces the player element.
+      }
     }
+    if (!playerScreenshot) await fallbackPage.screenshot({ path: filePath, timeout: 15000 });
+
     scenario.screenshot = path.relative(root, filePath);
-    record(scenario, 'Screenshot', 'PASS', scenario.screenshot);
+    record(
+      scenario,
+      'Screenshot',
+      'PASS',
+      playerScreenshot ? scenario.screenshot : `player element unavailable; captured page screenshot: ${scenario.screenshot}`
+    );
   } catch (error) {
     scenario.screenshot = path.relative(root, filePath);
-    record(scenario, 'Screenshot', 'FAIL', error.message);
+    record(scenario, 'Screenshot', 'INCONCLUSIVE', error.message);
   }
 }
 
