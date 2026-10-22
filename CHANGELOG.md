@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Release workflow: first AMO submission sends license, category and listing metadata; manual run resubmits a released tag to AMO only.
+
 ## [2.1.0] - 2026-10-22
 
 ### Added

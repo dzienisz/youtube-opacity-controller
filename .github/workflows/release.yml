@@ -5,11 +5,18 @@ name: Extension Release
 # secrets, the workflow still builds and creates the GitHub Release.
 # AMO submission requires AMO_JWT_ISSUER and AMO_JWT_SECRET; without them,
 # the GitHub Release is still created and the submission step is skipped.
+# A manual dispatch with a released tag resubmits to AMO only.
 
 on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Released tag to resubmit to AMO only, e.g. v2.1.0"
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -27,8 +34,11 @@ jobs:
           node-version: 22
 
       - name: Verify tag matches package and manifest versions
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
         run: |
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          TAG_VERSION="${INPUT_TAG:-$GITHUB_REF_NAME}"
+          TAG_VERSION="${TAG_VERSION#v}"
           MANIFEST_VERSION="$(node -p "require('./manifest.json').version")"
           PACKAGE_VERSION="$(node -p "require('./package.json').version")"
           if [ "$TAG_VERSION" != "$MANIFEST_VERSION" ] || [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
@@ -51,6 +61,7 @@ jobs:
         run: npm run build:firefox -- --zip
 
       - name: Create or update GitHub Release
+        if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -67,7 +78,7 @@ jobs:
           fi
 
       - name: Publish to Chrome Web Store
-        if: ${{ env.CWS_CLIENT_ID != '' }}
+        if: ${{ github.event_name == 'push' && env.CWS_CLIENT_ID != '' }}
         env:
           CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
@@ -99,4 +110,5 @@ jobs:
           npx --yes web-ext@10 sign \
             --source-dir dist/firefox \
             --channel listed \
+            --amo-metadata amo-metadata.json \
             --approval-timeout 0

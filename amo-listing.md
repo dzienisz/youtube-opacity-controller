@@ -3,6 +3,9 @@
 Source of truth for the addons.mozilla.org listing. Update this file first,
 then copy the text into the AMO Developer Hub.
 
+The API submission reads `amo-metadata.json`, so keep this listing and that
+file in sync.
+
 ## Name
 
 YouTube Controls: Clearer & Larger
@@ -15,21 +18,31 @@ Make YouTube controls easier to see, click, and keep visible.
 
 Make YouTube player controls easier to see, click, and keep visible.
 
-Choose a control style that fits your needs: clear controls for everyday
-viewing, stronger contrast, or larger buttons, icons, and timestamps. Keep the
-controls visible, make the progress bar thicker and easier to grab, or choose
-a highlight color for the progress bar, handle, icons, and time display.
+Use recommended settings for strong contrast behind the controls, a bigger
+progress bar, and easier-to-read subtitles, or pick each option yourself:
+clear or strong-contrast control styles, controls that stay visible, a thicker
+progress bar that is easier to grab, and a yellow, cyan, or green highlight
+for the progress bar, handle, icons, and time display.
 
-Readable subtitles can be enlarged on a solid dark background, with white or
+Readable subtitles are enlarged on a solid dark background, with white or
 yellow text. A larger mouse pointer and keyboard shortcuts make common
-controls easier to use.
+controls easier to use. Works on youtube.com and in YouTube videos embedded
+on other sites.
 
-The extension changes YouTube's existing player controls without moving,
-cloning, or replacing them. A master switch restores YouTube's original style.
+The extension restyles YouTube's existing player controls without moving,
+cloning, or replacing them. Restore YouTube's look switches every change off
+in one click.
+
+No tracking, no accounts, no external requests. Preferences are stored in
+the browser's extension storage.
 
 ## Category
 
-Accessibility (or the nearest available category).
+Photos, Music & Videos (`photos-music-videos`)
+
+## License
+
+MIT
 
 ## Data collection
 
