@@ -14,6 +14,11 @@
     LOW_VISION: 'low-vision'
   });
   const PROFILE_VALUES = Object.freeze(Object.values(PROFILES));
+  const PROFILE_MESSAGE_KEYS = Object.freeze({
+    [PROFILES.STANDARD]: 'profileStandard',
+    [PROFILES.HIGH_CONTRAST]: 'profileHighContrast',
+    [PROFILES.LOW_VISION]: 'profileLowVision'
+  });
   const PROFILE_DEFAULT_OPACITY = Object.freeze({
     [PROFILES.STANDARD]: 0.7,
     [PROFILES.HIGH_CONTRAST]: 0.9,
@@ -82,6 +87,10 @@
     return normalizeSettings(value);
   }
 
+  function needsMigration(stored, migrated) {
+    return Object.keys(DEFAULTS).some(key => (stored || {})[key] !== migrated[key]);
+  }
+
   function getProfileOpacity(profile) {
     return PROFILE_DEFAULT_OPACITY[profile] ?? DEFAULTS.overlayOpacity;
   }
@@ -136,6 +145,7 @@
     SCHEMA_VERSION,
     PROFILES,
     PROFILE_VALUES,
+    PROFILE_MESSAGE_KEYS,
     PROGRESS_SIZES,
     PROGRESS_SIZE_VALUES,
     HIGHLIGHT_COLORS,
@@ -145,6 +155,7 @@
     normalizeOpacity,
     normalizeSettings,
     migrateSettings,
+    needsMigration,
     getProfileOpacity,
     cycleProfile,
     applyCommand,

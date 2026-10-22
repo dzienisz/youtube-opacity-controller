@@ -197,7 +197,19 @@ We use [Semantic Versioning](https://semver.org/):
 - **MINOR:** New features (backwards compatible)
 - **PATCH:** Bug fixes
 
-When your PR is merged, maintainers will handle version bumping and releases.
+## 🚀 Releasing
+
+Before a release, bump the version in `manifest.json` and `package.json`, add a
+versioned entry to `CHANGELOG.md`, and merge the changes to `main`. Push a
+matching `vX.Y.Z` tag to trigger the release workflow. It builds the ZIP and
+creates a GitHub Release; if the Chrome Web Store secrets are configured, it
+also uploads and publishes the extension to CWS:
+
+- `CWS_CLIENT_ID`
+- `CWS_CLIENT_SECRET`
+- `CWS_REFRESH_TOKEN`
+- `CWS_EXTENSION_ID`
+- `CWS_PUBLISHER_ID`
 
 ## 🎯 Areas That Need Help
 

@@ -1,6 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const settings = require('./settings.js');
+const messages = require('./_locales/en/messages.json');
 
 test('migrates legacy settings without losing user preferences', () => {
   assert.deepEqual(settings.migrateSettings({
@@ -35,6 +36,37 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     highlightColor: 'default',
     largeCursor: false
   });
+});
+
+test('needsMigration returns false for already-migrated defaults', () => {
+  assert.equal(settings.needsMigration(settings.DEFAULTS, settings.DEFAULTS), false);
+});
+
+test('needsMigration returns true for empty or null stored settings', () => {
+  assert.equal(settings.needsMigration({}, settings.DEFAULTS), true);
+  assert.equal(settings.needsMigration(null, settings.DEFAULTS), true);
+});
+
+test('needsMigration returns true when a stored setting differs', () => {
+  const oldSettings = {
+    settingsSchemaVersion: 2,
+    extensionEnabled: true,
+    accessibilityProfile: 'standard',
+    overlayOpacity: 0.7,
+    alwaysShowControls: false,
+    progressBarSize: 'default',
+    largeCursor: false
+  };
+
+  assert.equal(settings.needsMigration(oldSettings, settings.migrateSettings(oldSettings)), true);
+});
+
+test('profile message keys cover every profile and exist in English messages', () => {
+  for (const profile of settings.PROFILE_VALUES) {
+    const messageKey = settings.PROFILE_MESSAGE_KEYS[profile];
+    assert.ok(messageKey, `missing message key for profile: ${profile}`);
+    assert.ok(messages[messageKey], `missing English message: ${messageKey}`);
+  }
 });
 
 test('normalizes invalid and out-of-range settings', () => {

@@ -2,12 +2,6 @@
 
 importScripts('settings.js');
 
-const PROFILE_NAME_KEYS = {
-  standard: 'profileStandard',
-  'high-contrast': 'profileHighContrast',
-  'low-vision': 'profileLowVision'
-};
-
 function message(key) {
   return chrome.i18n.getMessage(key);
 }
@@ -31,7 +25,7 @@ chrome.commands.onCommand.addListener(command => {
           sendHud(message(next.extensionEnabled ? 'hudEnhancementsOn' : 'hudEnhancementsOff'));
           break;
         case 'cycle-profile':
-          sendHud(message(PROFILE_NAME_KEYS[next.accessibilityProfile]), message('hudProfileHint'));
+          sendHud(message(YtocSettings.PROFILE_MESSAGE_KEYS[next.accessibilityProfile]), message('hudProfileHint'));
           break;
         case 'toggle-always-show':
           sendHud(message(next.alwaysShowControls ? 'hudControlsVisible' : 'hudControlsAutoHide'));
