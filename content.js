@@ -74,10 +74,7 @@ function initializeSettings() {
     const migrated = settingsModel.migrateSettings(result);
     applySettings(migrated);
 
-    const requiresMigration = Object.keys(settingsModel.DEFAULTS)
-      .some(key => result[key] !== migrated[key]);
-
-    if (requiresMigration) {
+    if (settingsModel.needsMigration(result, migrated)) {
       chrome.storage.sync.set(migrated);
     }
   });

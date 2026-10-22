@@ -1,0 +1,76 @@
+name: Extension Release
+
+# Chrome Web Store upload requires CWS_CLIENT_ID, CWS_CLIENT_SECRET,
+# CWS_REFRESH_TOKEN, CWS_EXTENSION_ID, and CWS_PUBLISHER_ID. Without these
+# secrets, the workflow still builds and creates the GitHub Release.
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      CWS_CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify tag matches package and manifest versions
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          MANIFEST_VERSION="$(node -p "require('./manifest.json').version")"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$TAG_VERSION" != "$MANIFEST_VERSION" ] || [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "Tag ($TAG_VERSION) must match manifest.json ($MANIFEST_VERSION) and package.json ($PACKAGE_VERSION)" >&2
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+
+      - name: Check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/youtube-controls-${TAG_VERSION}.zip" \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
+
+      - name: Publish to Chrome Web Store
+        if: ${{ env.CWS_CLIENT_ID != '' }}
+        env:
+          CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+          EXTENSION_ID: ${{ secrets.CWS_EXTENSION_ID }}
+          PUBLISHER_ID: ${{ secrets.CWS_PUBLISHER_ID }}
+        run: |
+          if [ -z "$CLIENT_ID" ] || [ -z "$EXTENSION_ID" ]; then
+            echo "::warning::Chrome Web Store secrets not configured - skipping publish"
+            exit 0
+          fi
+          if [ -z "$PUBLISHER_ID" ]; then
+            echo "::error::CWS_PUBLISHER_ID is not set - the Chrome Web Store v2 API requires it"
+            exit 1
+          fi
+          npx --yes chrome-webstore-upload-cli@4 \
+            --source "dist/youtube-controls-${GITHUB_REF_NAME#v}.zip"

@@ -12,12 +12,6 @@ document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
   if (message) el.setAttribute('aria-label', message);
 });
 
-const PROFILE_NAME_KEYS = {
-  standard: 'profileStandard',
-  'high-contrast': 'profileHighContrast',
-  'low-vision': 'profileLowVision'
-};
-
 const settingsModel = globalThis.YtocSettings;
 const extensionEnabled = document.getElementById('extensionEnabled');
 const settingsPanel = document.getElementById('settingsPanel');
@@ -89,9 +83,7 @@ chrome.storage.sync.get(null, result => {
   currentSettings = settingsModel.migrateSettings(result);
   updateControls(currentSettings);
 
-  const requiresMigration = Object.keys(settingsModel.DEFAULTS)
-    .some(key => result[key] !== currentSettings[key]);
-  if (requiresMigration) {
+  if (settingsModel.needsMigration(result, currentSettings)) {
     chrome.storage.sync.set(currentSettings);
   }
 });
@@ -107,7 +99,7 @@ profileInputs.forEach(input => {
     applyUpdate({
       accessibilityProfile: input.value,
       overlayOpacity: settingsModel.getProfileOpacity(input.value)
-    }, t('statusProfileSelected', [t(PROFILE_NAME_KEYS[input.value])]));
+    }, t('statusProfileSelected', [t(settingsModel.PROFILE_MESSAGE_KEYS[input.value])]));
   });
 });
 
