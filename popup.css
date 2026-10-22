@@ -36,8 +36,15 @@ summary {
 }
 
 .header {
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
   margin-bottom: 14px;
+}
+
+.header-copy {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -47,18 +54,19 @@ summary {
   font-weight: 750;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 h1 {
   margin: 0;
   font-size: 18px;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .switch {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+  align-self: start;
   display: inline-flex;
   flex: 0 0 auto;
   cursor: pointer;

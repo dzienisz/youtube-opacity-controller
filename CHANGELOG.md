@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New installs start with recommended settings (Strong contrast, bigger progress bar, easier-to-read subtitles); existing settings are kept
 
 ### Fixed
+- Popup header no longer overlaps the on/off switch in long languages
 - Popup shows your actual on/off shortcut instead of always Alt+Shift+Y
 - Fit YouTube's new rounded (pill) player: darken the control pills instead of drawing a square band and stop painting a box behind the channel logo
 - Bigger progress bar and highlight color now apply to the newer embedded player's progress bar
