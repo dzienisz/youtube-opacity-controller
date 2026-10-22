@@ -25,6 +25,9 @@ const largeCursor = document.getElementById('largeCursor');
 const overlayOpacity = document.getElementById('overlayOpacity');
 const whatsNew = document.getElementById('whatsNew');
 const whatsNewDismiss = document.getElementById('whatsNewDismiss');
+const ratePrompt = document.getElementById('ratePrompt');
+const ratePromptRate = document.getElementById('ratePromptRate');
+const ratePromptDismiss = document.getElementById('ratePromptDismiss');
 const editShortcuts = document.getElementById('editShortcuts');
 const openShortcutSettings = Reflect.get(chrome.commands, 'openShortcutSettings');
 const shortcutKeys = document.getElementById('shortcutKeys');
@@ -234,16 +237,49 @@ editShortcuts.addEventListener('click', () => {
 // The banner describes a feature release ("New in 2.0"), so it is keyed to the
 // major.minor version and does not resurface on patch bumps like 2.0.1.
 const featureVersion = version => String(version).split('.').slice(0, 2).join('.');
+const RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
 
 whatsNewDismiss.addEventListener('click', () => {
   whatsNew.hidden = true;
   chrome.storage.local.set({ whatsNewDismissed: featureVersion(chrome.runtime.getManifest().version) });
 });
 
-chrome.storage.local.get(['whatsNewVersion', 'whatsNewDismissed'], result => {
+function finishRatePrompt() {
+  ratePrompt.hidden = true;
+  chrome.storage.local.set({ ratePromptDone: true });
+}
+
+ratePromptRate.addEventListener('click', () => {
+  finishRatePrompt();
+  chrome.tabs.create({ url: RATE_PROMPT_URL });
+});
+
+ratePromptDismiss.addEventListener('click', finishRatePrompt);
+
+chrome.storage.local.get([
+  'whatsNewVersion',
+  'whatsNewDismissed',
+  'installedAt',
+  'popupOpens',
+  'ratePromptDone',
+  'ratePromptShown'
+], result => {
+  const popupOpens = Number.isFinite(result.popupOpens) ? result.popupOpens + 1 : 1;
+  chrome.storage.local.set({ popupOpens });
+
   const version = featureVersion(chrome.runtime.getManifest().version);
   if (featureVersion(result.whatsNewVersion) === version && result.whatsNewDismissed !== version) {
     whatsNew.hidden = false;
     customize.open = true;
+    return;
+  }
+
+  const isChrome = location.protocol === 'chrome-extension:'
+    && !/\bEdg\//.test(navigator.userAgent);
+  if (isChrome && settingsModel.shouldShowRatePrompt({ ...result, popupOpens }, Date.now())) {
+    ratePrompt.hidden = false;
+    chrome.storage.local.set({
+      ratePromptShown: (Number.isFinite(result.ratePromptShown) ? result.ratePromptShown : 0) + 1
+    });
   }
 });
