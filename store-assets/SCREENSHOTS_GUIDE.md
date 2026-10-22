@@ -6,13 +6,13 @@ Chrome Web Store requires **1-5 screenshots** of your extension in action.
 - **1280x800 pixels** (recommended)
 - OR **640x400 pixels**
 
-## Current screenshots (v2.0)
+## Current screenshots (v2.1)
 
-`screenshot1.png`–`screenshot5.png` are 1280×800 composites generated from real YouTube captures (Big Buck Bunny, CC-BY) of the v2.0 UI:
+`screenshot1.png`–`screenshot5.png` are 1280×800 composites generated from real YouTube captures (Big Buck Bunny, CC-BY) of the extension UI:
 
-The first composite still shows the retired third style and should be replaced before the next store listing refresh.
+`screenshot1.png` was recaptured for v2.1 (modern pill player, current popup). `screenshot2.png`–`screenshot5.png` are still v2.0 captures of the older square control band.
 
-1. Popup next to the player — Strong Contrast, bigger progress bar, cyan highlight
+1. Popup next to the player — Strong contrast, bigger cyan progress bar, easier-to-read subtitles on
 2. Before/after control strip — no extension vs Strong Contrast
 3. Bigger progress bar in yellow / cyan / green
 4. Keyboard shortcuts with the on-player HUD
