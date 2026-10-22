@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "기본 YouTube 컨트롤" },
   "hudControlsVisible": { "message": "컨트롤이 계속 표시됩니다" },
   "hudControlsAutoHide": { "message": "컨트롤이 자동으로 숨겨질 수 있습니다" },
-  "hudProfileHint": { "message": "Alt+Shift+P로 스타일 변경" },
+  "hudProfileHint": { "message": "$SHORTCUT$로 스타일 변경", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "컨트롤 개선 기능 켜기/끄기" },
   "cmdCycleProfile": { "message": "다음 컨트롤 스타일로 전환" },
   "cmdToggleAlwaysShow": { "message": "컨트롤 계속 표시 켜기/끄기" },

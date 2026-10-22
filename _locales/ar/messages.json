@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "عناصر تحكم YouTube الأصلية" },
   "hudControlsVisible": { "message": "تبقى عناصر التحكم ظاهرة" },
   "hudControlsAutoHide": { "message": "يمكن إخفاء عناصر التحكم تلقائيًا" },
-  "hudProfileHint": { "message": "Alt+Shift+P لتغيير النمط" },
+  "hudProfileHint": { "message": "$SHORTCUT$ لتغيير النمط", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "تشغيل تحسينات عناصر التحكم أو إيقافها" },
   "cmdCycleProfile": { "message": "التبديل إلى نمط التحكم التالي" },
   "cmdToggleAlwaysShow": { "message": "تشغيل إبقاء عناصر التحكم ظاهرة أو إيقافه" },

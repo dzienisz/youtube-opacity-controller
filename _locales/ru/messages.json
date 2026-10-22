@@ -35,7 +35,7 @@
   "hudEnhancementsOff": { "message": "Оригинальные элементы управления YouTube" },
   "hudControlsVisible": { "message": "Элементы управления остаются видимыми" },
   "hudControlsAutoHide": { "message": "Элементы управления могут скрываться автоматически" },
-  "hudProfileHint": { "message": "Alt+Shift+P для смены стиля" },
+  "hudProfileHint": { "message": "$SHORTCUT$, чтобы изменить стиль", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "Включить или выключить улучшения элементов управления" },
   "cmdCycleProfile": { "message": "Переключиться на следующий стиль элементов управления" },
   "cmdToggleAlwaysShow": { "message": "Включить или выключить постоянную видимость элементов управления" },

@@ -17,7 +17,7 @@
       "description": "__MSG_cmdToggleEnhancements__"
     },
     "cycle-profile": {
-      "suggested_key": { "default": "Alt+Shift+P" },
+      "suggested_key": { "default": "Alt+Shift+J" },
       "description": "__MSG_cmdCycleProfile__"
     },
     "toggle-always-show": {

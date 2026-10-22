@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "元の YouTube コントロール" },
   "hudControlsVisible": { "message": "コントロールを常に表示" },
   "hudControlsAutoHide": { "message": "コントロールは自動で非表示になります" },
-  "hudProfileHint": { "message": "Alt+Shift+P でスタイルを切り替え" },
+  "hudProfileHint": { "message": "$SHORTCUT$ でスタイルを切り替え", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "コントロール拡張のオン/オフを切り替えます" },
   "cmdCycleProfile": { "message": "次のコントロールスタイルに切り替えます" },
   "cmdToggleAlwaysShow": { "message": "コントロールの常時表示をオン/オフします" },

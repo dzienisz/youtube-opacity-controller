@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "Điều khiển YouTube gốc" },
   "hudControlsVisible": { "message": "Điều khiển luôn hiển thị" },
   "hudControlsAutoHide": { "message": "Điều khiển có thể tự ẩn" },
-  "hudProfileHint": { "message": "Alt+Shift+P để đổi kiểu" },
+  "hudProfileHint": { "message": "$SHORTCUT$ để đổi kiểu", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "Bật hoặc tắt tính năng cải tiến điều khiển" },
   "cmdCycleProfile": { "message": "Chuyển sang kiểu điều khiển tiếp theo" },
   "cmdToggleAlwaysShow": { "message": "Bật hoặc tắt giữ điều khiển luôn hiển thị" },

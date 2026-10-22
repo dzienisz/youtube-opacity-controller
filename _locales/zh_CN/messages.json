@@ -35,7 +35,7 @@
   "hudEnhancementsOff": { "message": "YouTube 原始控件" },
   "hudControlsVisible": { "message": "控件保持可见" },
   "hudControlsAutoHide": { "message": "控件可自动隐藏" },
-  "hudProfileHint": { "message": "Alt+Shift+P 切换样式" },
+  "hudProfileHint": { "message": "$SHORTCUT$ 切换样式", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "开启或关闭控件增强" },
   "cmdCycleProfile": { "message": "切换到下一个控件样式" },
   "cmdToggleAlwaysShow": { "message": "开启或关闭控件常显" },
