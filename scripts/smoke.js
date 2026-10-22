@@ -10,8 +10,9 @@ const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'u
 const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
 const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
+const ratePromptReviewsUrl = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
 
-async function assertHeaderLayout(popup) {
+async function assertHeaderLayout(popup, { ratePromptVisible = false } = {}) {
   const locales = fs.readdirSync(path.join(root, '_locales'), { withFileTypes: true })
     .filter(entry => entry.isDirectory())
     .map(entry => entry.name)
@@ -23,8 +24,17 @@ async function assertHeaderLayout(popup) {
   const original = await popup.evaluate(() => ({
     eyebrow: document.querySelector('.eyebrow').textContent,
     heading: document.querySelector('h1').textContent,
-    direction: document.documentElement.dir
+    direction: document.documentElement.dir,
+    lang: document.documentElement.lang,
+    ratePromptHidden: document.getElementById('ratePrompt').hidden,
+    ratePromptTitle: document.getElementById('ratePromptTitle').textContent,
+    ratePromptBody: document.querySelector('#ratePrompt .popup-banner-copy p').textContent,
+    ratePromptRate: document.getElementById('ratePromptRate').textContent,
+    ratePromptDismiss: document.getElementById('ratePromptDismiss').textContent,
+    whatsNewHidden: document.getElementById('whatsNew').hidden,
+    customizeOpen: document.querySelector('details.customize').open
   }));
+  const heights = [];
   try {
     for (const locale of locales) {
       const messages = JSON.parse(fs.readFileSync(
@@ -34,12 +44,39 @@ async function assertHeaderLayout(popup) {
       const header = {
         eyebrow: messages.eyebrow.message,
         heading: messages.headerTitle.message,
-        direction: locale === 'ar' ? 'rtl' : 'ltr'
+        direction: locale === 'ar' ? 'rtl' : 'ltr',
+        lang: locale.replace('_', '-'),
+        ratePromptTitle: messages.ratePromptTitle.message,
+        ratePromptBody: messages.ratePromptBody.message,
+        ratePromptRate: messages.ratePromptRate.message,
+        ratePromptDismiss: messages.ratePromptDismiss.message,
+        ratePromptVisible
       };
-      const actual = await popup.evaluate(async ({ eyebrow, heading, direction }) => {
+      const actual = await popup.evaluate(async ({
+        eyebrow,
+        heading,
+        direction,
+        lang,
+        ratePromptTitle,
+        ratePromptBody,
+        ratePromptRate,
+        ratePromptDismiss,
+        ratePromptVisible: showRatePrompt
+      }) => {
         document.documentElement.dir = direction;
+        document.documentElement.lang = lang;
         document.querySelector('.eyebrow').textContent = eyebrow;
         document.querySelector('h1').textContent = heading;
+        const ratePrompt = document.getElementById('ratePrompt');
+        ratePrompt.hidden = !showRatePrompt;
+        if (showRatePrompt) {
+          document.getElementById('whatsNew').hidden = true;
+          document.querySelector('details.customize').open = false;
+          document.getElementById('ratePromptTitle').textContent = ratePromptTitle;
+          document.querySelector('#ratePrompt .popup-banner-copy p').textContent = ratePromptBody;
+          document.getElementById('ratePromptRate').textContent = ratePromptRate;
+          document.getElementById('ratePromptDismiss').textContent = ratePromptDismiss;
+        }
         await document.fonts.ready;
         await new Promise(resolve => {
           requestAnimationFrame(() => requestAnimationFrame(resolve));
@@ -56,7 +93,8 @@ async function assertHeaderLayout(popup) {
           heading: rect(headingElement),
           toggle: rect(document.querySelector('.switch')),
           eyebrowOverflow: eyebrowElement.scrollWidth > eyebrowElement.clientWidth + 1,
-          headingOverflow: headingElement.scrollWidth > headingElement.clientWidth + 1
+          headingOverflow: headingElement.scrollWidth > headingElement.clientWidth + 1,
+          height: document.documentElement.scrollHeight
         };
       }, header);
       const overlapsToggle = element => element.left < actual.toggle.right
@@ -69,15 +107,153 @@ async function assertHeaderLayout(popup) {
       if (overlapsToggle(actual.heading) || actual.headingOverflow) {
         fail(`${locale} heading overlaps the toggle or overflows its column`);
       }
+      if (ratePromptVisible) {
+        if (actual.height > 600) {
+          fail(`expected ${locale} closed popup with rating banner at most 600px, got ${actual.height}px`);
+        }
+        heights.push({ locale, height: actual.height });
+      }
     }
-    console.log(`Popup header geometry passed for ${locales.length} locales`);
+    if (ratePromptVisible) {
+      console.log(`Popup header geometry and rating-banner heights passed: ${heights
+        .map(({ locale, height }) => `${locale}=${height}px`).join(', ')}`);
+    } else {
+      console.log(`Popup header geometry passed for ${locales.length} locales`);
+    }
+    return heights;
   } finally {
-    await popup.evaluate(({ eyebrow, heading, direction }) => {
+    await popup.evaluate(({
+      eyebrow,
+      heading,
+      direction,
+      lang,
+      ratePromptHidden,
+      ratePromptTitle,
+      ratePromptBody,
+      ratePromptRate,
+      ratePromptDismiss,
+      whatsNewHidden,
+      customizeOpen
+    }) => {
       document.querySelector('.eyebrow').textContent = eyebrow;
       document.querySelector('h1').textContent = heading;
       document.documentElement.dir = direction;
+      document.documentElement.lang = lang;
+      document.getElementById('ratePrompt').hidden = ratePromptHidden;
+      document.getElementById('ratePromptTitle').textContent = ratePromptTitle;
+      document.querySelector('#ratePrompt .popup-banner-copy p').textContent = ratePromptBody;
+      document.getElementById('ratePromptRate').textContent = ratePromptRate;
+      document.getElementById('ratePromptDismiss').textContent = ratePromptDismiss;
+      document.getElementById('whatsNew').hidden = whatsNewHidden;
+      document.querySelector('details.customize').open = customizeOpen;
     }, original);
   }
+}
+
+async function captureRatePromptScreenshots(popup, screenshotDir) {
+  fs.mkdirSync(screenshotDir, { recursive: true });
+  const original = await popup.evaluate(() => ({
+    direction: document.documentElement.dir,
+    lang: document.documentElement.lang,
+    title: document.getElementById('ratePromptTitle').textContent,
+    body: document.querySelector('#ratePrompt .popup-banner-copy p').textContent,
+    rate: document.getElementById('ratePromptRate').textContent,
+    dismiss: document.getElementById('ratePromptDismiss').textContent,
+    promptHidden: document.getElementById('ratePrompt').hidden,
+    whatsNewHidden: document.getElementById('whatsNew').hidden,
+    customizeOpen: document.querySelector('details.customize').open
+  }));
+  const viewport = popup.viewportSize();
+
+  try {
+    await popup.setViewportSize({ width: 360, height: 600 });
+    for (const locale of ['en', 'pl']) {
+      const messages = JSON.parse(fs.readFileSync(
+        path.join(root, '_locales', locale, 'messages.json'),
+        'utf8'
+      ));
+      await popup.evaluate(({
+        locale,
+        title,
+        body,
+        rate,
+        dismiss
+      }) => {
+        document.documentElement.dir = 'ltr';
+        document.documentElement.lang = locale;
+        document.getElementById('whatsNew').hidden = true;
+        document.querySelector('details.customize').open = false;
+        document.getElementById('ratePrompt').hidden = false;
+        document.getElementById('ratePromptTitle').textContent = title;
+        document.querySelector('#ratePrompt .popup-banner-copy p').textContent = body;
+        document.getElementById('ratePromptRate').textContent = rate;
+        document.getElementById('ratePromptDismiss').textContent = dismiss;
+      }, {
+        locale,
+        title: messages.ratePromptTitle.message,
+        body: messages.ratePromptBody.message,
+        rate: messages.ratePromptRate.message,
+        dismiss: messages.ratePromptDismiss.message
+      });
+
+      for (const scheme of ['light', 'dark']) {
+        await popup.emulateMedia({ colorScheme: scheme });
+        await popup.evaluate(() => new Promise(resolve => {
+          document.fonts.ready.then(() => {
+            requestAnimationFrame(() => requestAnimationFrame(resolve));
+          });
+        }));
+        await popup.screenshot({
+          path: path.join(screenshotDir, `rate-${locale}-${scheme}.png`),
+          fullPage: true
+        });
+      }
+    }
+  } finally {
+    await popup.evaluate(({
+      direction,
+      lang,
+      title,
+      body,
+      rate,
+      dismiss,
+      promptHidden,
+      whatsNewHidden,
+      customizeOpen
+    }) => {
+      document.documentElement.dir = direction;
+      document.documentElement.lang = lang;
+      document.getElementById('ratePromptTitle').textContent = title;
+      document.querySelector('#ratePrompt .popup-banner-copy p').textContent = body;
+      document.getElementById('ratePromptRate').textContent = rate;
+      document.getElementById('ratePromptDismiss').textContent = dismiss;
+      document.getElementById('ratePrompt').hidden = promptHidden;
+      document.getElementById('whatsNew').hidden = whatsNewHidden;
+      document.querySelector('details.customize').open = customizeOpen;
+    }, original);
+    await popup.emulateMedia({ colorScheme: 'light' });
+    if (viewport) await popup.setViewportSize(viewport);
+  }
+}
+
+async function setLocalStorage(page, values) {
+  await page.evaluate(state => new Promise(resolve => {
+    chrome.storage.local.set(state, resolve);
+  }), values);
+}
+
+async function waitForRatePromptState(page, expected) {
+  await page.waitForFunction(({ visible, shown, popupOpens }) => new Promise(resolve => {
+    chrome.storage.local.get(['ratePromptShown', 'popupOpens'], stored => {
+      const matchesShown = shown === null || stored.ratePromptShown === shown;
+      const matchesOpens = popupOpens === null || stored.popupOpens === popupOpens;
+      resolve(
+        document.getElementById('ratePrompt').hidden === !visible
+        && matchesShown
+        && matchesOpens
+      );
+    });
+  }), expected);
 }
 
 function fail(message) {
@@ -237,6 +413,15 @@ async function main() {
     const popup = await context.newPage();
     await popup.goto(`chrome-extension://${extensionId}/popup.html`);
     await popup.setViewportSize({ width: 360, height: 1 });
+    await popup.waitForFunction(() => new Promise(resolve => {
+      chrome.storage.local.get(['installedAt', 'popupOpens'], stored => {
+        resolve(
+          Number.isFinite(stored.installedAt)
+          && stored.popupOpens === 1
+          && document.getElementById('ratePrompt').hidden
+        );
+      });
+    }));
     await popup.waitForFunction(() => {
       const profile = document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]');
       return document.getElementById('extensionEnabled').checked
@@ -247,7 +432,7 @@ async function main() {
     if (!await popup.locator('#extensionEnabled').isChecked()) {
       fail('expected extension enabled with the recommended settings');
     }
-    await assertHeaderLayout(popup);
+    await assertHeaderLayout(popup, { ratePromptVisible: true });
     await popup.waitForFunction(() => {
       const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
       return keys.join('|') === 'Alt|Shift|Y';
@@ -587,6 +772,83 @@ async function main() {
       const profile = document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]');
       return profile?.checked && document.getElementById('overlayOpacity').value === '95';
     });
+
+    const installedAt = Date.now() - 8 * 24 * 60 * 60 * 1000;
+    const eligibleRatePromptState = {
+      installedAt,
+      popupOpens: 5,
+      ratePromptDone: false,
+      ratePromptShown: 0,
+      whatsNewVersion: '2.0',
+      whatsNewDismissed: '2.0'
+    };
+
+    await setLocalStorage(popup, eligibleRatePromptState);
+    await popup.reload();
+    await waitForRatePromptState(popup, { visible: true, shown: 1, popupOpens: 6 });
+    if (process.env.YTOC_SCREENSHOT_DIR) {
+      await captureRatePromptScreenshots(popup, process.env.YTOC_SCREENSHOT_DIR);
+    }
+    await popup.locator('#ratePromptDismiss').click();
+    await waitForRatePromptState(popup, { visible: false, shown: 1, popupOpens: 6 });
+    const dismissedState = await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.get('ratePromptDone', stored => resolve(stored.ratePromptDone));
+    }));
+    if (!dismissedState) {
+      fail('expected No thanks to persist ratePromptDone');
+    }
+    await popup.reload();
+    await waitForRatePromptState(popup, { visible: false, shown: 1, popupOpens: 7 });
+
+    await setLocalStorage(popup, eligibleRatePromptState);
+    await popup.reload();
+    await waitForRatePromptState(popup, { visible: true, shown: 1, popupOpens: 6 });
+    const tabsCreateInstrumented = await popup.evaluate(() => {
+      const originalCreate = chrome.tabs.create;
+      const wrappedCreate = function (...args) {
+        window.__ratePromptRequestedUrl = args[0]?.url;
+        return originalCreate.apply(chrome.tabs, args);
+      };
+      chrome.tabs.create = wrappedCreate;
+      return chrome.tabs.create === wrappedCreate;
+    });
+    if (!tabsCreateInstrumented) fail('could not instrument chrome.tabs.create for the rate-prompt smoke test');
+    const ratingTabPromise = context.waitForEvent('page');
+    await popup.locator('#ratePromptRate').click();
+    const ratingTab = await ratingTabPromise;
+    const ratingUrl = await popup.evaluate(() => window.__ratePromptRequestedUrl);
+    if (!ratingUrl?.startsWith(ratePromptReviewsUrl)) {
+      fail(`expected the Chrome Web Store reviews URL to open in a new tab, got ${ratingUrl}`);
+    }
+    const rateClickedDone = await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.get('ratePromptDone', stored => resolve(stored.ratePromptDone));
+    }));
+    if (!rateClickedDone || await popup.locator('#ratePrompt').isVisible()) {
+      fail('expected Rate it to hide the banner and persist ratePromptDone');
+    }
+    await ratingTab.close();
+
+    await setLocalStorage(popup, {
+      ...eligibleRatePromptState,
+      whatsNewDismissed: ''
+    });
+    await popup.reload();
+    await waitForRatePromptState(popup, { visible: false, shown: 0, popupOpens: 6 });
+    if (await popup.locator('#whatsNew').isHidden()) {
+      fail('expected the active What’s new banner to take priority over the rating prompt');
+    }
+
+    await setLocalStorage(popup, eligibleRatePromptState);
+    for (let shown = 1; shown <= 3; shown += 1) {
+      await popup.reload();
+      await waitForRatePromptState(popup, {
+        visible: true,
+        shown,
+        popupOpens: 5 + shown
+      });
+    }
+    await popup.reload();
+    await waitForRatePromptState(popup, { visible: false, shown: 3, popupOpens: 9 });
 
     console.log('SMOKE PASSED');
   } finally {

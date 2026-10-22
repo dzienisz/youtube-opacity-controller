@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Firefox support
+- A one-time, dismissible prompt to rate the extension after a week of use (Chrome only)
 - Easier-to-read subtitles: one switch makes YouTube captions larger on a solid dark background, with white or yellow text
 - Dark mode popup that follows your system theme
 - Restore YouTube's look button

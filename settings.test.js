@@ -249,3 +249,59 @@ test('applyCommand returns normalized settings for unknown commands', () => {
   const unknown = settings.applyCommand({ overlayOpacity: 9 }, 'not-a-command');
   assert.deepEqual(unknown, settings.normalizeSettings({ overlayOpacity: 9 }));
 });
+
+const ratePromptNow = Date.UTC(2026, 0, 15);
+const eligibleRatePromptState = {
+  installedAt: ratePromptNow - 8 * 24 * 60 * 60 * 1000,
+  popupOpens: 5,
+  ratePromptDone: false,
+  ratePromptShown: 0
+};
+
+test('rate prompt stays hidden when installedAt is missing', () => {
+  const state = { ...eligibleRatePromptState };
+  delete state.installedAt;
+  assert.equal(settings.shouldShowRatePrompt(state, ratePromptNow), false);
+});
+
+test('rate prompt stays hidden before seven days have passed', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    installedAt: ratePromptNow - 7 * 24 * 60 * 60 * 1000 + 1
+  }, ratePromptNow), false);
+});
+
+test('rate prompt is eligible exactly seven days after installation', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    installedAt: ratePromptNow - 7 * 24 * 60 * 60 * 1000
+  }, ratePromptNow), true);
+});
+
+test('rate prompt stays hidden before three popup opens', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    popupOpens: 2
+  }, ratePromptNow), false);
+});
+
+test('rate prompt stays hidden after the user is done', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    ratePromptDone: true
+  }, ratePromptNow), false);
+});
+
+test('rate prompt stays hidden after three displays', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    ratePromptShown: settings.RATE_PROMPT_MAX_SHOWS
+  }, ratePromptNow), false);
+});
+
+test('rate prompt shows for an eligible state under the display limit', () => {
+  assert.equal(settings.shouldShowRatePrompt({
+    ...eligibleRatePromptState,
+    ratePromptShown: settings.RATE_PROMPT_MAX_SHOWS - 1
+  }, ratePromptNow), true);
+});

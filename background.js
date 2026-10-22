@@ -48,6 +48,10 @@ chrome.commands.onCommand.addListener(command => {
 });
 
 chrome.runtime.onInstalled.addListener(details => {
+  if (details.reason === 'install') {
+    chrome.storage.local.set({ installedAt: Date.now() });
+  }
+
   if (details.reason === 'update') {
     chrome.storage.sync.get(null, stored => {
       const hasSettings = Object.keys(YtocSettings.LEGACY_DEFAULTS)
@@ -60,6 +64,14 @@ chrome.runtime.onInstalled.addListener(details => {
         });
       }
     });
-    chrome.storage.local.set({ whatsNewVersion: chrome.runtime.getManifest().version });
+    chrome.storage.local.get('installedAt', stored => {
+      const localSettings = {
+        whatsNewVersion: chrome.runtime.getManifest().version
+      };
+      if (!Object.prototype.hasOwnProperty.call(stored || {}, 'installedAt')) {
+        localSettings.installedAt = Date.now();
+      }
+      chrome.storage.local.set(localSettings);
+    });
   }
 });

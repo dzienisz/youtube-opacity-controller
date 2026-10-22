@@ -17,6 +17,8 @@ Run `npm run check` before manual testing. Load the repository through **Load un
 - [ ] `manifest.json` loads without Chrome errors.
 - [ ] The console contains no content-script or popup errors.
 
+To preview the Chrome-only rating prompt, set `installedAt` to at least eight days ago, `popupOpens` to `2`, `ratePromptDone` to `false`, and `ratePromptShown` to `0` in `chrome.storage.local`, then reopen the popup. Keep the current What's new version dismissed to show the rating prompt.
+
 ## Live Canary
 
 The weekly canary checks the live YouTube watch player and an embedded player for the DOM selectors and key styles used by `overlay-fix.css`. It records the player variants, check results, and screenshots in `canary-artifacts/`. The workflow runs Mondays at 06:00 UTC; it can also be started manually or by changes to the canary script or workflow. GitHub runners usually receive YouTube's bot wall, so the scheduled canary checks DOM and styles only; its visual result is not verified.

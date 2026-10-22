@@ -8,6 +8,9 @@
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
   const SCHEMA_VERSION = 4;
+  const RATE_PROMPT_MIN_DAYS = 7;
+  const RATE_PROMPT_MIN_OPENS = 3;
+  const RATE_PROMPT_MAX_SHOWS = 3;
   const PROFILES = Object.freeze({
     STANDARD: 'standard',
     HIGH_CONTRAST: 'high-contrast'
@@ -175,8 +178,23 @@
     return Object.keys(DEFAULTS).every(key => left[key] === right[key]);
   }
 
+  function shouldShowRatePrompt(state, now) {
+    const current = state && typeof state === 'object' ? state : {};
+
+    return isFiniteNumber(current.installedAt)
+      && isFiniteNumber(now)
+      && now - current.installedAt >= RATE_PROMPT_MIN_DAYS * 24 * 60 * 60 * 1000
+      && isFiniteNumber(current.popupOpens)
+      && current.popupOpens >= RATE_PROMPT_MIN_OPENS
+      && !current.ratePromptDone
+      && (current.ratePromptShown || 0) < RATE_PROMPT_MAX_SHOWS;
+  }
+
   return Object.freeze({
     SCHEMA_VERSION,
+    RATE_PROMPT_MIN_DAYS,
+    RATE_PROMPT_MIN_OPENS,
+    RATE_PROMPT_MAX_SHOWS,
     PROFILES,
     PROFILE_VALUES,
     PROFILE_MESSAGE_KEYS,
@@ -198,6 +216,7 @@
     cycleProfile,
     applyCommand,
     applyStorageChanges,
-    areSettingsEqual
+    areSettingsEqual,
+    shouldShowRatePrompt
   });
 });

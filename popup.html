@@ -8,12 +8,28 @@
 </head>
 <body>
   <main class="container">
-    <div id="whatsNew" class="whats-new" hidden>
-      <div class="whats-new-copy">
+    <div id="whatsNew" class="popup-banner" hidden>
+      <div class="popup-banner-copy">
         <strong data-i18n="whatsNewTitle">New in 2.0</strong>
         <p data-i18n="whatsNewBody">Bigger progress bar, highlight colors, keyboard shortcuts and a larger pointer — find them under More visibility options.</p>
       </div>
-      <button type="button" id="whatsNewDismiss" class="whats-new-dismiss" data-i18n="whatsNewDismiss">Got it</button>
+      <button type="button" id="whatsNewDismiss" class="popup-banner-primary" data-i18n="whatsNewDismiss">Got it</button>
+    </div>
+    <div
+      id="ratePrompt"
+      class="popup-banner popup-banner-rating"
+      role="region"
+      aria-labelledby="ratePromptTitle"
+      hidden
+    >
+      <div class="popup-banner-copy">
+        <strong id="ratePromptTitle" data-i18n="ratePromptTitle">Enjoying YouTube Controls?</strong>
+        <p data-i18n="ratePromptBody">A quick rating in the Chrome Web Store helps other people find it.</p>
+      </div>
+      <div class="popup-banner-actions">
+        <button type="button" id="ratePromptRate" class="popup-banner-primary" data-i18n="ratePromptRate">Rate it</button>
+        <button type="button" id="ratePromptDismiss" class="popup-banner-secondary" data-i18n="ratePromptDismiss">No thanks</button>
+      </div>
     </div>
     <header class="header">
       <div class="header-copy">
