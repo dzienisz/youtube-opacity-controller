@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "मूल YouTube कंट्रोल" },
   "hudControlsVisible": { "message": "कंट्रोल दिखते रहेंगे" },
   "hudControlsAutoHide": { "message": "कंट्रोल अपने आप छिप सकते हैं" },
-  "hudProfileHint": { "message": "स्टाइल बदलने के लिए Alt+Shift+P" },
+  "hudProfileHint": { "message": "स्टाइल बदलने के लिए $SHORTCUT$", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "कंट्रोल एन्हांसमेंट चालू या बंद करें" },
   "cmdCycleProfile": { "message": "अगली कंट्रोल स्टाइल पर जाएं" },
   "cmdToggleAlwaysShow": { "message": "कंट्रोल दिखाए रखना चालू या बंद करें" },

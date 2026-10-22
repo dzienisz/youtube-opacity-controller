@@ -2,8 +2,12 @@
 
 if (typeof importScripts === 'function') importScripts('settings.js');
 
-function message(key) {
-  return chrome.i18n.getMessage(key);
+function message(key, substitutions) {
+  return chrome.i18n.getMessage(key, substitutions);
+}
+
+function profileShortcutHint(shortcut) {
+  return shortcut ? message('hudProfileHint', shortcut) : undefined;
 }
 
 function sendHud(title, detail) {
@@ -25,7 +29,13 @@ chrome.commands.onCommand.addListener(command => {
           sendHud(message(next.extensionEnabled ? 'hudEnhancementsOn' : 'hudEnhancementsOff'));
           break;
         case 'cycle-profile':
-          sendHud(message(YtocSettings.PROFILE_MESSAGE_KEYS[next.accessibilityProfile]), message('hudProfileHint'));
+          chrome.commands.getAll(commands => {
+            const shortcut = commands.find(item => item.name === 'cycle-profile')?.shortcut;
+            sendHud(
+              message(YtocSettings.PROFILE_MESSAGE_KEYS[next.accessibilityProfile]),
+              profileShortcutHint(shortcut)
+            );
+          });
           break;
         case 'toggle-always-show':
           sendHud(message(next.alwaysShowControls ? 'hudControlsVisible' : 'hudControlsAutoHide'));

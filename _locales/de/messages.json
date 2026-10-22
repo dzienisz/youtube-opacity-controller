@@ -49,7 +49,7 @@
   "hudEnhancementsOff": { "message": "Original-YouTube-Steuerung" },
   "hudControlsVisible": { "message": "Steuerelemente bleiben sichtbar" },
   "hudControlsAutoHide": { "message": "Steuerelemente können automatisch ausgeblendet werden" },
-  "hudProfileHint": { "message": "Alt+Shift+P zum Wechseln des Stils" },
+  "hudProfileHint": { "message": "$SHORTCUT$ zum Stilwechsel", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "Verbesserungen der Steuerung ein- oder ausschalten" },
   "cmdCycleProfile": { "message": "Zum nächsten Steuerungsstil wechseln" },
   "cmdToggleAlwaysShow": { "message": "„Steuerelemente sichtbar halten“ ein- oder ausschalten" },

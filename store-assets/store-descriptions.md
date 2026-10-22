@@ -49,7 +49,7 @@ HOW TO USE
 2. Select the extension icon.
 3. Choose Clear Controls or Strong Contrast.
 4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
-5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
+5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
 6. Use the master switch at any time to restore the original appearance.
 
 Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
@@ -98,7 +98,7 @@ COMO USAR
 2. Clique no ícone da extensão.
 3. Escolha Controles Claros ou Contraste Forte.
 4. Se quiser, mantenha os controles visíveis, aumente a barra de progresso ou o ponteiro, escolha uma cor de destaque ou personalize o fundo.
-5. Pressione Alt+Shift+Y para alternar as melhorias, Alt+Shift+P para alternar os estilos, Alt+Shift+V para alternar os controles sempre visíveis.
+5. Pressione Alt+Shift+Y para alternar as melhorias, Alt+Shift+J para alternar os estilos, Alt+Shift+V para alternar os controles sempre visíveis.
 6. Use o interruptor principal a qualquer momento para restaurar a aparência original.
 
 Criado para quem tem dificuldade em localizar, ler ou usar controles transparentes em vídeos claros e visualmente carregados.
@@ -147,7 +147,7 @@ CÓMO USARLO
 2. Haz clic en el ícono de la extensión.
 3. Elige Controles Claros o Contraste Fuerte.
 4. Si quieres, mantén los controles visibles, agranda la barra de progreso o el puntero, elige un color de resaltado o personaliza el fondo.
-5. Pulsa Alt+Shift+Y para alternar las mejoras, Alt+Shift+P para cambiar de estilo, Alt+Shift+V para alternar los controles siempre visibles.
+5. Pulsa Alt+Shift+Y para alternar las mejoras, Alt+Shift+J para cambiar de estilo, Alt+Shift+V para alternar los controles siempre visibles.
 6. Usa el interruptor principal en cualquier momento para restaurar la apariencia original.
 
 Diseñado para quienes tienen dificultad para ubicar, leer o usar controles transparentes en videos brillantes y recargados.
@@ -196,7 +196,7 @@ SO GEHT'S
 2. Klicke auf das Symbol der Erweiterung.
 3. Wähle „Klare Steuerung“ oder „Starker Kontrast“.
 4. Halte optional die Steuerelemente sichtbar, vergrößere Fortschrittsleiste oder Zeiger, wähle eine Hervorhebungsfarbe oder passe den Hintergrund an.
-5. Drücke Alt+Shift+Y, um die Verbesserungen umzuschalten, Alt+Shift+P, um den Stil zu wechseln, Alt+Shift+V, um „sichtbar halten“ umzuschalten.
+5. Drücke Alt+Shift+Y, um die Verbesserungen umzuschalten, Alt+Shift+J, um den Stil zu wechseln, Alt+Shift+V, um „sichtbar halten“ umzuschalten.
 6. Nutze jederzeit den Hauptschalter, um die ursprüngliche Darstellung wiederherzustellen.
 
 Entwickelt für alle, denen transparente Steuerelemente auf hellen und unruhigen Videos schwer zu finden, zu lesen oder zu bedienen sind.
@@ -245,7 +245,7 @@ YouTube コントロール: より見やすく、より大きく は、明るい
 2. 拡張機能のアイコンをクリックします。
 3. 「クリアなコントロール」または「強いコントラスト」を選択します。
 4. 必要に応じて、コントロールの常時表示、プログレスバーやポインターの拡大、ハイライトカラーの選択、背景の調整を行います。
-5. Alt+Shift+Y で拡張表示の切り替え、Alt+Shift+P でスタイルの切り替え、Alt+Shift+V で常時表示の切り替えができます。
+5. Alt+Shift+Y で拡張表示の切り替え、Alt+Shift+J でスタイルの切り替え、Alt+Shift+V で常時表示の切り替えができます。
 6. マスタースイッチでいつでも元の外観に戻せます。
 
 明るく情報量の多い映像で、透明なコントロールが見つけにくい・読みにくい・操作しにくいと感じる方のために設計されています。
@@ -294,7 +294,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 2. 확장 프로그램 아이콘을 클릭합니다.
 3. 선명한 컨트롤 또는 강한 대비를 선택합니다.
 4. 필요하면 컨트롤을 계속 표시하고, 진행 바나 포인터를 키우고, 강조 색상을 고르거나 배경을 조절합니다.
-5. Alt+Shift+Y로 개선 기능을, Alt+Shift+P로 스타일을, Alt+Shift+V로 계속 표시를 전환합니다.
+5. Alt+Shift+Y로 개선 기능을, Alt+Shift+J로 스타일을, Alt+Shift+V로 계속 표시를 전환합니다.
 6. 언제든지 마스터 스위치로 원래 모습을 복원할 수 있습니다.
 
 밝고 복잡한 영상에서 투명한 컨트롤을 찾거나 읽거나 조작하기 어려운 시청자를 위해 설계되었습니다.
@@ -343,7 +343,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 2. انقر على رمز الإضافة.
 3. اختر: عناصر تحكم واضحة أو تباين قوي.
 4. اختياريًا، أبقِ عناصر التحكم ظاهرة، أو كبّر شريط التقدم أو المؤشر، أو اختر لون تمييز، أو خصّص الخلفية.
-5. اضغط Alt+Shift+Y للتبديل بين التحسينات، وAlt+Shift+P لتبديل الأنماط، وAlt+Shift+V لتبديل إبقاء عناصر التحكم ظاهرة.
+5. اضغط Alt+Shift+Y للتبديل بين التحسينات، وAlt+Shift+J لتبديل الأنماط، وAlt+Shift+V لتبديل إبقاء عناصر التحكم ظاهرة.
 6. استخدم المفتاح الرئيسي في أي وقت لاستعادة المظهر الأصلي.
 
 صُمّم للمشاهدين الذين يجدون صعوبة في تحديد عناصر التحكم الشفافة أو قراءتها أو استخدامها في المحتوى الساطع والمزدحم بصريًا.
@@ -392,7 +392,7 @@ YouTube 컨트롤: 더 선명하고 크게는 밝거나 시각적으로 복잡�
 2. Натисніть значок розширення.
 3. Виберіть «Чіткі елементи керування» або «Сильний контраст».
 4. За бажанням залишайте елементи керування видимими, збільште смугу відтворення чи вказівник, оберіть колір підсвічування або налаштуйте фон.
-5. Натисніть Alt+Shift+Y, щоб увімкнути чи вимкнути покращення, Alt+Shift+P — щоб змінити стиль, Alt+Shift+V — щоб перемкнути постійну видимість.
+5. Натисніть Alt+Shift+Y, щоб увімкнути чи вимкнути покращення, Alt+Shift+J — щоб змінити стиль, Alt+Shift+V — щоб перемкнути постійну видимість.
 6. Будь-коли поверніть оригінальний вигляд головним перемикачем.
 
 Створено для глядачів, яким важко знаходити, читати або використовувати прозорі елементи керування на яскравому та насиченому відео.
@@ -441,7 +441,7 @@ CÁCH DÙNG
 2. Nhấp vào biểu tượng tiện ích.
 3. Chọn Điều khiển rõ ràng hoặc Tương phản mạnh.
 4. Tùy chọn: giữ các nút điều khiển luôn hiển thị, phóng to thanh tiến trình hoặc con trỏ, chọn màu tô sáng hoặc tùy chỉnh nền.
-5. Nhấn Alt+Shift+Y để bật/tắt tính năng cải tiến, Alt+Shift+P để đổi kiểu, Alt+Shift+V để bật/tắt giữ hiển thị.
+5. Nhấn Alt+Shift+Y để bật/tắt tính năng cải tiến, Alt+Shift+J để đổi kiểu, Alt+Shift+V để bật/tắt giữ hiển thị.
 6. Dùng công tắc chính bất cứ lúc nào để khôi phục giao diện gốc.
 
 Dành cho người xem gặp khó khăn khi tìm, đọc hoặc thao tác với các nút điều khiển trong suốt trên video sáng và rối mắt.
@@ -490,7 +490,7 @@ YouTube कंट्रोल: साफ़ और बड़े चमकील�
 2. एक्सटेंशन आइकन पर क्लिक करें।
 3. साफ़ कंट्रोल या तेज़ कंट्रास्ट चुनें।
 4. चाहें तो कंट्रोल दिखाए रखें, प्रोग्रेस बार या पॉइंटर बड़ा करें, हाइलाइट रंग चुनें या बैकग्राउंड कस्टमाइज़ करें।
-5. एन्हांसमेंट के लिए Alt+Shift+Y, स्टाइल बदलने के लिए Alt+Shift+P, कंट्रोल दिखाए रखने के लिए Alt+Shift+V दबाएं।
+5. एन्हांसमेंट के लिए Alt+Shift+Y, स्टाइल बदलने के लिए Alt+Shift+J, कंट्रोल दिखाए रखने के लिए Alt+Shift+V दबाएं।
 6. मूल स्वरूप वापस लाने के लिए कभी भी मास्टर स्विच का उपयोग करें।
 
 उन दर्शकों के लिए बनाया गया है जिन्हें चमकीले और व्यस्त वीडियो पर पारदर्शी कंट्रोल ढूँढना, पढ़ना या चलाना मुश्किल लगता है।
@@ -539,7 +539,7 @@ JAK UŻYWAĆ
 2. Kliknij ikonę rozszerzenia.
 3. Wybierz Wyraźne sterowanie lub Silny kontrast.
 4. Opcjonalnie utrzymaj elementy widoczne, powiększ pasek postępu lub wskaźnik, wybierz kolor wyróżnienia albo dostosuj tło.
-5. Naciśnij Alt+Shift+Y, by przełączyć ulepszenia, Alt+Shift+P, by zmienić styl, Alt+Shift+V, by przełączyć stałą widoczność.
+5. Naciśnij Alt+Shift+Y, by przełączyć ulepszenia, Alt+Shift+J, by zmienić styl, Alt+Shift+V, by przełączyć stałą widoczność.
 6. Użyj głównego przełącznika w dowolnym momencie, by przywrócić oryginalny wygląd.
 
 Stworzone dla widzów, którym trudno znaleźć, odczytać lub obsłużyć przezroczyste elementy sterowania na jasnych i intensywnych filmach.
@@ -588,7 +588,7 @@ COMMENT L'UTILISER
 2. Cliquez sur l'icône de l'extension.
 3. Choisissez Contrôles clairs ou Contraste fort.
 4. Si vous voulez, gardez les contrôles visibles, agrandissez la barre de progression ou le pointeur, choisissez une couleur de surbrillance ou personnalisez le fond.
-5. Appuyez sur Alt+Shift+Y pour activer ou désactiver les améliorations, Alt+Shift+P pour changer de style, Alt+Shift+V pour la visibilité permanente.
+5. Appuyez sur Alt+Shift+Y pour activer ou désactiver les améliorations, Alt+Shift+J pour changer de style, Alt+Shift+V pour la visibilité permanente.
 6. Utilisez l'interrupteur principal à tout moment pour retrouver l'apparence d'origine.
 
 Conçu pour les spectateurs qui ont du mal à repérer, lire ou utiliser des contrôles transparents sur des vidéos lumineuses et chargées.
@@ -637,7 +637,7 @@ COME USARLO
 2. Clicca sull'icona dell'estensione.
 3. Scegli Controlli chiari o Contrasto forte.
 4. Se vuoi, mantieni i controlli visibili, ingrandisci la barra di avanzamento o il puntatore, scegli un colore di evidenziazione o personalizza lo sfondo.
-5. Premi Alt+Shift+Y per attivare o disattivare i miglioramenti, Alt+Shift+P per cambiare stile, Alt+Shift+V per la visibilità permanente.
+5. Premi Alt+Shift+Y per attivare o disattivare i miglioramenti, Alt+Shift+J per cambiare stile, Alt+Shift+V per la visibilità permanente.
 6. Usa l'interruttore principale in qualsiasi momento per ripristinare l'aspetto originale.
 
 Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su video luminosi e ricchi di dettagli.
@@ -686,7 +686,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 2. Нажмите значок расширения.
 3. Выберите «Чёткие элементы управления» или «Сильный контраст».
 4. При желании оставьте элементы видимыми, увеличьте полосу воспроизведения или указатель, выберите цвет подсветки или настройте фон.
-5. Нажмите Alt+Shift+Y, чтобы переключить улучшения, Alt+Shift+P — чтобы сменить стиль, Alt+Shift+V — чтобы переключить постоянную видимость.
+5. Нажмите Alt+Shift+Y, чтобы переключить улучшения, Alt+Shift+J — чтобы сменить стиль, Alt+Shift+V — чтобы переключить постоянную видимость.
 6. В любой момент верните исходный вид главным переключателем.
 
 Создано для зрителей, которым трудно находить, читать или использовать прозрачные элементы управления на ярком и насыщенном видео.
@@ -735,7 +735,7 @@ YouTube 控件：更清晰、更大 可在明亮且画面复杂的视频中改�
 2. 点击扩展程序图标。
 3. 选择“清晰控件”或“强对比度”。
 4. 根据需要保持控件可见、放大进度条或指针、选择高亮颜色或自定义背景。
-5. 按 Alt+Shift+Y 切换增强功能，Alt+Shift+P 切换样式，Alt+Shift+V 切换控件常显。
+5. 按 Alt+Shift+Y 切换增强功能，Alt+Shift+J 切换样式，Alt+Shift+V 切换控件常显。
 6. 随时使用主开关恢复原始外观。
 
 专为在明亮、复杂视频中难以找到、看清或操作透明控件的观众而设计。

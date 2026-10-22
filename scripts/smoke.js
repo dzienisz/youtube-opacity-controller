@@ -135,6 +135,21 @@ async function main() {
     let worker = context.serviceWorkers()[0];
     if (!worker) worker = await context.waitForEvent('serviceworker');
     const extensionId = new URL(worker.url()).host;
+    const cycleShortcut = await worker.evaluate(() => new Promise(resolve => {
+      chrome.commands.getAll(commands => {
+        resolve(commands.find(command => command.name === 'cycle-profile')?.shortcut);
+      });
+    }));
+    if (cycleShortcut !== 'Alt+Shift+J') {
+      fail(`expected cycle-profile shortcut Alt+Shift+J, got ${cycleShortcut || 'unassigned'}`);
+    }
+    const hintFormatting = await worker.evaluate(() => ({
+      assigned: profileShortcutHint('Alt+Shift+J'),
+      unassigned: profileShortcutHint('') === undefined
+    }));
+    if (!hintFormatting.assigned?.includes('Alt+Shift+J') || !hintFormatting.unassigned) {
+      fail(`expected the HUD hint to include an assigned shortcut and omit an unassigned one: ${JSON.stringify(hintFormatting)}`);
+    }
 
     const page = await context.newPage();
     await context.route('https://www.youtube.com/**', route => {

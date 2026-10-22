@@ -35,7 +35,7 @@
   "hudEnhancementsOff": { "message": "Original YouTube controls" },
   "hudControlsVisible": { "message": "Controls stay visible" },
   "hudControlsAutoHide": { "message": "Controls can auto-hide" },
-  "hudProfileHint": { "message": "Alt+Shift+P to change style" },
+  "hudProfileHint": { "message": "$SHORTCUT$ to change style", "placeholders": { "shortcut": { "content": "$1" } } },
   "cmdToggleEnhancements": { "message": "Turn control enhancements on or off" },
   "cmdCycleProfile": { "message": "Switch to the next control style" },
   "cmdToggleAlwaysShow": { "message": "Keep controls visible on or off" },

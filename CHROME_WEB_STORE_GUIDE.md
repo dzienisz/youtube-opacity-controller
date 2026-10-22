@@ -50,7 +50,7 @@ HOW TO USE
 2. Select the extension icon.
 3. Choose Clear Controls or Strong Contrast.
 4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
-5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+P to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
+5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible. The on-player style hint shows the assigned shortcut.
 6. Use the master switch at any time to restore the original appearance.
 
 Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.

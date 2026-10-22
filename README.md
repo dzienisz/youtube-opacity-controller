@@ -66,10 +66,10 @@ Changes apply immediately and persist across browser sessions.
 | Shortcut | Action |
 | --- | --- |
 | `Alt+Shift+Y` | Toggle all control enhancements on or off |
-| `Alt+Shift+P` | Cycle between Clear Controls and Strong Contrast |
+| `Alt+Shift+J` | Cycle between Clear Controls and Strong Contrast |
 | `Alt+Shift+V` | Toggle Keep Controls Visible |
 
-Each press shows a small confirmation on the player. Shortcuts can be rebound at `chrome://extensions/shortcuts`.
+Each press shows a small confirmation on the player, and the style hint reflects the assigned shortcut. Shortcuts can be rebound at `chrome://extensions/shortcuts`.
 
 ## Scope
 
