@@ -1,6 +1,6 @@
-// MV3 service worker: keyboard command handling and update bookkeeping.
+// MV3 background context: keyboard command handling and update bookkeeping.
 
-importScripts('settings.js');
+if (typeof importScripts === 'function') importScripts('settings.js');
 
 function message(key) {
   return chrome.i18n.getMessage(key);
