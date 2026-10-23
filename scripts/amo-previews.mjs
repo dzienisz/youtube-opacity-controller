@@ -19,15 +19,35 @@ const captions = [
 ];
 
 function parseArguments(args) {
-  const unknown = args.filter(arg => arg !== '--dry-run' && arg !== '--replace');
+  const unknown = args.filter(
+    arg => arg !== '--dry-run' && arg !== '--replace' && arg !== '--resume'
+  );
   if (unknown.length) {
     throw new Error(`Unknown argument(s): ${unknown.join(', ')}`);
   }
 
+  const replace = args.includes('--replace');
+  const resume = args.includes('--resume');
+  if (replace && resume) {
+    throw new Error('--replace and --resume cannot be used together.');
+  }
+
   return {
     dryRun: args.includes('--dry-run'),
-    replace: args.includes('--replace')
+    replace,
+    resume
   };
+}
+
+function getImagesToUpload(images, existingPreviewCount, resume) {
+  if (!resume) {
+    return images;
+  }
+  if (existingPreviewCount > images.length) {
+    throw new Error('AMO has more existing previews than there are local screenshots.');
+  }
+
+  return images.slice(existingPreviewCount);
 }
 
 async function loadImages() {
@@ -105,7 +125,11 @@ async function request(url, options = {}) {
             : 60
       ) + 2;
 
-      console.log(`AMO throttled; retrying in ${delaySeconds}s`);
+      if (delaySeconds > 300) {
+        console.log(`AMO upload quota reached; waiting ${Math.ceil(delaySeconds / 60)} min`);
+      } else {
+        console.log(`AMO throttled; retrying in ${delaySeconds}s`);
+      }
       await new Promise(resolve => setTimeout(resolve, delaySeconds * 1000));
       continue;
     }
@@ -122,7 +146,7 @@ function previewUrl(id) {
   return new URL(`previews/${encodeURIComponent(id)}/`, addonUrl);
 }
 
-async function uploadImages(images, replace) {
+async function uploadImages(images, { replace, resume }) {
   if (!issuer || !secret) {
     throw new Error('AMO_JWT_ISSUER and AMO_JWT_SECRET are required to upload previews.');
   }
@@ -133,10 +157,10 @@ async function uploadImages(images, replace) {
     throw new Error('The AMO add-on response did not contain a previews list.');
   }
 
-  if (previews.length && !replace) {
+  if (previews.length && !replace && !resume) {
     console.log('Existing AMO previews:');
     console.log(JSON.stringify(previews, null, 2));
-    throw new Error('AMO previews already exist; rerun with --replace to swap them.');
+    throw new Error('AMO previews already exist; rerun with --resume to continue or --replace to swap them.');
   }
 
   if (replace) {
@@ -148,7 +172,18 @@ async function uploadImages(images, replace) {
     }
   }
 
-  for (const item of images) {
+  const imagesToUpload = getImagesToUpload(images, previews.length, resume);
+  if (resume) {
+    if (imagesToUpload.length === 0) {
+      console.log(`All ${images.length} AMO previews already exist; nothing to upload.`);
+      return;
+    }
+    console.log(
+      `Keeping ${previews.length} existing AMO preview(s); uploading ${imagesToUpload[0].filename}..${images[images.length - 1].filename}`
+    );
+  }
+
+  for (const item of imagesToUpload) {
     const form = new FormData();
     form.append('image', new Blob([item.image], { type: 'image/png' }), item.filename);
     form.append('position', String(item.position));
@@ -171,7 +206,7 @@ async function uploadImages(images, replace) {
 }
 
 async function main() {
-  const { dryRun, replace } = parseArguments(process.argv.slice(2));
+  const { dryRun, replace, resume } = parseArguments(process.argv.slice(2));
   const images = await loadImages();
 
   if (dryRun) {
@@ -179,7 +214,7 @@ async function main() {
     return;
   }
 
-  await uploadImages(images, replace);
+  await uploadImages(images, { replace, resume });
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -189,4 +224,4 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   });
 }
 
-export { request };
+export { getImagesToUpload, parseArguments, request };
