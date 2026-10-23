@@ -54,4 +54,6 @@ function main() {
   }
 }
 
-main();
+module.exports = { geckoId };
+
+if (require.main === module) main();
