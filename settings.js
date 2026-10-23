@@ -7,7 +7,7 @@
 
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
-  const SCHEMA_VERSION = 4;
+  const SCHEMA_VERSION = 5;
   const RATE_PROMPT_MIN_DAYS = 7;
   const RATE_PROMPT_MIN_OPENS = 3;
   const RATE_PROMPT_MAX_SHOWS = 3;
@@ -118,7 +118,10 @@
     const schemaVersion = stored.settingsSchemaVersion;
 
     if (hasStoredSettings && (!Number.isFinite(schemaVersion) || schemaVersion < SCHEMA_VERSION)) {
-      return normalizeSettings({ ...LEGACY_DEFAULTS, ...stored });
+      const base = !Number.isFinite(schemaVersion) || schemaVersion < 4
+        ? { ...LEGACY_DEFAULTS, ...stored }
+        : stored;
+      return normalizeSettings({ ...base, readableCaptions: true });
     }
 
     return normalizeSettings(stored);

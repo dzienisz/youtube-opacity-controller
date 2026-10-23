@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Readable subtitles turn on once for people updating from an earlier version. They only change captions you turn on in a video, and you can switch them off in the popup.
+
 ### Fixed
 - Release workflow: first AMO submission sends license, category and listing metadata; manual run resubmits a released tag to AMO only.
 - Manual workflow uploads the store screenshots to the AMO listing.

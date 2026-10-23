@@ -8,7 +8,7 @@ test('migrates legacy settings without losing user preferences', () => {
     overlayOpacity: 0.42,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 4,
+    settingsSchemaVersion: 5,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.42,
@@ -16,7 +16,7 @@ test('migrates legacy settings without losing user preferences', () => {
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
-    readableCaptions: false,
+    readableCaptions: true,
     captionColor: 'white'
   });
 });
@@ -31,7 +31,7 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     settingsSchemaVersion: 3,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 4,
+    settingsSchemaVersion: 5,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.7,
@@ -39,29 +39,75 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
-    readableCaptions: false,
+    readableCaptions: true,
     captionColor: 'white'
   });
 });
 
-test('schema 3 settings missing readable captions keep that feature off', () => {
+test('schema 3 settings missing readable captions turn them on', () => {
   const stored = {
     ...settings.LEGACY_DEFAULTS,
     settingsSchemaVersion: 3
   };
   delete stored.readableCaptions;
 
-  assert.equal(settings.migrateSettings(stored).readableCaptions, false);
+  assert.equal(settings.migrateSettings(stored).readableCaptions, true);
 });
 
-test('schema 4 settings preserve their stored values', () => {
+test('schema 5 settings preserve their stored values', () => {
   const stored = {
     ...settings.RECOMMENDED,
+    settingsSchemaVersion: 5,
+    readableCaptions: false,
     overlayOpacity: 0.65,
     alwaysShowControls: true
   };
 
   assert.deepEqual(settings.migrateSettings(stored), stored);
+});
+
+test('schema 4 settings enable readable captions and preserve other values', () => {
+  const stored = {
+    ...settings.RECOMMENDED,
+    settingsSchemaVersion: 4,
+    readableCaptions: false,
+    captionColor: 'yellow',
+    overlayOpacity: 0.65,
+    accessibilityProfile: 'standard'
+  };
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.readableCaptions, true);
+  assert.equal(migrated.captionColor, 'yellow');
+  assert.equal(migrated.overlayOpacity, 0.65);
+  assert.equal(migrated.accessibilityProfile, 'standard');
+  assert.equal(migrated.settingsSchemaVersion, 5);
+  assert.equal(settings.needsMigration(stored, migrated), true);
+});
+
+test('schema 4 migration preserves a disabled extension', () => {
+  const stored = {
+    ...settings.RECOMMENDED,
+    settingsSchemaVersion: 4,
+    extensionEnabled: false,
+    readableCaptions: false
+  };
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.extensionEnabled, false);
+  assert.equal(migrated.readableCaptions, true);
+});
+
+test('schema 5 settings keep readable captions off when selected by the user', () => {
+  const stored = {
+    ...settings.RECOMMENDED,
+    settingsSchemaVersion: 5,
+    readableCaptions: false
+  };
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.readableCaptions, false);
+  assert.equal(settings.needsMigration(stored, migrated), false);
 });
 
 test('migrates schema 2 settings preserving new option defaults', () => {
@@ -72,7 +118,7 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     overlayOpacity: 0.9,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 4,
+    settingsSchemaVersion: 5,
     extensionEnabled: false,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0.9,
@@ -80,7 +126,7 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
-    readableCaptions: false,
+    readableCaptions: true,
     captionColor: 'white'
   });
 });
@@ -127,15 +173,15 @@ test('needsMigration returns true when a stored setting differs', () => {
   assert.equal(settings.needsMigration(oldSettings, settings.migrateSettings(oldSettings)), true);
 });
 
-test('migrates schema 3 settings missing readable captions to the legacy default', () => {
+test('migrates schema 3 settings missing readable captions to on', () => {
   const stored = { ...settings.LEGACY_DEFAULTS, settingsSchemaVersion: 3 };
   delete stored.readableCaptions;
   delete stored.captionColor;
 
   const migrated = settings.migrateSettings(stored);
 
-  assert.equal(migrated.settingsSchemaVersion, 4);
-  assert.equal(migrated.readableCaptions, false);
+  assert.equal(migrated.settingsSchemaVersion, 5);
+  assert.equal(migrated.readableCaptions, true);
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
 
@@ -159,7 +205,7 @@ test('normalizes invalid and out-of-range settings', () => {
     readableCaptions: 'yes',
     captionColor: 'pink'
   }), {
-    settingsSchemaVersion: 4,
+    settingsSchemaVersion: 5,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 1,
@@ -184,7 +230,7 @@ test('applies storage changes and normalizes the result', () => {
     overlayOpacity: { oldValue: 0.7, newValue: -2 },
     highlightColor: { oldValue: 'default', newValue: 'cyan' }
   }), {
-    settingsSchemaVersion: 4,
+    settingsSchemaVersion: 5,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,

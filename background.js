@@ -58,10 +58,9 @@ chrome.runtime.onInstalled.addListener(details => {
         .some(key => Object.prototype.hasOwnProperty.call(stored || {}, key));
 
       if (!hasSettings) {
-        chrome.storage.sync.set({
-          ...YtocSettings.LEGACY_DEFAULTS,
-          settingsSchemaVersion: YtocSettings.SCHEMA_VERSION
-        });
+        chrome.storage.sync.set(
+          YtocSettings.migrateSettings({ ...YtocSettings.LEGACY_DEFAULTS })
+        );
       }
     });
     chrome.storage.local.get('installedAt', stored => {
