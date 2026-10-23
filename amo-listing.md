@@ -57,6 +57,11 @@ stored using the browser's extension storage.
 - `https://www.youtube.com/*` limits page access to YouTube, where the player
   controls are styled.
 
+## Screenshots
+
+Run the **AMO listing screenshots** workflow to upload the previews. Select
+`replace` to swap the existing previews.
+
 ## Reviewer notes
 
 The package uses no compilation, transpilation, minification, or generated
