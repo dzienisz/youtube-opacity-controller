@@ -59,8 +59,10 @@ stored using the browser's extension storage.
 
 ## Screenshots
 
-Run the **AMO listing screenshots** workflow to upload the previews. Select
-`replace` to swap the existing previews.
+Run the **AMO listing screenshots** workflow with `new` to upload previews
+when none exist. If an upload is interrupted by throttling, choose `resume` to
+keep the existing previews and continue with the next screenshot. Choose
+`replace` to delete all existing previews and upload them again.
 
 ## Reviewer notes
 

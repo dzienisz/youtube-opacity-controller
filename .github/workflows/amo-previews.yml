@@ -3,11 +3,15 @@ name: AMO listing screenshots
 on:
   workflow_dispatch:
     inputs:
-      replace:
-        description: Replace the current AMO listing screenshots
-        required: false
-        default: false
-        type: boolean
+      mode:
+        description: Choose how to handle existing AMO previews
+        required: true
+        default: new
+        type: choice
+        options:
+          - new
+          - resume
+          - replace
 
 permissions:
   contents: read
@@ -15,6 +19,7 @@ permissions:
 jobs:
   upload:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
 
@@ -36,4 +41,4 @@ jobs:
         env:
           AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
           AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
-        run: node scripts/amo-previews.mjs ${{ inputs.replace && '--replace' || '' }}
+        run: node scripts/amo-previews.mjs ${{ inputs.mode == 'resume' && '--resume' || inputs.mode == 'replace' && '--replace' || '' }}

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Release workflow: first AMO submission sends license, category and listing metadata; manual run resubmits a released tag to AMO only.
 - Manual workflow uploads the store screenshots to the AMO listing.
 - AMO screenshot upload waits and retries when AMO throttles requests.
+- AMO screenshot uploads can resume after throttling without replacing existing previews.
 
 ## [2.1.0] - 2026-10-22
 
