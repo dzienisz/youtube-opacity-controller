@@ -9,6 +9,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const addonUrl = `https://addons.mozilla.org/api/v5/addons/addon/${encodeURIComponent(geckoId)}/`;
 const issuer = process.env.AMO_JWT_ISSUER;
 const secret = process.env.AMO_JWT_SECRET;
+const maxRequestAttempts = 5;
 const captions = [
   'Strong contrast, a bigger progress bar and readable subtitles, all set from the popup',
   "Before and after: YouTube's see-through controls vs. recommended settings",
@@ -82,20 +83,39 @@ function createJwt() {
 }
 
 async function request(url, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      ...options.headers,
-      Authorization: `JWT ${createJwt()}`
+  for (let attempt = 1; attempt <= maxRequestAttempts; attempt += 1) {
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `JWT ${createJwt()}`
+      }
+    });
+    const body = await response.text();
+
+    if (response.status === 429 && attempt < maxRequestAttempts) {
+      const retryAfter = response.headers.get('Retry-After');
+      const retryAfterSeconds = retryAfter === null ? NaN : Number(retryAfter);
+      const bodyDelay = body.match(/available in (\d+) seconds/i);
+      const delaySeconds = (
+        Number.isFinite(retryAfterSeconds) && retryAfterSeconds >= 0
+          ? retryAfterSeconds
+          : bodyDelay
+            ? Number(bodyDelay[1])
+            : 60
+      ) + 2;
+
+      console.log(`AMO throttled; retrying in ${delaySeconds}s`);
+      await new Promise(resolve => setTimeout(resolve, delaySeconds * 1000));
+      continue;
     }
-  });
-  const body = await response.text();
 
-  if (!response.ok) {
-    throw new Error(`AMO request failed with status ${response.status}: ${body}`);
+    if (!response.ok) {
+      throw new Error(`AMO request failed with status ${response.status}: ${body}`);
+    }
+
+    return body;
   }
-
-  return body;
 }
 
 function previewUrl(id) {
@@ -162,7 +182,11 @@ async function main() {
   await uploadImages(images, replace);
 }
 
-main().catch(error => {
-  console.error(error.message);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch(error => {
+    console.error(error.message);
+    process.exitCode = 1;
+  });
+}
+
+export { request };
