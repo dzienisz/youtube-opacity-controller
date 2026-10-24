@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1] - 2026-10-24
+
 ### Added
 - Microsoft Edge: the rating prompt links to the Edge Add-ons page.
 
