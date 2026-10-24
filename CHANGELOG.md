@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Microsoft Edge: the rating prompt links to the Edge Add-ons page.
+
 ### Changed
 - Readable subtitles turn on once for people updating from an earlier version. They only change captions you turn on in a video, and you can switch them off in the popup.
 

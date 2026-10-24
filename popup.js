@@ -33,6 +33,10 @@ const whatsNewDismiss = document.getElementById('whatsNewDismiss');
 const ratePrompt = document.getElementById('ratePrompt');
 const ratePromptRate = document.getElementById('ratePromptRate');
 const ratePromptDismiss = document.getElementById('ratePromptDismiss');
+const rateUrl = settingsModel.ratePromptUrl({
+  protocol: location.protocol,
+  userAgent: navigator.userAgent
+});
 const editShortcuts = document.getElementById('editShortcuts');
 const openShortcutSettings = Reflect.get(chrome.commands, 'openShortcutSettings');
 const shortcutKeys = document.getElementById('shortcutKeys');
@@ -239,8 +243,6 @@ editShortcuts.addEventListener('click', () => {
   }
 });
 
-const RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
-
 whatsNewDismiss.addEventListener('click', () => {
   whatsNew.hidden = true;
   chrome.storage.local.set({ whatsNewDismissed: featureVersion(chrome.runtime.getManifest().version) });
@@ -253,7 +255,7 @@ function finishRatePrompt() {
 
 ratePromptRate.addEventListener('click', () => {
   finishRatePrompt();
-  chrome.tabs.create({ url: RATE_PROMPT_URL });
+  chrome.tabs.create({ url: rateUrl });
 });
 
 ratePromptDismiss.addEventListener('click', finishRatePrompt);
@@ -276,9 +278,7 @@ chrome.storage.local.get([
     return;
   }
 
-  const isChrome = location.protocol === 'chrome-extension:'
-    && !/\bEdg\//.test(navigator.userAgent);
-  if (isChrome && settingsModel.shouldShowRatePrompt({ ...result, popupOpens }, Date.now())) {
+  if (rateUrl && settingsModel.shouldShowRatePrompt({ ...result, popupOpens }, Date.now())) {
     ratePrompt.hidden = false;
     chrome.storage.local.set({
       ratePromptShown: (Number.isFinite(result.ratePromptShown) ? result.ratePromptShown : 0) + 1
