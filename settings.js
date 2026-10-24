@@ -11,6 +11,8 @@
   const RATE_PROMPT_MIN_DAYS = 7;
   const RATE_PROMPT_MIN_OPENS = 3;
   const RATE_PROMPT_MAX_SHOWS = 3;
+  const CHROME_RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
+  const EDGE_RATE_PROMPT_URL = 'https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb';
   const PROFILES = Object.freeze({
     STANDARD: 'standard',
     HIGH_CONTRAST: 'high-contrast'
@@ -193,6 +195,14 @@
       && (current.ratePromptShown || 0) < RATE_PROMPT_MAX_SHOWS;
   }
 
+  function ratePromptUrl({ protocol, userAgent }) {
+    if (protocol !== 'chrome-extension:') {
+      return null;
+    }
+
+    return /\bEdg\//.test(userAgent) ? EDGE_RATE_PROMPT_URL : CHROME_RATE_PROMPT_URL;
+  }
+
   return Object.freeze({
     SCHEMA_VERSION,
     RATE_PROMPT_MIN_DAYS,
@@ -220,6 +230,7 @@
     applyCommand,
     applyStorageChanges,
     areSettingsEqual,
-    shouldShowRatePrompt
+    shouldShowRatePrompt,
+    ratePromptUrl
   });
 });

@@ -351,3 +351,27 @@ test('rate prompt shows for an eligible state under the display limit', () => {
     ratePromptShown: settings.RATE_PROMPT_MAX_SHOWS - 1
   }, ratePromptNow), true);
 });
+
+const chrome153UserAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36';
+const edge153UserAgent = `${chrome153UserAgent} Edg/153.0.0.0`;
+
+test('rating prompt URL targets the Chrome Web Store for Chrome', () => {
+  assert.equal(settings.ratePromptUrl({
+    protocol: 'chrome-extension:',
+    userAgent: chrome153UserAgent
+  }), 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews');
+});
+
+test('rating prompt URL targets Microsoft Edge Add-ons for Edge', () => {
+  assert.equal(settings.ratePromptUrl({
+    protocol: 'chrome-extension:',
+    userAgent: edge153UserAgent
+  }), 'https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb');
+});
+
+test('rating prompt URL is unavailable outside Chrome extension protocols', () => {
+  assert.equal(settings.ratePromptUrl({
+    protocol: 'moz-extension:',
+    userAgent: chrome153UserAgent
+  }), null);
+});
