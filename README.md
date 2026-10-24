@@ -1,6 +1,6 @@
 # YouTube Player Accessibility
 
-[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![Microsoft Edge Add-ons](https://img.shields.io/badge/Microsoft%20Edge-Add--ons-brightgreen.svg)](https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
