@@ -18,20 +18,21 @@ Make YouTube controls easier to see, click, and keep visible.
 
 Make YouTube player controls easier to see, click, and keep visible.
 
-Use recommended settings for strong contrast behind the controls, a bigger
-progress bar, and easier-to-read subtitles, or pick each option yourself:
-clear or strong-contrast control styles, controls that stay visible, a thicker
-progress bar that is easier to grab, and a yellow, cyan, or green highlight
-for the progress bar, handle, icons, and time display.
+New installs start with recommended settings: strong contrast behind the
+controls, a bigger progress bar, and easier-to-read subtitles. Use "Use recommended
+settings" to apply them any time, or pick each option yourself: clear or
+strong-contrast control styles, controls that stay visible, a thicker progress
+bar that is easier to grab, and a yellow, cyan, or green highlight for the
+progress bar, handle, icons, and time display.
 
-Readable subtitles are enlarged on a solid dark background, with white or
-yellow text. A larger mouse pointer and keyboard shortcuts make common
-controls easier to use. Works on youtube.com and in YouTube videos embedded
-on other sites.
+Easier-to-read subtitles are larger on a solid dark background, with white or
+yellow text, and apply only when you turn captions on in a video. A larger
+mouse pointer and keyboard shortcuts make common controls easier to use. Works on
+youtube.com and in YouTube videos embedded on other sites.
 
 The extension restyles YouTube's existing player controls without moving,
-cloning, or replacing them. Restore YouTube's look switches every change off
-in one click.
+cloning, or replacing them. The "Restore YouTube's look" button turns every
+change off in one click and keeps your choices for later.
 
 No tracking, no accounts, no external requests. Preferences are stored in
 the browser's extension storage.
