@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-10-26
+
 ### Added
 - An optional anonymous Google Form survey opens in the browser after uninstalling.
+
+### Changed
+- Store descriptions cover easier-to-read subtitles, Restore YouTube's look and recommended settings, and no longer list the hidden Larger Controls style or the old Alt+Shift+P shortcut.
 
 ## [2.1.1] - 2026-10-24
 
