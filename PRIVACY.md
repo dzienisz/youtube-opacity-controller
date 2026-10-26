@@ -1,10 +1,14 @@
 # Privacy Policy & Permissions
 
-**Last updated: July 13, 2026**
+**Last updated: October 26, 2026**
 
 ## Data Collection
 
 YouTube Controls: Clearer & Larger does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests.
+
+## Uninstall survey
+
+After uninstalling, your browser opens an optional Google Form. The extension sends no data with it, and the link has no identifiers. Answers are anonymous and covered by Google's [Privacy Policy](https://policies.google.com/privacy).
 
 ## Stored Settings
 
