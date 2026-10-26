@@ -2,6 +2,10 @@
 
 if (typeof importScripts === 'function') importScripts('settings.js');
 
+if (chrome.runtime.setUninstallURL) {
+  chrome.runtime.setUninstallURL(YtocSettings.UNINSTALL_SURVEY_URL);
+}
+
 function message(key, substitutions) {
   return chrome.i18n.getMessage(key, substitutions);
 }

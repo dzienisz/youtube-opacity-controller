@@ -375,3 +375,12 @@ test('rating prompt URL is unavailable outside Chrome extension protocols', () =
     userAgent: chrome153UserAgent
   }), null);
 });
+
+test('uninstall survey URL is the anonymous Google Form without query parameters', () => {
+  assert.equal(
+    settings.UNINSTALL_SURVEY_URL,
+    'https://docs.google.com/forms/d/e/1FAIpQLScX6GiejyO0j-Jv-LG42hy741e3AedQrMF6FYCI1VfSLC37Lg/viewform'
+  );
+  assert.ok(settings.UNINSTALL_SURVEY_URL.startsWith('https://docs.google.com/forms/'));
+  assert.equal(settings.UNINSTALL_SURVEY_URL.includes('?'), false);
+});

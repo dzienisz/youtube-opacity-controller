@@ -13,6 +13,7 @@
   const RATE_PROMPT_MAX_SHOWS = 3;
   const CHROME_RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
   const EDGE_RATE_PROMPT_URL = 'https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb';
+  const UNINSTALL_SURVEY_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScX6GiejyO0j-Jv-LG42hy741e3AedQrMF6FYCI1VfSLC37Lg/viewform';
   const PROFILES = Object.freeze({
     STANDARD: 'standard',
     HIGH_CONTRAST: 'high-contrast'
@@ -208,6 +209,7 @@
     RATE_PROMPT_MIN_DAYS,
     RATE_PROMPT_MIN_OPENS,
     RATE_PROMPT_MAX_SHOWS,
+    UNINSTALL_SURVEY_URL,
     PROFILES,
     PROFILE_VALUES,
     PROFILE_MESSAGE_KEYS,
