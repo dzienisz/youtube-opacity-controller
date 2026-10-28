@@ -444,6 +444,10 @@ async function main() {
       `chrome-extension://${extensionId}/welcome.html`
     );
     await welcomeTab.waitForLoadState('domcontentloaded');
+    await welcomeTab.waitForFunction(
+      () => document.querySelector('.subtitle')?.textContent
+        === chrome.i18n.getMessage('welcomeSubtitle')
+    );
     const localizedTitle = await welcomeTab.evaluate(() => ({
       title: document.title,
       message: chrome.i18n.getMessage('welcomeTitle')
@@ -469,6 +473,49 @@ async function main() {
       fail(`expected the Big Buck Bunny demo link, got ${demoUrl}`);
     }
     await welcomeTab.close();
+
+    const previousSyncSettings = await worker.evaluate(
+      () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+    );
+    try {
+      const savedSettings = await worker.evaluate(() => ({
+        settingsSchemaVersion: YtocSettings.RECOMMENDED.settingsSchemaVersion,
+        readableCaptions: false
+      }));
+      await worker.evaluate(settings => new Promise(resolve => {
+        chrome.storage.sync.set(settings, resolve);
+      }), savedSettings);
+
+      const savedSettingsWelcome = await context.newPage();
+      try {
+        await savedSettingsWelcome.goto(`chrome-extension://${extensionId}/welcome.html`);
+        await savedSettingsWelcome.waitForFunction(
+          () => document.querySelector('.subtitle')?.textContent
+            === chrome.i18n.getMessage('welcomeSubtitleSaved'),
+          null,
+          { timeout: 15000 }
+        );
+        const unchangedSettings = await worker.evaluate(
+          () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+        );
+        if (
+          Object.keys(unchangedSettings).length !== 2
+          || unchangedSettings.settingsSchemaVersion !== savedSettings.settingsSchemaVersion
+          || unchangedSettings.readableCaptions !== false
+        ) {
+          fail(`expected the welcome page to leave saved settings unchanged, got ${JSON.stringify(unchangedSettings)}`);
+        }
+      } finally {
+        await savedSettingsWelcome.close();
+      }
+    } finally {
+      await worker.evaluate(snapshot => new Promise(resolve => {
+        chrome.storage.sync.clear(() => {
+          if (Object.keys(snapshot).length) chrome.storage.sync.set(snapshot, resolve);
+          else resolve();
+        });
+      }), previousSyncSettings);
+    }
 
     const cycleShortcut = await worker.evaluate(() => new Promise(resolve => {
       chrome.commands.getAll(commands => {

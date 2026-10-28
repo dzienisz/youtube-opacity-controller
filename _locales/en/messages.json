@@ -81,6 +81,7 @@
   "welcomeAfterAlt": { "message": "YouTube player controls with recommended settings" },
   "welcomeTitle": { "message": "YouTube Controls is ready" },
   "welcomeSubtitle": { "message": "Recommended settings are already on: strong contrast, a bigger progress bar and easier-to-read subtitles." },
+  "welcomeSubtitleSaved": { "message": "Your saved settings from another device are on. You can change them or use the recommended ones from the extension icon." },
   "welcomeWithoutExtension": { "message": "Without the extension" },
   "welcomeWithRecommended": { "message": "With recommended settings" },
   "welcomeHoverHint": { "message": "Controls show up when you move the mouse over the video. That's where you'll see the difference." },

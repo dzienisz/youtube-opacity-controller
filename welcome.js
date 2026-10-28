@@ -13,6 +13,15 @@ document.querySelectorAll('[data-i18n-alt]').forEach(element => {
 });
 document.title = t('welcomeTitle');
 
+chrome.storage.sync.get(null, stored => {
+  const settings = YtocSettings.migrateSettings(stored);
+  if (YtocSettings.areSettingsEqual(settings, YtocSettings.RECOMMENDED)) return;
+
+  const subtitle = document.querySelector('[data-i18n="welcomeSubtitle"]');
+  subtitle.dataset.i18n = 'welcomeSubtitleSaved';
+  subtitle.textContent = t('welcomeSubtitleSaved');
+});
+
 chrome.commands.getAll(commands => {
   document.querySelectorAll('[data-command]').forEach(element => {
     const shortcut = commands.find(command => command.name === element.dataset.command)?.shortcut || '';

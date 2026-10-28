@@ -81,6 +81,7 @@
   "welcomeAfterAlt": { "message": "अनुशंसित सेटिंग के साथ YouTube प्लेयर कंट्रोल" },
   "welcomeTitle": { "message": "YouTube Controls तैयार है" },
   "welcomeSubtitle": { "message": "अनुशंसित सेटिंग पहले से चालू हैं: तेज़ कंट्रास्ट, बड़ा प्रोग्रेस बार और आसानी से पढ़े जाने वाले उपशीर्षक।" },
+  "welcomeSubtitleSaved": { "message": "दूसरे डिवाइस से आपकी सहेजी गई सेटिंग चालू हैं। आप उन्हें बदल सकते हैं या एक्सटेंशन आइकन से अनुशंसित सेटिंग इस्तेमाल कर सकते हैं।" },
   "welcomeWithoutExtension": { "message": "एक्सटेंशन के बिना" },
   "welcomeWithRecommended": { "message": "सुझाई गई सेटिंग के साथ" },
   "welcomeHoverHint": { "message": "वीडियो पर माउस ले जाने पर कंट्रोल दिखते हैं। आपको वहीं अंतर दिखाई देगा।" },

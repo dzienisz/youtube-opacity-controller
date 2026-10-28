@@ -81,6 +81,7 @@
   "welcomeAfterAlt": { "message": "おすすめ設定を適用した YouTube プレーヤー コントロール" },
   "welcomeTitle": { "message": "YouTube Controls の準備ができました" },
   "welcomeSubtitle": { "message": "おすすめの設定はすでに有効です。強いコントラスト、大きなプログレスバー、読みやすい字幕を利用できます。" },
+  "welcomeSubtitleSaved": { "message": "別のデバイスから同期された設定が有効です。設定を変更するか、拡張機能アイコンからおすすめ設定を適用できます。" },
   "welcomeWithoutExtension": { "message": "拡張機能なし" },
   "welcomeWithRecommended": { "message": "おすすめの設定を使用" },
   "welcomeHoverHint": { "message": "動画にマウスを重ねるとコントロールが表示されます。そこに違いが現れます。" },
