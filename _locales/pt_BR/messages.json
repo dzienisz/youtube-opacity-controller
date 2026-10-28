@@ -75,5 +75,22 @@
   "statusCaptionColor": {
     "message": "Cor das legendas: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Branco" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Controles do player do YouTube sem a extensão" },
+  "welcomeAfterAlt": { "message": "Controles do player do YouTube com as configurações recomendadas" },
+  "welcomeTitle": { "message": "YouTube Controls está pronto" },
+  "welcomeSubtitle": { "message": "As configurações recomendadas já estão ativadas: contraste forte, barra de progresso maior e legendas mais fáceis de ler." },
+  "welcomeSubtitleSaved": { "message": "As configurações salvas em outro dispositivo estão ativadas. Você pode alterá-las ou usar as configurações recomendadas pelo ícone da extensão." },
+  "welcomeSubtitleOff": { "message": "O YouTube Controls está desativado nas configurações salvas. Ative as melhorias nos controles do YouTube pelo botão no pop-up da extensão." },
+  "welcomeWithoutExtension": { "message": "Sem a extensão" },
+  "welcomeWithRecommended": { "message": "Com as configurações recomendadas" },
+  "welcomeHoverHint": { "message": "Os controles aparecem quando você move o mouse sobre o vídeo. É aí que você verá a diferença." },
+  "welcomeDemoLink": { "message": "Abrir vídeo de demonstração" },
+  "welcomeChangeSettingsTitle": { "message": "Alterar configurações" },
+  "welcomeChangeSettingsBody": { "message": "Clique no ícone de peça de quebra-cabeça na barra de ferramentas e fixe o YouTube Controls. Clique no ícone para mudar o estilo, ativar “Manter controles visíveis” ou escolher “Restaurar a aparência do YouTube”." },
+  "welcomeKeyboardTitle": { "message": "Atalhos do teclado" },
+  "welcomeNotSet": { "message": "Não definido" },
+  "welcomeShortcutSettings": { "message": "Você pode alterá-los nas configurações de atalhos de extensões do navegador." },
+  "welcomeFooter": { "message": "Funciona somente em youtube.com. Sem rastreamento nem contas." }
 }

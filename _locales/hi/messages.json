@@ -75,5 +75,22 @@
   "statusCaptionColor": {
     "message": "उपशीर्षक का रंग: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "सफ़ेद" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "एक्सटेंशन के बिना YouTube प्लेयर कंट्रोल" },
+  "welcomeAfterAlt": { "message": "अनुशंसित सेटिंग के साथ YouTube प्लेयर कंट्रोल" },
+  "welcomeTitle": { "message": "YouTube Controls तैयार है" },
+  "welcomeSubtitle": { "message": "अनुशंसित सेटिंग पहले से चालू हैं: तेज़ कंट्रास्ट, बड़ा प्रोग्रेस बार और आसानी से पढ़े जाने वाले उपशीर्षक।" },
+  "welcomeSubtitleSaved": { "message": "दूसरे डिवाइस से आपकी सहेजी गई सेटिंग चालू हैं। आप उन्हें बदल सकते हैं या एक्सटेंशन आइकन से अनुशंसित सेटिंग इस्तेमाल कर सकते हैं।" },
+  "welcomeSubtitleOff": { "message": "आपकी सहेजी गई सेटिंग में YouTube Controls बंद है। एक्सटेंशन पॉपअप में YouTube कंट्रोल सुधार वाला स्विच चालू करें।" },
+  "welcomeWithoutExtension": { "message": "एक्सटेंशन के बिना" },
+  "welcomeWithRecommended": { "message": "सुझाई गई सेटिंग के साथ" },
+  "welcomeHoverHint": { "message": "वीडियो पर माउस ले जाने पर कंट्रोल दिखते हैं। आपको वहीं अंतर दिखाई देगा।" },
+  "welcomeDemoLink": { "message": "डेमो वीडियो खोलें" },
+  "welcomeChangeSettingsTitle": { "message": "सेटिंग बदलें" },
+  "welcomeChangeSettingsBody": { "message": "टूलबार में पज़ल-पीस आइकन पर क्लिक करके YouTube Controls को पिन करें। स्टाइल बदलने, “कंट्रोल दिखाए रखें” चालू करने या “YouTube का मूल रूप वापस लाएँ” चुनने के लिए इसके आइकन पर क्लिक करें।" },
+  "welcomeKeyboardTitle": { "message": "कीबोर्ड शॉर्टकट" },
+  "welcomeNotSet": { "message": "सेट नहीं है" },
+  "welcomeShortcutSettings": { "message": "आप इन्हें अपने ब्राउज़र की एक्सटेंशन शॉर्टकट सेटिंग में बदल सकते हैं।" },
+  "welcomeFooter": { "message": "सिर्फ youtube.com पर काम करता है। कोई ट्रैकिंग या खाते नहीं।" }
 }

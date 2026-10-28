@@ -75,5 +75,22 @@
   "statusCaptionColor": {
     "message": "لون الترجمة: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "أبيض" } }
-  }
+  },
+  "welcomeDirection": { "message": "rtl" },
+  "welcomeBeforeAlt": { "message": "عناصر تحكم مشغل YouTube من دون الإضافة" },
+  "welcomeAfterAlt": { "message": "عناصر تحكم مشغل YouTube مع الإعدادات الموصى بها" },
+  "welcomeTitle": { "message": "أصبحت عناصر تحكم YouTube جاهزة" },
+  "welcomeSubtitle": { "message": "الإعدادات الموصى بها مفعّلة بالفعل: تباين قوي، وشريط تقدّم أكبر، وترجمة نصية أسهل قراءة." },
+  "welcomeSubtitleSaved": { "message": "إعداداتك المحفوظة من جهاز آخر مفعّلة. يمكنك تغييرها أو استخدام الإعدادات الموصى بها من رمز الإضافة." },
+  "welcomeSubtitleOff": { "message": "عناصر تحكم YouTube متوقفة في إعداداتك المحفوظة. فعّل تحسينات عناصر تحكم YouTube باستخدام المفتاح في النافذة المنبثقة للإضافة." },
+  "welcomeWithoutExtension": { "message": "من دون الإضافة" },
+  "welcomeWithRecommended": { "message": "مع الإعدادات الموصى بها" },
+  "welcomeHoverHint": { "message": "تظهر عناصر التحكم عند تمرير مؤشر الفأرة فوق الفيديو. هناك ستلاحظ الفرق." },
+  "welcomeDemoLink": { "message": "افتح فيديو تجريبي" },
+  "welcomeChangeSettingsTitle": { "message": "تغيير الإعدادات" },
+  "welcomeChangeSettingsBody": { "message": "انقر على رمز قطعة الأحجية في شريط الأدوات وثبّت YouTube Controls. انقر على رمزه لتغيير النمط، أو إبقاء عناصر التحكم ظاهرة، أو استعادة مظهر YouTube." },
+  "welcomeKeyboardTitle": { "message": "اختصارات لوحة المفاتيح" },
+  "welcomeNotSet": { "message": "غير معيّن" },
+  "welcomeShortcutSettings": { "message": "يمكنك تغييرها من إعدادات اختصارات الإضافات في متصفحك." },
+  "welcomeFooter": { "message": "يعمل فقط على youtube.com. بلا تتبّع أو حسابات." }
 }

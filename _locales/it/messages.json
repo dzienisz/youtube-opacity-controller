@@ -75,5 +75,22 @@
   "statusCaptionColor": {
     "message": "Colore dei sottotitoli: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Bianco" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Controlli del player YouTube senza l’estensione" },
+  "welcomeAfterAlt": { "message": "Controlli del player YouTube con le impostazioni consigliate" },
+  "welcomeTitle": { "message": "YouTube Controls è pronto" },
+  "welcomeSubtitle": { "message": "Le impostazioni consigliate sono già attive: contrasto forte, una barra di avanzamento più grande e sottotitoli più facili da leggere." },
+  "welcomeSubtitleSaved": { "message": "Le impostazioni salvate su un altro dispositivo sono attive. Puoi modificarle o usare quelle consigliate dall’icona dell’estensione." },
+  "welcomeSubtitleOff": { "message": "YouTube Controls è disattivato nelle impostazioni salvate. Attiva i miglioramenti dei controlli YouTube con l’interruttore nel popup dell’estensione." },
+  "welcomeWithoutExtension": { "message": "Senza l'estensione" },
+  "welcomeWithRecommended": { "message": "Con le impostazioni consigliate" },
+  "welcomeHoverHint": { "message": "I controlli appaiono quando passi il mouse sul video. È lì che vedrai la differenza." },
+  "welcomeDemoLink": { "message": "Apri un video dimostrativo" },
+  "welcomeChangeSettingsTitle": { "message": "Modifica le impostazioni" },
+  "welcomeChangeSettingsBody": { "message": "Fai clic sull'icona a forma di pezzo di puzzle nella barra degli strumenti e fissa YouTube Controls. Fai clic sulla sua icona per cambiare stile, attivare «Mantieni i controlli visibili» o scegliere «Ripristina l’aspetto di YouTube»." },
+  "welcomeKeyboardTitle": { "message": "Scorciatoie da tastiera" },
+  "welcomeNotSet": { "message": "Non assegnato" },
+  "welcomeShortcutSettings": { "message": "Puoi modificarle nelle impostazioni delle scorciatoie delle estensioni del browser." },
+  "welcomeFooter": { "message": "Funziona solo su youtube.com. Nessun tracciamento né account." }
 }

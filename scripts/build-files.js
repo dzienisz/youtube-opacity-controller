@@ -7,6 +7,10 @@ module.exports = Object.freeze([
   'popup.html',
   'popup.css',
   'popup.js',
+  'welcome.html',
+  'welcome.css',
+  'welcome.js',
+  'welcome',
   'icons',
   '_locales'
 ]);

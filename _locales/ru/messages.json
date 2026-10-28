@@ -75,5 +75,22 @@
   "statusCaptionColor": {
     "message": "Цвет субтитров: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Белый" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Элементы управления видеоплеером YouTube без расширения" },
+  "welcomeAfterAlt": { "message": "Элементы управления видеоплеером YouTube с рекомендуемыми настройками" },
+  "welcomeTitle": { "message": "YouTube Controls готово к работе" },
+  "welcomeSubtitle": { "message": "Рекомендуемые настройки уже включены: сильный контраст, большая полоса воспроизведения и более удобные для чтения субтитры." },
+  "welcomeSubtitleSaved": { "message": "Включены настройки, сохранённые на другом устройстве. Их можно изменить или применить рекомендуемые настройки через значок расширения." },
+  "welcomeSubtitleOff": { "message": "В сохранённых настройках YouTube Controls выключен. Включите улучшения элементов управления YouTube с помощью переключателя во всплывающем окне расширения." },
+  "welcomeWithoutExtension": { "message": "Без расширения" },
+  "welcomeWithRecommended": { "message": "С рекомендуемыми настройками" },
+  "welcomeHoverHint": { "message": "Элементы управления появляются, когда вы наводите указатель на видео. Именно там заметна разница." },
+  "welcomeDemoLink": { "message": "Открыть демонстрационное видео" },
+  "welcomeChangeSettingsTitle": { "message": "Изменить настройки" },
+  "welcomeChangeSettingsBody": { "message": "Нажмите значок пазла на панели инструментов и закрепите YouTube Controls. Нажмите значок расширения, чтобы сменить стиль, включить «Держать элементы управления видимыми» или выбрать «Восстановить исходный вид YouTube»." },
+  "welcomeKeyboardTitle": { "message": "Быстрые клавиши" },
+  "welcomeNotSet": { "message": "Не назначено" },
+  "welcomeShortcutSettings": { "message": "Их можно изменить в настройках сочетаний клавиш расширений браузера." },
+  "welcomeFooter": { "message": "Работает только на youtube.com. Без отслеживания и учётных записей." }
 }

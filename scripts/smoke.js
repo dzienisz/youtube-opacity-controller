@@ -407,6 +407,16 @@ async function assertCaptionStyles(player, label, expected) {
   }
 }
 
+async function waitForPage(context, expectedUrl) {
+  const deadline = Date.now() + 15000;
+  while (Date.now() < deadline) {
+    const page = context.pages().find(candidate => candidate.url() === expectedUrl);
+    if (page) return page;
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  fail(`expected a new tab at ${expectedUrl}`);
+}
+
 async function main() {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ytoc-smoke-'));
   const options = {
@@ -429,6 +439,113 @@ async function main() {
     let worker = context.serviceWorkers()[0];
     if (!worker) worker = await context.waitForEvent('serviceworker');
     const extensionId = new URL(worker.url()).host;
+    const welcomeTab = await waitForPage(
+      context,
+      `chrome-extension://${extensionId}/welcome.html`
+    );
+    await welcomeTab.waitForLoadState('domcontentloaded');
+    await welcomeTab.waitForFunction(
+      () => document.querySelector('.subtitle')?.textContent
+        === chrome.i18n.getMessage('welcomeSubtitle')
+    );
+    const localizedTitle = await welcomeTab.evaluate(() => ({
+      title: document.title,
+      message: chrome.i18n.getMessage('welcomeTitle')
+    }));
+    if (
+      !localizedTitle.title.trim()
+      || localizedTitle.title === 'welcomeTitle'
+      || localizedTitle.title !== localizedTitle.message
+    ) {
+      fail(`expected a localized welcome title, got ${JSON.stringify(localizedTitle)}`);
+    }
+    await welcomeTab.waitForFunction(() => {
+      const images = Array.from(document.querySelectorAll('.comparison img'));
+      return images.length === 2
+        && images.every(image => image.complete && image.naturalWidth > 0 && image.alt.trim());
+    }, null, { timeout: 15000 });
+    const cycleBinding = await welcomeTab.locator('[data-command="cycle-profile"]').textContent();
+    if (cycleBinding?.replace(/\s/g, '') !== 'Alt+Shift+J') {
+      fail(`expected welcome cycle-profile binding Alt+Shift+J, got ${cycleBinding}`);
+    }
+    const demoUrl = await welcomeTab.locator('.primary-link').getAttribute('href');
+    if (demoUrl !== 'https://www.youtube.com/watch?v=aqz-KE-bpKQ') {
+      fail(`expected the Big Buck Bunny demo link, got ${demoUrl}`);
+    }
+    await welcomeTab.close();
+
+    const previousSyncSettings = await worker.evaluate(
+      () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+    );
+    try {
+      const savedSettings = await worker.evaluate(() => ({
+        settingsSchemaVersion: YtocSettings.RECOMMENDED.settingsSchemaVersion,
+        readableCaptions: false
+      }));
+      await worker.evaluate(settings => new Promise(resolve => {
+        chrome.storage.sync.set(settings, resolve);
+      }), savedSettings);
+
+      const savedSettingsWelcome = await context.newPage();
+      try {
+        await savedSettingsWelcome.goto(`chrome-extension://${extensionId}/welcome.html`);
+        await savedSettingsWelcome.waitForFunction(
+          () => document.querySelector('.subtitle')?.textContent
+            === chrome.i18n.getMessage('welcomeSubtitleSaved'),
+          null,
+          { timeout: 15000 }
+        );
+        const unchangedSettings = await worker.evaluate(
+          () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+        );
+        if (
+          Object.keys(unchangedSettings).length !== 2
+          || unchangedSettings.settingsSchemaVersion !== savedSettings.settingsSchemaVersion
+          || unchangedSettings.readableCaptions !== false
+        ) {
+          fail(`expected the welcome page to leave saved settings unchanged, got ${JSON.stringify(unchangedSettings)}`);
+        }
+      } finally {
+        await savedSettingsWelcome.close();
+      }
+
+      const disabledSettings = { ...savedSettings, extensionEnabled: false };
+      await worker.evaluate(settings => new Promise(resolve => {
+        chrome.storage.sync.set(settings, resolve);
+      }), disabledSettings);
+
+      const disabledSettingsWelcome = await context.newPage();
+      try {
+        await disabledSettingsWelcome.goto(`chrome-extension://${extensionId}/welcome.html`);
+        await disabledSettingsWelcome.waitForFunction(
+          () => document.querySelector('.subtitle')?.textContent
+            === chrome.i18n.getMessage('welcomeSubtitleOff'),
+          null,
+          { timeout: 15000 }
+        );
+        const unchangedDisabledSettings = await worker.evaluate(
+          () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+        );
+        if (
+          Object.keys(unchangedDisabledSettings).length !== 3
+          || unchangedDisabledSettings.settingsSchemaVersion !== savedSettings.settingsSchemaVersion
+          || unchangedDisabledSettings.readableCaptions !== false
+          || unchangedDisabledSettings.extensionEnabled !== false
+        ) {
+          fail(`expected the welcome page to leave disabled saved settings unchanged, got ${JSON.stringify(unchangedDisabledSettings)}`);
+        }
+      } finally {
+        await disabledSettingsWelcome.close();
+      }
+    } finally {
+      await worker.evaluate(snapshot => new Promise(resolve => {
+        chrome.storage.sync.clear(() => {
+          if (Object.keys(snapshot).length) chrome.storage.sync.set(snapshot, resolve);
+          else resolve();
+        });
+      }), previousSyncSettings);
+    }
+
     const cycleShortcut = await worker.evaluate(() => new Promise(resolve => {
       chrome.commands.getAll(commands => {
         resolve(commands.find(command => command.name === 'cycle-profile')?.shortcut);
