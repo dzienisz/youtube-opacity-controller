@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "Untertitelfarbe: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Weiß" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "YouTube-Player-Steuerelemente ohne die Erweiterung" },
+  "welcomeAfterAlt": { "message": "YouTube-Player-Steuerelemente mit empfohlenen Einstellungen" },
+  "welcomeTitle": { "message": "YouTube Controls ist startklar" },
+  "welcomeSubtitle": { "message": "Die empfohlenen Einstellungen sind bereits aktiviert: starker Kontrast, eine größere Fortschrittsleiste und besser lesbare Untertitel." },
+  "welcomeWithoutExtension": { "message": "Ohne die Erweiterung" },
+  "welcomeWithRecommended": { "message": "Mit empfohlenen Einstellungen" },
+  "welcomeHoverHint": { "message": "Die Steuerelemente werden angezeigt, wenn du die Maus über das Video bewegst. Dort siehst du den Unterschied." },
+  "welcomeDemoLink": { "message": "Demo-Video öffnen" },
+  "welcomeChangeSettingsTitle": { "message": "Einstellungen ändern" },
+  "welcomeChangeSettingsBody": { "message": "Klicke in der Symbolleiste auf das Puzzleteil und pinne YouTube Controls an. Klicke auf das Symbol, um den Stil zu ändern, „Steuerelemente sichtbar halten“ zu aktivieren oder „YouTube-Ansicht wiederherstellen“ auszuwählen." },
+  "welcomeKeyboardTitle": { "message": "Tastenkombinationen" },
+  "welcomeNotSet": { "message": "Nicht festgelegt" },
+  "welcomeShortcutSettings": { "message": "Du kannst sie in den Tastatureinstellungen deines Browsers für Erweiterungen ändern." },
+  "welcomeFooter": { "message": "Funktioniert nur auf youtube.com. Kein Tracking, keine Konten." }
 }

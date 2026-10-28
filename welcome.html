@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="welcomeTitle">YouTube Controls is ready</title>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <main class="welcome">
+    <header class="page-header">
+      <h1 data-i18n="welcomeTitle">YouTube Controls is ready</h1>
+      <p class="subtitle" data-i18n="welcomeSubtitle">Recommended settings are already on: strong contrast, a bigger progress bar and easier-to-read subtitles.</p>
+    </header>
+
+    <section class="comparison">
+      <figure>
+        <figcaption data-i18n="welcomeWithoutExtension">Without the extension</figcaption>
+        <img src="welcome/before.webp" alt="" data-i18n-alt="welcomeBeforeAlt" width="1160" height="180">
+      </figure>
+      <figure>
+        <figcaption data-i18n="welcomeWithRecommended">With recommended settings</figcaption>
+        <img src="welcome/after.webp" alt="" data-i18n-alt="welcomeAfterAlt" width="1160" height="180">
+      </figure>
+    </section>
+
+    <aside class="hint">
+      <p data-i18n="welcomeHoverHint">Controls show up when you move the mouse over the video. That's where you'll see the difference.</p>
+    </aside>
+
+    <p class="demo">
+      <a class="primary-link" href="https://www.youtube.com/watch?v=aqz-KE-bpKQ" target="_blank" rel="noopener" data-i18n="welcomeDemoLink">Open a demo video</a>
+    </p>
+
+    <section class="info-section">
+      <h2 data-i18n="welcomeChangeSettingsTitle">Change settings</h2>
+      <p data-i18n="welcomeChangeSettingsBody">Click the puzzle-piece icon in the toolbar and pin YouTube Controls. Click its icon to change the style, keep controls visible or restore YouTube's look.</p>
+    </section>
+
+    <section class="info-section shortcuts">
+      <h2 data-i18n="welcomeKeyboardTitle">Keyboard shortcuts</h2>
+      <dl>
+        <div class="shortcut-row">
+          <dt data-i18n="cmdToggleEnhancements">Turn control enhancements on or off</dt>
+          <dd class="shortcut" data-command="toggle-enhancements"></dd>
+        </div>
+        <div class="shortcut-row">
+          <dt data-i18n="cmdCycleProfile">Switch to the next control style</dt>
+          <dd class="shortcut" data-command="cycle-profile"></dd>
+        </div>
+        <div class="shortcut-row">
+          <dt data-i18n="cmdToggleAlwaysShow">Keep controls visible on or off</dt>
+          <dd class="shortcut" data-command="toggle-always-show"></dd>
+        </div>
+      </dl>
+      <p class="shortcut-help" data-i18n="welcomeShortcutSettings">You can change them in your browser's extension shortcut settings.</p>
+    </section>
+
+    <footer data-i18n="welcomeFooter">Works only on youtube.com. No tracking, no accounts.</footer>
+  </main>
+  <script src="welcome.js"></script>
+</body>
+</html>

@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "字幕の色: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "白" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "拡張機能なしの YouTube プレーヤー コントロール" },
+  "welcomeAfterAlt": { "message": "おすすめ設定を適用した YouTube プレーヤー コントロール" },
+  "welcomeTitle": { "message": "YouTube Controls の準備ができました" },
+  "welcomeSubtitle": { "message": "おすすめの設定はすでに有効です。強いコントラスト、大きなプログレスバー、読みやすい字幕を利用できます。" },
+  "welcomeWithoutExtension": { "message": "拡張機能なし" },
+  "welcomeWithRecommended": { "message": "おすすめの設定を使用" },
+  "welcomeHoverHint": { "message": "動画にマウスを重ねるとコントロールが表示されます。そこに違いが現れます。" },
+  "welcomeDemoLink": { "message": "デモ動画を開く" },
+  "welcomeChangeSettingsTitle": { "message": "設定を変更" },
+  "welcomeChangeSettingsBody": { "message": "ツールバーのパズルピースアイコンをクリックし、YouTube Controls をピン留めします。アイコンをクリックすると、スタイルを変更したり、「コントロールを表示したままにする」を有効にしたり、「YouTubeの元の表示に戻す」を選んだりできます。" },
+  "welcomeKeyboardTitle": { "message": "キーボード ショートカット" },
+  "welcomeNotSet": { "message": "未設定" },
+  "welcomeShortcutSettings": { "message": "ブラウザの拡張機能ショートカット設定で変更できます。" },
+  "welcomeFooter": { "message": "youtube.com のみで動作します。追跡やアカウントはありません。" }
 }

@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "Колір субтитрів: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Білий" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Елементи керування відеопрогравачем YouTube без розширення" },
+  "welcomeAfterAlt": { "message": "Елементи керування відеопрогравачем YouTube з рекомендованими налаштуваннями" },
+  "welcomeTitle": { "message": "YouTube Controls готовий до роботи" },
+  "welcomeSubtitle": { "message": "Рекомендовані налаштування вже ввімкнено: сильний контраст, більша смуга відтворення та зручніші для читання субтитри." },
+  "welcomeWithoutExtension": { "message": "Без розширення" },
+  "welcomeWithRecommended": { "message": "З рекомендованими налаштуваннями" },
+  "welcomeHoverHint": { "message": "Елементи керування з’являються, коли ви наводите вказівник на відео. Саме там буде помітна різниця." },
+  "welcomeDemoLink": { "message": "Відкрити демонстраційне відео" },
+  "welcomeChangeSettingsTitle": { "message": "Змінити налаштування" },
+  "welcomeChangeSettingsBody": { "message": "Натисніть значок пазла на панелі інструментів і закріпіть YouTube Controls. Натисніть його значок, щоб змінити стиль, увімкнути «Залишати елементи керування видимими» або вибрати «Відновити початковий вигляд YouTube»." },
+  "welcomeKeyboardTitle": { "message": "Сполучення клавіш" },
+  "welcomeNotSet": { "message": "Не призначено" },
+  "welcomeShortcutSettings": { "message": "Їх можна змінити в налаштуваннях сполучень клавіш розширень у браузері." },
+  "welcomeFooter": { "message": "Працює лише на youtube.com. Без відстеження та облікових записів." }
 }

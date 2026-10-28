@@ -42,3 +42,12 @@ test('every message has a non-empty translated string', () => {
     }
   }
 });
+
+test('welcome comparison images have localized alt text', () => {
+  for (const locale of locales) {
+    const messages = readMessages(locale);
+    for (const key of ['welcomeBeforeAlt', 'welcomeAfterAlt']) {
+      assert.ok(messages[key]?.message.trim(), `${locale}:${key} is missing or empty`);
+    }
+  }
+});

@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "Kolor napisów: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Biały" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Elementy sterujące odtwarzaczem YouTube bez rozszerzenia" },
+  "welcomeAfterAlt": { "message": "Elementy sterujące odtwarzaczem YouTube z zalecanymi ustawieniami" },
+  "welcomeTitle": { "message": "YouTube Controls jest gotowe" },
+  "welcomeSubtitle": { "message": "Zalecane ustawienia są już włączone: silny kontrast, większy pasek postępu i łatwiejsze do odczytania napisy." },
+  "welcomeWithoutExtension": { "message": "Bez rozszerzenia" },
+  "welcomeWithRecommended": { "message": "Z zalecanymi ustawieniami" },
+  "welcomeHoverHint": { "message": "Elementy sterujące pojawiają się po najechaniu kursorem na film. Wtedy zobaczysz różnicę." },
+  "welcomeDemoLink": { "message": "Otwórz film demonstracyjny" },
+  "welcomeChangeSettingsTitle": { "message": "Zmień ustawienia" },
+  "welcomeChangeSettingsBody": { "message": "Kliknij ikonę puzzla na pasku narzędzi i przypnij YouTube Controls. Kliknij ikonę rozszerzenia, aby zmienić styl, włączyć „Utrzymuj elementy sterowania widoczne” lub wybrać „Przywróć wygląd YouTube”." },
+  "welcomeKeyboardTitle": { "message": "Skróty klawiszowe" },
+  "welcomeNotSet": { "message": "Nie ustawiono" },
+  "welcomeShortcutSettings": { "message": "Możesz je zmienić w ustawieniach skrótów rozszerzeń w przeglądarce." },
+  "welcomeFooter": { "message": "Działa tylko w youtube.com. Bez śledzenia i kont." }
 }

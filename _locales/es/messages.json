@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "Color de los subtítulos: $COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "Blanco" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "Controles del reproductor de YouTube sin la extensión" },
+  "welcomeAfterAlt": { "message": "Controles del reproductor de YouTube con la configuración recomendada" },
+  "welcomeTitle": { "message": "YouTube Controls está listo" },
+  "welcomeSubtitle": { "message": "Los ajustes recomendados ya están activados: contraste fuerte, una barra de progreso más grande y subtítulos más fáciles de leer." },
+  "welcomeWithoutExtension": { "message": "Sin la extensión" },
+  "welcomeWithRecommended": { "message": "Con los ajustes recomendados" },
+  "welcomeHoverHint": { "message": "Los controles aparecen al mover el ratón sobre el vídeo. Ahí es donde notarás la diferencia." },
+  "welcomeDemoLink": { "message": "Abre un vídeo de prueba" },
+  "welcomeChangeSettingsTitle": { "message": "Cambiar ajustes" },
+  "welcomeChangeSettingsBody": { "message": "Haz clic en el icono de la pieza de puzle de la barra de herramientas y fija YouTube Controls. Haz clic en su icono para cambiar el estilo, activar «Mantener controles visibles» o seleccionar «Restaurar el aspecto de YouTube»." },
+  "welcomeKeyboardTitle": { "message": "Atajos de teclado" },
+  "welcomeNotSet": { "message": "Sin asignar" },
+  "welcomeShortcutSettings": { "message": "Puedes cambiarlos en los ajustes de atajos de las extensiones de tu navegador." },
+  "welcomeFooter": { "message": "Solo funciona en youtube.com. Sin seguimiento ni cuentas." }
 }

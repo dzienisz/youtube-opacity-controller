@@ -20,6 +20,7 @@ A privacy-first Chrome and Firefox extension that makes YouTube player controls 
 - Easier-to-read subtitles with a solid dark background and white or yellow text
 - Larger mouse pointer over the video
 - Keyboard shortcuts with on-player confirmation (HUD)
+- A first-install welcome page showing the difference and how to adjust controls
 - Master switch that removes all extension styling
 - Settings synchronized through Chrome Sync
 - No accounts, analytics, tracking, or external requests

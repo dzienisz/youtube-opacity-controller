@@ -75,5 +75,20 @@
   "statusCaptionColor": {
     "message": "字幕颜色：$COLOR$",
     "placeholders": { "color": { "content": "$1", "example": "白色" } }
-  }
+  },
+  "welcomeDirection": { "message": "ltr" },
+  "welcomeBeforeAlt": { "message": "未安装扩展程序时的 YouTube 播放器控件" },
+  "welcomeAfterAlt": { "message": "应用推荐设置后的 YouTube 播放器控件" },
+  "welcomeTitle": { "message": "YouTube Controls 已就绪" },
+  "welcomeSubtitle": { "message": "推荐设置已开启：强对比度、更大的进度条和更易阅读的字幕。" },
+  "welcomeWithoutExtension": { "message": "未使用扩展程序" },
+  "welcomeWithRecommended": { "message": "使用推荐设置" },
+  "welcomeHoverHint": { "message": "将鼠标移到视频上时会显示控件。你可以在那里看到变化。" },
+  "welcomeDemoLink": { "message": "打开演示视频" },
+  "welcomeChangeSettingsTitle": { "message": "更改设置" },
+  "welcomeChangeSettingsBody": { "message": "点击工具栏中的拼图图标并固定 YouTube Controls。点击扩展程序图标可更改样式、启用“保持控件可见”或选择“恢复 YouTube 原貌”。" },
+  "welcomeKeyboardTitle": { "message": "键盘快捷键" },
+  "welcomeNotSet": { "message": "未设置" },
+  "welcomeShortcutSettings": { "message": "你可以在浏览器的扩展程序快捷键设置中更改。" },
+  "welcomeFooter": { "message": "仅在 youtube.com 上运行。不跟踪、不需要账户。" }
 }

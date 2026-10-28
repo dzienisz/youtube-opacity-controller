@@ -54,6 +54,7 @@ chrome.commands.onCommand.addListener(command => {
 chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === 'install') {
     chrome.storage.local.set({ installedAt: Date.now() });
+    chrome.tabs.create({ url: chrome.runtime.getURL('welcome.html') });
   }
 
   if (details.reason === 'update') {

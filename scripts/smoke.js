@@ -407,6 +407,16 @@ async function assertCaptionStyles(player, label, expected) {
   }
 }
 
+async function waitForPage(context, expectedUrl) {
+  const deadline = Date.now() + 15000;
+  while (Date.now() < deadline) {
+    const page = context.pages().find(candidate => candidate.url() === expectedUrl);
+    if (page) return page;
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  fail(`expected a new tab at ${expectedUrl}`);
+}
+
 async function main() {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ytoc-smoke-'));
   const options = {
@@ -429,6 +439,37 @@ async function main() {
     let worker = context.serviceWorkers()[0];
     if (!worker) worker = await context.waitForEvent('serviceworker');
     const extensionId = new URL(worker.url()).host;
+    const welcomeTab = await waitForPage(
+      context,
+      `chrome-extension://${extensionId}/welcome.html`
+    );
+    await welcomeTab.waitForLoadState('domcontentloaded');
+    const localizedTitle = await welcomeTab.evaluate(() => ({
+      title: document.title,
+      message: chrome.i18n.getMessage('welcomeTitle')
+    }));
+    if (
+      !localizedTitle.title.trim()
+      || localizedTitle.title === 'welcomeTitle'
+      || localizedTitle.title !== localizedTitle.message
+    ) {
+      fail(`expected a localized welcome title, got ${JSON.stringify(localizedTitle)}`);
+    }
+    await welcomeTab.waitForFunction(() => {
+      const images = Array.from(document.querySelectorAll('.comparison img'));
+      return images.length === 2
+        && images.every(image => image.complete && image.naturalWidth > 0 && image.alt.trim());
+    }, null, { timeout: 15000 });
+    const cycleBinding = await welcomeTab.locator('[data-command="cycle-profile"]').textContent();
+    if (cycleBinding?.replace(/\s/g, '') !== 'Alt+Shift+J') {
+      fail(`expected welcome cycle-profile binding Alt+Shift+J, got ${cycleBinding}`);
+    }
+    const demoUrl = await welcomeTab.locator('.primary-link').getAttribute('href');
+    if (demoUrl !== 'https://www.youtube.com/watch?v=aqz-KE-bpKQ') {
+      fail(`expected the Big Buck Bunny demo link, got ${demoUrl}`);
+    }
+    await welcomeTab.close();
+
     const cycleShortcut = await worker.evaluate(() => new Promise(resolve => {
       chrome.commands.getAll(commands => {
         resolve(commands.find(command => command.name === 'cycle-profile')?.shortcut);
