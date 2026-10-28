@@ -53,7 +53,7 @@ chrome.commands.onCommand.addListener(command => {
 
 chrome.runtime.onInstalled.addListener(details => {
   if (details.reason === 'install') {
-    chrome.storage.local.set({ installedAt: Date.now() });
+    chrome.storage.local.set({ installedAt: Date.now(), playerHintPending: true });
     chrome.tabs.create({ url: chrome.runtime.getURL('welcome.html') });
   }
 

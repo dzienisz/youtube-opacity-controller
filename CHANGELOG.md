@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - A welcome page opens once after installing, with a before/after comparison, a demo video link and the current keyboard shortcuts.
+- A one-time on-player hint shows where to find clearer controls on the first video after installation.
 
 ## [2.1.2] - 2026-10-26
 
