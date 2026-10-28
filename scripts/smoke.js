@@ -563,6 +563,7 @@ async function main() {
     }
 
     const page = await context.newPage();
+    await page.setViewportSize({ width: 1280, height: 720 });
     await context.route('https://www.youtube.com/**', route => {
       const url = route.request().url();
       const body = url.includes('/embed/line')
@@ -576,6 +577,42 @@ async function main() {
     });
     await page.goto('https://www.youtube.com/watch?v=smoke');
     await page.waitForSelector('html[data-ytoc-enabled]', { timeout: 15000 });
+    const playerHintMessages = await worker.evaluate(() => ({
+      title: chrome.i18n.getMessage('playerHintTitle'),
+      body: chrome.i18n.getMessage('playerHintBody')
+    }));
+    await page.waitForFunction(({ title, body }) => {
+      const hint = document.querySelector('.ytoc-hud[data-visible]');
+      return hint?.textContent.startsWith(title) && hint.textContent.includes(body);
+    }, playerHintMessages, { timeout: 15000 });
+    const playerHintText = await page.locator('.ytoc-hud[data-visible]').innerText();
+    if (!playerHintText.startsWith(playerHintMessages.title)
+      || !playerHintText.includes(playerHintMessages.body)) {
+      fail(`expected the first video to show the localized player hint, got ${JSON.stringify(playerHintText)}`);
+    }
+    const playerHintPending = await worker.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.get('playerHintPending', stored => resolve(stored.playerHintPending));
+    }));
+    if (playerHintPending !== false) {
+      fail(`expected the first video to clear playerHintPending, got ${playerHintPending}`);
+    }
+
+    await page.reload();
+    await page.waitForSelector('html[data-ytoc-enabled]', { timeout: 15000 });
+    await page.waitForTimeout(1000);
+    if (await page.locator('.ytoc-hud[data-visible]').count()) {
+      fail('expected the player hint to remain hidden after the first video');
+    }
+
+    await worker.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.remove('playerHintPending', resolve);
+    }));
+    await page.reload();
+    await page.waitForSelector('html[data-ytoc-enabled]', { timeout: 15000 });
+    await page.waitForTimeout(1000);
+    if (await page.locator('.ytoc-hud[data-visible]').count()) {
+      fail('expected no player hint when playerHintPending is absent');
+    }
 
     // The overlay background transitions in over 0.2s; wait for the final alpha.
     await page.waitForFunction(() => {

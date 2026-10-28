@@ -83,6 +83,8 @@
   "welcomeSubtitle": { "message": "अनुशंसित सेटिंग पहले से चालू हैं: तेज़ कंट्रास्ट, बड़ा प्रोग्रेस बार और आसानी से पढ़े जाने वाले उपशीर्षक।" },
   "welcomeSubtitleSaved": { "message": "दूसरे डिवाइस से आपकी सहेजी गई सेटिंग चालू हैं। आप उन्हें बदल सकते हैं या एक्सटेंशन आइकन से अनुशंसित सेटिंग इस्तेमाल कर सकते हैं।" },
   "welcomeSubtitleOff": { "message": "आपकी सहेजी गई सेटिंग में YouTube Controls बंद है। एक्सटेंशन पॉपअप में YouTube कंट्रोल सुधार वाला स्विच चालू करें।" },
+  "playerHintTitle": { "message": "YouTube Controls चालू है" },
+  "playerHintBody": { "message": "ज़्यादा स्पष्ट कंट्रोल देखने के लिए माउस को वीडियो पर ले जाएँ।" },
   "welcomeWithoutExtension": { "message": "एक्सटेंशन के बिना" },
   "welcomeWithRecommended": { "message": "सुझाई गई सेटिंग के साथ" },
   "welcomeHoverHint": { "message": "वीडियो पर माउस ले जाने पर कंट्रोल दिखते हैं। आपको वहीं अंतर दिखाई देगा।" },

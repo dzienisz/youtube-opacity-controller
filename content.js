@@ -6,6 +6,11 @@ const settingsModel = globalThis.YtocSettings;
 let currentSettings = settingsModel.DEFAULTS;
 let hudElement = null;
 let hudTimer = null;
+let settingsInitialized = false;
+let playerHintRetryCount = 0;
+let playerHintRetryTimer = null;
+let playerHintCheckPending = false;
+let playerHintShown = false;
 
 function applySettings(value) {
   currentSettings = settingsModel.normalizeSettings(value);
@@ -49,7 +54,7 @@ function applySettings(value) {
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
 }
 
-function showHud(title, detail) {
+function showHud(title, detail, duration = 1800) {
   const player = document.getElementById('movie_player');
   if (!player) return;
 
@@ -73,13 +78,53 @@ function showHud(title, detail) {
   if (hudTimer) clearTimeout(hudTimer);
   hudTimer = setTimeout(() => {
     if (hudElement) hudElement.removeAttribute('data-visible');
-  }, 1800);
+  }, duration);
+}
+
+function maybeShowPlayerHint() {
+  if (
+    !settingsInitialized
+    || window !== window.top
+    || location.pathname !== '/watch'
+    || !currentSettings.extensionEnabled
+    || playerHintCheckPending
+    || playerHintShown
+  ) return;
+
+  if (!document.getElementById('movie_player')) {
+    if (playerHintRetryCount < 10 && !playerHintRetryTimer) {
+      playerHintRetryCount += 1;
+      playerHintRetryTimer = setTimeout(() => {
+        playerHintRetryTimer = null;
+        maybeShowPlayerHint();
+      }, 500);
+    }
+    return;
+  }
+
+  playerHintRetryCount = 0;
+  playerHintCheckPending = true;
+  chrome.storage.local.get('playerHintPending', stored => {
+    playerHintCheckPending = false;
+    if (!stored.playerHintPending || !currentSettings.extensionEnabled) return;
+
+    playerHintShown = true;
+    chrome.storage.local.set({ playerHintPending: false }, () => {
+      showHud(
+        chrome.i18n.getMessage('playerHintTitle'),
+        chrome.i18n.getMessage('playerHintBody'),
+        8000
+      );
+    });
+  });
 }
 
 function initializeSettings() {
   chrome.storage.sync.get(null, result => {
     const migrated = settingsModel.migrateSettings(result);
     applySettings(migrated);
+    settingsInitialized = true;
+    maybeShowPlayerHint();
 
     if (settingsModel.needsMigration(result, migrated)) {
       chrome.storage.sync.set(migrated);
@@ -91,6 +136,14 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== 'sync') return;
 
   applySettings(settingsModel.applyStorageChanges(currentSettings, changes));
+  maybeShowPlayerHint();
+});
+
+document.addEventListener('yt-navigate-finish', () => {
+  if (playerHintRetryTimer) clearTimeout(playerHintRetryTimer);
+  playerHintRetryTimer = null;
+  playerHintRetryCount = 0;
+  maybeShowPlayerHint();
 });
 
 // Direct messages provide instant preview while storage remains authoritative.
