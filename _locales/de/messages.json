@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "YouTube Controls ist startklar" },
   "welcomeSubtitle": { "message": "Die empfohlenen Einstellungen sind bereits aktiviert: starker Kontrast, eine größere Fortschrittsleiste und besser lesbare Untertitel." },
   "welcomeSubtitleSaved": { "message": "Deine auf einem anderen Gerät gespeicherten Einstellungen sind aktiv. Du kannst sie ändern oder über das Erweiterungssymbol die empfohlenen Einstellungen verwenden." },
+  "welcomeSubtitleOff": { "message": "YouTube Controls ist in deinen gespeicherten Einstellungen ausgeschaltet. Aktiviere die Verbesserungen der YouTube-Steuerung mit dem Schalter im Erweiterungs-Popup." },
   "welcomeWithoutExtension": { "message": "Ohne die Erweiterung" },
   "welcomeWithRecommended": { "message": "Mit empfohlenen Einstellungen" },
   "welcomeHoverHint": { "message": "Die Steuerelemente werden angezeigt, wenn du die Maus über das Video bewegst. Dort siehst du den Unterschied." },

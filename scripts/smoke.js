@@ -508,6 +508,35 @@ async function main() {
       } finally {
         await savedSettingsWelcome.close();
       }
+
+      const disabledSettings = { ...savedSettings, extensionEnabled: false };
+      await worker.evaluate(settings => new Promise(resolve => {
+        chrome.storage.sync.set(settings, resolve);
+      }), disabledSettings);
+
+      const disabledSettingsWelcome = await context.newPage();
+      try {
+        await disabledSettingsWelcome.goto(`chrome-extension://${extensionId}/welcome.html`);
+        await disabledSettingsWelcome.waitForFunction(
+          () => document.querySelector('.subtitle')?.textContent
+            === chrome.i18n.getMessage('welcomeSubtitleOff'),
+          null,
+          { timeout: 15000 }
+        );
+        const unchangedDisabledSettings = await worker.evaluate(
+          () => new Promise(resolve => chrome.storage.sync.get(null, resolve))
+        );
+        if (
+          Object.keys(unchangedDisabledSettings).length !== 3
+          || unchangedDisabledSettings.settingsSchemaVersion !== savedSettings.settingsSchemaVersion
+          || unchangedDisabledSettings.readableCaptions !== false
+          || unchangedDisabledSettings.extensionEnabled !== false
+        ) {
+          fail(`expected the welcome page to leave disabled saved settings unchanged, got ${JSON.stringify(unchangedDisabledSettings)}`);
+        }
+      } finally {
+        await disabledSettingsWelcome.close();
+      }
     } finally {
       await worker.evaluate(snapshot => new Promise(resolve => {
         chrome.storage.sync.clear(() => {

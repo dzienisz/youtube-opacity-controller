@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "YouTube Controls est prêt" },
   "welcomeSubtitle": { "message": "Les réglages recommandés sont déjà activés : contraste fort, barre de progression plus grande et sous-titres plus faciles à lire." },
   "welcomeSubtitleSaved": { "message": "Les réglages enregistrés depuis un autre appareil sont actifs. Vous pouvez les modifier ou utiliser les paramètres recommandés depuis l’icône de l’extension." },
+  "welcomeSubtitleOff": { "message": "YouTube Controls est désactivé dans vos réglages enregistrés. Activez les améliorations des contrôles YouTube avec l’interrupteur de la fenêtre contextuelle de l’extension." },
   "welcomeWithoutExtension": { "message": "Sans l’extension" },
   "welcomeWithRecommended": { "message": "Avec les réglages recommandés" },
   "welcomeHoverHint": { "message": "Les commandes apparaissent lorsque vous déplacez la souris sur la vidéo. C’est là que vous verrez la différence." },

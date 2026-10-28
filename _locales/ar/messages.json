@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "أصبحت عناصر تحكم YouTube جاهزة" },
   "welcomeSubtitle": { "message": "الإعدادات الموصى بها مفعّلة بالفعل: تباين قوي، وشريط تقدّم أكبر، وترجمة نصية أسهل قراءة." },
   "welcomeSubtitleSaved": { "message": "إعداداتك المحفوظة من جهاز آخر مفعّلة. يمكنك تغييرها أو استخدام الإعدادات الموصى بها من رمز الإضافة." },
+  "welcomeSubtitleOff": { "message": "عناصر تحكم YouTube متوقفة في إعداداتك المحفوظة. فعّل تحسينات عناصر تحكم YouTube باستخدام المفتاح في النافذة المنبثقة للإضافة." },
   "welcomeWithoutExtension": { "message": "من دون الإضافة" },
   "welcomeWithRecommended": { "message": "مع الإعدادات الموصى بها" },
   "welcomeHoverHint": { "message": "تظهر عناصر التحكم عند تمرير مؤشر الفأرة فوق الفيديو. هناك ستلاحظ الفرق." },

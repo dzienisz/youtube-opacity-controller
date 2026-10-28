@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "YouTube Controls 已就绪" },
   "welcomeSubtitle": { "message": "推荐设置已开启：强对比度、更大的进度条和更易阅读的字幕。" },
   "welcomeSubtitleSaved": { "message": "已启用从其他设备同步的设置。你可以更改这些设置，也可以通过扩展程序图标使用推荐设置。" },
+  "welcomeSubtitleOff": { "message": "保存的设置中已关闭 YouTube Controls。请在扩展程序弹出窗口中打开 YouTube 控件增强开关。" },
   "welcomeWithoutExtension": { "message": "未使用扩展程序" },
   "welcomeWithRecommended": { "message": "使用推荐设置" },
   "welcomeHoverHint": { "message": "将鼠标移到视频上时会显示控件。你可以在那里看到变化。" },

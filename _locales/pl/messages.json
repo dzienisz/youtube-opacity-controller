@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "YouTube Controls jest gotowe" },
   "welcomeSubtitle": { "message": "Zalecane ustawienia są już włączone: silny kontrast, większy pasek postępu i łatwiejsze do odczytania napisy." },
   "welcomeSubtitleSaved": { "message": "Włączone są ustawienia zapisane na innym urządzeniu. Możesz je zmienić lub użyć zalecanych ustawień z ikony rozszerzenia." },
+  "welcomeSubtitleOff": { "message": "YouTube Controls jest wyłączone w zapisanych ustawieniach. Włącz ulepszenia sterowania YouTube za pomocą przełącznika w wyskakującym oknie rozszerzenia." },
   "welcomeWithoutExtension": { "message": "Bez rozszerzenia" },
   "welcomeWithRecommended": { "message": "Z zalecanymi ustawieniami" },
   "welcomeHoverHint": { "message": "Elementy sterujące pojawiają się po najechaniu kursorem na film. Wtedy zobaczysz różnicę." },

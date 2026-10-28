@@ -82,6 +82,7 @@
   "welcomeTitle": { "message": "YouTube Controls đã sẵn sàng" },
   "welcomeSubtitle": { "message": "Cài đặt khuyến nghị đã được bật: độ tương phản mạnh, thanh tiến trình lớn hơn và phụ đề dễ đọc hơn." },
   "welcomeSubtitleSaved": { "message": "Cài đặt đã lưu từ thiết bị khác đang được bật. Bạn có thể thay đổi chúng hoặc dùng cài đặt khuyến nghị từ biểu tượng tiện ích." },
+  "welcomeSubtitleOff": { "message": "YouTube Controls đang tắt trong cài đặt đã lưu. Hãy bật tính năng cải tiến điều khiển YouTube bằng công tắc trong cửa sổ bật lên của tiện ích." },
   "welcomeWithoutExtension": { "message": "Không có tiện ích" },
   "welcomeWithRecommended": { "message": "Với cài đặt đề xuất" },
   "welcomeHoverHint": { "message": "Các điều khiển xuất hiện khi bạn di chuột qua video. Bạn sẽ thấy sự khác biệt ở đó." },

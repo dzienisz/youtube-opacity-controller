@@ -15,6 +15,12 @@ document.title = t('welcomeTitle');
 
 chrome.storage.sync.get(null, stored => {
   const settings = YtocSettings.migrateSettings(stored);
+  if (!settings.extensionEnabled) {
+    const subtitle = document.querySelector('[data-i18n="welcomeSubtitle"]');
+    subtitle.dataset.i18n = 'welcomeSubtitleOff';
+    subtitle.textContent = t('welcomeSubtitleOff');
+    return;
+  }
   if (YtocSettings.areSettingsEqual(settings, YtocSettings.RECOMMENDED)) return;
 
   const subtitle = document.querySelector('[data-i18n="welcomeSubtitle"]');
