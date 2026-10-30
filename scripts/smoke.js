@@ -6,6 +6,10 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 
 const root = path.join(__dirname, '..');
+// Chrome reports command shortcuts with macOS key glyphs on Darwin.
+const isMac = process.platform === 'darwin';
+const cycleShortcutLabel = isMac ? '⌥⇧J' : 'Alt+Shift+J';
+const toggleShortcutKeys = isMac ? ['⌥', '⇧', 'Y'] : ['Alt', 'Shift', 'Y'];
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
 const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
 const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
@@ -379,8 +383,11 @@ function fail(message) {
   process.exit(1);
 }
 
-async function assertCaptionStyles(player, label, expected) {
-  const actual = await player.locator('.caption-window').evaluate(windowEl => {
+const rollupCaptionWindow = '.caption-window.ytp-caption-window-rollup';
+const standardCaptionWindow = '.caption-window:not(.ytp-caption-window-rollup)';
+
+async function assertCaptionStyles(player, label, expected, selector = standardCaptionWindow) {
+  const actual = await player.locator(selector).evaluate(windowEl => {
     const segment = windowEl.querySelector('.ytp-caption-segment');
     const container = windowEl.closest('.ytp-caption-window-container');
     const windowRect = windowEl.getBoundingClientRect();
@@ -392,7 +399,10 @@ async function assertCaptionStyles(player, label, expected) {
       centerDelta: Math.abs(
         (windowRect.left + windowRect.width / 2)
         - (containerRect.left + containerRect.width / 2)
-      )
+      ),
+      overflowsContainer: windowRect.left < containerRect.left - 1
+        || windowRect.right > containerRect.right + 1,
+      clipsLines: windowEl.scrollHeight > windowEl.clientHeight + 1
     };
   });
 
@@ -404,6 +414,12 @@ async function assertCaptionStyles(player, label, expected) {
   }
   if (expected.centered && actual.centerDelta >= 2) {
     fail(`expected ${label} caption window centered within 2px, got ${actual.centerDelta}px`);
+  }
+  if (expected.centered && actual.overflowsContainer) {
+    fail(`expected ${label} caption window to stay inside the player`);
+  }
+  if (expected.centered && actual.clipsLines) {
+    fail(`expected ${label} caption window to show every caption line`);
   }
 }
 
@@ -465,8 +481,8 @@ async function main() {
         && images.every(image => image.complete && image.naturalWidth > 0 && image.alt.trim());
     }, null, { timeout: 15000 });
     const cycleBinding = await welcomeTab.locator('[data-command="cycle-profile"]').textContent();
-    if (cycleBinding?.replace(/\s/g, '') !== 'Alt+Shift+J') {
-      fail(`expected welcome cycle-profile binding Alt+Shift+J, got ${cycleBinding}`);
+    if (cycleBinding?.replace(/\s/g, '') !== cycleShortcutLabel) {
+      fail(`expected welcome cycle-profile binding ${cycleShortcutLabel}, got ${cycleBinding}`);
     }
     const demoUrl = await welcomeTab.locator('.primary-link').getAttribute('href');
     if (demoUrl !== 'https://www.youtube.com/watch?v=aqz-KE-bpKQ') {
@@ -551,14 +567,14 @@ async function main() {
         resolve(commands.find(command => command.name === 'cycle-profile')?.shortcut);
       });
     }));
-    if (cycleShortcut !== 'Alt+Shift+J') {
-      fail(`expected cycle-profile shortcut Alt+Shift+J, got ${cycleShortcut || 'unassigned'}`);
+    if (cycleShortcut !== cycleShortcutLabel) {
+      fail(`expected cycle-profile shortcut ${cycleShortcutLabel}, got ${cycleShortcut || 'unassigned'}`);
     }
-    const hintFormatting = await worker.evaluate(() => ({
-      assigned: profileShortcutHint('Alt+Shift+J'),
+    const hintFormatting = await worker.evaluate(label => ({
+      assigned: profileShortcutHint(label),
       unassigned: profileShortcutHint('') === undefined
-    }));
-    if (!hintFormatting.assigned?.includes('Alt+Shift+J') || !hintFormatting.unassigned) {
+    }), cycleShortcutLabel);
+    if (!hintFormatting.assigned?.includes(cycleShortcutLabel) || !hintFormatting.unassigned) {
       fail(`expected the HUD hint to include an assigned shortcut and omit an unassigned one: ${JSON.stringify(hintFormatting)}`);
     }
 
@@ -635,6 +651,12 @@ async function main() {
       color: 'rgb(255, 255, 255)',
       centered: true
     });
+    await assertCaptionStyles(page, 'classic auto-generated', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 255, 255)',
+      centered: true
+    }, rollupCaptionWindow);
 
     const modern = await context.newPage();
     await modern.goto('https://www.youtube.com/modern');
@@ -723,13 +745,13 @@ async function main() {
     });
     await popup.reload();
     await popup.waitForFunction(() => document.getElementById('whatsNew').hidden);
-    await popup.waitForFunction(() => {
+    await popup.waitForFunction(expected => {
       const keys = Array.from(document.querySelectorAll('#shortcutKeys kbd'), key => key.textContent);
-      return keys.join('|') === 'Alt|Shift|Y';
-    });
+      return keys.join('|') === expected;
+    }, toggleShortcutKeys.join('|'));
     const shortcutKeys = await popup.locator('#shortcutKeys kbd').allTextContents();
-    if (JSON.stringify(shortcutKeys) !== JSON.stringify(['Alt', 'Shift', 'Y'])) {
-      fail(`expected shortcut keys Alt, Shift, Y, got ${shortcutKeys.join(', ')}`);
+    if (JSON.stringify(shortcutKeys) !== JSON.stringify(toggleShortcutKeys)) {
+      fail(`expected shortcut keys ${toggleShortcutKeys.join(', ')}, got ${shortcutKeys.join(', ')}`);
     }
     await popup.evaluate(() => new Promise(resolve => {
       chrome.storage.local.set({ whatsNewVersion: '2.1.0', whatsNewDismissed: '2.1' }, resolve);
@@ -884,6 +906,12 @@ async function main() {
       color: 'rgb(255, 212, 0)',
       centered: true
     });
+    await assertCaptionStyles(page, 'classic auto-generated yellow', {
+      zoom: '1.4',
+      backgroundColor: 'rgba(0, 0, 0, 0.9)',
+      color: 'rgb(255, 212, 0)',
+      centered: true
+    }, rollupCaptionWindow);
     await assertCaptionStyles(modern, 'modern yellow', {
       zoom: '1.4',
       backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -1010,6 +1038,11 @@ async function main() {
       backgroundColor: 'rgba(8, 8, 8, 0.75)',
       color: 'rgb(255, 255, 255)'
     });
+    await assertCaptionStyles(page, 'classic auto-generated reset', {
+      zoom: '1',
+      backgroundColor: 'rgba(8, 8, 8, 0.75)',
+      color: 'rgb(255, 255, 255)'
+    }, rollupCaptionWindow);
     await assertCaptionStyles(modern, 'modern reset', {
       zoom: '1',
       backgroundColor: 'rgba(8, 8, 8, 0.75)',
