@@ -30,7 +30,7 @@ const embedProgressSelectors = [
 ];
 const expectedYellow = 'rgb(255, 212, 0)';
 const expectedProgressHeight = '12px';
-const expectedPillBackground = 'rgba(0, 0, 0, 0.7)';
+const expectedPillBackground = `rgba(0, 0, 0, ${settingsModel.DEFAULTS.overlayOpacity})`;
 
 function createScenario(name, url) {
   return {

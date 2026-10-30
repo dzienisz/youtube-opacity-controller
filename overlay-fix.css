@@ -288,10 +288,21 @@
   zoom: 1.4 !important;
 }
 
-:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .caption-window.ytp-caption-window-bottom {
+:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .caption-window.ytp-caption-window-bottom:not(.ytp-caption-window-rollup) {
   width: max-content !important;
   max-width: 64% !important;
   margin-left: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Auto-generated (rollup) captions anchor their left edge with a percentage
+   `left` and no margin, and clip to a fixed inline height. Center the window
+   on the player while keeping YouTube's width so its line breaks stay valid,
+   and let the height grow so no line is cut off. */
+:root[data-ytoc-enabled][data-ytoc-captions] #movie_player .caption-window.ytp-caption-window-rollup {
+  left: 50% !important;
+  max-width: 100% !important;
+  height: auto !important;
   transform: translateX(-50%) !important;
 }
 

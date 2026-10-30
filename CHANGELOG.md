@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.4] - 2026-10-30
+
+### Fixed
+- Easier-to-read subtitles no longer push auto-generated captions off the left edge of the player; they stay centered and every line remains visible.
+
 ## [2.1.3] - 2026-10-28
 
 ### Added
