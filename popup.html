@@ -10,8 +10,8 @@
   <main class="container">
     <div id="whatsNew" class="popup-banner" hidden>
       <div class="popup-banner-copy">
-        <strong id="whatsNewTitle" data-i18n="whatsNewTitle">New in 2.1</strong>
-        <p data-i18n="whatsNewBody">Bigger progress bar, highlight colors, keyboard shortcuts and a larger pointer — find them under More visibility options.</p>
+        <strong id="whatsNewTitle" data-i18n="whatsNewTitle">New in 2.2</strong>
+        <p data-i18n="whatsNewBody">Any highlight color, a second-color fade, handle icons and a switch to keep a video's own player colors — under More visibility options.</p>
       </div>
       <button type="button" id="whatsNewDismiss" class="popup-banner-primary" data-i18n="whatsNewDismiss">Got it</button>
     </div>
@@ -122,9 +122,60 @@
               <span class="swatch-dot swatch-green" aria-hidden="true"></span>
               <span data-i18n="highlightGreen">Green</span>
             </label>
+            <label class="swatch">
+              <input type="radio" name="highlightColor" value="custom" autocomplete="off">
+              <input type="color" id="highlightCustomColor" class="swatch-color" value="#ff0033" autocomplete="off" aria-label="Custom highlight color" data-i18n-aria-label="highlightCustom">
+              <span data-i18n="highlightCustom">Custom</span>
+            </label>
+          </div>
+          <div class="gradient-row" id="highlightGradientRow" hidden>
+            <label class="gradient-option">
+              <input type="checkbox" id="highlightGradient" autocomplete="off">
+              <span data-i18n="highlightGradientLabel">Fade into a second color</span>
+            </label>
+            <input type="color" id="highlightGradientColor" class="swatch-color" value="#ff2791" autocomplete="off" disabled aria-label="Second highlight color" data-i18n-aria-label="highlightGradientLabel">
           </div>
           <small class="field-desc" data-i18n="highlightColorDesc">Colors the progress bar, handle, icons and time</small>
         </fieldset>
+
+        <fieldset class="highlight-colors scrubber-icons">
+          <legend data-i18n="scrubberIconLegend">Progress bar handle</legend>
+          <div class="swatch-grid">
+            <label class="swatch">
+              <input type="radio" name="scrubberIcon" value="default" autocomplete="off">
+              <svg class="scrubber-icon-preview" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg>
+              <span data-i18n="scrubberDefault">Round</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="scrubberIcon" value="star" autocomplete="off">
+              <svg class="scrubber-icon-preview" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 L15 8.7 L22 9.3 L16.8 13.9 L18.5 21 L12 17.3 L5.5 21 L7.2 13.9 L2 9.3 L9 8.7 Z"/></svg>
+              <span data-i18n="scrubberStar">Star</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="scrubberIcon" value="heart" autocomplete="off">
+              <svg class="scrubber-icon-preview" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21 C5.5 15.8 2 12.3 2 8.6 C2 5.5 4.4 3 7.4 3 C9.2 3 10.9 3.9 12 5.4 C13.1 3.9 14.8 3 16.6 3 C19.6 3 22 5.5 22 8.6 C22 12.3 18.5 15.8 12 21 Z"/></svg>
+              <span data-i18n="scrubberHeart">Heart</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="scrubberIcon" value="bolt" autocomplete="off">
+              <svg class="scrubber-icon-preview" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 L4 14 L10.5 14 L9.5 22 L20 9.5 L13.5 9.5 Z"/></svg>
+              <span data-i18n="scrubberBolt">Lightning</span>
+            </label>
+            <label class="swatch">
+              <input type="radio" name="scrubberIcon" value="note" autocomplete="off">
+              <svg class="scrubber-icon-preview" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5 A3.5 3.5 0 1 1 7 15.1 L7 3 L20 5.5 L20 17 A3.5 3.5 0 1 1 18 13.6 L18 8 L9 6.5 Z"/></svg>
+              <span data-i18n="scrubberNote">Music note</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="option-row">
+          <span>
+            <strong data-i18n="respectVideoThemeLabel">Keep a video's own player colors</strong>
+            <small data-i18n="respectVideoThemeDesc">Some music videos come with their own progress bar color and handle</small>
+          </span>
+          <input type="checkbox" id="respectVideoTheme" name="respectVideoTheme" autocomplete="off">
+        </label>
 
         <fieldset class="highlight-colors caption-colors">
           <legend data-i18n="captionColorLegend">Subtitle text color</legend>

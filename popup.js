@@ -25,6 +25,12 @@ const alwaysShowControls = document.getElementById('alwaysShowControls');
 const progressBarSize = document.getElementById('progressBarSize');
 const readableCaptions = document.getElementById('readableCaptions');
 const highlightColorInputs = Array.from(document.querySelectorAll('[name="highlightColor"]'));
+const highlightCustomColor = document.getElementById('highlightCustomColor');
+const highlightGradient = document.getElementById('highlightGradient');
+const highlightGradientColor = document.getElementById('highlightGradientColor');
+const highlightGradientRow = document.getElementById('highlightGradientRow');
+const scrubberIconInputs = Array.from(document.querySelectorAll('[name="scrubberIcon"]'));
+const respectVideoTheme = document.getElementById('respectVideoTheme');
 const captionColorInputs = Array.from(document.querySelectorAll('[name="captionColor"]'));
 const largeCursor = document.getElementById('largeCursor');
 const overlayOpacity = document.getElementById('overlayOpacity');
@@ -99,6 +105,15 @@ function updateControls(settings) {
   captionColorInputs.forEach(input => {
     input.checked = input.value === settings.captionColor;
   });
+  highlightCustomColor.value = settings.highlightCustomColor;
+  highlightGradient.checked = Boolean(settings.highlightGradientColor);
+  highlightGradientColor.value = settings.highlightGradientColor || '#ff2791';
+  highlightGradientColor.disabled = !highlightGradient.checked || !settings.extensionEnabled;
+  highlightGradientRow.hidden = settings.highlightColor !== 'custom';
+  scrubberIconInputs.forEach(input => {
+    input.checked = input.value === settings.scrubberIcon;
+  });
+  respectVideoTheme.checked = settings.respectVideoTheme;
   largeCursor.checked = settings.largeCursor;
 
   const opacityPercent = Math.round(settings.overlayOpacity * 100);
@@ -178,7 +193,8 @@ const HIGHLIGHT_NAME_KEYS = {
   default: 'highlightDefault',
   yellow: 'highlightYellow',
   cyan: 'highlightCyan',
-  green: 'highlightGreen'
+  green: 'highlightGreen',
+  custom: 'highlightCustom'
 };
 
 highlightColorInputs.forEach(input => {
@@ -186,6 +202,84 @@ highlightColorInputs.forEach(input => {
     if (!input.checked) return;
     applyUpdate({ highlightColor: input.value }, t('statusHighlight', [t(HIGHLIGHT_NAME_KEYS[input.value])]));
   });
+});
+
+function saveDebounced(message) {
+  if (saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    chrome.storage.sync.set(currentSettings, () => {
+      status.textContent = message;
+    });
+  }, 200);
+}
+
+function saveNow(message) {
+  if (saveTimeout) {
+    clearTimeout(saveTimeout);
+    saveTimeout = null;
+  }
+  chrome.storage.sync.set(currentSettings, () => {
+    status.textContent = message;
+  });
+}
+
+highlightCustomColor.addEventListener('change', () => {
+  saveNow(t('statusHighlight', [t('highlightCustom')]));
+});
+
+highlightCustomColor.addEventListener('input', () => {
+  const customRadio = highlightColorInputs.find(input => input.value === 'custom');
+  currentSettings = settingsModel.normalizeSettings({
+    ...currentSettings,
+    highlightColor: 'custom',
+    highlightCustomColor: highlightCustomColor.value
+  });
+  if (customRadio) customRadio.checked = true;
+  previewSettings();
+  saveDebounced(t('statusHighlight', [t('highlightCustom')]));
+});
+
+highlightGradient.addEventListener('change', () => {
+  highlightGradientColor.disabled = !highlightGradient.checked;
+  applyUpdate({
+    highlightGradientColor: highlightGradient.checked ? highlightGradientColor.value : ''
+  }, t('statusHighlight', [t('highlightCustom')]));
+});
+
+highlightGradientColor.addEventListener('change', () => {
+  saveNow(t('statusHighlight', [t('highlightCustom')]));
+});
+
+highlightGradientColor.addEventListener('input', () => {
+  if (!highlightGradient.checked) return;
+  currentSettings = settingsModel.normalizeSettings({
+    ...currentSettings,
+    highlightGradientColor: highlightGradientColor.value
+  });
+  previewSettings();
+  saveDebounced(t('statusHighlight', [t('highlightCustom')]));
+});
+
+const SCRUBBER_NAME_KEYS = {
+  default: 'scrubberDefault',
+  star: 'scrubberStar',
+  heart: 'scrubberHeart',
+  bolt: 'scrubberBolt',
+  note: 'scrubberNote'
+};
+
+scrubberIconInputs.forEach(input => {
+  input.addEventListener('change', () => {
+    if (!input.checked) return;
+    applyUpdate({ scrubberIcon: input.value }, t('statusScrubber', [t(SCRUBBER_NAME_KEYS[input.value])]));
+  });
+});
+
+respectVideoTheme.addEventListener('change', () => {
+  applyUpdate(
+    { respectVideoTheme: respectVideoTheme.checked },
+    t(respectVideoTheme.checked ? 'statusRespectThemeOn' : 'statusRespectThemeOff')
+  );
 });
 
 const CAPTION_COLOR_NAME_KEYS = {
@@ -204,18 +298,17 @@ largeCursor.addEventListener('change', () => {
   applyUpdate({ largeCursor: largeCursor.checked }, t(largeCursor.checked ? 'statusCursorLarge' : 'statusCursorDefault'));
 });
 
+overlayOpacity.addEventListener('change', () => {
+  saveNow(t('statusStrengthSaved'));
+});
+
 overlayOpacity.addEventListener('input', () => {
   const overlayOpacityValue = Number(overlayOpacity.value) / 100;
   currentSettings = settingsModel.normalizeSettings({ ...currentSettings, overlayOpacity: overlayOpacityValue });
   opacityValue.value = `${overlayOpacity.value}%`;
   previewSettings();
 
-  if (saveTimeout) clearTimeout(saveTimeout);
-  saveTimeout = setTimeout(() => {
-    chrome.storage.sync.set(currentSettings, () => {
-      status.textContent = t('statusStrengthSaved');
-    });
-  }, 200);
+  saveDebounced(t('statusStrengthSaved'));
 });
 
 resetSettings.addEventListener('click', () => {

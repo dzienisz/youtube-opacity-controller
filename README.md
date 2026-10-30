@@ -1,6 +1,6 @@
 # YouTube Player Accessibility
 
-[![Version](https://img.shields.io/badge/version-2.1.4-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
 [![Microsoft Edge Add-ons](https://img.shields.io/badge/Microsoft%20Edge-Add--ons-brightgreen.svg)](https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -16,7 +16,9 @@ A privacy-first Chrome and Firefox extension that makes YouTube player controls 
 - Adjustable dark background behind player controls
 - Optional always-visible player controls
 - Bigger progress bar with a larger, easier-to-grab handle
-- Highlight colors for the progress bar, handle, icons, and time display
+- Any highlight color for the progress bar, icons and time display, with an optional fade into a second color
+- A choice of progress-bar handle icons — Round, Star, Heart, Lightning and Music note
+- Keep a video's own player colors when it ships its own progress bar theme
 - Easier-to-read subtitles with a solid dark background and white or yellow text
 - Larger mouse pointer over the video
 - Keyboard shortcuts with on-player confirmation (HUD)

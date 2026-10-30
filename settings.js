@@ -7,7 +7,7 @@
 
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
-  const SCHEMA_VERSION = 5;
+  const SCHEMA_VERSION = 6;
   const RATE_PROMPT_MIN_DAYS = 7;
   const RATE_PROMPT_MIN_OPENS = 3;
   const RATE_PROMPT_MAX_SHOWS = 3;
@@ -36,9 +36,19 @@
     DEFAULT: 'default',
     YELLOW: 'yellow',
     CYAN: 'cyan',
-    GREEN: 'green'
+    GREEN: 'green',
+    CUSTOM: 'custom'
   });
   const HIGHLIGHT_VALUES = Object.freeze(Object.values(HIGHLIGHT_COLORS));
+  const SCRUBBER_ICONS = Object.freeze({
+    DEFAULT: 'default',
+    STAR: 'star',
+    HEART: 'heart',
+    BOLT: 'bolt',
+    NOTE: 'note'
+  });
+  const SCRUBBER_ICON_VALUES = Object.freeze(Object.values(SCRUBBER_ICONS));
+  const DEFAULT_CUSTOM_HIGHLIGHT = '#ff0033';
   const CAPTION_COLORS = Object.freeze({
     WHITE: 'white',
     YELLOW: 'yellow'
@@ -53,7 +63,11 @@
     highlightColor: HIGHLIGHT_COLORS.DEFAULT,
     largeCursor: false,
     readableCaptions: false,
-    captionColor: CAPTION_COLORS.WHITE
+    captionColor: CAPTION_COLORS.WHITE,
+    highlightCustomColor: DEFAULT_CUSTOM_HIGHLIGHT,
+    highlightGradientColor: '',
+    scrubberIcon: SCRUBBER_ICONS.DEFAULT,
+    respectVideoTheme: true
   });
   const RECOMMENDED = Object.freeze({
     settingsSchemaVersion: SCHEMA_VERSION,
@@ -65,7 +79,11 @@
     highlightColor: HIGHLIGHT_COLORS.DEFAULT,
     largeCursor: false,
     readableCaptions: true,
-    captionColor: CAPTION_COLORS.WHITE
+    captionColor: CAPTION_COLORS.WHITE,
+    highlightCustomColor: DEFAULT_CUSTOM_HIGHLIGHT,
+    highlightGradientColor: '',
+    scrubberIcon: SCRUBBER_ICONS.DEFAULT,
+    respectVideoTheme: true
   });
   const DEFAULTS = RECOMMENDED;
 
@@ -76,6 +94,16 @@
   function normalizeOpacity(value) {
     if (!isFiniteNumber(value)) return DEFAULTS.overlayOpacity;
     return Math.min(1, Math.max(0, value));
+  }
+
+  function normalizeHexColor(value, fallback) {
+    if (typeof value !== 'string') return fallback;
+    const match = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(value.trim());
+    if (!match) return fallback;
+    const hex = match[1].toLowerCase();
+    return hex.length === 3
+      ? `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
+      : `#${hex}`;
   }
 
   function normalizeSettings(value) {
@@ -110,7 +138,15 @@
         : DEFAULTS.readableCaptions,
       captionColor: CAPTION_COLOR_VALUES.includes(input.captionColor)
         ? input.captionColor
-        : DEFAULTS.captionColor
+        : DEFAULTS.captionColor,
+      highlightCustomColor: normalizeHexColor(input.highlightCustomColor, DEFAULTS.highlightCustomColor),
+      highlightGradientColor: normalizeHexColor(input.highlightGradientColor, ''),
+      scrubberIcon: SCRUBBER_ICON_VALUES.includes(input.scrubberIcon)
+        ? input.scrubberIcon
+        : DEFAULTS.scrubberIcon,
+      respectVideoTheme: typeof input.respectVideoTheme === 'boolean'
+        ? input.respectVideoTheme
+        : DEFAULTS.respectVideoTheme
     };
   }
 
@@ -124,7 +160,10 @@
       const base = !Number.isFinite(schemaVersion) || schemaVersion < 4
         ? { ...LEGACY_DEFAULTS, ...stored }
         : stored;
-      return normalizeSettings({ ...base, readableCaptions: true });
+      const migrated = !Number.isFinite(schemaVersion) || schemaVersion < 5
+        ? { ...base, readableCaptions: true }
+        : base;
+      return normalizeSettings(migrated);
     }
 
     return normalizeSettings(stored);
@@ -219,11 +258,15 @@
     HIGHLIGHT_VALUES,
     CAPTION_COLORS,
     CAPTION_COLOR_VALUES,
+    SCRUBBER_ICONS,
+    SCRUBBER_ICON_VALUES,
+    DEFAULT_CUSTOM_HIGHLIGHT,
     COMMANDS,
     LEGACY_DEFAULTS,
     RECOMMENDED,
     DEFAULTS,
     normalizeOpacity,
+    normalizeHexColor,
     normalizeSettings,
     migrateSettings,
     needsMigration,

@@ -12,9 +12,21 @@ let playerHintRetryTimer = null;
 let playerHintCheckPending = false;
 let playerHintShown = false;
 
+function videoHasOwnTheme() {
+  return !!document.querySelector('#movie_player .ytp-decorated-scrubber-button[src]');
+}
+
 function applySettings(value) {
   currentSettings = settingsModel.normalizeSettings(value);
   const root = document.documentElement;
+
+  const keepVideoTheme = currentSettings.respectVideoTheme && videoHasOwnTheme();
+  const highlight = keepVideoTheme
+    ? settingsModel.HIGHLIGHT_COLORS.DEFAULT
+    : currentSettings.highlightColor;
+  const scrubber = keepVideoTheme
+    ? settingsModel.SCRUBBER_ICONS.DEFAULT
+    : currentSettings.scrubberIcon;
 
   if (!currentSettings.extensionEnabled) {
     root.removeAttribute('data-ytoc-enabled');
@@ -22,9 +34,13 @@ function applySettings(value) {
     root.removeAttribute('data-ytoc-always-show');
     root.removeAttribute('data-ytoc-progress');
     root.removeAttribute('data-ytoc-highlight');
+    root.removeAttribute('data-ytoc-scrubber');
+    root.removeAttribute('data-ytoc-video-theme');
     root.removeAttribute('data-ytoc-large-cursor');
     root.removeAttribute('data-ytoc-captions');
     root.style.removeProperty('--ytoc-overlay-opacity');
+    root.style.removeProperty('--ytoc-highlight');
+    root.style.removeProperty('--ytoc-highlight-end');
     return;
   }
 
@@ -32,6 +48,7 @@ function applySettings(value) {
   root.setAttribute('data-ytoc-profile', currentSettings.accessibilityProfile);
   root.toggleAttribute('data-ytoc-always-show', currentSettings.alwaysShowControls);
   root.toggleAttribute('data-ytoc-large-cursor', currentSettings.largeCursor);
+  root.toggleAttribute('data-ytoc-video-theme', keepVideoTheme);
 
   if (currentSettings.progressBarSize === settingsModel.PROGRESS_SIZES.LARGE) {
     root.setAttribute('data-ytoc-progress', 'large');
@@ -39,10 +56,28 @@ function applySettings(value) {
     root.removeAttribute('data-ytoc-progress');
   }
 
-  if (currentSettings.highlightColor !== settingsModel.HIGHLIGHT_COLORS.DEFAULT) {
-    root.setAttribute('data-ytoc-highlight', currentSettings.highlightColor);
+  if (highlight !== settingsModel.HIGHLIGHT_COLORS.DEFAULT) {
+    root.setAttribute('data-ytoc-highlight', highlight);
   } else {
     root.removeAttribute('data-ytoc-highlight');
+  }
+
+  if (highlight === settingsModel.HIGHLIGHT_COLORS.CUSTOM) {
+    root.style.setProperty('--ytoc-highlight', currentSettings.highlightCustomColor);
+    if (currentSettings.highlightGradientColor) {
+      root.style.setProperty('--ytoc-highlight-end', currentSettings.highlightGradientColor);
+    } else {
+      root.style.removeProperty('--ytoc-highlight-end');
+    }
+  } else {
+    root.style.removeProperty('--ytoc-highlight');
+    root.style.removeProperty('--ytoc-highlight-end');
+  }
+
+  if (scrubber !== settingsModel.SCRUBBER_ICONS.DEFAULT) {
+    root.setAttribute('data-ytoc-scrubber', scrubber);
+  } else {
+    root.removeAttribute('data-ytoc-scrubber');
   }
 
   if (currentSettings.readableCaptions) {
@@ -53,6 +88,28 @@ function applySettings(value) {
 
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
 }
+
+// YouTube swaps the decorated scrubber image when a video ships its own
+// player theme; re-apply settings when that signal appears or disappears.
+let lastVideoThemePresence = null;
+let videoThemeCheckPending = false;
+const videoThemeObserver = new MutationObserver(() => {
+  if (videoThemeCheckPending) return;
+  videoThemeCheckPending = true;
+  requestAnimationFrame(() => {
+    videoThemeCheckPending = false;
+    const presence = videoHasOwnTheme();
+    if (presence === lastVideoThemePresence) return;
+    lastVideoThemePresence = presence;
+    applySettings(currentSettings);
+  });
+});
+videoThemeObserver.observe(document.documentElement, {
+  subtree: true,
+  childList: true,
+  attributes: true,
+  attributeFilter: ['src']
+});
 
 function showHud(title, detail, duration = 1800) {
   const player = document.getElementById('movie_player');
