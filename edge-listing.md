@@ -22,8 +22,8 @@ Make YouTube player controls easier to see, click, and keep visible.
 New installs start with recommended settings: strong contrast, a bigger
 progress bar, and easier-to-read subtitles. Use "Use recommended settings" to apply
 them any time, or choose clear or strong-contrast controls, keep controls
-visible, adjust the progress bar, or choose any highlight color and a handle
-icon for the progress bar, handle, icons, and time display.
+visible, adjust the progress bar, or choose any highlight color for the
+progress bar, handle, icons, and time display, plus an icon for the handle.
 
 Easier-to-read subtitles are larger on a solid dark background, with white or
 yellow text, and apply only when you turn captions on in a video. A larger

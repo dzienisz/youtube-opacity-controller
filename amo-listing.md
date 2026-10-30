@@ -23,8 +23,8 @@ controls, a bigger progress bar, and easier-to-read subtitles. Use "Use recommen
 settings" to apply them any time, or pick each option yourself: clear or
 strong-contrast control styles, controls that stay visible, a thicker progress
 bar that is easier to grab, any highlight color with an optional second-color
-fade, and a choice of handle icons for the progress bar, handle, icons, and
-time display.
+fade for the progress bar, handle, icons, and time display, plus a choice of
+icons for the handle itself.
 
 Easier-to-read subtitles are larger on a solid dark background, with white or
 yellow text, and apply only when you turn captions on in a video. A larger

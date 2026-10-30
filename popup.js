@@ -213,6 +213,20 @@ function saveDebounced(message) {
   }, 200);
 }
 
+function saveNow(message) {
+  if (saveTimeout) {
+    clearTimeout(saveTimeout);
+    saveTimeout = null;
+  }
+  chrome.storage.sync.set(currentSettings, () => {
+    status.textContent = message;
+  });
+}
+
+highlightCustomColor.addEventListener('change', () => {
+  saveNow(t('statusHighlight', [t('highlightCustom')]));
+});
+
 highlightCustomColor.addEventListener('input', () => {
   const customRadio = highlightColorInputs.find(input => input.value === 'custom');
   currentSettings = settingsModel.normalizeSettings({
@@ -230,6 +244,10 @@ highlightGradient.addEventListener('change', () => {
   applyUpdate({
     highlightGradientColor: highlightGradient.checked ? highlightGradientColor.value : ''
   }, t('statusHighlight', [t('highlightCustom')]));
+});
+
+highlightGradientColor.addEventListener('change', () => {
+  saveNow(t('statusHighlight', [t('highlightCustom')]));
 });
 
 highlightGradientColor.addEventListener('input', () => {
@@ -278,6 +296,10 @@ captionColorInputs.forEach(input => {
 
 largeCursor.addEventListener('change', () => {
   applyUpdate({ largeCursor: largeCursor.checked }, t(largeCursor.checked ? 'statusCursorLarge' : 'statusCursorDefault'));
+});
+
+overlayOpacity.addEventListener('change', () => {
+  saveNow(t('statusStrengthSaved'));
 });
 
 overlayOpacity.addEventListener('input', () => {

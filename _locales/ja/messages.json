@@ -44,7 +44,7 @@
   "scrubberDefault": { "message": "丸" },
   "scrubberStar": { "message": "星" },
   "scrubberHeart": { "message": "ハート" },
-  "scrubberBolt": { "message": "窌妻" },
+  "scrubberBolt": { "message": "稲妻" },
   "scrubberNote": { "message": "音符" },
   "statusScrubber": {
     "message": "$ICON$ のハンドルを選択",
