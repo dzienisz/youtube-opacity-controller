@@ -57,7 +57,7 @@ async function assertHeaderLayout(
         heading: messages.headerTitle.message,
         direction: locale === 'ar' ? 'rtl' : 'ltr',
         lang: locale.replace('_', '-'),
-        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.1'),
+        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.2'),
         whatsNewBody: messages.whatsNewBody.message,
         whatsNewDismiss: messages.whatsNewDismiss.message,
         ratePromptTitle: messages.ratePromptTitle.message,
@@ -318,7 +318,7 @@ async function captureWhatsNewScreenshots(popup, screenshotDir) {
         document.getElementById('whatsNewDismiss').textContent = dismiss;
       }, {
         locale,
-        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.1'),
+        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.2'),
         body: messages.whatsNewBody.message,
         dismiss: messages.whatsNewDismiss.message
       });
@@ -728,20 +728,20 @@ async function main() {
     }
     await assertHeaderLayout(popup, { ratePromptVisible: true });
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.1.0',
+      whatsNewVersion: '2.2.0',
       whatsNewDismissed: ''
     });
     await popup.reload();
     await popup.waitForFunction(() => !document.getElementById('whatsNew').hidden
-      && document.getElementById('whatsNewTitle').textContent === 'New in 2.1'
+      && document.getElementById('whatsNewTitle').textContent === 'New in 2.2'
       && document.getElementById('ratePrompt').hidden);
     await assertHeaderLayout(popup, { whatsNewVisible: true });
     if (process.env.YTOC_WHATSNEW_SCREENSHOT_DIR) {
       await captureWhatsNewScreenshots(popup, process.env.YTOC_WHATSNEW_SCREENSHOT_DIR);
     }
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.1.0',
-      whatsNewDismissed: '2.1'
+      whatsNewVersion: '2.2.0',
+      whatsNewDismissed: '2.2'
     });
     await popup.reload();
     await popup.waitForFunction(() => document.getElementById('whatsNew').hidden);
@@ -754,7 +754,7 @@ async function main() {
       fail(`expected shortcut keys ${toggleShortcutKeys.join(', ')}, got ${shortcutKeys.join(', ')}`);
     }
     await popup.evaluate(() => new Promise(resolve => {
-      chrome.storage.local.set({ whatsNewVersion: '2.1.0', whatsNewDismissed: '2.1' }, resolve);
+      chrome.storage.local.set({ whatsNewVersion: '2.2.0', whatsNewDismissed: '2.2' }, resolve);
     }));
     const closedPopupHeight = await popup.evaluate(() => {
       document.querySelector('details.customize').open = false;
@@ -951,6 +951,80 @@ async function main() {
       fail(`expected modern time color rgb(255, 212, 0), got ${modernTimeColor}`);
     }
 
+    // --- Player themes: custom color, gradient, scrubber icon, video theme ---
+    await popup.locator('input[name="highlightColor"][value="custom"]').check();
+    await popup.locator('#highlightCustomColor').fill('#00ff88');
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-highlight') === 'custom'
+      && getComputedStyle(document.documentElement).getPropertyValue('--ytoc-highlight').trim() === '#00ff88');
+    const customProgressColor = await page.locator('.ytp-play-progress')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (customProgressColor !== 'rgb(0, 255, 136)') {
+      fail(`expected play-progress rgb(0, 255, 136), got ${customProgressColor}`);
+    }
+
+    await popup.locator('#highlightGradient').check();
+    await popup.locator('#highlightGradientColor').fill('#0000ff');
+    await page.waitForFunction(() => getComputedStyle(document.documentElement)
+      .getPropertyValue('--ytoc-highlight-end').trim() === '#0000ff');
+    const gradientImage = await page.locator('.ytp-play-progress')
+      .evaluate(el => getComputedStyle(el).backgroundImage);
+    if (!gradientImage.includes('linear-gradient') || !gradientImage.includes('rgb(0, 0, 255)')) {
+      fail(`expected linear-gradient ending in rgb(0, 0, 255), got ${gradientImage}`);
+    }
+    const gradientHandleColor = await page.locator('.ytp-scrubber-button')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (gradientHandleColor !== 'rgb(0, 0, 255)') {
+      fail(`expected scrubber to take the gradient end color rgb(0, 0, 255), got ${gradientHandleColor}`);
+    }
+
+    await popup.locator('input[name="scrubberIcon"][value="star"]').check();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-scrubber') === 'star');
+    const scrubberStyle = await page.locator('.ytp-scrubber-button').evaluate(el => {
+      const style = getComputedStyle(el);
+      return { maskImage: style.maskImage || style.webkitMaskImage, borderRadius: style.borderRadius };
+    });
+    if (!scrubberStyle.maskImage.startsWith('url(') || scrubberStyle.borderRadius !== '0px') {
+      fail(`expected scrubber mask url and 0px radius, got ${JSON.stringify(scrubberStyle)}`);
+    }
+    const iconHandleColor = await page.locator('.ytp-scrubber-button')
+      .evaluate(el => getComputedStyle(el).backgroundColor);
+    if (iconHandleColor !== 'rgb(0, 0, 255)') {
+      fail(`expected icon handle to take the gradient end color rgb(0, 0, 255), got ${iconHandleColor}`);
+    }
+
+    // A video theme (decorated scrubber with src) wins while respectVideoTheme is on.
+    await page.evaluate(() => {
+      document.querySelector('#movie_player .ytp-decorated-scrubber-button')
+        .setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==');
+    });
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-video-theme')
+      && !document.documentElement.hasAttribute('data-ytoc-highlight')
+      && !document.documentElement.hasAttribute('data-ytoc-scrubber'));
+    const storedHighlight = await popup.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.get('highlightColor', stored => resolve(stored.highlightColor));
+    }));
+    if (storedHighlight !== 'custom') {
+      fail(`expected stored highlightColor custom, got ${storedHighlight}`);
+    }
+    await popup.locator('#respectVideoTheme').uncheck();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-highlight') === 'custom'
+      && document.documentElement.getAttribute('data-ytoc-scrubber') === 'star');
+    await popup.locator('#respectVideoTheme').check();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-highlight'));
+    await page.evaluate(() => {
+      document.querySelector('#movie_player .ytp-decorated-scrubber-button').removeAttribute('src');
+    });
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-video-theme')
+      && document.documentElement.getAttribute('data-ytoc-highlight') === 'custom'
+      && document.documentElement.getAttribute('data-ytoc-scrubber') === 'star');
+
+    // Restore the yellow highlight / default handle the later steps expect.
+    await popup.locator('#highlightGradient').uncheck();
+    await popup.locator('input[name="scrubberIcon"][value="default"]').check();
+    await popup.locator('input[name="highlightColor"][value="yellow"]').check();
+    await page.waitForFunction(() => document.documentElement.getAttribute('data-ytoc-highlight') === 'yellow'
+      && !document.documentElement.hasAttribute('data-ytoc-scrubber'));
+
     // --- Embed scenario: same settings applied to the newer embed control DOM ---
     const embed = await context.newPage();
     await embed.goto('https://www.youtube.com/embed/test');
@@ -972,8 +1046,8 @@ async function main() {
     if (fillStyle.backgroundColor !== 'rgb(255, 212, 0)') {
       fail(`expected embed fill background-color rgb(255, 212, 0), got ${fillStyle.backgroundColor}`);
     }
-    if (fillStyle.backgroundImage !== 'none') {
-      fail(`expected embed fill background-image none, got ${fillStyle.backgroundImage}`);
+    if (!fillStyle.backgroundImage.includes('linear-gradient')) {
+      fail(`expected embed fill background-image linear-gradient, got ${fillStyle.backgroundImage}`);
     }
 
     const chapterSeenColor = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarChapterSeen')
@@ -1014,8 +1088,8 @@ async function main() {
     if (playedLineStyle.backgroundColor !== 'rgb(255, 212, 0)') {
       fail(`expected embed line background-color rgb(255, 212, 0), got ${playedLineStyle.backgroundColor}`);
     }
-    if (playedLineStyle.backgroundImage !== 'none') {
-      fail(`expected embed line background-image none, got ${playedLineStyle.backgroundImage}`);
+    if (!playedLineStyle.backgroundImage.includes('linear-gradient')) {
+      fail(`expected embed line background-image linear-gradient, got ${playedLineStyle.backgroundImage}`);
     }
 
     // --- Reset: highlight and progress back to default restores embed styling ---
@@ -1102,8 +1176,8 @@ async function main() {
       popupOpens: 5,
       ratePromptDone: false,
       ratePromptShown: 0,
-      whatsNewVersion: '2.1.0',
-      whatsNewDismissed: '2.1'
+      whatsNewVersion: '2.2.0',
+      whatsNewDismissed: '2.2'
     };
 
     await setLocalStorage(popup, eligibleRatePromptState);

@@ -375,6 +375,69 @@ button:focus-visible {
   background: #39ff6a;
 }
 
+input.swatch-color {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+
+input.swatch-color::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+input.swatch-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+input.swatch-color::-moz-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+input.swatch-color:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.gradient-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.gradient-row[hidden] {
+  display: none;
+}
+
+.gradient-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.gradient-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.scrubber-icon-preview {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
 .field-desc {
   display: block;
   margin-top: 8px;

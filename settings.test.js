@@ -8,7 +8,7 @@ test('migrates legacy settings without losing user preferences', () => {
     overlayOpacity: 0.42,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.42,
@@ -17,7 +17,11 @@ test('migrates legacy settings without losing user preferences', () => {
     highlightColor: 'default',
     largeCursor: false,
     readableCaptions: true,
-    captionColor: 'white'
+    captionColor: 'white',
+    highlightCustomColor: '#ff0033',
+    highlightGradientColor: '',
+    scrubberIcon: 'default',
+    respectVideoTheme: true
   });
 });
 
@@ -31,7 +35,7 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     settingsSchemaVersion: 3,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.7,
@@ -40,7 +44,11 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     highlightColor: 'default',
     largeCursor: false,
     readableCaptions: true,
-    captionColor: 'white'
+    captionColor: 'white',
+    highlightCustomColor: '#ff0033',
+    highlightGradientColor: '',
+    scrubberIcon: 'default',
+    respectVideoTheme: true
   });
 });
 
@@ -57,7 +65,7 @@ test('schema 3 settings missing readable captions turn them on', () => {
 test('schema 5 settings preserve their stored values', () => {
   const stored = {
     ...settings.RECOMMENDED,
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     readableCaptions: false,
     overlayOpacity: 0.65,
     alwaysShowControls: true
@@ -81,7 +89,7 @@ test('schema 4 settings enable readable captions and preserve other values', () 
   assert.equal(migrated.captionColor, 'yellow');
   assert.equal(migrated.overlayOpacity, 0.65);
   assert.equal(migrated.accessibilityProfile, 'standard');
-  assert.equal(migrated.settingsSchemaVersion, 5);
+  assert.equal(migrated.settingsSchemaVersion, 6);
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
 
@@ -101,7 +109,7 @@ test('schema 4 migration preserves a disabled extension', () => {
 test('schema 5 settings keep readable captions off when selected by the user', () => {
   const stored = {
     ...settings.RECOMMENDED,
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     readableCaptions: false
   };
   const migrated = settings.migrateSettings(stored);
@@ -118,7 +126,7 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     overlayOpacity: 0.9,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     extensionEnabled: false,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0.9,
@@ -127,7 +135,11 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     highlightColor: 'default',
     largeCursor: false,
     readableCaptions: true,
-    captionColor: 'white'
+    captionColor: 'white',
+    highlightCustomColor: '#ff0033',
+    highlightGradientColor: '',
+    scrubberIcon: 'default',
+    respectVideoTheme: true
   });
 });
 
@@ -180,7 +192,7 @@ test('migrates schema 3 settings missing readable captions to on', () => {
 
   const migrated = settings.migrateSettings(stored);
 
-  assert.equal(migrated.settingsSchemaVersion, 5);
+  assert.equal(migrated.settingsSchemaVersion, 6);
   assert.equal(migrated.readableCaptions, true);
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
@@ -205,7 +217,7 @@ test('normalizes invalid and out-of-range settings', () => {
     readableCaptions: 'yes',
     captionColor: 'pink'
   }), {
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 1,
@@ -214,7 +226,11 @@ test('normalizes invalid and out-of-range settings', () => {
     highlightColor: 'default',
     largeCursor: false,
     readableCaptions: true,
-    captionColor: 'white'
+    captionColor: 'white',
+    highlightCustomColor: '#ff0033',
+    highlightGradientColor: '',
+    scrubberIcon: 'default',
+    respectVideoTheme: true
   });
 });
 
@@ -230,7 +246,7 @@ test('applies storage changes and normalizes the result', () => {
     overlayOpacity: { oldValue: 0.7, newValue: -2 },
     highlightColor: { oldValue: 'default', newValue: 'cyan' }
   }), {
-    settingsSchemaVersion: 5,
+    settingsSchemaVersion: 6,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,
@@ -239,7 +255,11 @@ test('applies storage changes and normalizes the result', () => {
     highlightColor: 'cyan',
     largeCursor: false,
     readableCaptions: true,
-    captionColor: 'white'
+    captionColor: 'white',
+    highlightCustomColor: '#ff0033',
+    highlightGradientColor: '',
+    scrubberIcon: 'default',
+    respectVideoTheme: true
   });
 });
 
@@ -383,4 +403,35 @@ test('uninstall survey URL is the anonymous Google Form without query parameters
   );
   assert.ok(settings.UNINSTALL_SURVEY_URL.startsWith('https://docs.google.com/forms/'));
   assert.equal(settings.UNINSTALL_SURVEY_URL.includes('?'), false);
+});
+
+test('normalizeHexColor accepts hex colors and rejects the rest', () => {
+  assert.equal(settings.normalizeHexColor('#ABC', '#ff0033'), '#aabbcc');
+  assert.equal(settings.normalizeHexColor('#ff0033', '#000000'), '#ff0033');
+  assert.equal(settings.normalizeHexColor('ff0033', '#ff0033'), '#ff0033');
+  assert.equal(settings.normalizeHexColor('red', ''), '');
+  assert.equal(settings.normalizeHexColor(12, '#ff0033'), '#ff0033');
+});
+
+test('custom highlight color and scrubber icon normalize safely', () => {
+  const normalized = settings.normalizeSettings({
+    highlightColor: 'custom',
+    highlightCustomColor: '#00FF88',
+    highlightGradientColor: 'blue',
+    scrubberIcon: 'banana'
+  });
+
+  assert.equal(normalized.highlightColor, 'custom');
+  assert.equal(normalized.highlightCustomColor, '#00ff88');
+  assert.equal(normalized.highlightGradientColor, '');
+  assert.equal(normalized.scrubberIcon, 'default');
+  assert.equal(settings.SCRUBBER_ICON_VALUES.includes('star'), true);
+});
+
+test('recommended defaults include the player theme fields', () => {
+  assert.equal(settings.DEFAULTS.highlightCustomColor, '#ff0033');
+  assert.equal(settings.DEFAULTS.highlightGradientColor, '');
+  assert.equal(settings.DEFAULTS.scrubberIcon, 'default');
+  assert.equal(settings.DEFAULTS.respectVideoTheme, true);
+  assert.equal(settings.DEFAULT_CUSTOM_HIGHLIGHT, '#ff0033');
 });
