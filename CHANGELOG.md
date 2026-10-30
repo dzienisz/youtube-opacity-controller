@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-10-30
+
 ### Added
 - Any highlight color: pick a custom color for the progress bar, handle, icons and time, and optionally fade it into a second color.
 - A choice of progress-bar handle icons — Round, Star, Heart, Lightning and Music note.
