@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "Brak skrótu do włączania/wyłączania ulepszeń" },
   "editShortcuts": { "message": "Edytuj skróty" },
   "whatsNewTitle": { "message": "Nowości w $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Wybierz kolor wyróżnienia, przejście w drugi kolor, ikonę uchwytu i zachowaj kolory filmu — w sekcji Więcej opcji widoczności." },
+  "whatsNewBody": { "message": "Nowy kolor, ikona uchwytu i kolory filmu — w Więcej opcji widoczności." },
   "whatsNewDismiss": { "message": "Rozumiem" },
   "ratePromptTitle": { "message": "Podoba Ci się YouTube Controls?" },
   "ratePromptBody": { "message": "Krótka ocena w Chrome Web Store pomoże innym ją znaleźć." },

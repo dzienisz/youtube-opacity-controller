@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "Aucun raccourci défini pour activer ou désactiver les améliorations" },
   "editShortcuts": { "message": "Modifier les raccourcis" },
   "whatsNewTitle": { "message": "Nouveautés de la version $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Choisissez n'importe quelle couleur de surbrillance, fondue vers une deuxième couleur, choisissez une icône de curseur et conservez les couleurs propres à la vidéo — tout sous Plus d'options de visibilité." },
+  "whatsNewBody": { "message": "Toute couleur de surbrillance, fondu, icônes de curseur et couleurs propres à la vidéo — sous Plus d'options de visibilité." },
   "whatsNewDismiss": { "message": "Compris" },
   "ratePromptTitle": { "message": "Vous appréciez YouTube Controls ?" },
   "ratePromptBody": { "message": "Une courte évaluation sur le Chrome Web Store aidera d’autres personnes à trouver l’extension." },

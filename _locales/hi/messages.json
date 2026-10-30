@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "सुधारों को चालू या बंद करने के लिए कोई शॉर्टकट सेट नहीं है" },
   "editShortcuts": { "message": "शॉर्टकट संपादित करें" },
   "whatsNewTitle": { "message": "$VERSION$ में नया", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "कोई भी हाइलाइट रंग चुनें, उसे दूसरे रंग में फ़ेड करें, प्रोग्रेस-बार हैंडल आइकन चुनें और वीडियो के अपने प्लेयर रंग रखें — सब कुछ 'अधिक दृश्यता विकल्प' में।" },
+  "whatsNewBody": { "message": "कोई भी हाइलाइट रंग, फ़ेड, हैंडल आइकन और वीडियो के अपने रंग — अधिक दृश्यता विकल्प में।" },
   "whatsNewDismiss": { "message": "ठीक है" },
   "ratePromptTitle": { "message": "क्या आपको YouTube Controls पसंद आ रहा है?" },
   "ratePromptBody": { "message": "Chrome Web Store पर एक छोटी-सी रेटिंग से दूसरे लोगों को यह एक्सटेंशन ढूँढ़ने में मदद मिलेगी।" },

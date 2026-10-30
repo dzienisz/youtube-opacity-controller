@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "لم يتم تعيين اختصار لتشغيل التحسينات أو إيقافها" },
   "editShortcuts": { "message": "تعديل الاختصارات" },
   "whatsNewTitle": { "message": "الجديد في $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "اختر أي لون تمييز، واجعله يتلاشى إلى لون ثانٍ، واختر أيقونة مقبض شريط التقدم، واحتفظ بألوان المشغل الخاصة بالفيديو — كل ذلك ضمن خيارات الرؤية الإضافية." },
+  "whatsNewBody": { "message": "أي لون تمييز، تلاشٍ إلى لون ثانٍ، أيقونات للمقبض وخيار للاحتفاظ بألوان الفيديو — ضمن خيارات الرؤية الإضافية." },
   "whatsNewDismiss": { "message": "حسنًا" },
   "ratePromptTitle": { "message": "هل تستمتع باستخدام YouTube Controls؟" },
   "ratePromptBody": { "message": "يساعد التقييم السريع في سوق Chrome الإلكتروني الآخرين على العثور على الإضافة." },

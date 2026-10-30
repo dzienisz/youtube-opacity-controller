@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "Не задано сочетание клавиш для включения и выключения улучшений" },
   "editShortcuts": { "message": "Изменить сочетания клавиш" },
   "whatsNewTitle": { "message": "Новое в версии $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Выберите цвет выделения, переход во второй цвет, значок ползунка и сохраняйте цвета видео — в дополнительных параметрах." },
+  "whatsNewBody": { "message": "Новый цвет, значок ползунка и цвета видео — в дополнительных параметрах." },
   "whatsNewDismiss": { "message": "Понятно" },
   "ratePromptTitle": { "message": "Нравится YouTube Controls?" },
   "ratePromptBody": { "message": "Короткий отзыв в Интернет-магазине Chrome поможет другим найти расширение." },

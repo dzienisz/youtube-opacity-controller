@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "No shortcut set for turning enhancements on/off" },
   "editShortcuts": { "message": "Edit shortcuts" },
   "whatsNewTitle": { "message": "New in $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Pick any highlight color, fade it into a second one, choose a progress-bar handle icon and keep a video's own player colors — all under More visibility options." },
+  "whatsNewBody": { "message": "Any highlight color, a second-color fade, handle icons and a switch to keep a video's own player colors — under More visibility options." },
   "whatsNewDismiss": { "message": "Got it" },
   "ratePromptTitle": { "message": "Enjoying YouTube Controls?" },
   "ratePromptBody": { "message": "A quick rating in the Chrome Web Store helps other people find it." },

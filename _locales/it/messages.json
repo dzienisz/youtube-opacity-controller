@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "Nessuna scorciatoia impostata per attivare o disattivare i miglioramenti" },
   "editShortcuts": { "message": "Modifica scorciatoie" },
   "whatsNewTitle": { "message": "Novità della versione $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Scegli qualsiasi colore di evidenziazione, sfumalo in un secondo colore, scegli un'icona per il cursore e mantieni i colori propri del video — tutto in Altre opzioni di visibilità." },
+  "whatsNewBody": { "message": "Qualsiasi colore, sfumatura, icone del cursore e colori del video — in Altre opzioni di visibilità." },
   "whatsNewDismiss": { "message": "Capito" },
   "ratePromptTitle": { "message": "Ti piace YouTube Controls?" },
   "ratePromptBody": { "message": "Una breve recensione sul Chrome Web Store aiuta altre persone a trovare l’estensione." },

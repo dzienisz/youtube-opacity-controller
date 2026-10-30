@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "尚未设置用于开启或关闭增强功能的快捷键" },
   "editShortcuts": { "message": "编辑快捷键" },
   "whatsNewTitle": { "message": "版本 $VERSION$ 新功能", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "任选高亮颜色、渐变到第二种颜色、选择进度条手柄图标，并保留视频自带的播放器颜色——都在“更多可见性选项”中。" },
+  "whatsNewBody": { "message": "任意高亮颜色、双色渐变、手柄图标及保留视频颜色——在“更多可见性选项”中。" },
   "whatsNewDismiss": { "message": "知道了" },
   "ratePromptTitle": { "message": "喜欢 YouTube Controls 吗？" },
   "ratePromptBody": { "message": "在 Chrome 网上应用店留下简短评价，可以帮助其他人找到这个扩展程序。" },

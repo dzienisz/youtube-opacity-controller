@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "Nenhum atalho definido para ativar ou desativar os aprimoramentos" },
   "editShortcuts": { "message": "Editar atalhos" },
   "whatsNewTitle": { "message": "Novidades da versão $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Escolha qualquer cor de destaque, esfume-a em uma segunda cor, escolha um ícone para o controle da barra de progresso e mantenha as cores do próprio vídeo — tudo em Mais opções de visibilidade." },
+  "whatsNewBody": { "message": "Qualquer cor de destaque, esfumado, ícones de controle e cores do vídeo — em Mais opções de visibilidade." },
   "whatsNewDismiss": { "message": "Entendi" },
   "ratePromptTitle": { "message": "Está gostando do YouTube Controls?" },
   "ratePromptBody": { "message": "Uma avaliação rápida na Chrome Web Store ajuda outras pessoas a encontrar a extensão." },

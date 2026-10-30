@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "Не задано сполучення клавіш для ввімкнення та вимкнення покращень" },
   "editShortcuts": { "message": "Змінити поєднання клавіш" },
   "whatsNewTitle": { "message": "Нове у версії $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Обирайте колір підсвічування, перехід у другий колір, значок повзунка та зберігайте кольори відео — у додаткових параметрах." },
+  "whatsNewBody": { "message": "Новий колір, значок повзунка і кольори відео — у додаткових параметрах." },
   "whatsNewDismiss": { "message": "Зрозуміло" },
   "ratePromptTitle": { "message": "Подобається YouTube Controls?" },
   "ratePromptBody": { "message": "Короткий відгук у Веб-магазині Chrome допоможе іншим знайти розширення." },

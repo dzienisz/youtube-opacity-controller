@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "Keine Tastenkombination zum Ein- oder Ausschalten der Verbesserungen festgelegt" },
   "editShortcuts": { "message": "Tastenkürzel bearbeiten" },
   "whatsNewTitle": { "message": "Neu in $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Neue Markierungsfarbe, Verlauf in eine zweite Farbe, Regler-Symbol wählen und Video-Farben behalten – alles unter „Weitere Sichtbarkeitsoptionen“." },
+  "whatsNewBody": { "message": "Beliebige Markierungsfarbe, Verlauf, Regler-Symbole und eigene Video-Farben – unter „Weitere Sichtbarkeitsoptionen“." },
   "whatsNewDismiss": { "message": "Verstanden" },
   "ratePromptTitle": { "message": "Gefällt dir YouTube Controls?" },
   "ratePromptBody": { "message": "Eine kurze Bewertung im Chrome Web Store hilft anderen, die Erweiterung zu finden." },

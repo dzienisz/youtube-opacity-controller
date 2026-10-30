@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "개선 기능을 켜거나 끄는 단축키가 설정되어 있지 않습니다" },
   "editShortcuts": { "message": "단축키 편집" },
   "whatsNewTitle": { "message": "$VERSION$의 새로운 기능", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "원하는 강조 색상을 고르고 두 번째 색상으로 페이드하고 진행 표시줄 핸들 아이콘을 선택하며 동영상 고유의 플레이어 색상을 유지하세요 — 모두 '추가 표시 옵션'에서." },
+  "whatsNewBody": { "message": "원하는 강조 색상, 페이드, 핸들 아이콘, 동영상 색상 유지 — 모두 추가 표시 옵션에서." },
   "whatsNewDismiss": { "message": "확인" },
   "ratePromptTitle": { "message": "YouTube Controls가 마음에 드시나요?" },
   "ratePromptBody": { "message": "Chrome 웹 스토어에 짧은 평가를 남기면 다른 사람들이 확장 프로그램을 찾는 데 도움이 됩니다." },
