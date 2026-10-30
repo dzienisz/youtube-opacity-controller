@@ -82,6 +82,21 @@ Repeat critical checks in normal, theater, and fullscreen modes at 100%, 125%, a
 - [ ] No button changes position unexpectedly.
 - [ ] No player node is moved or duplicated.
 
+## Player Themes
+
+Manual checks for the custom highlight, handle icon, and "Keep a video's own player colors" options. These cannot be covered by the fixtures or the canary because YouTube ships artist themes only on selected videos; the signal the extension relies on is `<img class="ytp-decorated-scrubber-button" src="...">` inside `.ytp-scrubber-button`.
+
+- [ ] On a regular video, a custom color and second color render as a left-to-right gradient; the handle takes the second color.
+- [ ] Each handle icon renders at both progress bar sizes and in the embed player.
+- [ ] On a video with an artist theme (below), the extension leaves the bar color and handle alone while the option is on, and overrides them when it is off.
+- [ ] Navigating from a themed video to a regular one (and back) without reload switches correctly.
+
+Known videos with an artist theme (add more as you find them, with the date checked):
+
+| Video | Theme | Checked |
+|---|---|---|
+| [LISA - Tarantino](https://www.youtube.com/watch?v=-5ZXrO_lYSA) | pink progress bar, custom handle image | 2026-10-30 |
+
 ## Navigation and Persistence
 
 - [ ] Navigate between at least three videos without a page reload.
