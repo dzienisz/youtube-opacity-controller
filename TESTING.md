@@ -17,7 +17,7 @@ Run `npm run check` before manual testing. Load the repository through **Load un
 - [ ] `manifest.json` loads without Chrome errors.
 - [ ] The console contains no content-script or popup errors.
 
-To preview the Chrome-only rating prompt, set `installedAt` to at least eight days ago, `popupOpens` to `2`, `ratePromptDone` to `false`, and `ratePromptShown` to `0` in `chrome.storage.local`, then reopen the popup. Keep the current What's new version dismissed to show the rating prompt.
+To preview the Chrome-only rating prompt, set `installedAt` to at least three days ago, `popupOpens` to `2`, `ratePromptDone` to `false`, and `ratePromptShown` to `0` in `chrome.storage.local`, then reopen the popup. Keep the current What's new version dismissed to show the rating prompt.
 
 ## Live Canary
 
