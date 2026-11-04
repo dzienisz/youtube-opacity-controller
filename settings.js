@@ -8,7 +8,7 @@
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
   const SCHEMA_VERSION = 6;
-  const RATE_PROMPT_MIN_DAYS = 7;
+  const RATE_PROMPT_MIN_DAYS = 3;
   const RATE_PROMPT_MIN_OPENS = 3;
   const RATE_PROMPT_MAX_SHOWS = 3;
   const CHROME_RATE_PROMPT_URL = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';

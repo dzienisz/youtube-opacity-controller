@@ -318,7 +318,7 @@ test('applyCommand returns normalized settings for unknown commands', () => {
 
 const ratePromptNow = Date.UTC(2026, 0, 15);
 const eligibleRatePromptState = {
-  installedAt: ratePromptNow - 8 * 24 * 60 * 60 * 1000,
+  installedAt: ratePromptNow - 4 * 24 * 60 * 60 * 1000,
   popupOpens: 5,
   ratePromptDone: false,
   ratePromptShown: 0
@@ -330,17 +330,17 @@ test('rate prompt stays hidden when installedAt is missing', () => {
   assert.equal(settings.shouldShowRatePrompt(state, ratePromptNow), false);
 });
 
-test('rate prompt stays hidden before seven days have passed', () => {
+test('rate prompt stays hidden just before three days have passed', () => {
   assert.equal(settings.shouldShowRatePrompt({
     ...eligibleRatePromptState,
-    installedAt: ratePromptNow - 7 * 24 * 60 * 60 * 1000 + 1
+    installedAt: ratePromptNow - 3 * 24 * 60 * 60 * 1000 + 1
   }, ratePromptNow), false);
 });
 
-test('rate prompt is eligible exactly seven days after installation', () => {
+test('rate prompt is eligible exactly three days after installation', () => {
   assert.equal(settings.shouldShowRatePrompt({
     ...eligibleRatePromptState,
-    installedAt: ratePromptNow - 7 * 24 * 60 * 60 * 1000
+    installedAt: ratePromptNow - 3 * 24 * 60 * 60 * 1000
   }, ratePromptNow), true);
 });
 
