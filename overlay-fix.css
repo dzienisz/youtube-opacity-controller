@@ -64,7 +64,9 @@
 }
 
 :root[data-ytoc-enabled][data-ytoc-always-show] #movie_player .ytp-chrome-top,
-:root[data-ytoc-enabled][data-ytoc-always-show] #movie_player .ytp-chrome-bottom {
+:root[data-ytoc-enabled][data-ytoc-hint-preview] #movie_player .ytp-chrome-top,
+:root[data-ytoc-enabled][data-ytoc-always-show] #movie_player .ytp-chrome-bottom,
+:root[data-ytoc-enabled][data-ytoc-hint-preview] #movie_player .ytp-chrome-bottom {
   opacity: 1 !important;
 }
 
@@ -234,11 +236,13 @@
   background-color: rgba(0, 0, 0, calc(var(--ytoc-overlay-opacity) * var(--ytoc-button-opacity-factor))) !important;
 }
 
-:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-content {
+:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-content,
+:root[data-ytoc-enabled][data-ytoc-hint-preview] #player-control-overlay .player-controls-content {
   visibility: visible !important;
 }
 
-:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-background {
+:root[data-ytoc-enabled][data-ytoc-always-show] #player-control-overlay .player-controls-background,
+:root[data-ytoc-enabled][data-ytoc-hint-preview] #player-control-overlay .player-controls-background {
   opacity: 1 !important;
 }
 

@@ -100,7 +100,7 @@
   "welcomeSubtitleSaved": { "message": "Your saved settings from another device are on. You can change them or use the recommended ones from the extension icon." },
   "welcomeSubtitleOff": { "message": "YouTube Controls is turned off in your saved settings. Turn it on with the switch in the extension's popup." },
   "playerHintTitle": { "message": "YouTube Controls is on" },
-  "playerHintBody": { "message": "Move the mouse over the video to see the clearer controls." },
+  "playerHintBody": { "message": "These are your clearer controls. Later they appear when you move the mouse over the video." },
   "welcomeWithoutExtension": { "message": "Without the extension" },
   "welcomeWithRecommended": { "message": "With recommended settings" },
   "welcomeHoverHint": { "message": "Controls show up when you move the mouse over the video. That's where you'll see the difference." },
