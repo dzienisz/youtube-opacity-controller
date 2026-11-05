@@ -100,7 +100,7 @@
   "welcomeSubtitleSaved": { "message": "As configurações salvas em outro dispositivo estão ativadas. Você pode alterá-las ou usar as configurações recomendadas pelo ícone da extensão." },
   "welcomeSubtitleOff": { "message": "O YouTube Controls está desativado nas configurações salvas. Ative as melhorias nos controles do YouTube pelo botão no pop-up da extensão." },
   "playerHintTitle": { "message": "YouTube Controls está ativado" },
-  "playerHintBody": { "message": "Mova o mouse sobre o vídeo para ver controles mais nítidos." },
+  "playerHintBody": { "message": "Estes são seus controles mais nítidos. Depois, eles aparecerão quando você mover o mouse sobre o vídeo." },
   "welcomeWithoutExtension": { "message": "Sem a extensão" },
   "welcomeWithRecommended": { "message": "Com as configurações recomendadas" },
   "welcomeHoverHint": { "message": "Os controles aparecem quando você move o mouse sobre o vídeo. É aí que você verá a diferença." },

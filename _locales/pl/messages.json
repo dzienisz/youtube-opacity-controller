@@ -100,7 +100,7 @@
   "welcomeSubtitleSaved": { "message": "Włączone są ustawienia zapisane na innym urządzeniu. Możesz je zmienić lub użyć zalecanych ustawień z ikony rozszerzenia." },
   "welcomeSubtitleOff": { "message": "YouTube Controls jest wyłączone w zapisanych ustawieniach. Włącz ulepszenia sterowania YouTube za pomocą przełącznika w wyskakującym oknie rozszerzenia." },
   "playerHintTitle": { "message": "YouTube Controls jest włączone" },
-  "playerHintBody": { "message": "Najedź kursorem na film, aby zobaczyć wyraźniejsze elementy sterujące." },
+  "playerHintBody": { "message": "To są wyraźniejsze elementy sterujące. Później pojawią się, gdy poruszysz myszą nad filmem." },
   "welcomeWithoutExtension": { "message": "Bez rozszerzenia" },
   "welcomeWithRecommended": { "message": "Z zalecanymi ustawieniami" },
   "welcomeHoverHint": { "message": "Elementy sterujące pojawiają się po najechaniu kursorem na film. Wtedy zobaczysz różnicę." },

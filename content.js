@@ -9,6 +9,7 @@ let hudTimer = null;
 let settingsInitialized = false;
 let playerHintRetryCount = 0;
 let playerHintRetryTimer = null;
+let playerHintPreviewTimer = null;
 let playerHintCheckPending = false;
 let playerHintShown = false;
 
@@ -167,10 +168,18 @@ function maybeShowPlayerHint() {
 
     playerHintShown = true;
     chrome.storage.local.set({ playerHintPending: false }, () => {
+      const previewDuration = 8000;
+      if (!document.getElementById('movie_player')) return;
+      document.documentElement.setAttribute('data-ytoc-hint-preview', '');
+      if (playerHintPreviewTimer) clearTimeout(playerHintPreviewTimer);
+      playerHintPreviewTimer = setTimeout(() => {
+        document.documentElement.removeAttribute('data-ytoc-hint-preview');
+        playerHintPreviewTimer = null;
+      }, previewDuration);
       showHud(
         chrome.i18n.getMessage('playerHintTitle'),
         chrome.i18n.getMessage('playerHintBody'),
-        8000
+        previewDuration
       );
     });
   });

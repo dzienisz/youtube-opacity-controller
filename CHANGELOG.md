@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- The one-time hint on the first video after installing keeps the player controls visible for 8 seconds, so the difference is visible without moving the mouse.
+
 ## [2.2.1] - 2026-11-04
 
 ### Changed
