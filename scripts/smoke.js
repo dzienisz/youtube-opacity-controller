@@ -1062,7 +1062,31 @@ async function main() {
       fail(`expected embed playhead transform matrix(1.8, 0, 0, 1.8, 0, 0), got ${dotTransform}`);
     }
 
-    const iconFill = await embed.locator('button.icon-button svg path')
+    const embedButtonStyles = await embed.locator('#player-controls').evaluate(controls => {
+      const style = selector => getComputedStyle(controls.querySelector(selector));
+      return {
+        muteRadius: style('.ytmMuteButtonButton').borderRadius,
+        fullscreenButton: style('button.fullscreen-icon').backgroundColor,
+        fullscreenArea: style('.player-bottom-controls-fullscreen-icon-visible-area').backgroundColor,
+        muteMatchesFullscreenArea: style('.ytmMuteButtonButton').backgroundColor
+          === style('.player-bottom-controls-fullscreen-icon-visible-area').backgroundColor
+      };
+    });
+    const expectedEmbedButtonStyles = {
+      muteRadius: '50%',
+      fullscreenButton: 'rgba(0, 0, 0, 0)',
+      muteMatchesFullscreenArea: true
+    };
+    for (const [style, expected] of Object.entries(expectedEmbedButtonStyles)) {
+      if (embedButtonStyles[style] !== expected) {
+        fail(`expected embed ${style} ${expected}, got ${embedButtonStyles[style]} (${JSON.stringify(embedButtonStyles)})`);
+      }
+    }
+    if (embedButtonStyles.fullscreenArea === 'rgba(0, 0, 0, 0.3)') {
+      fail('expected the embed fullscreen button area to get the extension background');
+    }
+
+    const iconFill = await embed.locator('button.player-control-play-pause-icon svg path')
       .evaluate(el => getComputedStyle(el).fill);
     if (iconFill !== 'rgb(255, 212, 0)') {
       fail(`expected embed icon fill rgb(255, 212, 0), got ${iconFill}`);

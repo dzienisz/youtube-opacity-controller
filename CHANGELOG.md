@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Embedded player: the sound, subtitles, settings and full screen buttons get round dark backgrounds instead of square boxes.
+
 ## [2.2.2] - 2026-11-05
 
 ### Changed
