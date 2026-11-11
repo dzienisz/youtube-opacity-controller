@@ -373,6 +373,13 @@ async function recordMiniChecks(page, scenario, watch) {
     return;
   }
 
+  // The first-video hint covers most of the miniplayer; let it finish so the screenshot shows the controls.
+  await page.waitForFunction(
+    () => !document.documentElement.hasAttribute('data-ytoc-hint-preview'),
+    null,
+    { timeout: 12000, polling: 250 }
+  ).catch(() => {});
+
   const opened = await openMiniplayer(page);
   if (!opened) {
     recordInconclusiveMini(scenario, '#movie_player.ytp-player-minimized did not appear after pressing "i" 3 times');
@@ -386,8 +393,10 @@ async function recordMiniChecks(page, scenario, watch) {
   const player = page.locator('#movie_player');
   const box = await player.boundingBox();
   if (box) {
-    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
-    await page.mouse.move(box.x + box.width / 2 + 5, box.y + box.height / 2 + 5);
+    // Hover away from the buttons so the miniplayer UI fades in without a tooltip over it.
+    await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.7);
+    await page.mouse.move(box.x + box.width * 0.3 + 5, box.y + box.height * 0.7 + 5);
+    await page.waitForTimeout(700);
   }
 
   for (const selector of miniSelectors) {
