@@ -331,6 +331,32 @@ async function recordWatchChecks(page, scenario) {
   }
 }
 
+// The "i" shortcut sometimes has no effect right after the watch page loads,
+// so wait for the video and retry instead of pressing once.
+async function openMiniplayer(page) {
+  const isMinimized = () => page.evaluate(() =>
+    Boolean(document.querySelector('#movie_player.ytp-player-minimized .ytp-miniplayer-ui')));
+  await page.waitForFunction(
+    () => document.querySelector('#movie_player video')?.readyState >= 2,
+    null,
+    { timeout: 10000, polling: 250 }
+  ).catch(() => {});
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    if (await isMinimized()) return true;
+    await page.keyboard.press('i');
+    try {
+      await page.waitForFunction(() =>
+        Boolean(document.querySelector('#movie_player.ytp-player-minimized .ytp-miniplayer-ui')),
+      null, { timeout: 5000, polling: 250 });
+      return true;
+    } catch (error) {
+      if (error.name !== 'TimeoutError' && !/timeout/i.test(error.message)) throw error;
+    }
+  }
+  return isMinimized();
+}
+
 function recordInconclusiveMini(scenario, reason) {
   scenario.readiness = 'INCONCLUSIVE';
   scenario.reason = reason;
@@ -347,18 +373,10 @@ async function recordMiniChecks(page, scenario, watch) {
     return;
   }
 
-  await page.keyboard.press('i');
-  try {
-    await page.waitForFunction(() => {
-      const player = document.querySelector('#movie_player.ytp-player-minimized');
-      return Boolean(player?.querySelector('.ytp-miniplayer-ui'));
-    }, null, { timeout: 10000, polling: 250 });
-  } catch (error) {
-    if (error.name === 'TimeoutError' || /timeout/i.test(error.message)) {
-      recordInconclusiveMini(scenario, '#movie_player.ytp-player-minimized did not appear within 10 seconds of pressing "i"');
-      return;
-    }
-    throw error;
+  const opened = await openMiniplayer(page);
+  if (!opened) {
+    recordInconclusiveMini(scenario, '#movie_player.ytp-player-minimized did not appear after pressing "i" 3 times');
+    return;
   }
 
   scenario.readiness = 'PASS';
