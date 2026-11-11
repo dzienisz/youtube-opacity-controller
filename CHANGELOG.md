@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Miniplayer: buttons and the time no longer get square dark boxes, and the larger progress bar stays on the bottom edge instead of jumping to the top.
+
 ## [2.2.2] - 2026-11-05
 
 ### Changed
