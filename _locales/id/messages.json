@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "Belum ada pintasan untuk mengaktifkan/menonaktifkan peningkatan" },
   "editShortcuts": { "message": "Edit pintasan" },
   "whatsNewTitle": { "message": "Baru di $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Warna sorotan apa pun, gradasi ke warna kedua, ikon pegangan, dan tombol untuk mempertahankan warna pemutar bawaan video — di Opsi visibilitas lainnya." },
+  "whatsNewBody": { "message": "Pemutar mini dan video sematan lebih rapi, plus 3 bahasa baru." },
   "whatsNewDismiss": { "message": "Mengerti" },
   "ratePromptTitle": { "message": "Suka YouTube Controls?" },
   "ratePromptBody": { "message": "Penilaian singkat di Chrome Web Store membantu orang lain menemukannya." },

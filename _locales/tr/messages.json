@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "İyileştirmeleri açıp kapatmak için kısayol ayarlanmadı" },
   "editShortcuts": { "message": "Kısayolları düzenle" },
   "whatsNewTitle": { "message": "$VERSION$ sürümündeki yenilikler", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "İstediğiniz vurgu rengi, ikinci renge geçiş, tutamaç simgeleri ve videonun kendi oynatıcı renklerini koruma anahtarı — Diğer görünürlük seçenekleri altında." },
+  "whatsNewBody": { "message": "Daha düzenli mini oynatıcı ve yerleştirilmiş videolar, ayrıca 3 yeni dil." },
   "whatsNewDismiss": { "message": "Anladım" },
   "ratePromptTitle": { "message": "YouTube Controls hoşunuza gitti mi?" },
   "ratePromptBody": { "message": "Chrome Web Mağazası'ndaki kısa bir puan, başkalarının da bulmasına yardımcı olur." },

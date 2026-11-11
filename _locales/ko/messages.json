@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "개선 기능을 켜거나 끄는 단축키가 설정되어 있지 않습니다" },
   "editShortcuts": { "message": "단축키 편집" },
   "whatsNewTitle": { "message": "$VERSION$의 새로운 기능", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "원하는 강조 색상, 페이드, 핸들 아이콘, 동영상 색상 유지 — 모두 추가 표시 옵션에서." },
+  "whatsNewBody": { "message": "미니 플레이어와 삽입된 동영상이 더 깔끔해졌고, 3개 언어가 추가되었습니다." },
   "whatsNewDismiss": { "message": "확인" },
   "ratePromptTitle": { "message": "YouTube Controls가 마음에 드시나요?" },
   "ratePromptBody": { "message": "Chrome 웹 스토어에 짧은 평가를 남기면 다른 사람들이 확장 프로그램을 찾는 데 도움이 됩니다." },

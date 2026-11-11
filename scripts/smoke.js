@@ -58,7 +58,7 @@ async function assertHeaderLayout(
         heading: messages.headerTitle.message,
         direction: locale === 'ar' ? 'rtl' : 'ltr',
         lang: locale.replace('_', '-'),
-        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.2'),
+        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.3'),
         whatsNewBody: messages.whatsNewBody.message,
         whatsNewDismiss: messages.whatsNewDismiss.message,
         ratePromptTitle: messages.ratePromptTitle.message,
@@ -319,7 +319,7 @@ async function captureWhatsNewScreenshots(popup, screenshotDir) {
         document.getElementById('whatsNewDismiss').textContent = dismiss;
       }, {
         locale,
-        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.2'),
+        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.3'),
         body: messages.whatsNewBody.message,
         dismiss: messages.whatsNewDismiss.message
       });
@@ -764,20 +764,20 @@ async function main() {
     }
     await assertHeaderLayout(popup, { ratePromptVisible: true });
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.2.0',
+      whatsNewVersion: '2.3.0',
       whatsNewDismissed: ''
     });
     await popup.reload();
     await popup.waitForFunction(() => !document.getElementById('whatsNew').hidden
-      && document.getElementById('whatsNewTitle').textContent === 'New in 2.2'
+      && document.getElementById('whatsNewTitle').textContent === 'New in 2.3'
       && document.getElementById('ratePrompt').hidden);
     await assertHeaderLayout(popup, { whatsNewVisible: true });
     if (process.env.YTOC_WHATSNEW_SCREENSHOT_DIR) {
       await captureWhatsNewScreenshots(popup, process.env.YTOC_WHATSNEW_SCREENSHOT_DIR);
     }
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.2.0',
-      whatsNewDismissed: '2.2'
+      whatsNewVersion: '2.3.0',
+      whatsNewDismissed: '2.3'
     });
     await popup.reload();
     await popup.waitForFunction(() => document.getElementById('whatsNew').hidden);
@@ -790,7 +790,7 @@ async function main() {
       fail(`expected shortcut keys ${toggleShortcutKeys.join(', ')}, got ${shortcutKeys.join(', ')}`);
     }
     await popup.evaluate(() => new Promise(resolve => {
-      chrome.storage.local.set({ whatsNewVersion: '2.2.0', whatsNewDismissed: '2.2' }, resolve);
+      chrome.storage.local.set({ whatsNewVersion: '2.3.0', whatsNewDismissed: '2.3' }, resolve);
     }));
     const closedPopupHeight = await popup.evaluate(() => {
       document.querySelector('details.customize').open = false;
@@ -1236,8 +1236,8 @@ async function main() {
       popupOpens: 5,
       ratePromptDone: false,
       ratePromptShown: 0,
-      whatsNewVersion: '2.2.0',
-      whatsNewDismissed: '2.2'
+      whatsNewVersion: '2.3.0',
+      whatsNewDismissed: '2.3'
     };
 
     await setLocalStorage(popup, eligibleRatePromptState);

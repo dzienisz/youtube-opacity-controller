@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "Chưa đặt phím tắt để bật hoặc tắt tính năng cải tiến" },
   "editShortcuts": { "message": "Chỉnh sửa phím tắt" },
   "whatsNewTitle": { "message": "Tính năng mới trong $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Mọi màu nổi bật, chuyển dần, biểu tượng núm và màu riêng của video — trong Tuỳ chọn hiển thị khác." },
+  "whatsNewBody": { "message": "Trình phát thu nhỏ và video nhúng gọn gàng hơn, thêm 3 ngôn ngữ mới." },
   "whatsNewDismiss": { "message": "Đã hiểu" },
   "ratePromptTitle": { "message": "Bạn thích YouTube Controls chứ?" },
   "ratePromptBody": { "message": "Một đánh giá ngắn trên Cửa hàng Chrome trực tuyến sẽ giúp người khác tìm thấy tiện ích này." },
