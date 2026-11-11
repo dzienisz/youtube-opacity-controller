@@ -4,7 +4,7 @@ Translations of the store listing from [CHROME_WEB_STORE_GUIDE.md](../CHROME_WEB
 In the Developer Dashboard: **Store listing → Add languages**, then paste the matching block.
 Short descriptions are all under the 132-character limit. Languages match `_locales/` in the extension, so the name/short description shown in the store header will agree with what users see after install.
 
-Dashboard language names: English, Portuguese (Brazil), Spanish (Latin America), German, Japanese, Korean, Arabic, Ukrainian, Vietnamese, Hindi, Polish, French, Italian, Russian, Chinese (Simplified).
+Dashboard language names: English, Portuguese (Brazil), Spanish (Latin America), German, Japanese, Korean, Arabic, Ukrainian, Vietnamese, Hindi, Polish, French, Italian, Russian, Chinese (Simplified), Indonesian, Chinese (Traditional), Turkish.
 
 ---
 
@@ -784,4 +784,160 @@ YouTube 控件：更清晰、更大 可在明亮且画面复杂的视频中改�
 7. 随时点击“恢复 YouTube 原貌”按钮或主开关，即可关闭所有更改并保留现有选择供以后使用。
 
 专为在明亮、复杂视频中难以找到、看清或操作透明控件的观众而设计。
+```
+
+---
+
+## Indonesian — `id`
+
+### Short Description
+
+```text
+Buat kontrol YouTube lebih mudah dilihat, diklik, dan tetap terlihat.
+```
+
+### Detailed Description
+
+```text
+Buat kontrol pemutar YouTube lebih mudah dilihat dan digunakan tanpa mengubah seluruh browser atau sistem operasi Anda.
+
+Kontrol YouTube: Lebih Jelas & Besar menyempurnakan antarmuka pemutar yang sudah ada pada video yang terang dan ramai secara visual. Pilih gaya kontrol siap pakai, jaga kontrol tetap terlihat saat diperlukan, atau atur kekuatan latar belakangnya.
+
+FITUR
+
+• Gaya Kontrol jelas dengan latar kontrol gelap yang dapat diatur
+• Gaya Kontras kuat untuk kontrol yang lebih tegas dan jelas
+• Bilah progres lebih besar dengan pegangan lebih besar yang mudah digeser
+• Warna sorotan untuk bilah progres, pegangan, ikon, dan waktu
+• Subtitel lebih mudah dibaca: subtitel lebih besar dengan latar gelap solid (hanya berlaku saat Anda menyalakan subtitel di video)
+• Pulihkan tampilan YouTube: satu klik mematikan semua perubahan dan menyimpan pilihan Anda untuk nanti
+• Pintasan keyboard dengan konfirmasi di pemutar, dapat diubah di chrome://extensions/shortcuts
+• Penunjuk mouse lebih besar di atas video
+• Opsi Kontrol tetap terlihat
+• Pratinjau instan dan pengaturan yang disinkronkan melalui Chrome
+• Tombol utama untuk kembali ke tampilan asli YouTube
+• Perubahan visual ringan, hanya dengan CSS
+
+AMAN SEJAK DIRANCANG
+
+• Tidak memindahkan, menyalin, atau mengganti kontrol YouTube — hanya menambahkan satu lapisan status kecil di pemutar
+• Hanya berjalan di youtube.com, termasuk pemutar tersemat
+• Tanpa akun, analitik, pelacakan, iklan, atau permintaan eksternal
+• Sumber terbuka di github.com/dzienisz/youtube-opacity-controller
+
+CARA MENGGUNAKAN
+
+1. Buka video YouTube.
+2. Klik ikon ekstensi.
+3. Pilih Kontrol jelas atau Kontras kuat.
+4. Pemasangan baru dimulai dengan pengaturan yang disarankan; gunakan "Gunakan pengaturan yang disarankan" di popup untuk menerapkannya kapan saja.
+5. Opsional: jaga kontrol tetap terlihat, perbesar bilah progres atau penunjuk, pilih warna sorotan, atau atur latar belakang.
+6. Tekan Alt+Shift+Y untuk mengaktifkan atau menonaktifkan peningkatan, Alt+Shift+J untuk berganti gaya, Alt+Shift+V untuk mengaktifkan atau menonaktifkan kontrol tetap terlihat.
+7. Gunakan tombol "Pulihkan tampilan YouTube" atau tombol utama kapan saja untuk mematikan semua perubahan; pilihan Anda disimpan untuk nanti.
+
+Dirancang untuk penonton yang kesulitan menemukan, membaca, atau menggunakan kontrol transparan pada video yang terang dan ramai.
+```
+
+---
+
+## Chinese (Traditional) — `zh_TW`
+
+### Short Description
+
+```text
+讓 YouTube 控制項更容易看清、點按並保持顯示。
+```
+
+### Detailed Description
+
+```text
+讓 YouTube 播放器控制項更容易看清和使用，不必變更整個瀏覽器或作業系統。
+
+YouTube 控制項：更清晰、更大 可改善現有播放器介面在明亮、畫面複雜的影片上的顯示效果。你可以選擇現成的控制項樣式、在需要時保持顯示控制項，或自訂背景強度。
+
+功能
+
+• 「清晰控制項」樣式，深色控制項背景可調整
+• 「高對比」樣式，控制項更醒目、更清楚
+• 加大進度列，搭配更大、更好抓的控點
+• 進度列、控點、圖示和時間的強調色
+• 更易閱讀的字幕：較大的字幕搭配不透明深色背景（僅在你於影片中開啟字幕時套用）
+• 還原 YouTube 外觀：按一下即可關閉所有變更，並保留你的選擇供日後使用
+• 鍵盤快速鍵，並在播放器上顯示確認訊息，可在 chrome://extensions/shortcuts 重新設定
+• 影片上方使用較大的滑鼠游標
+• 可選的「保持顯示控制項」設定
+• 即時預覽，設定透過 Chrome 同步
+• 主開關可恢復 YouTube 原始外觀
+• 輕量、僅使用 CSS 的外觀變更
+
+安全設計
+
+• 不會移動、複製或取代 YouTube 控制項，只會在播放器上加入一個小型狀態提示
+• 僅在 youtube.com 上執行，包括嵌入式播放器
+• 不需帳號，沒有分析、追蹤、廣告或外部請求
+• 開放原始碼：github.com/dzienisz/youtube-opacity-controller
+
+使用方式
+
+1. 開啟 YouTube 影片。
+2. 按一下擴充功能圖示。
+3. 選擇「清晰控制項」或「高對比」。
+4. 新安裝時會使用建議設定；隨時可在彈出視窗中按「使用建議設定」套用。
+5. 可選：保持顯示控制項、加大進度列或游標、選擇強調色，或自訂背景。
+6. 按 Alt+Shift+Y 開啟或關閉增強功能，Alt+Shift+J 切換樣式，Alt+Shift+V 開啟或關閉保持顯示控制項。
+7. 隨時按「還原 YouTube 外觀」按鈕或主開關即可關閉所有變更；你的選擇會保留供日後使用。
+
+專為在明亮、複雜的影片內容中難以找到、看清或操作透明控制項的觀眾而設計。
+```
+
+---
+
+## Turkish — `tr`
+
+### Short Description
+
+```text
+YouTube kontrollerini görmeyi, tıklamayı ve görünür tutmayı kolaylaştırın.
+```
+
+### Detailed Description
+
+```text
+Tarayıcınızın veya işletim sisteminizin tamamını değiştirmeden YouTube oynatıcı kontrollerini görmeyi ve kullanmayı kolaylaştırın.
+
+YouTube Kontrolleri: Daha Net ve Büyük, parlak ve görsel olarak yoğun videolarda mevcut oynatıcı arayüzünü iyileştirir. Hazır bir kontrol stili seçin, gerektiğinde kontrolleri görünür tutun veya arka plan gücünü ayarlayın.
+
+ÖZELLİKLER
+
+• Ayarlanabilir koyu kontrol arka planına sahip Net kontroller stili
+• Daha güçlü ve net kontroller için Güçlü kontrast stili
+• Daha büyük, kolay tutulan tutamaçlı daha büyük ilerleme çubuğu
+• İlerleme çubuğu, tutamaç, simgeler ve süre için vurgu renkleri
+• Daha kolay okunan altyazılar: düz koyu arka plan üzerinde daha büyük altyazılar (yalnızca videoda altyazıyı açtığınızda uygulanır)
+• YouTube görünümünü geri yükle: tek tıklama tüm değişiklikleri kapatır ve seçimlerinizi sonrası için saklar
+• Oynatıcı üzerinde onay gösteren klavye kısayolları; chrome://extensions/shortcuts adresinden değiştirilebilir
+• Videonun üzerinde daha büyük fare imleci
+• İsteğe bağlı Kontrolleri görünür tut ayarı
+• Anında önizleme ve Chrome üzerinden eşitlenen ayarlar
+• Özgün YouTube görünümüne dönmek için ana anahtar
+• Hafif, yalnızca CSS ile yapılan görsel değişiklikler
+
+TASARIMDAN GÜVENLİ
+
+• YouTube kontrollerini taşımaz, kopyalamaz veya değiştirmez; yalnızca oynatıcıya küçük bir durum katmanı ekler
+• Gömülü oynatıcılar dahil yalnızca youtube.com'da çalışır
+• Hesap, analiz, takip, reklam veya harici istek yok
+• Açık kaynak: github.com/dzienisz/youtube-opacity-controller
+
+NASIL KULLANILIR
+
+1. Bir YouTube videosu açın.
+2. Uzantı simgesine tıklayın.
+3. Net kontroller veya Güçlü kontrast seçeneğini belirleyin.
+4. Yeni kurulumlar önerilen ayarlarla başlar; bunları istediğiniz zaman uygulamak için açılır penceredeki "Önerilen ayarları kullan" düğmesini kullanın.
+5. İsteğe bağlı olarak kontrolleri görünür tutun, ilerleme çubuğunu veya imleci büyütün, bir vurgu rengi seçin ya da arka planı özelleştirin.
+6. İyileştirmeleri açıp kapatmak için Alt+Shift+Y, stiller arasında geçiş yapmak için Alt+Shift+J, kontrolleri görünür tutmayı açıp kapatmak için Alt+Shift+V tuşlarına basın.
+7. Tüm değişiklikleri kapatmak için istediğiniz zaman "YouTube görünümünü geri yükle" düğmesini veya ana anahtarı kullanın; seçimleriniz sonrası için saklanır.
+
+Parlak ve yoğun video içeriklerinde saydam kontrolleri bulmakta, okumakta veya kullanmakta zorlanan izleyiciler için tasarlandı.
 ```

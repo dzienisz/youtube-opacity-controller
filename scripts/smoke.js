@@ -25,8 +25,8 @@ async function assertHeaderLayout(
     .filter(entry => entry.isDirectory())
     .map(entry => entry.name)
     .sort();
-  if (locales.length !== 15) {
-    fail(`expected 15 locales for header geometry checks, found ${locales.length}`);
+  if (locales.length !== 18) {
+    fail(`expected 18 locales for header geometry checks, found ${locales.length}`);
   }
 
   const original = await popup.evaluate(() => ({
