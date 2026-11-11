@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "尚未設定開啟/關閉增強功能的快速鍵" },
   "editShortcuts": { "message": "編輯快速鍵" },
   "whatsNewTitle": { "message": "$VERSION$ 版新功能", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "任意強調色、第二色漸層、控點圖示，以及保留影片本身播放器顏色的開關，都在「更多可見度選項」中。" },
+  "whatsNewBody": { "message": "迷你播放器和嵌入式影片更簡潔，並新增 3 種語言。" },
   "whatsNewDismiss": { "message": "知道了" },
   "ratePromptTitle": { "message": "喜歡 YouTube Controls 嗎？" },
   "ratePromptBody": { "message": "在 Chrome 線上應用程式商店留下簡短評分，可以幫助其他人找到它。" },

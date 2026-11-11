@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "拡張機能のオン／オフを切り替えるショートカットが設定されていません" },
   "editShortcuts": { "message": "ショートカットを編集" },
   "whatsNewTitle": { "message": "$VERSION$ の新機能", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "任意のハイライト色、フェード、ハンドルアイコン、動画の色の維持 — 「その他の表示オプション」で。" },
+  "whatsNewBody": { "message": "ミニプレーヤーと埋め込み動画の表示を改善し、3 つの言語を追加しました。" },
   "whatsNewDismiss": { "message": "OK" },
   "ratePromptTitle": { "message": "YouTube Controlsを気に入っていただけましたか？" },
   "ratePromptBody": { "message": "Chrome ウェブストアで評価すると、他のユーザーがこの拡張機能を見つけやすくなります。" },

@@ -49,7 +49,6 @@ const shortcutKeys = document.getElementById('shortcutKeys');
 const shortcutHint = document.getElementById('shortcutHint');
 const shortcutUnset = document.getElementById('shortcutUnset');
 const editShortcutsSeparator = document.getElementById('editShortcutsSeparator');
-const customize = document.querySelector('details.customize');
 const opacityValue = document.getElementById('opacityValue');
 const resetSettings = document.getElementById('resetSettings');
 const restoreYouTube = document.getElementById('restoreYouTube');
@@ -367,7 +366,6 @@ chrome.storage.local.get([
   const version = featureVersion(chrome.runtime.getManifest().version);
   if (featureVersion(result.whatsNewVersion) === version && result.whatsNewDismissed !== version) {
     whatsNew.hidden = false;
-    customize.open = true;
     return;
   }
 

@@ -59,7 +59,7 @@
   "shortcutUnset": { "message": "Nenhum atalho definido para ativar ou desativar os aprimoramentos" },
   "editShortcuts": { "message": "Editar atalhos" },
   "whatsNewTitle": { "message": "Novidades da versão $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Qualquer cor de destaque, esfumado, ícones de controle e cores do vídeo — em Mais opções de visibilidade." },
+  "whatsNewBody": { "message": "Miniplayer e vídeos incorporados mais limpos, e 3 novos idiomas." },
   "whatsNewDismiss": { "message": "Entendi" },
   "ratePromptTitle": { "message": "Está gostando do YouTube Controls?" },
   "ratePromptBody": { "message": "Uma avaliação rápida na Chrome Web Store ajuda outras pessoas a encontrar a extensão." },

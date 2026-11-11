@@ -45,7 +45,7 @@
   "shortcutUnset": { "message": "No shortcut set for turning enhancements on/off" },
   "editShortcuts": { "message": "Edit shortcuts" },
   "whatsNewTitle": { "message": "New in $VERSION$", "placeholders": { "version": { "content": "$1" } } },
-  "whatsNewBody": { "message": "Any highlight color, a second-color fade, handle icons and a switch to keep a video's own player colors — under More visibility options." },
+  "whatsNewBody": { "message": "Cleaner miniplayer and embedded videos, plus 3 new languages: Indonesian, Traditional Chinese and Turkish." },
   "whatsNewDismiss": { "message": "Got it" },
   "ratePromptTitle": { "message": "Enjoying YouTube Controls?" },
   "ratePromptBody": { "message": "A quick rating in the Chrome Web Store helps other people find it." },
