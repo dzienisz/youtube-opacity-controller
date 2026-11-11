@@ -28,6 +28,20 @@ const embedProgressSelectors = [
   '.ytProgressBarLineHost',
   '.ytChapteredProgressBarHost'
 ];
+const miniSelectors = [
+  '.ytp-miniplayer-ui',
+  '.ytp-miniplayer-close-button',
+  '.ytp-play-button',
+  '.ytp-progress-bar-container',
+  '.ytp-progress-list'
+];
+const miniStyleChecks = [
+  'Round miniplayer button backgrounds',
+  'No dark box behind the miniplayer time',
+  'Large progress-bar height',
+  'Progress bar on the miniplayer bottom edge'
+];
+const expectedTransparent = 'rgba(0, 0, 0, 0)';
 const expectedYellow = 'rgb(255, 212, 0)';
 const expectedProgressHeight = '12px';
 const expectedPillBackground = `rgba(0, 0, 0, ${settingsModel.DEFAULTS.overlayOpacity})`;
@@ -317,6 +331,130 @@ async function recordWatchChecks(page, scenario) {
   }
 }
 
+// The "i" shortcut sometimes has no effect right after the watch page loads,
+// so wait for the video and retry instead of pressing once.
+async function openMiniplayer(page) {
+  const isMinimized = () => page.evaluate(() =>
+    Boolean(document.querySelector('#movie_player.ytp-player-minimized .ytp-miniplayer-ui')));
+  await page.waitForFunction(
+    () => document.querySelector('#movie_player video')?.readyState >= 2,
+    null,
+    { timeout: 10000, polling: 250 }
+  ).catch(() => {});
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    if (await isMinimized()) return true;
+    await page.keyboard.press('i');
+    try {
+      await page.waitForFunction(() =>
+        Boolean(document.querySelector('#movie_player.ytp-player-minimized .ytp-miniplayer-ui')),
+      null, { timeout: 5000, polling: 250 });
+      return true;
+    } catch (error) {
+      if (error.name !== 'TimeoutError' && !/timeout/i.test(error.message)) throw error;
+    }
+  }
+  return isMinimized();
+}
+
+function recordInconclusiveMini(scenario, reason) {
+  scenario.readiness = 'INCONCLUSIVE';
+  scenario.reason = reason;
+  scenario.selectorsAssessed = false;
+  record(scenario, 'Miniplayer', 'INCONCLUSIVE', reason);
+  for (const check of miniStyleChecks) record(scenario, check, 'INCONCLUSIVE', reason);
+}
+
+// The miniplayer reuses #movie_player with a different layout: no pills, and the
+// progress bar is a direct child pinned to the bottom edge.
+async function recordMiniChecks(page, scenario, watch) {
+  if (watch.readiness !== 'PASS') {
+    recordInconclusiveMini(scenario, `watch player was not ready: ${watch.reason || 'unknown reason'}`);
+    return;
+  }
+
+  // The first-video hint covers most of the miniplayer; let it finish so the screenshot shows the controls.
+  await page.waitForFunction(
+    () => !document.documentElement.hasAttribute('data-ytoc-hint-preview'),
+    null,
+    { timeout: 12000, polling: 250 }
+  ).catch(() => {});
+
+  const opened = await openMiniplayer(page);
+  if (!opened) {
+    recordInconclusiveMini(scenario, '#movie_player.ytp-player-minimized did not appear after pressing "i" 3 times');
+    return;
+  }
+
+  scenario.readiness = 'PASS';
+  scenario.variant = 'miniplayer';
+  record(scenario, 'Miniplayer', 'PASS', '#movie_player.ytp-player-minimized appeared');
+
+  const player = page.locator('#movie_player');
+  const box = await player.boundingBox();
+  if (box) {
+    // Hover away from the buttons so the miniplayer UI fades in without a tooltip over it.
+    await page.mouse.move(box.x + box.width * 0.3, box.y + box.height * 0.7);
+    await page.mouse.move(box.x + box.width * 0.3 + 5, box.y + box.height * 0.7 + 5);
+    await page.waitForTimeout(700);
+  }
+
+  for (const selector of miniSelectors) {
+    const present = await player.locator(selector).count() > 0;
+    record(scenario, `Selector ${selector}`, present ? 'PASS' : 'FAIL', present ? 'present' : 'missing');
+    if (!present) addMissingSelector(scenario, selector);
+  }
+  scenario.selectorsAssessed = true;
+
+  const styles = await player.evaluate(element => {
+    const style = selector => {
+      const target = element.querySelector(selector);
+      return target ? getComputedStyle(target) : null;
+    };
+    const playerBox = element.getBoundingClientRect();
+    const bar = element.querySelector('.ytp-progress-bar-container');
+    const barBox = bar?.getBoundingClientRect();
+    return {
+      closeRadius: style('.ytp-miniplayer-close-button')?.borderRadius ?? null,
+      playRadius: style('.ytp-play-button')?.borderRadius ?? null,
+      timeWrapper: style('.ytp-time-wrapper')?.backgroundColor ?? null,
+      progressHeight: style('.ytp-progress-list')?.height ?? null,
+      barBottomOffset: barBox ? Math.round(playerBox.bottom - barBox.bottom) : null,
+      barInsidePlayer: barBox ? barBox.top >= playerBox.top : null
+    };
+  });
+
+  const roundButtons = styles.closeRadius === '50%' && styles.playRadius === '50%';
+  record(
+    scenario,
+    'Round miniplayer button backgrounds',
+    styles.closeRadius === null || styles.playRadius === null ? 'FAIL' : roundButtons ? 'PASS' : 'FAIL',
+    `expected 50% for close and play; got ${styles.closeRadius} and ${styles.playRadius}`
+  );
+  // YouTube only renders the time wrapper in some miniplayer variants.
+  record(
+    scenario,
+    'No dark box behind the miniplayer time',
+    styles.timeWrapper === null || styles.timeWrapper === expectedTransparent ? 'PASS' : 'FAIL',
+    styles.timeWrapper === null
+      ? '.ytp-time-wrapper is not rendered in this miniplayer'
+      : `expected ${expectedTransparent}; got ${styles.timeWrapper}`
+  );
+  record(
+    scenario,
+    'Large progress-bar height',
+    styles.progressHeight === expectedProgressHeight ? 'PASS' : 'FAIL',
+    `expected ${expectedProgressHeight}; got ${styles.progressHeight}`
+  );
+  const barOnBottomEdge = styles.barBottomOffset === 0 && styles.barInsidePlayer === true;
+  record(
+    scenario,
+    'Progress bar on the miniplayer bottom edge',
+    barOnBottomEdge ? 'PASS' : 'FAIL',
+    `expected bottom offset 0 inside the player; got offset ${styles.barBottomOffset}, inside ${styles.barInsidePlayer}`
+  );
+}
+
 async function recordEmbedChecks(frame, scenario) {
   if (!(await frame.locator('#movie_player').count())) {
     recordInconclusiveEmbed(scenario, scenario.reason || '#movie_player did not appear in the YouTube frame');
@@ -421,7 +559,8 @@ async function probePlayability(scope, scenario) {
   const styleChecks = new Set([
     'Yellow play-progress color',
     'Large progress-bar height',
-    'Right-controls/pill background'
+    'Right-controls/pill background',
+    ...miniStyleChecks
   ]);
   for (const check of scenario.checks) {
     const isSelectorOrStyleCheck = check.check.startsWith('Selector ')
@@ -488,8 +627,9 @@ async function main() {
   fs.mkdirSync(artifactsDir, { recursive: true });
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ytoc-canary-'));
   const watch = createScenario('Watch page', watchUrl);
+  const mini = createScenario('Miniplayer', watchUrl);
   const embed = createScenario('Embedded player', embedUrl);
-  const scenarios = [watch, embed];
+  const scenarios = [watch, mini, embed];
   let context;
   let runnerError = '';
 
@@ -540,6 +680,14 @@ async function main() {
     }
     await probePlayability(watchPage, watch);
     await saveScreenshot(watchPage, watchPage, '#movie_player', path.join(artifactsDir, 'watch-player.png'), watch);
+
+    try {
+      await recordMiniChecks(watchPage, mini, watch);
+    } catch (error) {
+      recordInconclusiveMini(mini, `miniplayer check did not complete: ${error.message}`);
+    }
+    await probePlayability(watchPage, mini);
+    await saveScreenshot(watchPage, watchPage, '#movie_player', path.join(artifactsDir, 'mini-player.png'), mini);
 
     const embedPage = await context.newPage();
     await embedPage.setViewportSize({ width: 1280, height: 720 });

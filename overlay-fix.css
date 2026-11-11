@@ -219,6 +219,22 @@
   background-color: rgba(0, 0, 0, var(--ytoc-overlay-opacity)) !important;
 }
 
+/* Miniplayer: its buttons and time sit on YouTube's own hover scrim instead of
+   inside pills, and the progress bar is a direct child pinned to the bottom
+   edge with an inline-free `top`, so keep both where YouTube puts them. */
+:root[data-ytoc-enabled] #movie_player.ytp-player-minimized .ytp-button:not(.branding-img-container):not(.ytp-large-play-button) {
+  border-radius: 50% !important;
+}
+
+:root[data-ytoc-enabled] #movie_player.ytp-player-minimized .ytp-time-wrapper {
+  background-color: transparent !important;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player.ytp-player-minimized .ytp-progress-bar-container {
+  top: auto !important;
+  bottom: 0 !important;
+}
+
 /* Embedded player (youtube.com/embed) renders its controls in #player-controls
    with a different class vocabulary than the watch page. */
 :root[data-ytoc-enabled] #player-control-overlay .player-controls-background {
@@ -233,6 +249,23 @@
 :root[data-ytoc-enabled] #player-controls .ytmMuteButtonButton,
 :root[data-ytoc-enabled] #player-controls .ytmClosedCaptioningButtonButton,
 :root[data-ytoc-enabled] #player-controls .ytwPlayerTimeDisplayTimeChunks {
+  background-color: rgba(0, 0, 0, calc(var(--ytoc-overlay-opacity) * var(--ytoc-button-opacity-factor))) !important;
+}
+
+/* Embed buttons are square 48px hit areas with no shape of their own, so the
+   dark background needs a round one. The fullscreen button already draws a
+   round 36px area inside its hit area; darken that instead of the square. */
+:root[data-ytoc-enabled] #player-controls button.icon-button,
+:root[data-ytoc-enabled] #player-controls .ytmMuteButtonButton,
+:root[data-ytoc-enabled] #player-controls .ytmClosedCaptioningButtonButton {
+  border-radius: 50% !important;
+}
+
+:root[data-ytoc-enabled] #player-controls button.icon-button.fullscreen-icon {
+  background-color: transparent !important;
+}
+
+:root[data-ytoc-enabled] #player-controls .player-bottom-controls-fullscreen-icon-visible-area {
   background-color: rgba(0, 0, 0, calc(var(--ytoc-overlay-opacity) * var(--ytoc-button-opacity-factor))) !important;
 }
 

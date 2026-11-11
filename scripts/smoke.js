@@ -12,6 +12,7 @@ const cycleShortcutLabel = isMac ? '⌥⇧J' : 'Alt+Shift+J';
 const toggleShortcutKeys = isMac ? ['⌥', '⇧', 'Y'] : ['Alt', 'Shift', 'Y'];
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
 const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
+const miniFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-mini.html'), 'utf8');
 const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
 const embedFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed.html'), 'utf8');
 const ratePromptReviewsUrl = 'https://chromewebstore.google.com/detail/dcmmcbdcbpaoefhnlogalnfnnmjolfbh/reviews';
@@ -588,6 +589,8 @@ async function main() {
           ? embedFixture
         : url.includes('/modern')
           ? modernFixture
+        : url.includes('/mini')
+          ? miniFixture
           : fixture;
       route.fulfill({ contentType: 'text/html', body });
     });
@@ -697,6 +700,39 @@ async function main() {
         fail(`expected modern ${style} ${expected}, got ${actual}`);
       }
     }
+    const mini = await context.newPage();
+    await mini.goto('https://www.youtube.com/mini');
+    await mini.waitForFunction(() => {
+      const list = document.querySelector('.ytp-progress-list');
+      return document.documentElement.hasAttribute('data-ytoc-enabled')
+        && list
+        && getComputedStyle(list).height === '12px';
+    }, null, { timeout: 15000 });
+    const miniStyles = await mini.locator('#movie_player').evaluate(player => {
+      const playerBox = player.getBoundingClientRect();
+      const barBox = player.querySelector('.ytp-progress-bar-container').getBoundingClientRect();
+      return {
+        closeRadius: getComputedStyle(player.querySelector('.ytp-miniplayer-close-button')).borderRadius,
+        playRadius: getComputedStyle(player.querySelector('.ytp-play-button')).borderRadius,
+        timeWrapper: getComputedStyle(player.querySelector('.ytp-time-wrapper')).backgroundColor,
+        barBottomOffset: Math.round(playerBox.bottom - barBox.bottom),
+        barInsidePlayer: barBox.top >= playerBox.top
+      };
+    });
+    const expectedMiniStyles = {
+      closeRadius: '50%',
+      playRadius: '50%',
+      timeWrapper: 'rgba(0, 0, 0, 0)',
+      barBottomOffset: 0,
+      barInsidePlayer: true
+    };
+    for (const [style, expected] of Object.entries(expectedMiniStyles)) {
+      if (miniStyles[style] !== expected) {
+        fail(`expected miniplayer ${style} ${expected}, got ${miniStyles[style]}`);
+      }
+    }
+    await mini.close();
+
     await assertCaptionStyles(modern, 'modern recommended', {
       zoom: '1.4',
       backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -1062,7 +1098,31 @@ async function main() {
       fail(`expected embed playhead transform matrix(1.8, 0, 0, 1.8, 0, 0), got ${dotTransform}`);
     }
 
-    const iconFill = await embed.locator('button.icon-button svg path')
+    const embedButtonStyles = await embed.locator('#player-controls').evaluate(controls => {
+      const style = selector => getComputedStyle(controls.querySelector(selector));
+      return {
+        muteRadius: style('.ytmMuteButtonButton').borderRadius,
+        fullscreenButton: style('button.fullscreen-icon').backgroundColor,
+        fullscreenArea: style('.player-bottom-controls-fullscreen-icon-visible-area').backgroundColor,
+        muteMatchesFullscreenArea: style('.ytmMuteButtonButton').backgroundColor
+          === style('.player-bottom-controls-fullscreen-icon-visible-area').backgroundColor
+      };
+    });
+    const expectedEmbedButtonStyles = {
+      muteRadius: '50%',
+      fullscreenButton: 'rgba(0, 0, 0, 0)',
+      muteMatchesFullscreenArea: true
+    };
+    for (const [style, expected] of Object.entries(expectedEmbedButtonStyles)) {
+      if (embedButtonStyles[style] !== expected) {
+        fail(`expected embed ${style} ${expected}, got ${embedButtonStyles[style]} (${JSON.stringify(embedButtonStyles)})`);
+      }
+    }
+    if (embedButtonStyles.fullscreenArea === 'rgba(0, 0, 0, 0.3)') {
+      fail('expected the embed fullscreen button area to get the extension background');
+    }
+
+    const iconFill = await embed.locator('button.player-control-play-pause-icon svg path')
       .evaluate(el => getComputedStyle(el).fill);
     if (iconFill !== 'rgb(255, 212, 0)') {
       fail(`expected embed icon fill rgb(255, 212, 0), got ${iconFill}`);
