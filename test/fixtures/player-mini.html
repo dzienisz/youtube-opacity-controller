@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Smoke test miniplayer</title>
+  <style>
+    #movie_player {
+      position: relative;
+      width: 400px;
+      height: 225px;
+      background: #000;
+    }
+    .ytp-miniplayer-ui {
+      position: absolute;
+      inset: 0;
+    }
+    .ytp-miniplayer-close-button,
+    .ytp-play-button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: transparent;
+    }
+    .ytp-miniplayer-close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .ytp-time-display {
+      position: absolute;
+      left: 7px;
+      bottom: 0;
+      color: #eee;
+      font: 12px Arial, sans-serif;
+    }
+    .ytp-progress-bar-container {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: -1px;
+      height: 5px;
+    }
+    .ytp-progress-bar,
+    .ytp-progress-list {
+      position: relative;
+      height: 5px;
+    }
+    .ytp-progress-list {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .ytp-play-progress {
+      height: 5px;
+      width: 40%;
+      background-color: #f03;
+    }
+  </style>
+</head>
+<body>
+  <div id="movie_player" class="html5-video-player ytp-delhi-modern ytp-player-minimized">
+    <div class="ytp-miniplayer-ui">
+      <button class="ytp-miniplayer-close-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+      <div class="ytp-miniplayer-controls">
+        <button class="ytp-play-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
+      </div>
+      <div class="ytp-time-display">
+        <div class="ytp-time-wrapper ytp-time-wrapper-delhi">
+          <span class="ytp-time-current">0:00</span>
+          <span class="ytp-time-separator"> / </span>
+          <span class="ytp-time-duration">0:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="ytp-progress-bar-container">
+      <div class="ytp-progress-bar" tabindex="0">
+        <div class="ytp-progress-list">
+          <div class="ytp-play-progress ytp-swatch-background-color"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
