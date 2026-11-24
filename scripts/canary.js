@@ -331,6 +331,89 @@ async function recordWatchChecks(page, scenario) {
   }
 }
 
+async function recordProgressKeepsMovingCheck(page, scenario) {
+  const player = page.locator('#movie_player');
+  const video = player.locator('video').first();
+  if (!(await video.count())) {
+    record(scenario, 'Progress keeps moving with always show', 'INCONCLUSIVE', '#movie_player video is missing');
+    return;
+  }
+
+  let playback;
+  try {
+    playback = await video.evaluate(async element => {
+      element.muted = true;
+      try {
+        if (element.paused || element.ended) await element.play();
+        return { playing: !element.paused && !element.ended, error: '' };
+      } catch (error) {
+        return { playing: false, error: error.message };
+      }
+    });
+
+    const box = await player.boundingBox();
+    if (box) {
+      const viewport = page.viewportSize() || { width: 1280, height: 720 };
+      const candidates = [
+        { x: 1, y: viewport.height - 2 },
+        { x: viewport.width - 2, y: viewport.height - 2 },
+        { x: box.x - 2, y: box.y + box.height / 2 },
+        { x: box.x + box.width + 2, y: box.y + box.height / 2 },
+        { x: box.x + box.width / 2, y: box.y + box.height + 2 }
+      ];
+      const point = candidates.find(({ x, y }) =>
+        x >= 0
+        && x < viewport.width
+        && y >= 0
+        && y < viewport.height
+        && (x < box.x || x > box.x + box.width || y < box.y || y > box.y + box.height));
+      if (point) await page.mouse.move(point.x, point.y);
+    }
+
+    const autohideSeen = await page.waitForFunction(
+      () => document.querySelector('#movie_player')?.classList.contains('ytp-autohide'),
+      null,
+      { timeout: 6000, polling: 100 }
+    ).then(() => true).catch(() => false);
+    const readSample = () => page.evaluate(() => {
+      const playerElement = document.querySelector('#movie_player');
+      const videoElement = playerElement?.querySelector('video');
+      return {
+        timeText: playerElement?.querySelector('.ytp-time-current')?.textContent?.trim() ?? null,
+        ariaValueNow: playerElement?.querySelector('.ytp-progress-bar')?.getAttribute('aria-valuenow') ?? null,
+        currentTime: videoElement?.currentTime ?? null,
+        paused: !videoElement || videoElement.paused || videoElement.ended
+      };
+    });
+    const first = await readSample();
+    await page.waitForTimeout(4000);
+    const second = await readSample();
+    const firstProgress = Number(first.ariaValueNow);
+    const secondProgress = Number(second.ariaValueNow);
+    const currentTimeDelta = Number(second.currentTime) - Number(first.currentTime);
+    const hasProgressValues = Number.isFinite(firstProgress) && Number.isFinite(secondProgress);
+
+    let status = 'INCONCLUSIVE';
+    if (hasProgressValues && secondProgress > firstProgress) {
+      status = 'PASS';
+    } else if (Number.isFinite(currentTimeDelta) && currentTimeDelta > 2) {
+      status = 'FAIL';
+    }
+
+    const details = [
+      `autohide=${autohideSeen ? 'seen' : 'not seen within 6s'}`,
+      `timeText ${JSON.stringify(first.timeText)} → ${JSON.stringify(second.timeText)}`,
+      `aria-valuenow ${JSON.stringify(first.ariaValueNow)} → ${JSON.stringify(second.ariaValueNow)}`,
+      `video.currentTime ${first.currentTime} → ${second.currentTime} (Δ${Number.isFinite(currentTimeDelta) ? currentTimeDelta.toFixed(1) : 'n/a'}s)`,
+      `playing=${playback.playing && !first.paused && !second.paused}`,
+      playback.error ? `play error=${playback.error}` : ''
+    ].filter(Boolean).join('; ');
+    record(scenario, 'Progress keeps moving with always show', status, details);
+  } catch (error) {
+    record(scenario, 'Progress keeps moving with always show', 'INCONCLUSIVE', error.message);
+  }
+}
+
 // The "i" shortcut sometimes has no effect right after the watch page loads,
 // so wait for the video and retry instead of pressing once.
 async function openMiniplayer(page) {
@@ -679,6 +762,9 @@ async function main() {
       await recordWatchChecks(watchPage, watch);
     }
     await probePlayability(watchPage, watch);
+    if (!watch.playability.startsWith('blocked:')) {
+      await recordProgressKeepsMovingCheck(watchPage, watch);
+    }
     await saveScreenshot(watchPage, watchPage, '#movie_player', path.join(artifactsDir, 'watch-player.png'), watch);
 
     try {

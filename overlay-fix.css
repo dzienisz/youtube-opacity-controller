@@ -193,6 +193,11 @@
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewBox='0 0 40 48'><path d='M4 2 L4 40 L14 30 L22 46 L30 42 L22 27 L36 27 Z' fill='white' stroke='black' stroke-width='3' stroke-linejoin='round'/></svg>") 4 2, auto !important;
 }
 
+:root[data-ytoc-enabled][data-ytoc-cursor-idle] #movie_player,
+:root[data-ytoc-enabled][data-ytoc-cursor-idle] #movie_player * {
+  cursor: none !important;
+}
+
 /* Modern player (ytp-delhi-modern): YouTube draws rounded pills around the
    control groups and no bottom gradient, so darken the pills themselves
    instead of painting a rectangular band behind them. */
