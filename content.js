@@ -12,10 +12,92 @@ let playerHintRetryTimer = null;
 let playerHintPreviewTimer = null;
 let playerHintCheckPending = false;
 let playerHintShown = false;
+let keepControlsAwakeTimer = null;
+let keepControlsAwakePointIndex = 0;
+let lastRealPointerMove = Date.now();
 
 function videoHasOwnTheme() {
   return !!document.querySelector('#movie_player .ytp-decorated-scrubber-button[src]');
 }
+
+function shouldKeepControlsAwake() {
+  return currentSettings.extensionEnabled
+    && (currentSettings.alwaysShowControls
+      || document.documentElement.hasAttribute('data-ytoc-hint-preview'));
+}
+
+function stopKeepingControlsAwake() {
+  if (keepControlsAwakeTimer) {
+    clearInterval(keepControlsAwakeTimer);
+    keepControlsAwakeTimer = null;
+  }
+  document.documentElement.removeAttribute('data-ytoc-cursor-idle');
+}
+
+function keepControlsAwakeTick() {
+  if (!shouldKeepControlsAwake()) {
+    stopKeepingControlsAwake();
+    return;
+  }
+
+  const root = document.documentElement;
+  const player = document.getElementById('movie_player');
+  if (!player) {
+    root.removeAttribute('data-ytoc-cursor-idle');
+    return;
+  }
+
+  const video = player.querySelector('video');
+  const videoIsPlaying = video && !video.paused && !video.ended;
+  if (videoIsPlaying && Date.now() - lastRealPointerMove > 3000) {
+    root.setAttribute('data-ytoc-cursor-idle', '');
+  } else {
+    root.removeAttribute('data-ytoc-cursor-idle');
+  }
+
+  if (
+    !player.classList.contains('ytp-autohide')
+    || !videoIsPlaying
+    || document.visibilityState !== 'visible'
+  ) return;
+
+  let target = player.querySelector('.html5-video-container') || player;
+  let rect = target.getBoundingClientRect();
+  if (rect.width <= 1 || rect.height <= 1) {
+    target = player;
+    rect = target.getBoundingClientRect();
+  }
+  if (rect.width <= 1 || rect.height <= 1) return;
+
+  const xOffset = keepControlsAwakePointIndex === 0 ? 100 : 107;
+  const yOffset = keepControlsAwakePointIndex === 0 ? 100 : 105;
+  keepControlsAwakePointIndex = 1 - keepControlsAwakePointIndex;
+  const clientX = Math.min(rect.right - 1, Math.max(rect.left, rect.left + xOffset));
+  const clientY = Math.min(rect.bottom - 1, Math.max(rect.top, rect.top + yOffset));
+  target.dispatchEvent(new MouseEvent('mousemove', {
+    bubbles: true,
+    clientX,
+    clientY
+  }));
+}
+
+function syncKeepControlsAwake() {
+  if (!shouldKeepControlsAwake()) {
+    stopKeepingControlsAwake();
+    return;
+  }
+
+  if (!keepControlsAwakeTimer) {
+    // YouTube stops painting progress while autohidden; a moving synthetic mousemove keeps it awake.
+    keepControlsAwakeTimer = setInterval(keepControlsAwakeTick, 1000);
+  }
+}
+
+document.addEventListener('mousemove', event => {
+  if (!event.isTrusted) return;
+  lastRealPointerMove = Date.now();
+  document.documentElement.removeAttribute('data-ytoc-cursor-idle');
+}, { capture: true, passive: true });
 
 function applySettings(value) {
   currentSettings = settingsModel.normalizeSettings(value);
@@ -30,6 +112,7 @@ function applySettings(value) {
     : currentSettings.scrubberIcon;
 
   if (!currentSettings.extensionEnabled) {
+    stopKeepingControlsAwake();
     root.removeAttribute('data-ytoc-enabled');
     root.removeAttribute('data-ytoc-profile');
     root.removeAttribute('data-ytoc-always-show');
@@ -88,6 +171,7 @@ function applySettings(value) {
   }
 
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
+  syncKeepControlsAwake();
 }
 
 // YouTube swaps the decorated scrubber image when a video ships its own
@@ -171,10 +255,12 @@ function maybeShowPlayerHint() {
       const previewDuration = 8000;
       if (!document.getElementById('movie_player')) return;
       document.documentElement.setAttribute('data-ytoc-hint-preview', '');
+      syncKeepControlsAwake();
       if (playerHintPreviewTimer) clearTimeout(playerHintPreviewTimer);
       playerHintPreviewTimer = setTimeout(() => {
         document.documentElement.removeAttribute('data-ytoc-hint-preview');
         playerHintPreviewTimer = null;
+        syncKeepControlsAwake();
       }, previewDuration);
       showHud(
         chrome.i18n.getMessage('playerHintTitle'),
