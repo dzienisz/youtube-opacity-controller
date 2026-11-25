@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - A thin progress bar stays visible when controls hide, including in full screen, with optional elapsed and total time.
 
+## [2.3.1] - 2026-11-25
+
+### Fixed
+- With "Keep controls visible" on, the progress bar and the time keep moving after YouTube would normally hide the controls, instead of freezing. The same applies to the 8-second hint on the first video. The mouse pointer still hides after 3 seconds without movement while the video plays.
+
 ## [2.3.0] - 2026-11-11
 
 ### Added
