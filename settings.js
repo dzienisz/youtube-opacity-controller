@@ -7,7 +7,7 @@
 
   root.YtocSettings = settingsApi;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function() {
-  const SCHEMA_VERSION = 6;
+  const SCHEMA_VERSION = 7;
   const RATE_PROMPT_MIN_DAYS = 3;
   const RATE_PROMPT_MIN_OPENS = 3;
   const RATE_PROMPT_MAX_SHOWS = 3;
@@ -59,6 +59,8 @@
     accessibilityProfile: PROFILES.STANDARD,
     overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.STANDARD],
     alwaysShowControls: false,
+    thinProgressBar: false,
+    thinProgressTime: false,
     progressBarSize: PROGRESS_SIZES.DEFAULT,
     highlightColor: HIGHLIGHT_COLORS.DEFAULT,
     largeCursor: false,
@@ -75,6 +77,8 @@
     accessibilityProfile: PROFILES.HIGH_CONTRAST,
     overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.HIGH_CONTRAST],
     alwaysShowControls: false,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: PROGRESS_SIZES.LARGE,
     highlightColor: HIGHLIGHT_COLORS.DEFAULT,
     largeCursor: false,
@@ -124,6 +128,12 @@
       alwaysShowControls: typeof input.alwaysShowControls === 'boolean'
         ? input.alwaysShowControls
         : DEFAULTS.alwaysShowControls,
+      thinProgressBar: typeof input.thinProgressBar === 'boolean'
+        ? input.thinProgressBar
+        : DEFAULTS.thinProgressBar,
+      thinProgressTime: typeof input.thinProgressTime === 'boolean'
+        ? input.thinProgressTime
+        : DEFAULTS.thinProgressTime,
       progressBarSize: PROGRESS_SIZE_VALUES.includes(input.progressBarSize)
         ? input.progressBarSize
         : DEFAULTS.progressBarSize,
@@ -160,9 +170,14 @@
       const base = !Number.isFinite(schemaVersion) || schemaVersion < 4
         ? { ...LEGACY_DEFAULTS, ...stored }
         : stored;
-      const migrated = !Number.isFinite(schemaVersion) || schemaVersion < 5
+      const withCaptions = !Number.isFinite(schemaVersion) || schemaVersion < 5
         ? { ...base, readableCaptions: true }
         : base;
+      const keepsThinBarChoice = Number.isFinite(schemaVersion)
+        && typeof stored.thinProgressBar === 'boolean';
+      const migrated = (!Number.isFinite(schemaVersion) || schemaVersion < 7) && !keepsThinBarChoice
+        ? { ...withCaptions, thinProgressBar: true }
+        : withCaptions;
       return normalizeSettings(migrated);
     }
 

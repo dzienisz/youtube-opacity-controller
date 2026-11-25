@@ -69,20 +69,20 @@
 
   <!-- Right column: title + features -->
   <g transform="translate(1030, 150)">
-    <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">YouTube Overlay</text>
-    <text x="0" y="46" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">Opacity Controller</text>
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">YouTube Controls &amp;</text>
+    <text x="0" y="46" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff">Progress Bar</text>
 
     <rect x="0" y="76" width="90" height="5" rx="2.5" fill="url(#accent)"/>
 
     <g transform="translate(0, 118)" font-family="Arial, sans-serif" font-size="19" fill="#d9d5f0">
       <circle cx="9" cy="-6" r="5" fill="#ff0000"/>
-      <text x="28" y="0">0–100% opacity slider</text>
+      <text x="28" y="0">Thin progress bar when controls hide</text>
 
       <circle cx="9" cy="34" r="5" fill="#ff0000"/>
-      <text x="28" y="40">One-click presets</text>
+      <text x="28" y="40">Elapsed + total time, when you want it</text>
 
       <circle cx="9" cy="74" r="5" fill="#ff0000"/>
-      <text x="28" y="80">Always-show controls</text>
+      <text x="28" y="80">Clearer, larger player controls</text>
 
       <circle cx="9" cy="114" r="5" fill="#ff0000"/>
       <text x="28" y="120">Settings sync across devices</text>
@@ -91,6 +91,6 @@
 
   <!-- Bottom tagline -->
   <text x="700" y="512" font-family="Arial, sans-serif" font-size="21" fill="#b8b3d9" text-anchor="middle">
-    Stop squinting at transparent controls — make them clearly visible in one click
+    See your place in the video, even when YouTube hides the controls
   </text>
 </svg>

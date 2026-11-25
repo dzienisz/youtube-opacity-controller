@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>YouTube Player Accessibility</title>
+  <title>YouTube Controls &amp; Progress Bar</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
@@ -49,6 +49,14 @@
           <small data-i18n="alwaysShowControlsDesc">Stops controls from disappearing while you use them</small>
         </span>
         <input type="checkbox" id="alwaysShowControls" name="alwaysShowControls" autocomplete="off">
+      </label>
+
+      <label class="option-row primary-option">
+        <span>
+          <strong data-i18n="thinProgressBar">Thin progress bar when controls hide</strong>
+          <small data-i18n="thinProgressBarDesc">A slim timeline stays at the bottom of the video, also in full screen</small>
+        </span>
+        <input type="checkbox" id="thinProgressBar" name="thinProgressBar" autocomplete="off">
       </label>
 
       <fieldset class="profiles">
@@ -97,6 +105,14 @@
             <small data-i18n="progressBarLargeDesc">Thicker timeline and a larger, easier-to-grab handle</small>
           </span>
           <input type="checkbox" id="progressBarSize" name="progressBarSize" autocomplete="off">
+        </label>
+
+        <label class="option-row" id="thinProgressTimeOption">
+          <span>
+            <strong data-i18n="thinProgressTime">Show time next to the thin bar</strong>
+            <small data-i18n="thinProgressTimeDesc">Elapsed and total time while the controls are hidden</small>
+          </span>
+          <input type="checkbox" id="thinProgressTime" name="thinProgressTime" autocomplete="off">
         </label>
 
         <fieldset class="highlight-colors">

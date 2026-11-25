@@ -15,6 +15,8 @@ let playerHintShown = false;
 let keepControlsAwakeTimer = null;
 let keepControlsAwakePointIndex = 0;
 let lastRealPointerMove = Date.now();
+let thinProgressTimer = null;
+let thinProgressElements = null;
 
 function videoHasOwnTheme() {
   return !!document.querySelector('#movie_player .ytp-decorated-scrubber-button[src]');
@@ -93,6 +95,123 @@ function syncKeepControlsAwake() {
   }
 }
 
+function getThinProgressElements(player) {
+  if (!thinProgressElements) {
+    const container = document.createElement('div');
+    container.className = 'ytoc-thin-progress';
+    container.setAttribute('aria-hidden', 'true');
+
+    const buffer = document.createElement('div');
+    buffer.className = 'ytoc-thin-progress-buffer';
+    const play = document.createElement('div');
+    play.className = 'ytoc-thin-progress-play';
+    const time = document.createElement('div');
+    time.className = 'ytoc-thin-progress-time';
+    container.append(buffer, play, time);
+
+    thinProgressElements = { container, buffer, play, time };
+  }
+
+  if (thinProgressElements.container.parentElement !== player) {
+    player.appendChild(thinProgressElements.container);
+  }
+  return thinProgressElements;
+}
+
+function formatThinProgressTime(value, showHours) {
+  const totalSeconds = Math.floor(Math.max(0, value));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  if (showHours || hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+  return `${Math.floor(totalSeconds / 60)}:${String(seconds).padStart(2, '0')}`;
+}
+
+function setThinProgressTransform(element, fraction) {
+  const transform = `scaleX(${fraction})`;
+  if (element.style.transform !== transform) element.style.transform = transform;
+}
+
+function updateThinProgress() {
+  if (document.visibilityState !== 'visible') return;
+
+  const player = document.getElementById('movie_player');
+  if (!player) {
+    if (thinProgressElements && !thinProgressElements.container.hidden) {
+      thinProgressElements.container.hidden = true;
+    }
+    return;
+  }
+
+  const elements = getThinProgressElements(player);
+  const video = player.querySelector('video');
+  const duration = video?.duration;
+  if (
+    window.location.pathname.startsWith('/shorts/')
+    || !video
+    || player.classList.contains('ad-showing')
+    || !Number.isFinite(duration)
+    || duration <= 0
+  ) {
+    if (!elements.container.hidden) elements.container.hidden = true;
+    return;
+  }
+
+  const currentTime = Number.isFinite(video.currentTime)
+    ? Math.min(duration, Math.max(0, video.currentTime))
+    : 0;
+  const playFraction = currentTime / duration;
+  let bufferFraction = 0;
+  try {
+    for (let index = 0; index < video.buffered.length; index += 1) {
+      const start = video.buffered.start(index);
+      const end = video.buffered.end(index);
+      if (currentTime >= start && currentTime <= end) {
+        bufferFraction = end / duration;
+        break;
+      }
+    }
+  } catch {
+    bufferFraction = 0;
+  }
+
+  setThinProgressTransform(elements.buffer, Math.min(1, Math.max(0, bufferFraction)));
+  setThinProgressTransform(elements.play, playFraction);
+  const showHours = duration >= 3600;
+  const timeText = `${formatThinProgressTime(currentTime, showHours)} / ${formatThinProgressTime(duration, showHours)}`;
+  if (
+    currentSettings.thinProgressTime
+    && elements.time.textContent !== timeText
+  ) {
+    elements.time.textContent = timeText;
+  }
+  if (elements.container.hidden) elements.container.hidden = false;
+}
+
+function stopThinProgress() {
+  if (thinProgressTimer) {
+    clearInterval(thinProgressTimer);
+    thinProgressTimer = null;
+  }
+  if (thinProgressElements && !thinProgressElements.container.hidden) {
+    thinProgressElements.container.hidden = true;
+  }
+}
+
+function syncThinProgress() {
+  if (!currentSettings.extensionEnabled || !currentSettings.thinProgressBar) {
+    stopThinProgress();
+    return;
+  }
+
+  if (!thinProgressTimer) {
+    updateThinProgress();
+    thinProgressTimer = setInterval(updateThinProgress, 250);
+  }
+}
+
 document.addEventListener('mousemove', event => {
   if (!event.isTrusted) return;
   lastRealPointerMove = Date.now();
@@ -113,9 +232,12 @@ function applySettings(value) {
 
   if (!currentSettings.extensionEnabled) {
     stopKeepingControlsAwake();
+    stopThinProgress();
     root.removeAttribute('data-ytoc-enabled');
     root.removeAttribute('data-ytoc-profile');
     root.removeAttribute('data-ytoc-always-show');
+    root.removeAttribute('data-ytoc-thin-progress');
+    root.removeAttribute('data-ytoc-thin-progress-time');
     root.removeAttribute('data-ytoc-progress');
     root.removeAttribute('data-ytoc-highlight');
     root.removeAttribute('data-ytoc-scrubber');
@@ -131,6 +253,11 @@ function applySettings(value) {
   root.setAttribute('data-ytoc-enabled', 'true');
   root.setAttribute('data-ytoc-profile', currentSettings.accessibilityProfile);
   root.toggleAttribute('data-ytoc-always-show', currentSettings.alwaysShowControls);
+  root.toggleAttribute('data-ytoc-thin-progress', currentSettings.thinProgressBar);
+  root.toggleAttribute(
+    'data-ytoc-thin-progress-time',
+    currentSettings.thinProgressBar && currentSettings.thinProgressTime
+  );
   root.toggleAttribute('data-ytoc-large-cursor', currentSettings.largeCursor);
   root.toggleAttribute('data-ytoc-video-theme', keepVideoTheme);
 
@@ -172,6 +299,7 @@ function applySettings(value) {
 
   root.style.setProperty('--ytoc-overlay-opacity', currentSettings.overlayOpacity);
   syncKeepControlsAwake();
+  syncThinProgress();
 }
 
 // YouTube swaps the decorated scrubber image when a video ships its own

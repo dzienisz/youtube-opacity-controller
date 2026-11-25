@@ -22,6 +22,9 @@ const extensionEnabled = document.getElementById('extensionEnabled');
 const settingsPanel = document.getElementById('settingsPanel');
 const profileInputs = Array.from(document.querySelectorAll('[name="accessibilityProfile"]'));
 const alwaysShowControls = document.getElementById('alwaysShowControls');
+const thinProgressBar = document.getElementById('thinProgressBar');
+const thinProgressTime = document.getElementById('thinProgressTime');
+const thinProgressTimeOption = document.getElementById('thinProgressTimeOption');
 const progressBarSize = document.getElementById('progressBarSize');
 const readableCaptions = document.getElementById('readableCaptions');
 const highlightColorInputs = Array.from(document.querySelectorAll('[name="highlightColor"]'));
@@ -96,6 +99,10 @@ function updateControls(settings) {
     input.checked = input.value === settings.accessibilityProfile;
   });
   alwaysShowControls.checked = settings.alwaysShowControls;
+  thinProgressBar.checked = settings.thinProgressBar;
+  thinProgressTime.checked = settings.thinProgressTime;
+  thinProgressTime.disabled = !settings.extensionEnabled || !settings.thinProgressBar;
+  thinProgressTimeOption.classList.toggle('disabled-option', !settings.thinProgressBar);
   progressBarSize.checked = settings.progressBarSize === settingsModel.PROGRESS_SIZES.LARGE;
   readableCaptions.checked = settings.readableCaptions;
   highlightColorInputs.forEach(input => {
@@ -171,6 +178,20 @@ profileInputs.forEach(input => {
 
 alwaysShowControls.addEventListener('change', () => {
   applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, t(alwaysShowControls.checked ? 'statusControlsVisible' : 'statusControlsAutoHide'));
+});
+
+thinProgressBar.addEventListener('change', () => {
+  applyUpdate(
+    { thinProgressBar: thinProgressBar.checked },
+    t(thinProgressBar.checked ? 'statusThinProgressBarOn' : 'statusThinProgressBarOff')
+  );
+});
+
+thinProgressTime.addEventListener('change', () => {
+  applyUpdate(
+    { thinProgressTime: thinProgressTime.checked },
+    t(thinProgressTime.checked ? 'statusThinProgressTimeOn' : 'statusThinProgressTimeOff')
+  );
 });
 
 progressBarSize.addEventListener('change', () => {

@@ -1,6 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getImagesToUpload, parseArguments } from '../scripts/amo-previews.mjs';
+import { getImagesToUpload, parseArguments, PREVIEW_CAPTIONS } from '../scripts/amo-previews.mjs';
+
+test('preview captions follow the current screenshot order', () => {
+  assert.deepEqual(PREVIEW_CAPTIONS, [
+    'A progress bar stays visible when controls hide, also in full screen',
+    'Updated popup with clearer controls and thin-progress options',
+    'Before and after: clearer controls and a larger progress bar',
+    'Highlight colors for the larger progress bar',
+    'Also works in YouTube videos embedded on other sites'
+  ]);
+});
 
 test('parses resume mode with dry-run', () => {
   assert.deepEqual(parseArguments(['--dry-run', '--resume']), {

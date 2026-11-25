@@ -1,4 +1,4 @@
-# YouTube Player Accessibility
+# YouTube Controls & Progress Bar
 
 [![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/dzienisz/youtube-opacity-controller/releases)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-brightgreen.svg)](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)
@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![I Ship This](https://ishipthis.com/badge/dzienisz.svg)](https://ishipthis.com/dzienisz?utm_source=badge)
 
-A privacy-first Chrome and Firefox extension that makes YouTube player controls easier to see, click, and keep visible. Choose a clear control style, keep controls visible when needed, or customize the dark background strength.
+A privacy-first Chrome and Firefox extension that keeps a progress bar visible when YouTube hides the controls, including in full screen. It also makes controls clearer and larger, with optional elapsed and total time beside the bar.
 
 **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/youtube-overlay-opacity-c/dcmmcbdcbpaoefhnlogalnfnnmjolfbh)** · **[Install from Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/elalileakmgdngfodpnoefmihimpmanb)** · **[Changelog](CHANGELOG.md)** · **[Privacy Policy](PRIVACY.md)** · **[Contributing](CONTRIBUTING.md)**
 
@@ -15,6 +15,7 @@ A privacy-first Chrome and Firefox extension that makes YouTube player controls 
 - Two control styles: Clear Controls and Strong Contrast
 - Adjustable dark background behind player controls
 - Optional always-visible player controls
+- Thin progress bar while controls hide, with optional elapsed and total time
 - Bigger progress bar with a larger, easier-to-grab handle
 - Any highlight color for the progress bar, icons and time display, with an optional fade into a second color
 - A choice of progress-bar handle icons — Round, Star, Heart, Lightning and Music note
@@ -26,7 +27,7 @@ A privacy-first Chrome and Firefox extension that makes YouTube player controls 
 - Master switch that removes all extension styling
 - Settings synchronized through Chrome Sync
 - No accounts, analytics, tracking, or external requests
-- CSS-only visual changes without moving or cloning YouTube elements
+- Locally rendered progress bar and status overlay; YouTube controls are never moved, cloned, or replaced
 
 ## Installation
 
@@ -90,7 +91,7 @@ The extension styles only existing YouTube player UI:
 - settings menus and panels;
 - text tooltips and chapter titles.
 
-It leaves seek-preview thumbnails untouched and only changes progress-bar thickness when the Bigger progress bar option is on. It does not move, clone, or replace YouTube controls and does not modify video content. The only element it adds is one small on-player status overlay (`.ytoc-hud`) that confirms keyboard commands.
+It leaves seek-preview thumbnails untouched and only changes progress-bar thickness when the Bigger progress bar option is on. It does not move, clone, or replace YouTube controls or modify video content. Its on-player elements are a small status overlay (`.ytoc-hud`) for keyboard commands and, when enabled, a thin progress bar shown while controls are hidden.
 
 ## Compatibility and Migration
 
