@@ -173,8 +173,9 @@
       const withCaptions = !Number.isFinite(schemaVersion) || schemaVersion < 5
         ? { ...base, readableCaptions: true }
         : base;
-      const migrated = (!Number.isFinite(schemaVersion) || schemaVersion < 7)
-        && typeof stored.thinProgressBar !== 'boolean'
+      const keepsThinBarChoice = Number.isFinite(schemaVersion)
+        && typeof stored.thinProgressBar === 'boolean';
+      const migrated = (!Number.isFinite(schemaVersion) || schemaVersion < 7) && !keepsThinBarChoice
         ? { ...withCaptions, thinProgressBar: true }
         : withCaptions;
       return normalizeSettings(migrated);

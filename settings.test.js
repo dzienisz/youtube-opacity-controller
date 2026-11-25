@@ -185,6 +185,12 @@ test('schema 6 settings enable the thin progress bar once', () => {
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
 
+test('update without saved settings enables the thin progress bar', () => {
+  const migrated = settings.migrateSettings({ ...settings.LEGACY_DEFAULTS });
+
+  assert.equal(migrated.thinProgressBar, true);
+});
+
 test('schema 6 written by an older synced browser keeps a thin bar opt-out', () => {
   const stored = { ...settings.RECOMMENDED, settingsSchemaVersion: 6, thinProgressBar: false };
 
