@@ -16,8 +16,9 @@ headlines and arranging real captures on a branded background is fine.
    Headline: **A progress bar that stays visible**. Subline: **Even when
    YouTube hides the controls, also in full screen**. Capture around 40–60% of
    a video and choose a scene where the red bar is easy to see.
-2. `screenshot2.png`: player with the current popup open, including the thin-bar
-   and time options. Re-capture it when popup rows change.
+2. `screenshot2.png`: player with the enabled popup open and the thin-bar option
+   checked. Keep “More visibility options” collapsed so the popup and its bottom
+   buttons fit without a scrollbar.
 3. `screenshot3.png`: before/after comparison of the clearer controls (previous
    `screenshot2.png`).
 4. `screenshot4.png`: highlight colors on the larger progress bar (previous
