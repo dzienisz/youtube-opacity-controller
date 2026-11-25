@@ -11,6 +11,7 @@ const isMac = process.platform === 'darwin';
 const cycleShortcutLabel = isMac ? '⌥⇧J' : 'Alt+Shift+J';
 const toggleShortcutKeys = isMac ? ['⌥', '⇧', 'Y'] : ['Alt', 'Shift', 'Y'];
 const fixture = fs.readFileSync(path.join(root, 'test/fixtures/player.html'), 'utf8');
+const thinProgressVideo = fs.readFileSync(path.join(root, 'test/fixtures/thin-progress.webm'));
 const modernFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-modern.html'), 'utf8');
 const miniFixture = fs.readFileSync(path.join(root, 'test/fixtures/player-mini.html'), 'utf8');
 const embedLineFixture = fs.readFileSync(path.join(root, 'test/fixtures/embed-line.html'), 'utf8');
@@ -43,7 +44,8 @@ async function assertHeaderLayout(
     ratePromptRate: document.getElementById('ratePromptRate').textContent,
     ratePromptDismiss: document.getElementById('ratePromptDismiss').textContent,
     whatsNewHidden: document.getElementById('whatsNew').hidden,
-    customizeOpen: document.querySelector('details.customize').open
+    customizeOpen: document.querySelector('details.customize').open,
+    localizedText: Array.from(document.querySelectorAll('[data-i18n]'), element => element.textContent)
   }));
   const heights = [];
   const tooTall = [];
@@ -65,6 +67,7 @@ async function assertHeaderLayout(
         ratePromptBody: messages.ratePromptBody.message,
         ratePromptRate: messages.ratePromptRate.message,
         ratePromptDismiss: messages.ratePromptDismiss.message,
+        messages,
         ratePromptVisible,
         whatsNewVisible
       };
@@ -80,13 +83,19 @@ async function assertHeaderLayout(
         ratePromptBody,
         ratePromptRate,
         ratePromptDismiss,
+        messages,
         ratePromptVisible: showRatePrompt,
         whatsNewVisible: showWhatsNew
       }) => {
         document.documentElement.dir = direction;
         document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const message = messages[element.dataset.i18n]?.message;
+          if (message) element.textContent = message.replace('$VERSION$', '2.3');
+        });
         document.querySelector('.eyebrow').textContent = eyebrow;
         document.querySelector('h1').textContent = heading;
+        document.querySelector('details.customize').open = false;
         const ratePrompt = document.getElementById('ratePrompt');
         ratePrompt.hidden = !showRatePrompt;
         const whatsNew = document.getElementById('whatsNew');
@@ -136,23 +145,19 @@ async function assertHeaderLayout(
       if (overlapsToggle(actual.heading) || actual.headingOverflow) {
         fail(`${locale} heading overlaps the toggle or overflows its column`);
       }
-      if (ratePromptVisible || whatsNewVisible) {
-        if (actual.height > 600) {
-          tooTall.push(`${locale}=${actual.height}px`);
-        }
-        heights.push({ locale, height: actual.height });
+      if (actual.height > 600) {
+        tooTall.push(`${locale}=${actual.height}px`);
       }
+      heights.push({ locale, height: actual.height });
     }
-    if (ratePromptVisible || whatsNewVisible) {
+    {
       const banner = whatsNewVisible ? "What's new" : 'rating';
-      console.log(`Popup header geometry and ${banner}-banner heights passed: ${heights
+      console.log(`Popup height and header geometry passed${ratePromptVisible || whatsNewVisible ? ` with ${banner} banner` : ''}: ${heights
         .map(({ locale, height }) => `${locale}=${height}px`).join(', ')}`);
       if (tooTall.length) {
-        const banner = whatsNewVisible ? "What's new" : 'rating';
-        fail(`expected ${banner} banner heights at most 600px, got ${tooTall.join(', ')}`);
+        const bannerText = ratePromptVisible || whatsNewVisible ? ` with ${banner} banner` : '';
+        fail(`expected popup heights${bannerText} at most 600px, got ${tooTall.join(', ')}`);
       }
-    } else {
-      console.log(`Popup header geometry passed for ${locales.length} locales`);
     }
     return heights;
   } finally {
@@ -170,7 +175,8 @@ async function assertHeaderLayout(
       ratePromptRate,
       ratePromptDismiss,
       whatsNewHidden,
-      customizeOpen
+      customizeOpen,
+      localizedText
     }) => {
       document.querySelector('.eyebrow').textContent = eyebrow;
       document.querySelector('h1').textContent = heading;
@@ -186,6 +192,9 @@ async function assertHeaderLayout(
       document.getElementById('ratePromptDismiss').textContent = ratePromptDismiss;
       document.getElementById('whatsNew').hidden = whatsNewHidden;
       document.querySelector('details.customize').open = customizeOpen;
+      document.querySelectorAll('[data-i18n]').forEach((element, index) => {
+        element.textContent = localizedText[index];
+      });
     }, original);
   }
 }
@@ -206,7 +215,7 @@ async function captureRatePromptScreenshots(popup, screenshotDir) {
   const viewport = popup.viewportSize();
 
   try {
-    await popup.setViewportSize({ width: 360, height: 600 });
+    await popup.setViewportSize({ width: 400, height: 600 });
     for (const locale of ['en', 'pl']) {
       const messages = JSON.parse(fs.readFileSync(
         path.join(root, '_locales', locale, 'messages.json'),
@@ -297,7 +306,7 @@ async function captureWhatsNewScreenshots(popup, screenshotDir) {
   ];
 
   try {
-    await popup.setViewportSize({ width: 360, height: 600 });
+    await popup.setViewportSize({ width: 400, height: 600 });
     for (const { locale, scheme } of captures) {
       const messages = JSON.parse(fs.readFileSync(
         path.join(root, '_locales', locale, 'messages.json'),
@@ -382,6 +391,180 @@ async function waitForRatePromptState(page, expected) {
 function fail(message) {
   console.error(`SMOKE FAILED: ${message}`);
   process.exit(1);
+}
+
+async function updateSyncSettings(worker, settings) {
+  await worker.evaluate(values => new Promise(resolve => {
+    chrome.storage.sync.set(values, resolve);
+  }), settings);
+}
+
+async function assertThinProgressBehavior(page, worker) {
+  await updateSyncSettings(worker, {
+    alwaysShowControls: false,
+    thinProgressBar: true,
+    thinProgressTime: false
+  });
+  await page.waitForFunction(() => {
+    const video = document.querySelector('#movie_player video');
+    return video?.readyState >= 1
+      && Number.isFinite(video.duration)
+      && video.duration > 0
+      && video.buffered.length > 0;
+  }, null, { timeout: 10000 });
+  await page.evaluate(() => {
+    const player = document.querySelector('#movie_player');
+    const video = player.querySelector('video');
+    video.muted = true;
+    player.classList.add('ytp-autohide');
+    return video.play();
+  });
+  try {
+    await page.waitForFunction(() => {
+      const video = document.querySelector('#movie_player video');
+      return video.currentTime >= 2 && video.currentTime < 3;
+    }, null, { timeout: 10000 });
+  } catch (error) {
+    const state = await page.evaluate(() => {
+      const video = document.querySelector('#movie_player video');
+      return {
+        duration: video.duration,
+        currentTime: video.currentTime,
+        readyState: video.readyState,
+        networkState: video.networkState,
+        seeking: video.seeking,
+        paused: video.paused,
+        buffered: Array.from({ length: video.buffered.length }, (_, index) => [
+          video.buffered.start(index),
+          video.buffered.end(index)
+        ]),
+        error: video.error?.message
+      };
+    });
+    fail(`thin progress video did not reach the fixture time: ${JSON.stringify(state)} (${error.message})`);
+  }
+  await page.evaluate(() => document.querySelector('#movie_player video').pause());
+  try {
+    await page.waitForFunction(() => {
+      const rootElement = document.documentElement;
+      const bar = document.querySelector('#movie_player .ytoc-thin-progress');
+      const video = document.querySelector('#movie_player video');
+      const playMatch = /^scaleX\(([-\d.]+)\)$/.exec(
+        bar?.querySelector('.ytoc-thin-progress-play')?.style.transform || ''
+      );
+      return rootElement.hasAttribute('data-ytoc-thin-progress')
+        && !rootElement.hasAttribute('data-ytoc-always-show')
+        && bar
+        && !bar.hidden
+        && getComputedStyle(bar).display !== 'none'
+        && playMatch
+        && Math.abs(Number(playMatch[1]) - video.currentTime / video.duration) < 0.001;
+    }, null, { timeout: 5000 });
+  } catch (error) {
+    const state = await page.evaluate(() => {
+      const rootElement = document.documentElement;
+      const player = document.querySelector('#movie_player');
+      const video = player?.querySelector('video');
+      const bar = player?.querySelector('.ytoc-thin-progress');
+      let bufferedEnd = 0;
+      if (video) {
+        for (let index = 0; index < video.buffered.length; index += 1) {
+          if (video.currentTime >= video.buffered.start(index)
+            && video.currentTime <= video.buffered.end(index)) {
+            bufferedEnd = video.buffered.end(index);
+            break;
+          }
+        }
+      }
+      return {
+        visible: document.visibilityState,
+        attributes: Array.from(rootElement.attributes, attribute => attribute.name),
+        playerClass: player?.className,
+        duration: video?.duration,
+        currentTime: video?.currentTime,
+        barHidden: bar?.hidden,
+        barDisplay: bar && getComputedStyle(bar).display,
+        playTransform: bar?.querySelector('.ytoc-thin-progress-play')?.style.transform,
+        bufferTransform: bar?.querySelector('.ytoc-thin-progress-buffer')?.style.transform,
+        expectedBuffer: video ? bufferedEnd / video.duration : null
+      };
+    });
+    fail(`thin progress fixture did not reach the expected state: ${JSON.stringify(state)} (${error.message})`);
+  }
+
+  let state = await page.evaluate(() => {
+    const bar = document.querySelector('#movie_player .ytoc-thin-progress');
+    const video = document.querySelector('#movie_player video');
+    let bufferedEnd = 0;
+    for (let index = 0; index < video.buffered.length; index += 1) {
+      if (video.currentTime >= video.buffered.start(index)
+        && video.currentTime <= video.buffered.end(index)) {
+        bufferedEnd = video.buffered.end(index);
+        break;
+      }
+    }
+    return {
+      display: getComputedStyle(bar).display,
+      playTransform: bar.querySelector('.ytoc-thin-progress-play').style.transform,
+      bufferTransform: bar.querySelector('.ytoc-thin-progress-buffer').style.transform,
+      currentTime: video.currentTime,
+      duration: video.duration,
+      expectedBuffer: bufferedEnd / video.duration,
+      timeDisplay: getComputedStyle(bar.querySelector('.ytoc-thin-progress-time')).display
+    };
+  });
+  const playScale = Number(/^scaleX\(([-\d.]+)\)$/.exec(state.playTransform)?.[1]);
+  const bufferScale = Number(/^scaleX\(([-\d.]+)\)$/.exec(state.bufferTransform)?.[1]);
+  if (state.display === 'none'
+    || Math.abs(playScale - state.currentTime / state.duration) >= 0.001
+    || Math.abs(bufferScale - state.expectedBuffer) >= 0.001
+    || state.timeDisplay !== 'none') {
+    fail(`expected a visible bar matching video progress and buffer, with hidden time label, got ${JSON.stringify(state)}`);
+  }
+
+  await updateSyncSettings(worker, { thinProgressTime: true });
+  await page.waitForFunction(() => {
+    const label = document.querySelector('#movie_player .ytoc-thin-progress-time');
+    return document.documentElement.hasAttribute('data-ytoc-thin-progress-time')
+      && label?.textContent === '0:02 / 0:05'
+      && getComputedStyle(label).display !== 'none';
+  }, null, { timeout: 5000 });
+
+  await updateSyncSettings(worker, { thinProgressTime: false });
+  await page.waitForFunction(() => {
+    const label = document.querySelector('#movie_player .ytoc-thin-progress-time');
+    return !document.documentElement.hasAttribute('data-ytoc-thin-progress-time')
+      && getComputedStyle(label).display === 'none';
+  }, null, { timeout: 5000 });
+
+  await updateSyncSettings(worker, { alwaysShowControls: true });
+  await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-always-show'));
+  state = await page.locator('#movie_player .ytoc-thin-progress')
+    .evaluate(bar => getComputedStyle(bar).display);
+  if (state !== 'none') fail(`expected thin bar hidden with always-show enabled, got ${state}`);
+
+  await updateSyncSettings(worker, {
+    alwaysShowControls: false,
+    thinProgressBar: false
+  });
+  await page.waitForFunction(() => {
+    const bar = document.querySelector('#movie_player .ytoc-thin-progress');
+    return !document.documentElement.hasAttribute('data-ytoc-thin-progress')
+      && bar?.hidden;
+  }, null, { timeout: 5000 });
+  state = await page.locator('#movie_player .ytoc-thin-progress')
+    .evaluate(bar => getComputedStyle(bar).display);
+  if (state !== 'none') fail(`expected thin bar hidden when its option is off, got ${state}`);
+
+  await updateSyncSettings(worker, {
+    alwaysShowControls: false,
+    thinProgressBar: true,
+    thinProgressTime: false
+  });
+  await page.waitForFunction(() =>
+    document.documentElement.hasAttribute('data-ytoc-thin-progress')
+    && !document.documentElement.hasAttribute('data-ytoc-always-show'));
+  console.log('Thin progress smoke checks passed');
 }
 
 const rollupCaptionWindow = '.caption-window.ytp-caption-window-rollup';
@@ -583,6 +766,10 @@ async function main() {
     await page.setViewportSize({ width: 1280, height: 720 });
     await context.route('https://www.youtube.com/**', route => {
       const url = route.request().url();
+      if (url.endsWith('/thin-progress.webm')) {
+        route.fulfill({ contentType: 'video/webm', body: thinProgressVideo });
+        return;
+      }
       const body = url.includes('/embed/line')
         ? embedLineFixture
         : url.includes('/embed/')
@@ -632,6 +819,8 @@ async function main() {
     if (await page.locator('.ytoc-hud[data-visible]').count()) {
       fail('expected no player hint when playerHintPending is absent');
     }
+
+    await assertThinProgressBehavior(page, worker);
 
     // The overlay background transitions in over 0.2s; wait for the final alpha.
     await page.waitForFunction(() => {
@@ -742,7 +931,7 @@ async function main() {
 
     const popup = await context.newPage();
     await popup.goto(`chrome-extension://${extensionId}/popup.html`);
-    await popup.setViewportSize({ width: 360, height: 1 });
+    await popup.setViewportSize({ width: 400, height: 1 });
     await popup.waitForFunction(() => new Promise(resolve => {
       chrome.storage.local.get(['installedAt', 'popupOpens'], stored => {
         resolve(
@@ -757,6 +946,8 @@ async function main() {
       return document.getElementById('extensionEnabled').checked
         && profile?.checked
         && document.getElementById('progressBarSize').checked
+        && document.getElementById('thinProgressBar').checked
+        && !document.getElementById('thinProgressTime').checked
         && document.getElementById('readableCaptions').checked;
     });
     if (!await popup.locator('#extensionEnabled').isChecked()) {
@@ -830,9 +1021,33 @@ async function main() {
         && html.getAttribute('data-ytoc-captions') === 'yellow'
         && html.hasAttribute('data-ytoc-always-show');
     }, null, { timeout: 15000 });
+    await popup.locator('#thinProgressTime').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-thin-progress-time'));
+    const timeOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressTimeOn'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, timeOnStatus);
+    await popup.locator('#thinProgressTime').uncheck();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-thin-progress-time'));
+    const timeOffStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressTimeOff'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, timeOffStatus);
+    await popup.locator('#thinProgressBar').uncheck();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-thin-progress'));
+    if (!await popup.locator('#thinProgressTime').isDisabled()) {
+      fail('expected the thin-progress time option to be disabled when its bar is off');
+    }
+    const thinBarOffStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressBarOff'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, thinBarOffStatus);
+    await popup.locator('#thinProgressBar').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-thin-progress'));
+    const thinBarOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressBarOn'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, thinBarOnStatus);
 
     await popup.locator('#restoreYouTube').click();
-    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      return !html.hasAttribute('data-ytoc-enabled')
+        && !html.hasAttribute('data-ytoc-thin-progress')
+        && !html.hasAttribute('data-ytoc-thin-progress-time');
+    });
     await modern.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-enabled'));
     await popup.waitForTimeout(300);
     const restoredSettings = await popup.evaluate(() => new Promise(resolve => {
@@ -845,7 +1060,9 @@ async function main() {
       || restoredSettings.readableCaptions !== true
       || restoredSettings.captionColor !== 'yellow'
       || restoredSettings.highlightColor !== 'yellow'
-      || restoredSettings.alwaysShowControls !== true) {
+      || restoredSettings.alwaysShowControls !== true
+      || restoredSettings.thinProgressBar !== true
+      || restoredSettings.thinProgressTime !== false) {
       fail(`Restore YouTube changed saved choices: ${JSON.stringify(restoredSettings)}`);
     }
     const restoreState = await popup.evaluate(() => ({
@@ -896,6 +1113,8 @@ async function main() {
       return html.getAttribute('data-ytoc-profile') === 'high-contrast'
         && html.getAttribute('data-ytoc-progress') === 'large'
         && html.getAttribute('data-ytoc-captions') === 'white'
+        && html.hasAttribute('data-ytoc-thin-progress')
+        && !html.hasAttribute('data-ytoc-thin-progress-time')
         && !html.hasAttribute('data-ytoc-highlight')
         && !html.hasAttribute('data-ytoc-always-show');
     }, null, { timeout: 15000 });
@@ -903,11 +1122,14 @@ async function main() {
       enabled: document.getElementById('extensionEnabled').checked,
       profile: document.querySelector('input[name="accessibilityProfile"][value="high-contrast"]').checked,
       progress: document.getElementById('progressBarSize').checked,
+      thinProgress: document.getElementById('thinProgressBar').checked,
+      thinProgressTime: document.getElementById('thinProgressTime').checked,
       captions: document.getElementById('readableCaptions').checked,
       opacity: document.getElementById('overlayOpacity').value,
       restoreDisabled: document.getElementById('restoreYouTube').disabled
     }));
     if (!recommendedState.enabled || !recommendedState.profile || !recommendedState.progress
+      || !recommendedState.thinProgress || recommendedState.thinProgressTime
       || !recommendedState.captions || recommendedState.opacity !== '90' || recommendedState.restoreDisabled) {
       fail(`expected recommended popup defaults, got ${JSON.stringify(recommendedState)}`);
     }

@@ -414,6 +414,136 @@ async function recordProgressKeepsMovingCheck(page, scenario) {
   }
 }
 
+async function recordThinProgressBarCheck(page, scenario, worker) {
+  const check = 'Thin progress bar moves while controls hide';
+  const player = page.locator('#movie_player');
+  const video = player.locator('video').first();
+  if (!(await video.count())) {
+    record(scenario, check, 'INCONCLUSIVE', '#movie_player video is missing');
+    return;
+  }
+
+  try {
+    await worker.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.set({
+        alwaysShowControls: false,
+        thinProgressBar: true,
+        thinProgressTime: false
+      }, resolve);
+    }));
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-thin-progress')
+      && !document.documentElement.hasAttribute('data-ytoc-always-show'), null, { timeout: 10000 });
+    await page.waitForFunction(
+      () => !document.documentElement.hasAttribute('data-ytoc-hint-preview'),
+      null,
+      { timeout: 10000 }
+    );
+
+    const playback = await video.evaluate(async element => {
+      element.muted = true;
+      try {
+        if (element.paused || element.ended) await element.play();
+        return { playing: !element.paused && !element.ended, error: '' };
+      } catch (error) {
+        return { playing: false, error: error.message };
+      }
+    });
+
+    const box = await player.boundingBox();
+    if (box) {
+      const viewport = page.viewportSize() || { width: 1280, height: 720 };
+      const candidates = [
+        { x: 1, y: viewport.height - 2 },
+        { x: viewport.width - 2, y: viewport.height - 2 },
+        { x: box.x - 2, y: box.y + box.height / 2 },
+        { x: box.x + box.width + 2, y: box.y + box.height / 2 },
+        { x: box.x + box.width / 2, y: box.y + box.height + 2 }
+      ];
+      const point = candidates.find(({ x, y }) =>
+        x >= 0
+        && x < viewport.width
+        && y >= 0
+        && y < viewport.height
+        && (x < box.x || x > box.x + box.width || y < box.y || y > box.y + box.height));
+      if (point) await page.mouse.move(point.x, point.y);
+    }
+
+    const autohideSeen = await page.waitForFunction(
+      () => document.querySelector('#movie_player')?.classList.contains('ytp-autohide'),
+      null,
+      { timeout: 6000, polling: 100 }
+    ).then(() => true).catch(() => false);
+    const barVisible = await page.waitForFunction(() => {
+      const playerElement = document.querySelector('#movie_player');
+      const bar = playerElement?.querySelector('.ytoc-thin-progress');
+      const rect = bar?.getBoundingClientRect();
+      return playerElement?.classList.contains('ytp-autohide')
+        && bar
+        && !bar.hidden
+        && getComputedStyle(bar).display !== 'none'
+        && rect.width > 0
+        && rect.height > 0;
+    }, null, { timeout: 1000, polling: 100 }).then(() => true).catch(() => false);
+    const readSample = () => page.evaluate(() => {
+      const playerElement = document.querySelector('#movie_player');
+      const bar = playerElement?.querySelector('.ytoc-thin-progress');
+      const play = bar?.querySelector('.ytoc-thin-progress-play');
+      const rect = bar?.getBoundingClientRect();
+      const videoElement = playerElement?.querySelector('video');
+      return {
+        visible: Boolean(
+          bar
+          && !bar.hidden
+          && getComputedStyle(bar).display !== 'none'
+          && rect.width > 0
+          && rect.height > 0
+        ),
+        height: rect?.height ?? 0,
+        playTransform: play?.style.transform ?? '',
+        currentTime: videoElement?.currentTime ?? null,
+        paused: !videoElement || videoElement.paused || videoElement.ended,
+        hintPreview: document.documentElement.hasAttribute('data-ytoc-hint-preview')
+      };
+    });
+    const first = await readSample();
+    await page.waitForTimeout(4000);
+    const second = await readSample();
+    const firstScale = Number(/^scaleX\(([-\d.]+)\)$/.exec(first.playTransform)?.[1]);
+    const secondScale = Number(/^scaleX\(([-\d.]+)\)$/.exec(second.playTransform)?.[1]);
+    const currentTimeDelta = Number(second.currentTime) - Number(first.currentTime);
+    let status = 'INCONCLUSIVE';
+    if (autohideSeen && (!barVisible || !first.visible || !second.visible)) {
+      status = 'FAIL';
+    } else if (autohideSeen && Number.isFinite(firstScale) && secondScale > firstScale) {
+      status = 'PASS';
+    } else if (autohideSeen && Number.isFinite(currentTimeDelta) && currentTimeDelta > 2) {
+      status = 'FAIL';
+    }
+    const details = [
+      `autohide=${autohideSeen ? 'seen' : 'not seen within 6s'}`,
+      `hintPreview=${first.hintPreview} → ${second.hintPreview}`,
+      `visible=${first.visible} → ${second.visible}`,
+      `height=${first.height}px → ${second.height}px`,
+      `play scaleX=${Number.isFinite(firstScale) ? firstScale : first.playTransform} → ${Number.isFinite(secondScale) ? secondScale : second.playTransform}`,
+      `video.currentTime ${first.currentTime} → ${second.currentTime} (Δ${Number.isFinite(currentTimeDelta) ? currentTimeDelta.toFixed(1) : 'n/a'}s)`,
+      `playing=${playback.playing && !first.paused && !second.paused}`,
+      playback.error ? `play error=${playback.error}` : ''
+    ].filter(Boolean).join('; ');
+    record(scenario, check, status, details);
+  } catch (error) {
+    record(scenario, check, 'INCONCLUSIVE', error.message);
+  } finally {
+    await worker.evaluate(() => new Promise(resolve => {
+      chrome.storage.sync.set({ alwaysShowControls: true }, resolve);
+    })).catch(() => {});
+    await page.waitForFunction(
+      () => document.documentElement.hasAttribute('data-ytoc-always-show'),
+      null,
+      { timeout: 10000 }
+    ).catch(() => {});
+  }
+}
+
 // The "i" shortcut sometimes has no effect right after the watch page loads,
 // so wait for the video and retry instead of pressing once.
 async function openMiniplayer(page) {
@@ -643,6 +773,7 @@ async function probePlayability(scope, scenario) {
     'Yellow play-progress color',
     'Large progress-bar height',
     'Right-controls/pill background',
+    'Thin progress bar moves while controls hide',
     ...miniStyleChecks
   ]);
   for (const check of scenario.checks) {
@@ -665,7 +796,7 @@ function buildReport(scenarios, runnerError) {
     '',
     `Generated: ${new Date().toISOString()}`,
     '',
-    'Settings: extension enabled, always show controls, large progress bar, yellow highlight; other values use defaults.',
+    'Settings: extension enabled; watch checks cover always-show and thin-progress modes, large progress bar, yellow highlight; other values use defaults.',
     ''
   ];
 
@@ -742,6 +873,9 @@ async function main() {
     await worker.evaluate(settings => new Promise(resolve => {
       chrome.storage.sync.set(settings, resolve);
     }), canarySettings);
+    await worker.evaluate(() => new Promise(resolve => {
+      chrome.storage.local.set({ playerHintPending: false }, resolve);
+    }));
 
     const watchPage = await context.newPage();
     await watchPage.setViewportSize({ width: 1280, height: 720 });
@@ -764,6 +898,7 @@ async function main() {
     await probePlayability(watchPage, watch);
     if (!watch.playability.startsWith('blocked:')) {
       await recordProgressKeepsMovingCheck(watchPage, watch);
+      await recordThinProgressBarCheck(watchPage, watch, worker);
     }
     await saveScreenshot(watchPage, watchPage, '#movie_player', path.join(artifactsDir, 'watch-player.png'), watch);
 

@@ -345,6 +345,65 @@
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewBox='0 0 40 48'><path d='M4 2 L4 40 L14 30 L22 46 L30 42 L22 27 L36 27 Z' fill='white' stroke='black' stroke-width='3' stroke-linejoin='round'/></svg>") 4 2, auto !important;
 }
 
+.ytoc-thin-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 55;
+  display: none;
+  height: 4px;
+  overflow: visible;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+:root[data-ytoc-enabled][data-ytoc-thin-progress]:not([data-ytoc-always-show]):not([data-ytoc-hint-preview]) #movie_player.ytp-autohide .ytoc-thin-progress:not([hidden]) {
+  display: block;
+}
+
+:root[data-ytoc-enabled][data-ytoc-progress="large"] #movie_player .ytoc-thin-progress {
+  height: 6px;
+}
+
+#movie_player .ytoc-thin-progress-buffer,
+#movie_player .ytoc-thin-progress-play {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+}
+
+#movie_player .ytoc-thin-progress-buffer {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+#movie_player .ytoc-thin-progress-play {
+  background-color: var(--ytoc-highlight, #f03);
+  background-image: linear-gradient(
+    90deg,
+    var(--ytoc-highlight, #f03),
+    var(--ytoc-highlight-end, var(--ytoc-highlight, #f03))
+  );
+}
+
+#movie_player .ytoc-thin-progress-time {
+  position: absolute;
+  right: 8px;
+  bottom: calc(100% + 6px);
+  display: none;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font: 600 13px/1.2 "Roboto", Arial, sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+:root[data-ytoc-enabled][data-ytoc-thin-progress-time] #movie_player.ytp-autohide .ytoc-thin-progress:not([hidden]) .ytoc-thin-progress-time {
+  display: block;
+}
+
 /* Status HUD shown for keyboard command feedback */
 #movie_player .ytoc-hud {
   position: absolute;

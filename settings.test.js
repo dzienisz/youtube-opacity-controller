@@ -8,11 +8,13 @@ test('migrates legacy settings without losing user preferences', () => {
     overlayOpacity: 0.42,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.42,
     alwaysShowControls: true,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
@@ -35,11 +37,13 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     settingsSchemaVersion: 3,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     extensionEnabled: true,
     accessibilityProfile: 'standard',
     overlayOpacity: 0.7,
     alwaysShowControls: true,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
@@ -62,10 +66,10 @@ test('schema 3 settings missing readable captions turn them on', () => {
   assert.equal(settings.migrateSettings(stored).readableCaptions, true);
 });
 
-test('schema 5 settings preserve their stored values', () => {
+test('schema 7 settings preserve their stored values', () => {
   const stored = {
     ...settings.RECOMMENDED,
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     readableCaptions: false,
     overlayOpacity: 0.65,
     alwaysShowControls: true
@@ -89,7 +93,9 @@ test('schema 4 settings enable readable captions and preserve other values', () 
   assert.equal(migrated.captionColor, 'yellow');
   assert.equal(migrated.overlayOpacity, 0.65);
   assert.equal(migrated.accessibilityProfile, 'standard');
-  assert.equal(migrated.settingsSchemaVersion, 6);
+  assert.equal(migrated.settingsSchemaVersion, 7);
+  assert.equal(migrated.thinProgressBar, true);
+  assert.equal(migrated.thinProgressTime, false);
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
 
@@ -106,10 +112,10 @@ test('schema 4 migration preserves a disabled extension', () => {
   assert.equal(migrated.readableCaptions, true);
 });
 
-test('schema 5 settings keep readable captions off when selected by the user', () => {
+test('schema 7 settings keep readable captions off when selected by the user', () => {
   const stored = {
     ...settings.RECOMMENDED,
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     readableCaptions: false
   };
   const migrated = settings.migrateSettings(stored);
@@ -126,11 +132,13 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     overlayOpacity: 0.9,
     alwaysShowControls: true
   }), {
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     extensionEnabled: false,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0.9,
     alwaysShowControls: true,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: 'default',
     highlightColor: 'default',
     largeCursor: false,
@@ -157,9 +165,35 @@ test('migrates the removed low-vision profile to high contrast and preserves opa
   assert.equal(settings.needsMigration(migrated, settings.migrateSettings(migrated)), false);
 });
 
-test('readable caption defaults are on with white text', () => {
+test('recommended settings enable thin progress and readable captions', () => {
+  assert.equal(settings.DEFAULTS.thinProgressBar, true);
+  assert.equal(settings.DEFAULTS.thinProgressTime, false);
+  assert.equal(settings.LEGACY_DEFAULTS.thinProgressBar, false);
+  assert.equal(settings.LEGACY_DEFAULTS.thinProgressTime, false);
   assert.equal(settings.DEFAULTS.readableCaptions, true);
   assert.equal(settings.DEFAULTS.captionColor, 'white');
+});
+
+test('schema 6 settings enable the thin progress bar once', () => {
+  const stored = {
+    ...settings.RECOMMENDED,
+    settingsSchemaVersion: 6,
+    thinProgressBar: false,
+    thinProgressTime: false
+  };
+  const migrated = settings.migrateSettings(stored);
+
+  assert.equal(migrated.settingsSchemaVersion, 7);
+  assert.equal(migrated.thinProgressBar, true);
+  assert.equal(migrated.thinProgressTime, false);
+  assert.equal(settings.needsMigration(stored, migrated), true);
+});
+
+test('schema 7 settings preserve a disabled thin progress bar', () => {
+  const stored = { ...settings.RECOMMENDED, thinProgressBar: false };
+
+  assert.equal(settings.migrateSettings(stored).thinProgressBar, false);
+  assert.equal(settings.needsMigration(stored, settings.migrateSettings(stored)), false);
 });
 
 test('needsMigration returns false for already-migrated defaults', () => {
@@ -192,7 +226,7 @@ test('migrates schema 3 settings missing readable captions to on', () => {
 
   const migrated = settings.migrateSettings(stored);
 
-  assert.equal(migrated.settingsSchemaVersion, 6);
+  assert.equal(migrated.settingsSchemaVersion, 7);
   assert.equal(migrated.readableCaptions, true);
   assert.equal(settings.needsMigration(stored, migrated), true);
 });
@@ -211,17 +245,21 @@ test('normalizes invalid and out-of-range settings', () => {
     accessibilityProfile: 'unknown',
     overlayOpacity: 12,
     alwaysShowControls: 1,
+    thinProgressBar: 'yes',
+    thinProgressTime: 'yes',
     progressBarSize: 'huge',
     highlightColor: 'orange',
     largeCursor: 'yes',
     readableCaptions: 'yes',
     captionColor: 'pink'
   }), {
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 1,
     alwaysShowControls: false,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: 'large',
     highlightColor: 'default',
     largeCursor: false,
@@ -246,11 +284,13 @@ test('applies storage changes and normalizes the result', () => {
     overlayOpacity: { oldValue: 0.7, newValue: -2 },
     highlightColor: { oldValue: 'default', newValue: 'cyan' }
   }), {
-    settingsSchemaVersion: 6,
+    settingsSchemaVersion: 7,
     extensionEnabled: true,
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,
     alwaysShowControls: false,
+    thinProgressBar: true,
+    thinProgressTime: false,
     progressBarSize: 'large',
     highlightColor: 'cyan',
     largeCursor: false,

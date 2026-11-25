@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- A thin progress bar stays visible when controls hide, including in full screen, with optional elapsed and total time.
+
 ## [2.3.0] - 2026-11-11
 
 ### Added

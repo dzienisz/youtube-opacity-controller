@@ -19,7 +19,7 @@
 }
 
 body {
-  width: 360px;
+  width: 400px;
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -32,7 +32,7 @@ summary {
 }
 
 .container {
-  padding: 16px;
+  padding: 8px 10px;
 }
 
 .header {
@@ -40,7 +40,7 @@ summary {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 6px;
 }
 
 .header-copy {
@@ -124,14 +124,14 @@ button:focus-visible {
 
 .profiles {
   display: grid;
-  gap: 6px;
-  margin: 14px 0 0;
+  gap: 4px;
+  margin: 6px 0 0;
   padding: 0;
   border: 0;
 }
 
 .profiles legend {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-size: 13px;
   font-weight: 700;
 }
@@ -140,8 +140,8 @@ button:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 46px;
-  padding: 8px 12px;
+  min-height: 38px;
+  padding: 4px 8px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
@@ -192,8 +192,8 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  margin-top: 10px;
-  padding: 10px 12px;
+  margin-top: 6px;
+  padding: 4px 8px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
@@ -210,6 +210,15 @@ button:focus-visible {
   border-color: var(--accent);
 }
 
+.primary-option + .primary-option {
+  margin-top: 6px;
+}
+
+.option-row.disabled-option {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .option-row span {
   display: grid;
   gap: 3px;
@@ -223,14 +232,14 @@ button:focus-visible {
 }
 
 .customize {
-  margin-top: 10px;
+  margin-top: 6px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
 }
 
 .customize summary {
-  padding: 6px;
+  padding: 3px;
   color: var(--text);
   font-size: 13px;
   font-weight: 700;
@@ -241,9 +250,9 @@ button:focus-visible {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: 10px;
-  margin-bottom: 10px;
-  padding: 8px;
+  gap: 6px;
+  margin-bottom: 4px;
+  padding: 4px;
   border: 1px solid var(--border-strong);
   border-radius: 10px;
   background: var(--surface-accent);
@@ -259,7 +268,7 @@ button:focus-visible {
 
 .popup-banner-rating {
   grid-template-columns: minmax(0, 1fr);
-  gap: 6px;
+  gap: 4px;
 }
 
 .popup-banner-copy strong {
@@ -513,8 +522,8 @@ footer {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  row-gap: 2px;
-  margin-top: 6px;
+  row-gap: 0;
+  margin-top: 2px;
 }
 
 .shortcuts {
