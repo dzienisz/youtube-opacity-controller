@@ -6,6 +6,8 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 
 const root = path.join(__dirname, '..');
+const extensionVersion = JSON.parse(fs.readFileSync(path.join(root, 'manifest.json'), 'utf8')).version;
+const featureVersion = extensionVersion.split('.').slice(0, 2).join('.');
 // Chrome reports command shortcuts with macOS key glyphs on Darwin.
 const isMac = process.platform === 'darwin';
 const cycleShortcutLabel = isMac ? '⌥⇧J' : 'Alt+Shift+J';
@@ -61,13 +63,14 @@ async function assertHeaderLayout(
         heading: messages.headerTitle.message,
         direction: locale === 'ar' ? 'rtl' : 'ltr',
         lang: locale.replace('_', '-'),
-        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', '2.3'),
+        whatsNewTitle: messages.whatsNewTitle.message.replace('$VERSION$', featureVersion),
         whatsNewBody: messages.whatsNewBody.message,
         whatsNewDismiss: messages.whatsNewDismiss.message,
         ratePromptTitle: messages.ratePromptTitle.message,
         ratePromptBody: messages.ratePromptBody.message,
         ratePromptRate: messages.ratePromptRate.message,
         ratePromptDismiss: messages.ratePromptDismiss.message,
+        featureVersion,
         messages,
         ratePromptVisible,
         whatsNewVisible
@@ -84,6 +87,7 @@ async function assertHeaderLayout(
         ratePromptBody,
         ratePromptRate,
         ratePromptDismiss,
+        featureVersion,
         messages,
         ratePromptVisible: showRatePrompt,
         whatsNewVisible: showWhatsNew
@@ -92,7 +96,7 @@ async function assertHeaderLayout(
         document.documentElement.lang = lang;
         document.querySelectorAll('[data-i18n]').forEach(element => {
           const message = messages[element.dataset.i18n]?.message;
-          if (message) element.textContent = message.replace('$VERSION$', '2.3');
+          if (message) element.textContent = message.replace('$VERSION$', featureVersion);
         });
         document.querySelector('.eyebrow').textContent = eyebrow;
         document.querySelector('h1').textContent = heading;
@@ -340,7 +344,7 @@ async function captureWhatsNewScreenshots(popup, screenshotDir) {
         document.getElementById('whatsNewDismiss').textContent = dismiss;
       }, {
         locale,
-        title: messages.whatsNewTitle.message.replace('$VERSION$', '2.3'),
+        title: messages.whatsNewTitle.message.replace('$VERSION$', featureVersion),
         body: messages.whatsNewBody.message,
         dismiss: messages.whatsNewDismiss.message
       });
@@ -967,20 +971,20 @@ async function main() {
     }
     await assertHeaderLayout(popup, { ratePromptVisible: true });
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.3.0',
+      whatsNewVersion: extensionVersion,
       whatsNewDismissed: ''
     });
     await popup.reload();
-    await popup.waitForFunction(() => !document.getElementById('whatsNew').hidden
-      && document.getElementById('whatsNewTitle').textContent === 'New in 2.3'
-      && document.getElementById('ratePrompt').hidden);
+    await popup.waitForFunction(version => !document.getElementById('whatsNew').hidden
+      && document.getElementById('whatsNewTitle').textContent === `New in ${version}`
+      && document.getElementById('ratePrompt').hidden, featureVersion);
     await assertHeaderLayout(popup, { whatsNewVisible: true });
     if (process.env.YTOC_WHATSNEW_SCREENSHOT_DIR) {
       await captureWhatsNewScreenshots(popup, process.env.YTOC_WHATSNEW_SCREENSHOT_DIR);
     }
     await setLocalStorage(popup, {
-      whatsNewVersion: '2.3.0',
-      whatsNewDismissed: '2.3'
+      whatsNewVersion: extensionVersion,
+      whatsNewDismissed: featureVersion
     });
     await popup.reload();
     await popup.waitForFunction(() => document.getElementById('whatsNew').hidden);
@@ -992,9 +996,9 @@ async function main() {
     if (JSON.stringify(shortcutKeys) !== JSON.stringify(toggleShortcutKeys)) {
       fail(`expected shortcut keys ${toggleShortcutKeys.join(', ')}, got ${shortcutKeys.join(', ')}`);
     }
-    await popup.evaluate(() => new Promise(resolve => {
-      chrome.storage.local.set({ whatsNewVersion: '2.3.0', whatsNewDismissed: '2.3' }, resolve);
-    }));
+    await popup.evaluate(({ extensionVersion, featureVersion }) => new Promise(resolve => {
+      chrome.storage.local.set({ whatsNewVersion: extensionVersion, whatsNewDismissed: featureVersion }, resolve);
+    }), { extensionVersion, featureVersion });
     const closedPopupHeight = await popup.evaluate(() => {
       document.querySelector('details.customize').open = false;
       document.getElementById('whatsNew').hidden = true;
@@ -1470,8 +1474,8 @@ async function main() {
       popupOpens: 5,
       ratePromptDone: false,
       ratePromptShown: 0,
-      whatsNewVersion: '2.3.0',
-      whatsNewDismissed: '2.3'
+      whatsNewVersion: extensionVersion,
+      whatsNewDismissed: featureVersion
     };
 
     await setLocalStorage(popup, eligibleRatePromptState);
