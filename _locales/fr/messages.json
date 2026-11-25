@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "Contrôles YouTube : Plus Clairs et Plus Grands" },
-  "appDesc": { "message": "Rendez les contrôles YouTube plus faciles à voir, à cliquer et à garder visibles." },
+  "appName": { "message": "Commandes YouTube et barre de progression" },
+  "appDesc": { "message": "Barre visible quand YouTube masque les commandes, même en plein écran, avec des commandes plus claires et plus grandes." },
   "eyebrow": { "message": "Contrôles YouTube" },
   "headerTitle": { "message": "Voyez les contrôles clairement" },
   "enableToggleLabel": { "message": "Activer les améliorations des contrôles YouTube" },

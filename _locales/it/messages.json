@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "Controlli YouTube: Più Chiari e Più Grandi" },
-  "appDesc": { "message": "Rendi i controlli di YouTube più facili da vedere, cliccare e mantenere visibili." },
+  "appName": { "message": "Controlli YouTube e barra di avanzamento" },
+  "appDesc": { "message": "Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a schermo intero. In più, controlli più chiari e grandi." },
   "eyebrow": { "message": "Controlli YouTube" },
   "headerTitle": { "message": "Vedi i controlli chiaramente" },
   "enableToggleLabel": { "message": "Attiva i miglioramenti dei controlli YouTube" },

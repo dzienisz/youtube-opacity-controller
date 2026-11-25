@@ -43,6 +43,18 @@ test('every message has a non-empty translated string', () => {
   }
 });
 
+test('store names and descriptions meet listing limits and keep YouTube untranslated', () => {
+  for (const locale of locales) {
+    const messages = readMessages(locale);
+    const name = messages.appName.message;
+    const description = messages.appDesc.message;
+    assert.ok(name.length <= 45, `${locale}:appName exceeds 45 characters`);
+    assert.ok(description.length <= 132, `${locale}:appDesc exceeds 132 characters`);
+    assert.ok(name.includes('YouTube'), `${locale}:appName must keep YouTube untranslated`);
+    assert.ok(description.includes('YouTube'), `${locale}:appDesc must keep YouTube untranslated`);
+  }
+});
+
 test('welcome comparison images have localized alt text', () => {
   for (const locale of locales) {
     const messages = readMessages(locale);

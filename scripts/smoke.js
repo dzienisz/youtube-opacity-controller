@@ -49,6 +49,7 @@ async function assertHeaderLayout(
   }));
   const heights = [];
   const tooTall = [];
+  const tooWide = [];
   try {
     for (const locale of locales) {
       const messages = JSON.parse(fs.readFileSync(
@@ -132,6 +133,11 @@ async function assertHeaderLayout(
           toggle: rect(document.querySelector('.switch')),
           eyebrowOverflow: eyebrowElement.scrollWidth > eyebrowElement.clientWidth + 1,
           headingOverflow: headingElement.scrollWidth > headingElement.clientWidth + 1,
+          clientWidth: document.documentElement.clientWidth,
+          scrollWidth: Math.max(
+            document.documentElement.scrollWidth,
+            document.body.scrollWidth
+          ),
           height: document.documentElement.scrollHeight
         };
       }, header);
@@ -148,6 +154,9 @@ async function assertHeaderLayout(
       if (actual.height > 600) {
         tooTall.push(`${locale}=${actual.height}px`);
       }
+      if (actual.scrollWidth > actual.clientWidth + 1) {
+        tooWide.push(`${locale}=${actual.scrollWidth}/${actual.clientWidth}px`);
+      }
       heights.push({ locale, height: actual.height });
     }
     {
@@ -157,6 +166,9 @@ async function assertHeaderLayout(
       if (tooTall.length) {
         const bannerText = ratePromptVisible || whatsNewVisible ? ` with ${banner} banner` : '';
         fail(`expected popup heights${bannerText} at most 600px, got ${tooTall.join(', ')}`);
+      }
+      if (tooWide.length) {
+        fail(`expected popup width${ratePromptVisible || whatsNewVisible ? ` with ${banner} banner` : ''} to fit, got ${tooWide.join(', ')}`);
       }
     }
     return heights;

@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "YouTube Kontrolleri: Daha Net ve Büyük" },
-  "appDesc": { "message": "YouTube kontrollerini görmeyi, tıklamayı ve görünür tutmayı kolaylaştırın." },
+  "appName": { "message": "YouTube Kontrolleri ve İlerleme Çubuğu" },
+  "appDesc": { "message": "YouTube denetimleri gizlediğinde, tam ekranda da görünen bir ilerleme çubuğu. Ayrıca daha net ve büyük denetimler." },
   "eyebrow": { "message": "YouTube kontrolleri" },
   "headerTitle": { "message": "Kontrolleri net görün" },
   "enableToggleLabel": { "message": "YouTube kontrol iyileştirmelerini etkinleştir" },

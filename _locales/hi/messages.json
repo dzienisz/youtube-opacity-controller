@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "YouTube कंट्रोल: साफ़ और बड़े" },
-  "appDesc": { "message": "YouTube कंट्रोल को देखना, दबाना और दिखाए रखना आसान बनाएं।" },
+  "appName": { "message": "YouTube कंट्रोल और प्रोग्रेस बार" },
+  "appDesc": { "message": "YouTube के कंट्रोल छिपने पर भी प्रोग्रेस बार दिखे, फ़ुल स्क्रीन में भी। साथ में साफ़ और बड़े कंट्रोल।" },
   "eyebrow": { "message": "YouTube कंट्रोल" },
   "headerTitle": { "message": "कंट्रोल साफ़ देखें" },
   "enableToggleLabel": { "message": "YouTube कंट्रोल सुधार चालू करें" },

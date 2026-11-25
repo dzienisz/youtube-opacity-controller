@@ -4,7 +4,7 @@
 
 ## Data Collection
 
-YouTube Controls: Clearer & Larger does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests.
+YouTube Controls & Progress Bar does not collect, sell, store on external servers, or transmit personal data. It has no analytics, advertisements, accounts, telemetry, or external network requests. The thin progress bar and optional time label are rendered locally from the current video playback state.
 
 ## Uninstall survey
 
@@ -12,12 +12,12 @@ After uninstalling, your browser opens an optional Google Form. The extension se
 
 ## Stored Settings
 
-The extension stores only the following preferences in `chrome.storage.sync`:
+The extension stores only appearance and behavior preferences in `chrome.storage.sync`, including:
 
-- whether enhancements are enabled;
-- selected control style;
-- player-control background strength;
-- whether player controls should remain visible;
+- whether enhancements are enabled and the selected control style;
+- player-control background strength, progress-bar size, highlight colors, handle style, and caption appearance;
+- pointer size and whether player controls should remain visible;
+- whether the thin progress bar and its time label are enabled;
 - settings schema version used for safe migration.
 
 Chrome may synchronize these settings between browsers when you are signed in. The extension developer does not receive or control that synchronization data.
@@ -40,7 +40,7 @@ Chrome may synchronize these settings between browsers when you are signed in. T
 
 - **Purpose:** Load the content script and CSS that improve existing player controls.
 - **Scope:** Restricted to `youtube.com`; no other website host access is requested.
-- **Behavior:** Applies namespaced attributes and CSS properties. It does not extract page or video data, move player elements, or modify video content.
+- **Behavior:** Applies namespaced attributes and CSS properties, and adds an extension-owned thin progress bar with an optional time label inside the player. It does not extract page or video data, move YouTube elements, or modify video content.
 
 ## The Extension Does Not
 

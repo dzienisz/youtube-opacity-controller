@@ -2,8 +2,8 @@
 
 ## Release
 
-- **Product name:** YouTube Controls: Clearer & Larger
-- **Version:** 2.0
+- **Product name:** YouTube Controls & Progress Bar
+- **Version:** Use the version from the release package
 - **Category:** Accessibility
 - **Language:** English
 - **Pricing:** Free
@@ -14,56 +14,61 @@
 ### Short Description
 
 ```text
-Make YouTube controls easier to see, click, and keep visible.
+A progress bar that stays visible when YouTube hides the controls, also in full screen. Plus clearer, larger controls.
 ```
 
 ### Detailed Description
 
 ```text
-Make YouTube player controls easier to see and use without changing your whole browser or operating system.
+Keep track of where you are in a YouTube video, and see the player controls clearly.
 
-YouTube Controls: Clearer & Larger improves the existing player interface on bright and visually busy videos. Choose a ready-made control style, keep controls visible when needed, or customize the background strength.
+When YouTube hides the controls, YouTube Controls & Progress Bar keeps a thin progress bar at the bottom of the video, also in full screen and in the miniplayer. Turn on the time next to it to see how far you are without moving the mouse.
+
+It also makes the player controls easier to see and use on bright and busy videos, without changing your whole browser or operating system.
 
 FEATURES
 
+• Thin progress bar when the controls hide, in the normal player, full screen, the miniplayer and embedded videos
+• Optional elapsed and total time next to the thin bar
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
 • Bigger progress bar with a larger, easier-to-grab handle
 • Highlight colors for the progress bar, handle, icons, and time
 • Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
 • Larger mouse pointer over the video
-• Optional Keep Controls Visible setting
+• Keep Controls Visible, with the progress bar and time still moving
 • Instant preview and settings synchronized through Chrome
 • Master switch to return to the original YouTube appearance
-• Lightweight CSS-only visual changes
 
 SAFE BY DESIGN
 
-• Does not move, clone, or replace YouTube controls — adds only one small on-player status overlay
+• Does not move, clone, or replace YouTube controls — adds only the thin progress bar and one small on-player status overlay
 • Runs only on youtube.com, including embedded players
 • No account, analytics, tracking, advertisements, or external requests
 • Open source at github.com/dzienisz/youtube-opacity-controller
 
 HOW TO USE
 
-1. Open a YouTube video.
-2. Select the extension icon.
+1. Open a YouTube video. The thin progress bar appears when the controls hide.
+2. Select the extension icon to turn the thin bar or its time on or off.
 3. Choose Clear Controls or Strong Contrast.
-4. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
-5. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible. The on-player style hint shows the assigned shortcut.
-6. Use the master switch at any time to restore the original appearance.
+4. New installs start with recommended settings; use "Use recommended settings" in the popup to apply them any time.
+5. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
+6. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible. The on-player style hint shows the assigned shortcut.
+7. Use the "Restore YouTube's look" button or master switch at any time to turn every change off; your choices are kept for later.
 
-Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
+Designed for viewers who want to see their place in a video at a glance, and for anyone who finds transparent controls difficult to locate, read, or operate.
 ```
 
 ## Screenshots
 
-Upload 1–5 screenshots at 1280×800 or 640×400. Replace opacity-only screenshots with the release UI.
+Upload 1–5 screenshots at 1280×800 or 640×400, in this order:
 
-1. Before/after on bright footage with **See Every Control Clearly**.
-2. Popup showing both control styles with **Choose the View That Works for You**.
-3. Strong Contrast and Keep Controls Visible with **Keep Controls Easy to Find**.
-4. Privacy message with **No Tracking. No Account.**
+1. Thin progress bar and time while controls are hidden: **A progress bar that stays visible** / **Even when YouTube hides the controls, also in full screen**.
+2. Re-captured popup showing the updated visibility options.
+3. Before/after view of the clearer YouTube controls.
+4. Highlight colors for the larger progress bar.
+5. Embedded YouTube player.
 
 Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or support outside desktop Chrome/Chromium.
 
@@ -73,7 +78,7 @@ Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or
 - Large tile: 920×680
 - Marquee tile: 1400×560
 
-Existing opacity-controller artwork must be replaced or withheld because it does not represent the three-profile release.
+Use the refreshed promotional images in `store-assets/` for this name and feature set.
 
 ## Privacy
 
@@ -90,7 +95,7 @@ Select **Does not collect user data**.
 ### `storage`
 
 ```text
-Stores and synchronizes the enabled state, selected accessibility profile, control-background strength, always-show preference, progress bar size, highlight color, pointer size, and settings schema version. No browsing or viewing data is stored.
+Stores and synchronizes the enabled state, selected control style, background strength, always-show preference, thin progress-bar and time-label options, progress-bar size, highlight colors, pointer size, and settings schema version. No browsing or viewing data is stored.
 ```
 
 ### `activeTab`

@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "YouTube Controls: Clearer & Larger" },
-  "appDesc": { "message": "Make YouTube controls easier to see, click, and keep visible." },
+  "appName": { "message": "YouTube Controls & Progress Bar" },
+  "appDesc": { "message": "A progress bar that stays visible when YouTube hides the controls, also in full screen. Plus clearer, larger controls." },
   "eyebrow": { "message": "YouTube controls" },
   "headerTitle": { "message": "See controls clearly" },
   "enableToggleLabel": { "message": "Enable YouTube control enhancements" },

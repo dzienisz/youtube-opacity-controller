@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "أدوات تحكم YouTube: أوضح وأكبر" },
-  "appDesc": { "message": "اجعل عناصر تحكم YouTube أسهل في الرؤية والنقر والإبقاء ظاهرة." },
+  "appName": { "message": "أدوات تحكم YouTube وشريط التقدم" },
+  "appDesc": { "message": "يبقى شريط التقدم ظاهرًا عندما يخفي YouTube عناصر التحكم، حتى في ملء الشاشة. مع عناصر تحكم أوضح وأكبر." },
   "eyebrow": { "message": "عناصر تحكم YouTube" },
   "headerTitle": { "message": "شاهد عناصر التحكم بوضوح" },
   "enableToggleLabel": { "message": "تفعيل تحسينات عناصر تحكم YouTube" },

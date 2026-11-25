@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "YouTube 控制項：更清晰、更大" },
-  "appDesc": { "message": "讓 YouTube 控制項更容易看清、點按並保持顯示。" },
+  "appName": { "message": "YouTube 控制項與進度列" },
+  "appDesc": { "message": "YouTube 隱藏控制項時，進度列仍會顯示，全螢幕也適用。另有更清晰、更大的控制項。" },
   "eyebrow": { "message": "YouTube 控制項" },
   "headerTitle": { "message": "看清控制項" },
   "enableToggleLabel": { "message": "啟用 YouTube 控制項增強功能" },

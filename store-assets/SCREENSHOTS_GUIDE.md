@@ -6,66 +6,38 @@ Chrome Web Store requires **1-5 screenshots** of your extension in action.
 - **1280x800 pixels** (recommended)
 - OR **640x400 pixels**
 
-## Current screenshots (v2.1)
+## Current screenshots
 
-`screenshot1.png`–`screenshot5.png` are 1280×800 composites of real YouTube captures (Big Buck Bunny, CC-BY; "Me at the zoo" for the embed) with the v2.1 extension on YouTube's modern pill player:
+The five `screenshot*.png` files are 1280×800 composites made from real captures
+of the unpacked extension on YouTube. Keep the interface itself unmocked; adding
+headlines and arranging real captures on a branded background is fine.
 
-1. Popup next to the player — Strong contrast, bigger cyan progress bar, easier-to-read subtitles on
-2. Before/after control strip — no extension vs recommended settings (Strong contrast + bigger progress bar)
-3. Bigger progress bar in yellow / cyan / green
-4. Keyboard shortcuts (Alt+Shift+Y / J / V) with the on-player HUD
-5. YouTube embed on a third-party page with the same styling
+1. `screenshot1.png`: hidden controls with the thin progress bar and time label.
+   Headline: **A progress bar that stays visible**. Subline: **Even when
+   YouTube hides the controls, also in full screen**. Capture around 40–60% of
+   a video and choose a scene where the red bar is easy to see.
+2. `screenshot2.png`: player with the current popup open, including the thin-bar
+   and time options. Re-capture it when popup rows change.
+3. `screenshot3.png`: before/after comparison of the clearer controls (previous
+   `screenshot2.png`).
+4. `screenshot4.png`: highlight colors on the larger progress bar (previous
+   `screenshot3.png`).
+5. `screenshot5.png`: YouTube embedded on another site (previous
+   `screenshot5.png`).
 
-Regenerate them by capturing the player/popup with the unpacked extension loaded and re-compositing at 1280×800.
+The former keyboard-shortcuts image is dropped. Preserve the screenshot order
+in `scripts/amo-previews.mjs`.
 
-## Recommended Screenshots to Take
+## Capture requirements
 
-### Screenshot 1: Extension Popup with Slider (REQUIRED)
-**What to show:**
-- YouTube video page open
-- Extension popup open showing the opacity slider
-- Slider set to around 70%
-- Video player visible in background with black backgrounds applied
-
-**How to take it:**
-1. Open YouTube video: https://www.youtube.com/watch?v=YmcACIOQdDc
-2. Pause the video so controls are visible
-3. Click the extension icon to open popup
-4. Take screenshot of the entire browser window
-5. Crop to 1280x800 focusing on the popup and player
-
-### Screenshot 2: Before/After Comparison
-**What to show:**
-- Side-by-side or split screen showing:
-  - Left: Original YouTube with transparent controls
-  - Right: YouTube with black backgrounds applied
-
-**How to create:**
-1. Take screenshot with extension disabled (transparent controls)
-2. Take screenshot with extension at 100% (solid black)
-3. Use image editor to combine into one 1280x800 image
-
-### Screenshot 3: Settings Menu
-**What to show:**
-- YouTube video with settings menu open
-- Black background applied to settings panel
-- Shows how the extension improves visibility of menus
-
-**How to take it:**
-1. Open YouTube video
-2. Click settings button (gear icon)
-3. Take screenshot showing the settings menu with black background
-
-### Screenshot 4: Different Opacity Levels
-**What to show:**
-- Multiple examples at different opacity levels (25%, 50%, 75%, 100%)
-- Can be a collage or single image showing the progression
-
-### Screenshot 5: Fullscreen Mode (Optional)
-**What to show:**
-- YouTube video in fullscreen
-- Controls visible with black backgrounds
-- Shows extension works in fullscreen too
+- Load the current unpacked extension and use real YouTube watch or embedded
+  pages; do not draw or mock the player or popup UI.
+- Wait for `#movie_player` to have `ytp-autohide` before capturing screenshot 1.
+- Screenshot 1 must show the thin bar and time label while the controls are
+  hidden. Capture a second moment when possible to confirm the bar advances.
+- For screenshot 2, capture the real popup with the thin-bar rows visible.
+- Keep the five final composites at 1280×800 and use consistent typography and
+  background styling.
 
 ## Tools for Taking Screenshots
 

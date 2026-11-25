@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "Điều khiển YouTube: Rõ hơn & Lớn hơn" },
-  "appDesc": { "message": "Giúp các nút điều khiển YouTube dễ nhìn, dễ nhấn và luôn hiển thị." },
+  "appName": { "message": "Điều khiển YouTube & thanh tiến trình" },
+  "appDesc": { "message": "Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể cả toàn màn hình. Kèm điều khiển rõ và lớn hơn." },
   "eyebrow": { "message": "Điều khiển YouTube" },
   "headerTitle": { "message": "Nhìn rõ các nút điều khiển" },
   "enableToggleLabel": { "message": "Bật tính năng cải tiến điều khiển YouTube" },

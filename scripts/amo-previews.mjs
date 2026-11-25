@@ -10,12 +10,12 @@ const addonUrl = `https://addons.mozilla.org/api/v5/addons/addon/${encodeURIComp
 const issuer = process.env.AMO_JWT_ISSUER;
 const secret = process.env.AMO_JWT_SECRET;
 const maxRequestAttempts = 5;
-const captions = [
-  'Strong contrast, a bigger progress bar and readable subtitles, all set from the popup',
-  "Before and after: YouTube's see-through controls vs. recommended settings",
-  'Bigger progress bar with a yellow, cyan or green highlight',
-  'Keyboard shortcuts with on-player feedback',
-  'Works in YouTube videos embedded on other sites'
+export const PREVIEW_CAPTIONS = [
+  'A progress bar stays visible when controls hide, also in full screen',
+  'Updated popup with clearer controls and thin-progress options',
+  'Before and after: clearer controls and a larger progress bar',
+  'Highlight colors for the larger progress bar',
+  'Also works in YouTube videos embedded on other sites'
 ];
 
 function parseArguments(args) {
@@ -51,7 +51,7 @@ function getImagesToUpload(images, existingPreviewCount, resume) {
 }
 
 async function loadImages() {
-  return Promise.all(captions.map(async (caption, index) => {
+  return Promise.all(PREVIEW_CAPTIONS.map(async (caption, index) => {
     const filename = `screenshot${index + 1}.png`;
     const relativePath = path.join('store-assets', filename);
     const filePath = path.join(root, relativePath);

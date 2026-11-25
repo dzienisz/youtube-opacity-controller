@@ -50,9 +50,9 @@
 
   <!-- Title -->
   <text x="220" y="248" font-family="Arial, sans-serif" font-size="21" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.3">
-    YouTube Overlay Opacity
+    YouTube Controls & Progress Bar
   </text>
   <text x="220" y="268" font-family="Arial, sans-serif" font-size="12.5" fill="#b8b3d9" text-anchor="middle">
-    Solid, readable player controls — your way
+    Clearer controls, with progress that stays visible
   </text>
 </svg>

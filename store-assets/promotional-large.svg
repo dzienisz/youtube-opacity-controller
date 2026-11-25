@@ -24,9 +24,9 @@
   <circle cx="890" cy="20" r="150" fill="#ff0000" opacity="0.06"/>
 
   <!-- Title -->
-  <text x="460" y="72" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#ffffff" text-anchor="middle">YouTube Overlay Opacity Controller</text>
+  <text x="460" y="72" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#ffffff" text-anchor="middle">YouTube Controls &amp; Progress Bar</text>
   <rect x="415" y="90" width="90" height="5" rx="2.5" fill="url(#accent)"/>
-  <text x="460" y="126" font-family="Arial, sans-serif" font-size="17" fill="#b8b3d9" text-anchor="middle">Make YouTube's transparent player controls clearly visible</text>
+  <text x="460" y="126" font-family="Arial, sans-serif" font-size="17" fill="#b8b3d9" text-anchor="middle">A progress bar that stays visible, plus clearer YouTube controls</text>
 
   <!-- Player mockup -->
   <g transform="translate(120, 170)" filter="url(#shadow)">
@@ -55,7 +55,7 @@
   <!-- Popup mockup -->
   <g transform="translate(640, 200)" filter="url(#shadow)">
     <rect x="0" y="0" width="220" height="230" rx="14" fill="#ffffff"/>
-    <text x="110" y="34" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#333" text-anchor="middle">YouTube Overlay</text>
+    <text x="110" y="34" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#333" text-anchor="middle">Controls &amp; Progress</text>
     <text x="110" y="52" font-family="Arial, sans-serif" font-size="10.5" fill="#777" text-anchor="middle">Background opacity</text>
 
     <!-- slider -->
@@ -79,17 +79,17 @@
   <!-- Features row -->
   <g transform="translate(120, 520)" font-family="Arial, sans-serif" font-size="18" fill="#d9d5f0">
     <circle cx="9" cy="-6" r="5" fill="#ff0000"/>
-    <text x="26" y="0">0–100% opacity slider</text>
+    <text x="26" y="0">Thin progress bar while controls hide</text>
 
     <circle cx="269" cy="-6" r="5" fill="#ff0000"/>
-    <text x="286" y="0">One-click presets</text>
+    <text x="286" y="0">Optional elapsed + total time</text>
 
     <circle cx="509" cy="-6" r="5" fill="#ff0000"/>
-    <text x="526" y="0">Always-show controls</text>
+    <text x="526" y="0">Clearer, larger controls</text>
   </g>
   <g transform="translate(120, 560)" font-family="Arial, sans-serif" font-size="18" fill="#d9d5f0">
     <circle cx="9" cy="-6" r="5" fill="#ff0000"/>
-    <text x="26" y="0">Works on every video</text>
+    <text x="26" y="0">Full screen + embedded playback</text>
 
     <circle cx="269" cy="-6" r="5" fill="#ff0000"/>
     <text x="286" y="0">Settings sync</text>

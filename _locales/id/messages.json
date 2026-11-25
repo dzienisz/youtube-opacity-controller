@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "Kontrol YouTube: Lebih Jelas & Besar" },
-  "appDesc": { "message": "Buat kontrol YouTube lebih mudah dilihat, diklik, dan tetap terlihat." },
+  "appName": { "message": "Kontrol YouTube & Bilah Progres" },
+  "appDesc": { "message": "Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar penuh. Juga kontrol yang lebih jelas dan besar." },
   "eyebrow": { "message": "Kontrol YouTube" },
   "headerTitle": { "message": "Lihat kontrol dengan jelas" },
   "enableToggleLabel": { "message": "Aktifkan peningkatan kontrol YouTube" },

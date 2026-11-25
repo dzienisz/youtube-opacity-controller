@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "Sterowanie YouTube: Wyraźniejsze i Większe" },
-  "appDesc": { "message": "Spraw, by elementy sterowania YouTube były łatwiejsze do zobaczenia, kliknięcia i utrzymania widocznych." },
+  "appName": { "message": "Sterowanie YouTube i pasek postępu" },
+  "appDesc": { "message": "Pasek postępu widoczny po ukryciu sterowania YouTube, także na pełnym ekranie. Wyraźniejsze i większe elementy sterowania." },
   "eyebrow": { "message": "Sterowanie YouTube" },
   "headerTitle": { "message": "Wyraźnie widzisz elementy sterowania" },
   "enableToggleLabel": { "message": "Włącz ulepszenia sterowania YouTube" },

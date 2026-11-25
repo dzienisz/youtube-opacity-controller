@@ -1,6 +1,6 @@
 {
-  "appName": { "message": "YouTube-Steuerung: Klarer & Größer" },
-  "appDesc": { "message": "Mach die YouTube-Steuerelemente leichter sichtbar, klickbar und dauerhaft verfügbar." },
+  "appName": { "message": "YouTube-Steuerung & Fortschrittsbalken" },
+  "appDesc": { "message": "Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch im Vollbild. Dazu klarere, größere Steuerelemente." },
   "eyebrow": { "message": "YouTube-Steuerung" },
   "headerTitle": { "message": "Steuerelemente klar sehen" },
   "enableToggleLabel": { "message": "Verbesserungen der YouTube-Steuerung aktivieren" },
