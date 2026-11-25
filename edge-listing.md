@@ -1,7 +1,10 @@
 # Microsoft Edge Add-ons Listing
 
 Source of truth for the Microsoft Edge Add-ons listing. Update this file first,
-then copy the text into Partner Center.
+then copy the text into Partner Center. For other languages, use the detailed
+descriptions in `store-assets/store-descriptions.md` with
+`chrome://extensions/shortcuts` → `edge://extensions/shortcuts` and `Chrome` →
+`Microsoft Edge`: Edge warns about descriptions that mention other browsers.
 
 Edge uses the Chrome Manifest V3 package unchanged. Upload the
 `youtube-controls-<version>.zip` release asset; no separate Edge build is
@@ -34,9 +37,9 @@ FEATURES
 • Easier-to-read subtitles: larger subtitles on a solid dark background (applies only when you turn captions on in a video)
 • Keep Controls Visible, with the progress bar and time still moving
 • Restore YouTube's look: one click turns every change off and keeps your choices for later
-• Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
+• Keyboard shortcuts with an on-player confirmation, rebindable at edge://extensions/shortcuts
 • Larger mouse pointer over the video
-• Instant preview and settings synchronized through Chrome
+• Instant preview and settings synchronized through Microsoft Edge
 • Master switch to return to the original YouTube appearance
 
 SAFE BY DESIGN
