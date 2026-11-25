@@ -175,18 +175,20 @@ test('recommended settings enable thin progress and readable captions', () => {
 });
 
 test('schema 6 settings enable the thin progress bar once', () => {
-  const stored = {
-    ...settings.RECOMMENDED,
-    settingsSchemaVersion: 6,
-    thinProgressBar: false,
-    thinProgressTime: false
-  };
+  const { thinProgressBar, thinProgressTime, ...schema6 } = settings.RECOMMENDED;
+  const stored = { ...schema6, settingsSchemaVersion: 6 };
   const migrated = settings.migrateSettings(stored);
 
   assert.equal(migrated.settingsSchemaVersion, 7);
   assert.equal(migrated.thinProgressBar, true);
   assert.equal(migrated.thinProgressTime, false);
   assert.equal(settings.needsMigration(stored, migrated), true);
+});
+
+test('schema 6 written by an older synced browser keeps a thin bar opt-out', () => {
+  const stored = { ...settings.RECOMMENDED, settingsSchemaVersion: 6, thinProgressBar: false };
+
+  assert.equal(settings.migrateSettings(stored).thinProgressBar, false);
 });
 
 test('schema 7 settings preserve a disabled thin progress bar', () => {
