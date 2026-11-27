@@ -17,8 +17,7 @@ A privacy-first Chrome and Firefox extension that keeps a progress bar visible w
 - Optional always-visible player controls
 - Thin progress bar while controls hide, with optional elapsed and total time
 - Bigger progress bar with a larger, easier-to-grab handle
-- Any highlight color for the progress bar, icons and time display, with an optional fade into a second color
-- A choice of progress-bar handle icons — Round, Star, Heart, Lightning and Music note
+- Custom progress bar: choose a color or two-color gradient, and use a round, star, heart, lightning or music-note handle
 - Keep a video's own player colors when it ships its own progress bar theme
 - Easier-to-read subtitles with a solid dark background and white or yellow text
 - Larger mouse pointer over the video

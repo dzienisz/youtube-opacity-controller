@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Controlli YouTube e barra di avanzamento" },
-  "appDesc": { "message": "Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a schermo intero. In più, controlli più chiari e grandi." },
+  "appDesc": { "message": "Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a schermo intero. Colori e icone personalizzabili." },
   "eyebrow": { "message": "Controlli YouTube" },
   "headerTitle": { "message": "Vedi i controlli chiaramente" },
   "enableToggleLabel": { "message": "Attiva i miglioramenti dei controlli YouTube" },

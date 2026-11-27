@@ -13,7 +13,7 @@ Dashboard language names: English, Portuguese (Brazil), Spanish (Latin America),
 ### Short Description
 
 ```text
-A progress bar that stays visible when YouTube hides the controls, also in full screen. Plus clearer, larger controls.
+A progress bar that stays visible when YouTube hides the controls, also in full screen. Custom colors, icons and clearer controls.
 ```
 
 ### Detailed Description
@@ -22,6 +22,8 @@ A progress bar that stays visible when YouTube hides the controls, also in full 
 Keep track of where you are in a YouTube video, and see the player controls clearly.
 
 When YouTube hides the controls, YouTube Controls & Progress Bar keeps a thin progress bar at the bottom of the video, also in full screen and in the miniplayer. Turn on the time next to it to see how far you are without moving the mouse.
+
+Make the progress bar yours: pick a color or your own two-color gradient, and swap the round handle for a star, heart, bolt or music note.
 
 It also makes the player controls easier to see and use on bright and busy videos, without changing your whole browser or operating system.
 
@@ -32,7 +34,7 @@ FEATURES
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
 • Bigger progress bar with a larger, easier-to-grab handle
-• Highlight colors for the progress bar, handle, icons, and time
+• Custom progress bar: your own color or gradient, and a star, heart, bolt or note handle
 • Easier-to-read subtitles: larger subtitles on a solid dark background (applies only when you turn captions on in a video)
 • Keep Controls Visible, with the progress bar and time still moving
 • Restore YouTube's look: one click turns every change off and keeps your choices for later
@@ -68,7 +70,7 @@ Designed for viewers who find transparent controls difficult to locate, read, or
 ### Short Description
 
 ```text
-Barra de progresso visível quando o YouTube oculta os controles, também em tela cheia. E controles mais claros e maiores.
+Barra de progresso visível quando o YouTube oculta os controles, também em tela cheia. Cores e ícones personalizáveis para a barra.
 ```
 
 ### Detailed Description
@@ -77,6 +79,8 @@ Barra de progresso visível quando o YouTube oculta os controles, também em tel
 Acompanhe sua posição em um vídeo do YouTube e veja os controles do player com clareza.
 
 Quando o YouTube oculta os controles, Controles do YouTube e barra de progresso mantém uma barra fina na parte inferior do vídeo, também em tela cheia, no miniplayer e em vídeos incorporados. Ative o tempo ao lado para ver o progresso sem mover o mouse.
+
+Personalize a barra de progresso: escolha uma cor ou seu próprio degradê de duas cores e troque o controle redondo por uma estrela, coração, raio ou nota musical.
 
 Também facilita ver e usar os controles do player em vídeos claros e visualmente movimentados, sem alterar todo o navegador ou sistema operacional.
 
@@ -87,7 +91,7 @@ RECURSOS
 • Estilo Controles Claros com fundo escuro ajustável para os controles
 • Estilo Contraste Forte para controles mais fortes e nítidos
 • Barra de progresso maior com um controle maior e mais fácil de segurar
-• Cores de destaque para a barra de progresso, o controle, os ícones e o tempo
+• Barra de progresso personalizada: sua cor ou degradê, com controle de estrela, coração, raio ou nota
 • Legendas mais fáceis de ler: legendas maiores em um fundo escuro sólido (aplicam-se somente quando você ativa as legendas em um vídeo)
 • Restaurar a aparência do YouTube: um clique desativa todas as alterações e mantém suas escolhas para depois
 • Atalhos de teclado com confirmação no player, reconfiguráveis em chrome://extensions/shortcuts
@@ -123,7 +127,7 @@ Criado para quem tem dificuldade em localizar, ler ou usar controles transparent
 ### Short Description
 
 ```text
-Barra de progreso visible cuando YouTube oculta los controles, también a pantalla completa. Además, controles más claros y grandes.
+Barra de progreso visible cuando YouTube oculta los controles, también a pantalla completa. Personaliza color e iconos de la barra.
 ```
 
 ### Detailed Description
@@ -132,6 +136,8 @@ Barra de progreso visible cuando YouTube oculta los controles, también a pantal
 Sigue tu progreso en un video de YouTube y ve con claridad los controles del reproductor.
 
 Cuando YouTube oculta los controles, Controles y barra de progreso de YouTube mantiene una barra fina en la parte inferior del video, también a pantalla completa, en el minirreproductor y en videos insertados. Activa el tiempo a su lado para ver el avance sin mover el mouse.
+
+Personaliza la barra de progreso: elige un color o tu propio degradado de dos colores y cambia el control redondo por una estrella, un corazón, un rayo o una nota musical.
 
 También facilita ver y usar los controles del reproductor en videos brillantes y visualmente recargados, sin cambiar todo el navegador ni el sistema operativo.
 
@@ -142,7 +148,7 @@ FUNCIONES
 • Estilo Controles Claros con fondo oscuro ajustable para los controles
 • Estilo Contraste Fuerte para controles más fuertes y nítidos
 • Barra de progreso más grande con un control mayor y más fácil de agarrar
-• Colores de resaltado para la barra de progreso, el control, los íconos y el tiempo
+• Barra de progreso personalizada: tu color o degradado y un control con estrella, corazón, rayo o nota
 • Subtítulos más legibles: subtítulos más grandes sobre un fondo oscuro sólido (solo se aplica cuando activas los subtítulos en un video)
 • Restaurar el aspecto de YouTube: un clic desactiva todos los cambios y conserva tus preferencias para después
 • Atajos de teclado con confirmación en el reproductor, reconfigurables en chrome://extensions/shortcuts
@@ -178,7 +184,7 @@ Diseñado para quienes tienen dificultad para ubicar, leer o usar controles tran
 ### Short Description
 
 ```text
-Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch im Vollbild. Dazu klarere, größere Steuerelemente.
+Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch im Vollbild. Farben und Symbole anpassen.
 ```
 
 ### Detailed Description
@@ -187,6 +193,8 @@ Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch 
 Behalte im Blick, wo du in einem YouTube-Video bist, und sieh die Player-Steuerung klar.
 
 Wenn YouTube die Steuerung ausblendet, hält YouTube-Steuerung & Fortschrittsbalken unten im Video eine dünne Fortschrittsleiste sichtbar, auch im Vollbild, Miniplayer und in eingebetteten Videos. Aktiviere die Zeitanzeige daneben, um den Fortschritt ohne Mausbewegung zu sehen.
+
+Gestalte deine Fortschrittsleiste: Wähle eine Farbe oder einen eigenen zweifarbigen Verlauf und ersetze den runden Regler durch einen Stern, ein Herz, einen Blitz oder eine Musiknote.
 
 Außerdem lassen sich die Player-Steuerelemente bei hellen und unruhigen Videos besser erkennen und bedienen, ohne den gesamten Browser oder das Betriebssystem zu ändern.
 
@@ -197,7 +205,7 @@ FUNKTIONEN
 • Stil „Klare Steuerung“ mit anpassbarem dunklem Hintergrund für die Steuerelemente
 • Stil „Starker Kontrast“ für kräftigere, klarere Steuerelemente
 • Größere Fortschrittsleiste mit einem größeren, leichter greifbaren Regler
-• Hervorhebungsfarben für Fortschrittsleiste, Regler, Symbole und Zeitangaben
+• Individuelle Fortschrittsleiste: eigene Farbe oder Farbverlauf und Regler mit Stern, Herz, Blitz oder Note
 • Besser lesbare Untertitel: größere Untertitel auf einem einheitlich dunklen Hintergrund (nur wenn du Untertitel in einem Video einschaltest)
 • YouTube-Ansicht wiederherstellen: Ein Klick schaltet alle Änderungen aus und behält deine Einstellungen für später bei
 • Tastenkürzel mit Bestätigung im Player, anpassbar unter chrome://extensions/shortcuts
@@ -233,7 +241,7 @@ Entwickelt für alle, denen transparente Steuerelemente auf hellen und unruhigen
 ### Short Description
 
 ```text
-YouTube が操作ボタンを隠しても進捗バーを表示。全画面でも使え、操作ボタンも見やすく大きくします。
+YouTube が操作ボタンを隠しても進捗バーを表示。進捗バーの色やアイコンもカスタマイズ。
 ```
 
 ### Detailed Description
@@ -242,6 +250,8 @@ YouTube が操作ボタンを隠しても進捗バーを表示。全画面でも
 YouTube の動画の再生位置を把握し、プレーヤーの操作ボタンをはっきり見られます。
 
 YouTube が操作ボタンを隠しても、YouTube 操作と進捗バーは動画下部に細い進捗バーを表示します。全画面、ミニプレーヤー、埋め込み動画でも使えます。横に時間を表示すれば、マウスを動かさずに再生位置を確認できます。
+
+進捗バーを自分好みに。色または2色グラデーションを選び、丸いハンドルを星、ハート、稲妻、音符に変更できます。
 
 明るい映像や画面が複雑な映像でも、ブラウザや OS 全体の設定を変えずにプレーヤーの操作ボタンを見やすく使いやすくします。
 
@@ -252,7 +262,7 @@ YouTube が操作ボタンを隠しても、YouTube 操作と進捗バーは動�
 • 調整可能な暗い背景を備えた「クリアなコントロール」スタイル
 • より濃く、はっきりしたコントロールの「強いコントラスト」スタイル
 • つかみやすい大きなハンドル付きの大きなプログレスバー
-• プログレスバー、ハンドル、アイコン、時間表示に適用できるハイライトカラー
+• カスタム進捗バー：好きな色やグラデーション、星・ハート・稲妻・音符のハンドル
 • 読みやすい字幕：暗い単色の背景に大きな字幕を表示（動画で字幕をオンにした場合のみ適用）
 • YouTubeの元の表示に戻す：ワンクリックですべての変更をオフにし、設定は後から使えるよう保存
 • プレーヤー上で確認表示が出るキーボードショートカット（chrome://extensions/shortcuts で変更可能）
@@ -288,7 +298,7 @@ YouTube が操作ボタンを隠しても、YouTube 操作と進捗バーは動�
 ### Short Description
 
 ```text
-YouTube가 컨트롤을 숨겨도 진행률 표시줄이 보이며 전체 화면에서도 사용할 수 있습니다. 더 선명하고 큰 컨트롤도 제공합니다.
+YouTube가 컨트롤을 숨겨도 진행률 표시줄이 보이며 전체 화면에서도 사용할 수 있습니다. 진행률 표시줄 색상과 아이콘도 맞춤 설정하세요.
 ```
 
 ### Detailed Description
@@ -297,6 +307,8 @@ YouTube가 컨트롤을 숨겨도 진행률 표시줄이 보이며 전체 화면
 YouTube 동영상에서 현재 위치를 확인하고 플레이어 컨트롤을 선명하게 볼 수 있습니다.
 
 YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 동영상 아래에 얇은 진행률 표시줄을 유지합니다. 전체 화면, 미니 플레이어, 삽입된 동영상에서도 사용할 수 있습니다. 옆에 시간을 켜면 마우스를 움직이지 않고 진행 상황을 확인할 수 있습니다.
+
+진행률 표시줄을 원하는 대로 꾸미세요. 색상이나 두 가지 색 그라데이션을 선택하고 둥근 핸들을 별, 하트, 번개, 음표로 바꿀 수 있습니다.
 
 밝고 시각적으로 복잡한 영상에서도 브라우저나 운영체제 전체 설정을 바꾸지 않고 플레이어 컨트롤을 더 잘 보고 사용할 수 있습니다.
 
@@ -307,7 +319,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 • 조절 가능한 어두운 컨트롤 배경을 제공하는 선명한 컨트롤 스타일
 • 더 진하고 선명한 컨트롤을 위한 강한 대비 스타일
 • 크고 잡기 쉬운 핸들이 있는 더 큰 진행 바
-• 진행 바, 핸들, 아이콘, 시간 표시에 적용되는 강조 색상
+• 맞춤 진행률 표시줄: 원하는 색상이나 그라데이션, 별·하트·번개·음표 핸들
 • 더 읽기 쉬운 자막: 어두운 단색 배경에 더 큰 자막 표시 (동영상에서 자막을 켠 경우에만 적용)
 • YouTube 원래 모습 복원: 한 번 클릭하면 모든 변경 사항을 끄고 설정은 나중에 사용할 수 있도록 저장
 • 플레이어에서 확인 표시가 나타나는 키보드 단축키(chrome://extensions/shortcuts에서 변경 가능)
@@ -343,7 +355,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 ### Short Description
 
 ```text
-يبقى شريط التقدم ظاهرًا عندما يخفي YouTube عناصر التحكم، حتى في ملء الشاشة. مع عناصر تحكم أوضح وأكبر.
+يبقى شريط التقدم ظاهرًا عندما يخفي YouTube عناصر التحكم، حتى في ملء الشاشة. خصّص ألوان شريط التقدم وأيقوناته.
 ```
 
 ### Detailed Description
@@ -352,6 +364,8 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 تابع موضعك في فيديو YouTube وشاهد عناصر التحكم في المشغّل بوضوح.
 
 عندما يخفي YouTube عناصر التحكم، تُبقي أدوات تحكم YouTube وشريط التقدم شريط تقدم رفيعًا أسفل الفيديو، حتى في وضع ملء الشاشة والمشغّل المصغّر والفيديوهات المضمّنة. فعّل الوقت بجانبه لمعرفة موضعك دون تحريك الفأرة.
+
+خصّص شريط التقدم: اختر لونًا أو تدرجًا خاصًا بك من لونين، واستبدل المقبض الدائري بنجمة أو قلب أو برق أو نوتة موسيقية.
 
 كما تسهّل رؤية عناصر تحكم المشغّل واستخدامها في الفيديوهات الساطعة والمزدحمة بصريًا، دون تغيير المتصفح أو نظام التشغيل بالكامل.
 
@@ -362,7 +376,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 • نمط "عناصر تحكم واضحة" مع خلفية داكنة قابلة للتعديل لعناصر التحكم
 • نمط "تباين قوي" لعناصر تحكم أقوى وأوضح
 • شريط تقدم أكبر مع مقبض أكبر يسهل الإمساك به
-• ألوان تمييز لشريط التقدم والمقبض والأيقونات والوقت
+• شريط تقدم مخصص: لونك أو تدرجك الخاص، ومقبض بنجمة أو قلب أو برق أو نوتة
 • ترجمة نصية أسهل قراءة: ترجمة أكبر على خلفية داكنة مصمتة (تُطبّق فقط عند تشغيل الترجمة في الفيديو)
 • استعادة مظهر YouTube: نقرة واحدة توقف جميع التغييرات مع الاحتفاظ باختياراتك لاستخدامها لاحقًا
 • اختصارات لوحة مفاتيح مع تأكيد داخل المشغّل، ويمكن تغييرها في chrome://extensions/shortcuts
@@ -398,7 +412,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 ### Short Description
 
 ```text
-Смуга прогресу видима, коли YouTube ховає елементи керування, також на весь екран. А ще чіткіші й більші елементи.
+Смуга прогресу видима, коли YouTube ховає елементи керування, також на весь екран. Налаштовуйте кольори смуги прогресу та значки.
 ```
 
 ### Detailed Description
@@ -407,6 +421,8 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 Стежте за місцем перегляду у відео YouTube та чітко бачте елементи керування програвачем.
 
 Коли YouTube ховає елементи керування, Керування YouTube та смуга прогресу залишає тонку смугу прогресу внизу відео — також на весь екран, у мініпрогравачі та вбудованих відео. Увімкніть час поруч, щоб бачити перебіг без руху миші.
+
+Зробіть смугу прогресу своєю: виберіть колір або власний двоколірний градієнт і замініть круглий повзунок на зірку, серце, блискавку чи ноту.
 
 Також розширення полегшує перегляд і використання елементів керування на яскравих і насичених відео, не змінюючи весь браузер чи операційну систему.
 
@@ -417,7 +433,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 • Стиль «Чіткі елементи керування» із регульованим темним фоном
 • Стиль «Сильний контраст» — виразніші та чіткіші елементи керування
 • Більша смуга відтворення з більшим повзунком, який легше захопити
-• Кольори підсвічування для смуги відтворення, повзунка, значків і часу
+• Власна смуга прогресу: свій колір або градієнт і повзунок-зірка, серце, блискавка чи нота
 • Зручніші для читання субтитри: більші субтитри на суцільному темному тлі (застосовується лише коли ви вмикаєте субтитри у відео)
 • Відновити початковий вигляд YouTube: один клік вимикає всі зміни та зберігає ваші налаштування на потім
 • Поєднання клавіш із підтвердженням у програвачі; їх можна змінити на chrome://extensions/shortcuts
@@ -453,7 +469,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 ### Short Description
 
 ```text
-Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể cả toàn màn hình. Kèm điều khiển rõ và lớn hơn.
+Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể cả toàn màn hình. Tùy chỉnh màu và biểu tượng thanh tiến trình.
 ```
 
 ### Detailed Description
@@ -462,6 +478,8 @@ Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể c�
 Theo dõi vị trí trong video YouTube và nhìn rõ các nút điều khiển trình phát.
 
 Khi YouTube ẩn các nút điều khiển, Điều khiển YouTube & thanh tiến trình giữ một thanh tiến trình mảnh ở cuối video, kể cả toàn màn hình, trình phát thu nhỏ và video nhúng. Bật thời gian bên cạnh để biết vị trí mà không cần di chuột.
+
+Tùy chỉnh thanh tiến trình: chọn một màu hoặc dải chuyển sắc hai màu của riêng bạn, rồi đổi nút tròn thành ngôi sao, trái tim, tia sét hoặc nốt nhạc.
 
 Tiện ích cũng giúp các nút điều khiển dễ nhìn và dễ dùng hơn trên video sáng và rối mắt mà không thay đổi toàn bộ trình duyệt hay hệ điều hành.
 
@@ -472,7 +490,7 @@ TÍNH NĂNG
 • Kiểu Điều khiển rõ ràng với nền tối có thể điều chỉnh cho các nút điều khiển
 • Kiểu Tương phản mạnh cho các nút điều khiển đậm và rõ hơn
 • Thanh tiến trình lớn hơn với tay cầm lớn, dễ nắm hơn
-• Màu tô sáng cho thanh tiến trình, tay cầm, biểu tượng và thời gian
+• Thanh tiến trình tùy chỉnh: màu hoặc dải chuyển sắc riêng, cùng nút hình sao, tim, sét hoặc nốt nhạc
 • Phụ đề dễ đọc hơn: phụ đề lớn hơn trên nền tối đồng nhất (chỉ áp dụng khi bạn bật phụ đề trong video)
 • Khôi phục giao diện YouTube: một lần nhấp sẽ tắt mọi thay đổi và giữ lại các lựa chọn của bạn để dùng sau
 • Phím tắt có xác nhận trên trình phát, đổi được tại chrome://extensions/shortcuts
@@ -508,7 +526,7 @@ Dành cho người xem gặp khó khăn khi tìm, đọc hoặc thao tác với 
 ### Short Description
 
 ```text
-YouTube के कंट्रोल छिपने पर भी प्रोग्रेस बार दिखे, फ़ुल स्क्रीन में भी। साथ में साफ़ और बड़े कंट्रोल।
+YouTube के कंट्रोल छिपने पर भी प्रोग्रेस बार दिखे, फ़ुल स्क्रीन में भी। प्रोग्रेस बार के रंग और आइकॉन अपनी पसंद से चुनें।
 ```
 
 ### Detailed Description
@@ -517,6 +535,8 @@ YouTube के कंट्रोल छिपने पर भी प्रो�
 YouTube वीडियो में अपनी जगह देखें और प्लेयर कंट्रोल साफ़-साफ़ देखें।
 
 YouTube के कंट्रोल छिपने पर YouTube कंट्रोल और प्रोग्रेस बार वीडियो के नीचे पतला प्रोग्रेस बार दिखाता है—फ़ुल स्क्रीन, मिनी प्लेयर और एम्बेड किए गए वीडियो में भी। माउस हिलाए बिना जगह जानने के लिए साथ में समय दिखाएं।
+
+प्रोग्रेस बार को अपनी पसंद का बनाएं: अपना रंग या दो रंगों का ग्रेडिएंट चुनें और गोल हैंडल को स्टार, दिल, बिजली या म्यूज़िक नोट से बदलें।
 
 यह चमकीले और दृश्य रूप से व्यस्त वीडियो पर प्लेयर कंट्रोल को देखना और उपयोग करना भी आसान बनाता है, बिना पूरे ब्राउज़र या ऑपरेटिंग सिस्टम को बदले।
 
@@ -527,7 +547,7 @@ YouTube के कंट्रोल छिपने पर YouTube कंट्
 • समायोज्य गहरे कंट्रोल बैकग्राउंड के साथ साफ़ कंट्रोल स्टाइल
 • अधिक गहरे और स्पष्ट कंट्रोल के लिए तेज़ कंट्रास्ट स्टाइल
 • बड़े, आसानी से पकड़ने योग्य हैंडल के साथ बड़ा प्रोग्रेस बार
-• प्रोग्रेस बार, हैंडल, आइकन और समय के लिए हाइलाइट रंग
+• कस्टम प्रोग्रेस बार: अपना रंग या ग्रेडिएंट और स्टार, दिल, बिजली या म्यूज़िक नोट वाला हैंडल
 • आसानी से पढ़े जाने वाले उपशीर्षक: गहरे ठोस बैकग्राउंड पर बड़े उपशीर्षक (केवल तब लागू होते हैं जब आप वीडियो में उपशीर्षक चालू करते हैं)
 • YouTube का मूल रूप वापस लाएँ: एक क्लिक से सभी बदलाव बंद हो जाते हैं और आपकी पसंद बाद के लिए सुरक्षित रहती है
 • प्लेयर पर पुष्टि दिखाने वाले कीबोर्ड शॉर्टकट, जिन्हें chrome://extensions/shortcuts पर बदला जा सकता है
@@ -563,7 +583,7 @@ YouTube के कंट्रोल छिपने पर YouTube कंट्
 ### Short Description
 
 ```text
-Pasek postępu widoczny po ukryciu sterowania YouTube, także na pełnym ekranie. Wyraźniejsze i większe elementy sterowania.
+Pasek postępu widoczny po ukryciu sterowania YouTube, także na pełnym ekranie. Dostosuj kolory paska postępu i ikony.
 ```
 
 ### Detailed Description
@@ -572,6 +592,8 @@ Pasek postępu widoczny po ukryciu sterowania YouTube, także na pełnym ekranie
 Śledź postęp filmu na YouTube i wyraźnie widzisz elementy sterowania odtwarzaczem.
 
 Gdy YouTube ukrywa elementy sterowania, Sterowanie YouTube i pasek postępu wyświetla cienki pasek u dołu filmu — także na pełnym ekranie, w miniodtwarzaczu i filmach osadzonych. Włącz czas obok paska, aby sprawdzić postęp bez ruszania myszy.
+
+Dostosuj pasek postępu: wybierz kolor lub własny dwukolorowy gradient i zamień okrągły uchwyt na gwiazdę, serce, błyskawicę albo nutę.
 
 Rozszerzenie ułatwia też korzystanie z elementów sterowania na jasnych i intensywnych filmach, bez zmieniania całej przeglądarki ani systemu.
 
@@ -582,7 +604,7 @@ FUNKCJE
 • Styl Wyraźne sterowanie z regulowanym ciemnym tłem elementów
 • Styl Silny kontrast — wyrazistsze, wyraźniejsze elementy sterowania
 • Większy pasek postępu z większym, łatwiejszym do uchwycenia uchwytem
-• Kolory wyróżnienia dla paska postępu, uchwytu, ikon i czasu
+• Własny pasek postępu: dowolny kolor lub gradient oraz uchwyt z gwiazdą, sercem, błyskawicą albo nutą
 • Czytelniejsze napisy: większe napisy na jednolitym ciemnym tle (działa tylko wtedy, gdy włączysz napisy w filmie)
 • Przywróć wygląd YouTube: jedno kliknięcie wyłącza wszystkie zmiany i zachowuje Twoje ustawienia na później
 • Skróty klawiszowe z potwierdzeniem na odtwarzaczu, możliwe do zmiany na chrome://extensions/shortcuts
@@ -618,7 +640,7 @@ Stworzone dla widzów, którym trudno znaleźć, odczytać lub obsłużyć przez
 ### Short Description
 
 ```text
-Barre visible quand YouTube masque les commandes, même en plein écran, avec des commandes plus claires et plus grandes.
+Barre visible quand YouTube masque les commandes, même en plein écran. Couleurs et icônes au choix, commandes plus claires.
 ```
 
 ### Detailed Description
@@ -627,6 +649,8 @@ Barre visible quand YouTube masque les commandes, même en plein écran, avec de
 Suivez votre position dans une vidéo YouTube et voyez clairement les commandes du lecteur.
 
 Quand YouTube masque les commandes, Commandes YouTube et barre de progression garde une fine barre en bas de la vidéo, même en plein écran, dans le mini-lecteur et les vidéos intégrées. Activez l'heure à côté pour voir votre progression sans bouger la souris.
+
+Personnalisez la barre de progression : choisissez une couleur ou votre propre dégradé à deux couleurs, puis remplacez la poignée ronde par une étoile, un cœur, un éclair ou une note de musique.
 
 L'extension facilite aussi l'utilisation des commandes sur les vidéos lumineuses et chargées, sans modifier tout le navigateur ni le système d'exploitation.
 
@@ -637,7 +661,7 @@ FONCTIONNALITÉS
 • Style Contrôles clairs avec un fond sombre réglable
 • Style Contraste fort pour des contrôles plus marqués et plus nets
 • Barre de progression plus grande avec une poignée plus facile à saisir
-• Couleurs de surbrillance pour la barre de progression, la poignée, les icônes et le temps
+• Barre de progression personnalisée : votre couleur ou dégradé, avec une poignée étoile, cœur, éclair ou note
 • Sous-titres plus lisibles : sous-titres plus grands sur un fond sombre uni (s'applique uniquement lorsque vous activez les sous-titres dans une vidéo)
 • Rétablir l’apparence de YouTube : un clic désactive toutes les modifications et conserve vos choix pour plus tard
 • Raccourcis clavier avec confirmation sur le lecteur, modifiables sur chrome://extensions/shortcuts
@@ -673,7 +697,7 @@ Conçu pour les spectateurs qui ont du mal à repérer, lire ou utiliser des con
 ### Short Description
 
 ```text
-Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a schermo intero. In più, controlli più chiari e grandi.
+Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a schermo intero. Colori e icone personalizzabili.
 ```
 
 ### Detailed Description
@@ -682,6 +706,8 @@ Barra di avanzamento visibile quando YouTube nasconde i controlli, anche a scher
 Tieni traccia del punto in cui sei in un video YouTube e vedi chiaramente i controlli del lettore.
 
 Quando YouTube nasconde i controlli, Controlli YouTube e barra di avanzamento mantiene una barra sottile in fondo al video, anche a schermo intero, nel miniplayer e nei video incorporati. Attiva l'ora accanto per vedere a che punto sei senza muovere il mouse.
+
+Personalizza la barra di avanzamento: scegli un colore o una sfumatura a due colori e sostituisci la maniglia rotonda con una stella, un cuore, un fulmine o una nota musicale.
 
 Inoltre rende i controlli del lettore più facili da vedere e usare nei video luminosi e ricchi di dettagli, senza cambiare tutto il browser o il sistema operativo.
 
@@ -692,7 +718,7 @@ FUNZIONALITÀ
 • Stile Controlli chiari con sfondo scuro regolabile
 • Stile Contrasto forte per controlli più decisi e nitidi
 • Barra di avanzamento più grande con un cursore più facile da afferrare
-• Colori di evidenziazione per barra di avanzamento, cursore, icone e tempo
+• Barra di avanzamento personalizzata: colore o sfumatura a scelta e cursore con stella, cuore, fulmine o nota
 • Sottotitoli più leggibili: sottotitoli più grandi su uno sfondo scuro uniforme (si applica solo quando attivi i sottotitoli in un video)
 • Ripristina l’aspetto di YouTube: un clic disattiva ogni modifica e conserva le tue scelte per dopo
 • Scorciatoie da tastiera con conferma sul lettore, modificabili su chrome://extensions/shortcuts
@@ -728,7 +754,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 ### Short Description
 
 ```text
-Полоса прогресса видна, когда YouTube скрывает элементы управления, и в полноэкранном режиме. Плюс более четкие и крупные элементы.
+Полоса прогресса видна, когда YouTube скрывает элементы управления, и в полноэкранном режиме. Настрой цвета и значки полосы.
 ```
 
 ### Detailed Description
@@ -737,6 +763,8 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 Следите за тем, где вы находитесь в видео YouTube, и чётко видите элементы управления плеером.
 
 Когда YouTube скрывает элементы управления, YouTube: управление и полоса прогресса оставляет тонкую полосу внизу видео — также в полноэкранном режиме, мини-плеере и встроенных видео. Включите время рядом, чтобы видеть прогресс без движения мыши.
+
+Настройте полосу прогресса: выберите цвет или собственный двухцветный градиент и замените круглый ползунок на звезду, сердце, молнию или ноту.
 
 Расширение также помогает лучше видеть элементы управления на ярких и насыщенных видео, не меняя весь браузер или операционную систему.
 
@@ -747,7 +775,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 • Стиль «Чёткие элементы управления» с регулируемым тёмным фоном
 • Стиль «Сильный контраст» — более выразительные и чёткие элементы
 • Большая полоса воспроизведения с крупным, удобным ползунком
-• Цвета подсветки для полосы воспроизведения, ползунка, значков и времени
+• Своя полоса прогресса: цвет или градиент на выбор и ползунок в виде звезды, сердца, молнии или ноты
 • Более удобные для чтения субтитры: более крупные субтитры на сплошном тёмном фоне (применяется только если вы включили субтитры в видео)
 • Восстановить исходный вид YouTube: одним нажатием можно отключить все изменения и сохранить настройки на будущее
 • Сочетания клавиш с подтверждением в плеере; их можно изменить на chrome://extensions/shortcuts
@@ -783,7 +811,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 ### Short Description
 
 ```text
-YouTube 隐藏控件时，进度条仍然可见，全屏时也一样。另有更清晰、更大的控件。
+YouTube 隐藏控件时，进度条仍然可见，全屏时也一样。自定义进度条颜色和图标。
 ```
 
 ### Detailed Description
@@ -792,6 +820,8 @@ YouTube 隐藏控件时，进度条仍然可见，全屏时也一样。另有更
 轻松掌握 YouTube 视频播放进度，并清晰看见播放器控件。
 
 YouTube 隐藏控件时，YouTube 控件与进度条会在视频底部显示细进度条，全屏、迷你播放器和嵌入视频中也一样。开启旁边的时间显示，无需移动鼠标即可查看进度。
+
+自定义进度条：选择一种颜色或专属双色渐变，并将圆形手柄换成星星、爱心、闪电或音符。
 
 它也能让明亮、画面繁杂的视频中的播放器控件更易看清和使用，无需更改整个浏览器或操作系统。
 
@@ -802,7 +832,7 @@ YouTube 隐藏控件时，YouTube 控件与进度条会在视频底部显示细�
 • 带有可调节深色控件背景的“清晰控件”样式
 • 控件更深邃清晰的“强对比度”样式
 • 更大的进度条，配有更大、更易抓取的拖动手柄
-• 可为进度条、手柄、图标和时间着色的高亮颜色
+• 自定义进度条：可选专属颜色或渐变，并使用星星、爱心、闪电或音符手柄
 • 更易阅读的字幕：在纯深色背景上显示更大的字幕（仅在你开启视频字幕时应用）
 • 恢复 YouTube 原貌：单击即可关闭所有更改，并保留你的选择以供以后使用
 • 在播放器上显示确认提示的键盘快捷键，可在 chrome://extensions/shortcuts 重新绑定
@@ -838,7 +868,7 @@ YouTube 隐藏控件时，YouTube 控件与进度条会在视频底部显示细�
 ### Short Description
 
 ```text
-Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar penuh. Juga kontrol yang lebih jelas dan besar.
+Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar penuh. Sesuaikan warna dan ikon bilah progres.
 ```
 
 ### Detailed Description
@@ -847,6 +877,8 @@ Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar
 Lacak posisi Anda dalam video YouTube dan lihat kontrol pemutar dengan jelas.
 
 Saat YouTube menyembunyikan kontrol, Kontrol YouTube & Bilah Progres menampilkan bilah progres tipis di bagian bawah video, juga dalam layar penuh, pemutar mini, dan video sematan. Aktifkan waktu di sampingnya untuk melihat posisi tanpa menggerakkan mouse.
+
+Sesuaikan bilah progres: pilih warna atau gradien dua warna sendiri, lalu ganti pegangan bulat dengan bintang, hati, petir, atau not musik.
 
 Kontrol pemutar juga lebih mudah dilihat dan digunakan pada video yang terang dan ramai secara visual, tanpa mengubah seluruh browser atau sistem operasi.
 
@@ -857,7 +889,7 @@ FITUR
 • Gaya Kontrol jelas dengan latar kontrol gelap yang dapat diatur
 • Gaya Kontras kuat untuk kontrol yang lebih tegas dan jelas
 • Bilah progres lebih besar dengan pegangan lebih besar yang mudah digeser
-• Warna sorotan untuk bilah progres, pegangan, ikon, dan waktu
+• Bilah progres kustom: pilih warna atau gradien sendiri dan pegangan bintang, hati, petir, atau not
 • Subtitel lebih mudah dibaca: subtitel lebih besar dengan latar gelap solid (hanya berlaku saat Anda menyalakan subtitel di video)
 • Pulihkan tampilan YouTube: satu klik mematikan semua perubahan dan menyimpan pilihan Anda untuk nanti
 • Pintasan keyboard dengan konfirmasi di pemutar, dapat diubah di chrome://extensions/shortcuts
@@ -893,7 +925,7 @@ Dirancang untuk penonton yang kesulitan menemukan, membaca, atau menggunakan kon
 ### Short Description
 
 ```text
-YouTube 隱藏控制項時，進度列仍會顯示，全螢幕也適用。另有更清晰、更大的控制項。
+YouTube 隱藏控制項時，進度列仍會顯示，全螢幕也適用。自訂進度列顏色和圖示。
 ```
 
 ### Detailed Description
@@ -902,6 +934,8 @@ YouTube 隱藏控制項時，進度列仍會顯示，全螢幕也適用。另有
 掌握 YouTube 影片的播放位置，並清楚看見播放器控制項。
 
 YouTube 隱藏控制項時，YouTube 控制項與進度列會在影片底部顯示細進度列，全螢幕、迷你播放器和嵌入影片也適用。開啟旁邊的時間顯示，即可不必移動滑鼠查看播放進度。
+
+自訂進度列：選擇一種顏色或專屬雙色漸層，並將圓形控點換成星星、愛心、閃電或音符。
 
 它也讓明亮、畫面複雜的影片中的播放器控制項更容易看清和操作，無須變更整個瀏覽器或作業系統。
 
@@ -912,7 +946,7 @@ YouTube 隱藏控制項時，YouTube 控制項與進度列會在影片底部顯�
 • 「清晰控制項」樣式，深色控制項背景可調整
 • 「高對比」樣式，控制項更醒目、更清楚
 • 加大進度列，搭配更大、更好抓的控點
-• 進度列、控點、圖示和時間的強調色
+• 自訂進度列：可選專屬顏色或漸層，並使用星星、愛心、閃電或音符控點
 • 更易閱讀的字幕：較大的字幕搭配不透明深色背景（僅在你於影片中開啟字幕時套用）
 • 還原 YouTube 外觀：按一下即可關閉所有變更，並保留你的選擇供日後使用
 • 鍵盤快速鍵，並在播放器上顯示確認訊息，可在 chrome://extensions/shortcuts 重新設定
@@ -948,7 +982,7 @@ YouTube 隱藏控制項時，YouTube 控制項與進度列會在影片底部顯�
 ### Short Description
 
 ```text
-YouTube denetimleri gizlediğinde, tam ekranda da görünen bir ilerleme çubuğu. Ayrıca daha net ve büyük denetimler.
+YouTube denetimleri gizlediğinde, tam ekranda da görünen bir ilerleme çubuğu. Renkleri ve simgeleri özelleştir.
 ```
 
 ### Detailed Description
@@ -957,6 +991,8 @@ YouTube denetimleri gizlediğinde, tam ekranda da görünen bir ilerleme çubuğ
 YouTube videosunda bulunduğunuz yeri takip edin ve oynatıcı kontrollerini net görün.
 
 YouTube kontrolleri gizlediğinde, YouTube Kontrolleri ve İlerleme Çubuğu videonun altında ince bir ilerleme çubuğunu görünür tutar; tam ekranda, mini oynatıcıda ve gömülü videolarda da. Fareyi oynatmadan konumu görmek için yanındaki zamanı açın.
+
+İlerleme çubuğunu kişiselleştirin: bir renk ya da kendinize ait iki renkli bir geçiş seçin ve yuvarlak tutamacı yıldız, kalp, şimşek veya nota ile değiştirin.
 
 Ayrıca parlak ve görsel açıdan yoğun videolarda oynatıcı kontrollerini görmeyi ve kullanmayı tüm tarayıcıyı veya işletim sistemini değiştirmeden kolaylaştırır.
 
@@ -967,7 +1003,7 @@ Ayrıca parlak ve görsel açıdan yoğun videolarda oynatıcı kontrollerini g�
 • Ayarlanabilir koyu kontrol arka planına sahip Net kontroller stili
 • Daha güçlü ve net kontroller için Güçlü kontrast stili
 • Daha büyük, kolay tutulan tutamaçlı daha büyük ilerleme çubuğu
-• İlerleme çubuğu, tutamaç, simgeler ve süre için vurgu renkleri
+• Özel ilerleme çubuğu: kendi renginiz veya geçişiniz, yıldız, kalp, şimşek ya da nota tutamacı
 • Daha kolay okunan altyazılar: düz koyu arka plan üzerinde daha büyük altyazılar (yalnızca videoda altyazıyı açtığınızda uygulanır)
 • YouTube görünümünü geri yükle: tek tıklama tüm değişiklikleri kapatır ve seçimlerinizi sonrası için saklar
 • Oynatıcı üzerinde onay gösteren klavye kısayolları; chrome://extensions/shortcuts adresinden değiştirilebilir

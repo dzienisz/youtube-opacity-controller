@@ -1,6 +1,6 @@
 {
   "appName": { "message": "YouTube 操作と進捗バー" },
-  "appDesc": { "message": "YouTube が操作ボタンを隠しても進捗バーを表示。全画面でも使え、操作ボタンも見やすく大きくします。" },
+  "appDesc": { "message": "YouTube が操作ボタンを隠しても進捗バーを表示。進捗バーの色やアイコンもカスタマイズ。" },
   "eyebrow": { "message": "YouTube コントロール" },
   "headerTitle": { "message": "コントロールをはっきり表示" },
   "enableToggleLabel": { "message": "YouTube コントロールの拡張を有効にする" },

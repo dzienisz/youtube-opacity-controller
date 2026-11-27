@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Điều khiển YouTube & thanh tiến trình" },
-  "appDesc": { "message": "Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể cả toàn màn hình. Kèm điều khiển rõ và lớn hơn." },
+  "appDesc": { "message": "Thanh tiến trình vẫn hiển thị khi YouTube ẩn điều khiển, kể cả toàn màn hình. Tùy chỉnh màu và biểu tượng thanh tiến trình." },
   "eyebrow": { "message": "Điều khiển YouTube" },
   "headerTitle": { "message": "Nhìn rõ các nút điều khiển" },
   "enableToggleLabel": { "message": "Bật tính năng cải tiến điều khiển YouTube" },

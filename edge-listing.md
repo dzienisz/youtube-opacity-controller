@@ -16,13 +16,15 @@ YouTube Controls & Progress Bar
 
 ## Short description
 
-A progress bar that stays visible when YouTube hides the controls, also in full screen. Plus clearer, larger controls.
+A progress bar that stays visible when YouTube hides the controls, also in full screen. Custom colors, icons and clearer controls.
 
 ## Full description
 
 Keep track of where you are in a YouTube video, and see the player controls clearly.
 
 When YouTube hides the controls, YouTube Controls & Progress Bar keeps a thin progress bar at the bottom of the video, also in full screen and in the miniplayer. Turn on the time next to it to see how far you are without moving the mouse.
+
+Make the progress bar yours: pick a color or your own two-color gradient, and swap the round handle for a star, heart, bolt or music note.
 
 It also makes the player controls easier to see and use on bright and busy videos, without changing your whole browser or operating system.
 
@@ -33,7 +35,7 @@ FEATURES
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
 • Bigger progress bar with a larger, easier-to-grab handle
-• Highlight colors for the progress bar, handle, icons, and time
+• Custom progress bar: your own color or gradient, and a star, heart, bolt or note handle
 • Easier-to-read subtitles: larger subtitles on a solid dark background (applies only when you turn captions on in a video)
 • Keep Controls Visible, with the progress bar and time still moving
 • Restore YouTube's look: one click turns every change off and keeps your choices for later

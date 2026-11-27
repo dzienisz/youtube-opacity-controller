@@ -1,6 +1,6 @@
 {
   "appName": { "message": "YouTube-Steuerung & Fortschrittsbalken" },
-  "appDesc": { "message": "Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch im Vollbild. Dazu klarere, größere Steuerelemente." },
+  "appDesc": { "message": "Fortschrittsleiste bleibt bei ausgeblendeten YouTube-Steuerungen sichtbar, auch im Vollbild. Farben und Symbole anpassen." },
   "eyebrow": { "message": "YouTube-Steuerung" },
   "headerTitle": { "message": "Steuerelemente klar sehen" },
   "enableToggleLabel": { "message": "Verbesserungen der YouTube-Steuerung aktivieren" },

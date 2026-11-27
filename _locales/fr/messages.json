@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Commandes YouTube et barre de progression" },
-  "appDesc": { "message": "Barre visible quand YouTube masque les commandes, même en plein écran, avec des commandes plus claires et plus grandes." },
+  "appDesc": { "message": "Barre visible quand YouTube masque les commandes, même en plein écran. Couleurs et icônes au choix, commandes plus claires." },
   "eyebrow": { "message": "Contrôles YouTube" },
   "headerTitle": { "message": "Voyez les contrôles clairement" },
   "enableToggleLabel": { "message": "Activer les améliorations des contrôles YouTube" },

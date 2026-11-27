@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Kontrol YouTube & Bilah Progres" },
-  "appDesc": { "message": "Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar penuh. Juga kontrol yang lebih jelas dan besar." },
+  "appDesc": { "message": "Bilah progres tetap terlihat saat YouTube menyembunyikan kontrol, termasuk layar penuh. Sesuaikan warna dan ikon bilah progres." },
   "eyebrow": { "message": "Kontrol YouTube" },
   "headerTitle": { "message": "Lihat kontrol dengan jelas" },
   "enableToggleLabel": { "message": "Aktifkan peningkatan kontrol YouTube" },
