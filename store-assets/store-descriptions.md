@@ -55,7 +55,7 @@ HOW TO USE
 3. Choose Clear Controls or Strong Contrast.
 4. New installs start with recommended settings; use "Use recommended settings" in the popup to apply them any time.
 5. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
-6. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible.
+6. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible. Also press Alt+Shift+H to hide or show the controls.
 7. Use the "Restore YouTube's look" button or master switch at any time to turn every change off; your choices are kept for later.
 
 Designed for viewers who find transparent controls difficult to locate, read, or operate on bright and busy video content.
@@ -110,7 +110,7 @@ COMO USAR
 3. Escolha Controles Claros ou Contraste Forte.
 4. Novas instalações começam com as configurações recomendadas; use "Usar configurações recomendadas" no pop-up para aplicá-las quando quiser.
 5. Se quiser, mantenha os controles visíveis, aumente a barra de progresso ou o ponteiro, escolha uma cor de destaque ou personalize o fundo.
-6. Pressione Alt+Shift+Y para alternar as melhorias, Alt+Shift+J para alternar os estilos, Alt+Shift+V para alternar os controles sempre visíveis.
+6. Pressione Alt+Shift+Y para alternar as melhorias, Alt+Shift+J para alternar os estilos, Alt+Shift+V para alternar os controles sempre visíveis. Use Alt+Shift+H para ocultar ou mostrar os controles.
 7. Use o botão "Restaurar a aparência do YouTube" ou o interruptor principal a qualquer momento para desativar todas as alterações e manter suas escolhas para depois.
 
 Criado para quem tem dificuldade em localizar, ler ou usar controles transparentes em vídeos claros e visualmente carregados.
@@ -165,7 +165,7 @@ CÓMO USARLO
 3. Elige Controles Claros o Contraste Fuerte.
 4. Las instalaciones nuevas comienzan con la configuración recomendada; usa "Usar configuración recomendada" en la ventana emergente para aplicarla cuando quieras.
 5. Si quieres, mantén los controles visibles, agranda la barra de progreso o el puntero, elige un color de resaltado o personaliza el fondo.
-6. Pulsa Alt+Shift+Y para alternar las mejoras, Alt+Shift+J para cambiar de estilo, Alt+Shift+V para alternar los controles siempre visibles.
+6. Pulsa Alt+Shift+Y para alternar las mejoras, Alt+Shift+J para cambiar de estilo, Alt+Shift+V para alternar los controles siempre visibles. Usa Alt+Shift+H para ocultar o mostrar los controles.
 7. Usa el botón "Restaurar el aspecto de YouTube" o el interruptor principal en cualquier momento para desactivar todos los cambios y conservar tus preferencias para después.
 
 Diseñado para quienes tienen dificultad para ubicar, leer o usar controles transparentes en videos brillantes y recargados.
@@ -220,7 +220,7 @@ SO GEHT'S
 3. Wähle „Klare Steuerung“ oder „Starker Kontrast“.
 4. Neue Installationen starten mit den empfohlenen Einstellungen; nutze „Empfohlene Einstellungen verwenden“ im Pop-up, um sie jederzeit anzuwenden.
 5. Halte optional die Steuerelemente sichtbar, vergrößere Fortschrittsleiste oder Zeiger, wähle eine Hervorhebungsfarbe oder passe den Hintergrund an.
-6. Drücke Alt+Shift+Y, um die Verbesserungen umzuschalten, Alt+Shift+J, um den Stil zu wechseln, Alt+Shift+V, um „sichtbar halten“ umzuschalten.
+6. Drücke Alt+Shift+Y, um die Verbesserungen umzuschalten, Alt+Shift+J, um den Stil zu wechseln, Alt+Shift+V, um „sichtbar halten“ umzuschalten. Mit Alt+Shift+H blendest du die Steuerung ein oder aus.
 7. Verwende jederzeit die Schaltfläche „YouTube-Ansicht wiederherstellen“ oder den Hauptschalter, um alle Änderungen auszuschalten; deine Einstellungen bleiben für später erhalten.
 
 Entwickelt für alle, denen transparente Steuerelemente auf hellen und unruhigen Videos schwer zu finden, zu lesen oder zu bedienen sind.
@@ -275,7 +275,7 @@ YouTube が操作ボタンを隠しても、YouTube 操作と進捗バーは動�
 3. 「クリアなコントロール」または「強いコントラスト」を選択します。
 4. 新規インストールではおすすめ設定が適用されます。ポップアップの「おすすめ設定を使う」で、いつでも適用できます。
 5. 必要に応じて、コントロールの常時表示、プログレスバーやポインターの拡大、ハイライトカラーの選択、背景の調整を行います。
-6. Alt+Shift+Y で拡張表示の切り替え、Alt+Shift+J でスタイルの切り替え、Alt+Shift+V で常時表示の切り替えができます。
+6. Alt+Shift+Y で拡張表示の切り替え、Alt+Shift+J でスタイルの切り替え、Alt+Shift+V で常時表示の切り替えができます。Alt+Shift+Hで操作ボタンの表示を切り替えます。
 7. 「YouTubeの元の表示に戻す」ボタンまたはマスタースイッチを使うと、いつでもすべての変更をオフにでき、設定は後から使えるよう保存されます。
 
 明るく情報量の多い映像で、透明なコントロールが見つけにくい・読みにくい・操作しにくいと感じる方のために設計されています。
@@ -330,7 +330,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 3. 선명한 컨트롤 또는 강한 대비를 선택합니다.
 4. 새로 설치하면 권장 설정이 적용됩니다. 팝업에서 "권장 설정 사용"을 선택해 언제든 적용하세요.
 5. 필요하면 컨트롤을 계속 표시하고, 진행 바나 포인터를 키우고, 강조 색상을 고르거나 배경을 조절합니다.
-6. Alt+Shift+Y로 개선 기능을, Alt+Shift+J로 스타일을, Alt+Shift+V로 계속 표시를 전환합니다.
+6. Alt+Shift+Y로 개선 기능을, Alt+Shift+J로 스타일을, Alt+Shift+V로 계속 표시를 전환합니다. Alt+Shift+H로 컨트롤 표시를 전환합니다.
 7. 언제든지 "YouTube 원래 모습 복원" 버튼이나 마스터 스위치를 사용해 모든 변경 사항을 끄고 설정을 나중에도 사용할 수 있도록 보존하세요.
 
 밝고 복잡한 영상에서 투명한 컨트롤을 찾거나 읽거나 조작하기 어려운 시청자를 위해 설계되었습니다.
@@ -385,7 +385,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 3. اختر: عناصر تحكم واضحة أو تباين قوي.
 4. تبدأ عمليات التثبيت الجديدة بالإعدادات الموصى بها؛ استخدم "استخدام الإعدادات الموصى بها" في النافذة المنبثقة لتطبيقها في أي وقت.
 5. اختياريًا، أبقِ عناصر التحكم ظاهرة، أو كبّر شريط التقدم أو المؤشر، أو اختر لون تمييز، أو خصّص الخلفية.
-6. اضغط Alt+Shift+Y للتبديل بين التحسينات، وAlt+Shift+J لتبديل الأنماط، وAlt+Shift+V لتبديل إبقاء عناصر التحكم ظاهرة.
+6. اضغط Alt+Shift+Y للتبديل بين التحسينات، وAlt+Shift+J لتبديل الأنماط، وAlt+Shift+V لتبديل إبقاء عناصر التحكم ظاهرة. واستخدم Alt+Shift+H لإخفاء عناصر التحكم أو إظهارها.
 7. استخدم زر "استعادة مظهر YouTube" أو المفتاح الرئيسي في أي وقت لإيقاف جميع التغييرات مع الاحتفاظ باختياراتك لاستخدامها لاحقًا.
 
 صُمّم للمشاهدين الذين يجدون صعوبة في تحديد عناصر التحكم الشفافة أو قراءتها أو استخدامها في المحتوى الساطع والمزدحم بصريًا.
@@ -440,7 +440,7 @@ YouTube가 컨트롤을 숨기면 YouTube 컨트롤 및 진행률 표시줄이 �
 3. Виберіть «Чіткі елементи керування» або «Сильний контраст».
 4. Після встановлення за замовчуванням застосовуються рекомендовані налаштування; скористайтеся кнопкою «Використати рекомендовані налаштування» у спливаючому вікні, щоб застосувати їх будь-коли.
 5. За бажанням залишайте елементи керування видимими, збільште смугу відтворення чи вказівник, оберіть колір підсвічування або налаштуйте фон.
-6. Натисніть Alt+Shift+Y, щоб увімкнути чи вимкнути покращення, Alt+Shift+J — щоб змінити стиль, Alt+Shift+V — щоб перемкнути постійну видимість.
+6. Натисніть Alt+Shift+Y, щоб увімкнути чи вимкнути покращення, Alt+Shift+J — щоб змінити стиль, Alt+Shift+V — щоб перемкнути постійну видимість. Натисніть Alt+Shift+H, щоб приховати або показати елементи керування.
 7. Будь-коли натисніть кнопку «Відновити початковий вигляд YouTube» або головний перемикач, щоб вимкнути всі зміни й зберегти свої налаштування на потім.
 
 Створено для глядачів, яким важко знаходити, читати або використовувати прозорі елементи керування на яскравому та насиченому відео.
@@ -495,7 +495,7 @@ CÁCH DÙNG
 3. Chọn Điều khiển rõ ràng hoặc Tương phản mạnh.
 4. Bản cài đặt mới bắt đầu với cài đặt khuyến nghị; dùng "Dùng cài đặt khuyến nghị" trong cửa sổ bật lên để áp dụng bất cứ lúc nào.
 5. Tùy chọn: giữ các nút điều khiển luôn hiển thị, phóng to thanh tiến trình hoặc con trỏ, chọn màu tô sáng hoặc tùy chỉnh nền.
-6. Nhấn Alt+Shift+Y để bật/tắt tính năng cải tiến, Alt+Shift+J để đổi kiểu, Alt+Shift+V để bật/tắt giữ hiển thị.
+6. Nhấn Alt+Shift+Y để bật/tắt tính năng cải tiến, Alt+Shift+J để đổi kiểu, Alt+Shift+V để bật/tắt giữ hiển thị. Nhấn Alt+Shift+H để ẩn hoặc hiện điều khiển.
 7. Bất cứ lúc nào, hãy dùng nút "Khôi phục giao diện YouTube" hoặc công tắc chính để tắt mọi thay đổi và giữ lại các lựa chọn của bạn.
 
 Dành cho người xem gặp khó khăn khi tìm, đọc hoặc thao tác với các nút điều khiển trong suốt trên video sáng và rối mắt.
@@ -550,7 +550,7 @@ YouTube के कंट्रोल छिपने पर YouTube कंट्
 3. साफ़ कंट्रोल या तेज़ कंट्रास्ट चुनें।
 4. नई इंस्टॉलेशन की शुरुआत अनुशंसित सेटिंग से होती है; उन्हें कभी भी लागू करने के लिए पॉपअप में "अनुशंसित सेटिंग इस्तेमाल करें" चुनें।
 5. चाहें तो कंट्रोल दिखाए रखें, प्रोग्रेस बार या पॉइंटर बड़ा करें, हाइलाइट रंग चुनें या बैकग्राउंड कस्टमाइज़ करें।
-6. एन्हांसमेंट के लिए Alt+Shift+Y, स्टाइल बदलने के लिए Alt+Shift+J, कंट्रोल दिखाए रखने के लिए Alt+Shift+V दबाएं।
+6. एन्हांसमेंट के लिए Alt+Shift+Y, स्टाइल बदलने के लिए Alt+Shift+J, कंट्रोल दिखाए रखने के लिए Alt+Shift+V दबाएं। कंट्रोल छिपाने या दिखाने के लिए Alt+Shift+H दबाएं।
 7. कभी भी सभी बदलाव बंद करने के लिए "YouTube का मूल रूप वापस लाएँ" बटन या मास्टर स्विच का उपयोग करें; आपकी पसंद बाद के लिए सुरक्षित रहेंगी।
 
 उन दर्शकों के लिए बनाया गया है जिन्हें चमकीले और व्यस्त वीडियो पर पारदर्शी कंट्रोल ढूँढना, पढ़ना या चलाना मुश्किल लगता है।
@@ -605,7 +605,7 @@ JAK UŻYWAĆ
 3. Wybierz Wyraźne sterowanie lub Silny kontrast.
 4. Nowe instalacje zaczynają od zalecanych ustawień; użyj w wyskakującym oknie opcji „Użyj zalecanych ustawień”, aby zastosować je w dowolnym momencie.
 5. Opcjonalnie utrzymaj elementy widoczne, powiększ pasek postępu lub wskaźnik, wybierz kolor wyróżnienia albo dostosuj tło.
-6. Naciśnij Alt+Shift+Y, by przełączyć ulepszenia, Alt+Shift+J, by zmienić styl, Alt+Shift+V, by przełączyć stałą widoczność.
+6. Naciśnij Alt+Shift+Y, by przełączyć ulepszenia, Alt+Shift+J, by zmienić styl, Alt+Shift+V, by przełączyć stałą widoczność. Alt+Shift+H ukrywa lub pokazuje elementy sterujące.
 7. W dowolnym momencie użyj przycisku „Przywróć wygląd YouTube” lub głównego przełącznika, aby wyłączyć wszystkie zmiany i zachować wybrane ustawienia na później.
 
 Stworzone dla widzów, którym trudno znaleźć, odczytać lub obsłużyć przezroczyste elementy sterowania na jasnych i intensywnych filmach.
@@ -660,7 +660,7 @@ COMMENT L'UTILISER
 3. Choisissez Contrôles clairs ou Contraste fort.
 4. Les nouvelles installations utilisent les paramètres recommandés ; sélectionnez « Utiliser les paramètres recommandés » dans la fenêtre contextuelle pour les appliquer à tout moment.
 5. Si vous voulez, gardez les contrôles visibles, agrandissez la barre de progression ou le pointeur, choisissez une couleur de surbrillance ou personnalisez le fond.
-6. Appuyez sur Alt+Shift+Y pour activer ou désactiver les améliorations, Alt+Shift+J pour changer de style, Alt+Shift+V pour la visibilité permanente.
+6. Appuyez sur Alt+Shift+Y pour activer ou désactiver les améliorations, Alt+Shift+J pour changer de style, Alt+Shift+V pour la visibilité permanente. Utilisez Alt+Shift+H pour masquer ou afficher les commandes.
 7. À tout moment, utilisez le bouton « Rétablir l’apparence de YouTube » ou l'interrupteur principal pour désactiver toutes les modifications et conserver vos choix pour plus tard.
 
 Conçu pour les spectateurs qui ont du mal à repérer, lire ou utiliser des contrôles transparents sur des vidéos lumineuses et chargées.
@@ -715,7 +715,7 @@ COME USARLO
 3. Scegli Controlli chiari o Contrasto forte.
 4. Le nuove installazioni iniziano con le impostazioni consigliate; usa "Usa le impostazioni consigliate" nel popup per applicarle in qualsiasi momento.
 5. Se vuoi, mantieni i controlli visibili, ingrandisci la barra di avanzamento o il puntatore, scegli un colore di evidenziazione o personalizza lo sfondo.
-6. Premi Alt+Shift+Y per attivare o disattivare i miglioramenti, Alt+Shift+J per cambiare stile, Alt+Shift+V per la visibilità permanente.
+6. Premi Alt+Shift+Y per attivare o disattivare i miglioramenti, Alt+Shift+J per cambiare stile, Alt+Shift+V per la visibilità permanente. Premi Alt+Shift+H per nascondere o mostrare i controlli.
 7. Usa in qualsiasi momento il pulsante "Ripristina l’aspetto di YouTube" o l'interruttore principale per disattivare tutte le modifiche e conservare le tue scelte.
 
 Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su video luminosi e ricchi di dettagli.
@@ -770,7 +770,7 @@ Pensato per chi fatica a individuare, leggere o usare controlli trasparenti su v
 3. Выберите «Чёткие элементы управления» или «Сильный контраст».
 4. При новой установке используются рекомендуемые настройки; нажмите «Использовать рекомендуемые настройки» во всплывающем окне, чтобы применить их в любое время.
 5. При желании оставьте элементы видимыми, увеличьте полосу воспроизведения или указатель, выберите цвет подсветки или настройте фон.
-6. Нажмите Alt+Shift+Y, чтобы переключить улучшения, Alt+Shift+J — чтобы сменить стиль, Alt+Shift+V — чтобы переключить постоянную видимость.
+6. Нажмите Alt+Shift+Y, чтобы переключить улучшения, Alt+Shift+J — чтобы сменить стиль, Alt+Shift+V — чтобы переключить постоянную видимость. Нажмите Alt+Shift+H, чтобы скрыть или показать элементы управления.
 7. В любой момент используйте кнопку «Восстановить исходный вид YouTube» или главный переключатель, чтобы отключить все изменения и сохранить настройки на будущее.
 
 Создано для зрителей, которым трудно находить, читать или использовать прозрачные элементы управления на ярком и насыщенном видео.
@@ -825,7 +825,7 @@ YouTube 隐藏控件时，YouTube 控件与进度条会在视频底部显示细�
 3. 选择“清晰控件”或“强对比度”。
 4. 新安装默认使用推荐设置；在弹出窗口中点击“使用推荐设置”即可随时应用。
 5. 根据需要保持控件可见、放大进度条或指针、选择高亮颜色或自定义背景。
-6. 按 Alt+Shift+Y 切换增强功能，Alt+Shift+J 切换样式，Alt+Shift+V 切换控件常显。
+6. 按 Alt+Shift+Y 切换增强功能，Alt+Shift+J 切换样式，Alt+Shift+V 切换控件常显。按 Alt+Shift+H 切换控件显示。
 7. 随时点击“恢复 YouTube 原貌”按钮或主开关，即可关闭所有更改并保留现有选择供以后使用。
 
 专为在明亮、复杂视频中难以找到、看清或操作透明控件的观众而设计。
@@ -880,7 +880,7 @@ CARA MENGGUNAKAN
 3. Pilih Kontrol jelas atau Kontras kuat.
 4. Pemasangan baru dimulai dengan pengaturan yang disarankan; gunakan "Gunakan pengaturan yang disarankan" di popup untuk menerapkannya kapan saja.
 5. Opsional: jaga kontrol tetap terlihat, perbesar bilah progres atau penunjuk, pilih warna sorotan, atau atur latar belakang.
-6. Tekan Alt+Shift+Y untuk mengaktifkan atau menonaktifkan peningkatan, Alt+Shift+J untuk berganti gaya, Alt+Shift+V untuk mengaktifkan atau menonaktifkan kontrol tetap terlihat.
+6. Tekan Alt+Shift+Y untuk mengaktifkan atau menonaktifkan peningkatan, Alt+Shift+J untuk berganti gaya, Alt+Shift+V untuk mengaktifkan atau menonaktifkan kontrol tetap terlihat. Gunakan Alt+Shift+H untuk menyembunyikan atau menampilkan kontrol.
 7. Gunakan tombol "Pulihkan tampilan YouTube" atau tombol utama kapan saja untuk mematikan semua perubahan; pilihan Anda disimpan untuk nanti.
 
 Dirancang untuk penonton yang kesulitan menemukan, membaca, atau menggunakan kontrol transparan pada video yang terang dan ramai.
@@ -935,7 +935,7 @@ YouTube 隱藏控制項時，YouTube 控制項與進度列會在影片底部顯�
 3. 選擇「清晰控制項」或「高對比」。
 4. 新安裝時會使用建議設定；隨時可在彈出視窗中按「使用建議設定」套用。
 5. 可選：保持顯示控制項、加大進度列或游標、選擇強調色，或自訂背景。
-6. 按 Alt+Shift+Y 開啟或關閉增強功能，Alt+Shift+J 切換樣式，Alt+Shift+V 開啟或關閉保持顯示控制項。
+6. 按 Alt+Shift+Y 開啟或關閉增強功能，Alt+Shift+J 切換樣式，Alt+Shift+V 開啟或關閉保持顯示控制項。按 Alt+Shift+H 切換控制項顯示。
 7. 隨時按「還原 YouTube 外觀」按鈕或主開關即可關閉所有變更；你的選擇會保留供日後使用。
 
 專為在明亮、複雜的影片內容中難以找到、看清或操作透明控制項的觀眾而設計。
@@ -990,7 +990,7 @@ NASIL KULLANILIR
 3. Net kontroller veya Güçlü kontrast seçeneğini belirleyin.
 4. Yeni kurulumlar önerilen ayarlarla başlar; bunları istediğiniz zaman uygulamak için açılır penceredeki "Önerilen ayarları kullan" düğmesini kullanın.
 5. İsteğe bağlı olarak kontrolleri görünür tutun, ilerleme çubuğunu veya imleci büyütün, bir vurgu rengi seçin ya da arka planı özelleştirin.
-6. İyileştirmeleri açıp kapatmak için Alt+Shift+Y, stiller arasında geçiş yapmak için Alt+Shift+J, kontrolleri görünür tutmayı açıp kapatmak için Alt+Shift+V tuşlarına basın.
+6. İyileştirmeleri açıp kapatmak için Alt+Shift+Y, stiller arasında geçiş yapmak için Alt+Shift+J, kontrolleri görünür tutmayı açıp kapatmak için Alt+Shift+V tuşlarına basın. Kontrolleri gizlemek veya göstermek için Alt+Shift+H tuşlarına basın.
 7. Tüm değişiklikleri kapatmak için istediğiniz zaman "YouTube görünümünü geri yükle" düğmesini veya ana anahtarı kullanın; seçimleriniz sonrası için saklanır.
 
 Parlak ve yoğun video içeriklerinde saydam kontrolleri bulmakta, okumakta veya kullanmakta zorlanan izleyiciler için tasarlandı.

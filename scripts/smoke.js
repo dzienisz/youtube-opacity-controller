@@ -1057,6 +1057,36 @@ async function main() {
     const thinBarOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressBarOn'));
     await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, thinBarOnStatus);
 
+    await popup.locator('#alwaysShowControls').uncheck();
+    await popup.locator('#hideControls').check();
+    await page.locator('#movie_player').evaluate(player => player.classList.remove('ytp-autohide'));
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      const chrome = document.querySelector('#movie_player .ytp-chrome-bottom');
+      const bar = document.querySelector('#movie_player .ytoc-thin-progress');
+      return html.hasAttribute('data-ytoc-hide-controls')
+        && !html.hasAttribute('data-ytoc-always-show')
+        && getComputedStyle(chrome).visibility === 'hidden'
+        && getComputedStyle(chrome).pointerEvents === 'none'
+        && getComputedStyle(bar).display === 'block';
+    });
+    const hideOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusHideControlsOn'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, hideOnStatus);
+    await popup.locator('#alwaysShowControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-always-show')
+      && !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
+    await popup.locator('#hideControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-hide-controls')
+      && !document.documentElement.hasAttribute('data-ytoc-always-show'));
+    await popup.locator('#hideControls').uncheck();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
+    await page.locator('#movie_player').evaluate(player => player.classList.add('ytp-autohide'));
+    const hideOffStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusHideControlsOff'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, hideOffStatus);
+    await popup.locator('#alwaysShowControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-always-show')
+      && !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
+
     await popup.locator('#restoreYouTube').click();
     await page.waitForFunction(() => {
       const html = document.documentElement;

@@ -59,6 +59,7 @@
     accessibilityProfile: PROFILES.STANDARD,
     overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.STANDARD],
     alwaysShowControls: false,
+    hideControls: false,
     thinProgressBar: false,
     thinProgressTime: false,
     progressBarSize: PROGRESS_SIZES.DEFAULT,
@@ -77,6 +78,7 @@
     accessibilityProfile: PROFILES.HIGH_CONTRAST,
     overlayOpacity: PROFILE_DEFAULT_OPACITY[PROFILES.HIGH_CONTRAST],
     alwaysShowControls: false,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: PROGRESS_SIZES.LARGE,
@@ -115,6 +117,9 @@
     const accessibilityProfile = input.accessibilityProfile === 'low-vision'
       ? PROFILES.HIGH_CONTRAST
       : input.accessibilityProfile;
+    const alwaysShowControls = typeof input.alwaysShowControls === 'boolean'
+      ? input.alwaysShowControls
+      : DEFAULTS.alwaysShowControls;
 
     return {
       settingsSchemaVersion: SCHEMA_VERSION,
@@ -125,9 +130,8 @@
         ? accessibilityProfile
         : DEFAULTS.accessibilityProfile,
       overlayOpacity: normalizeOpacity(input.overlayOpacity),
-      alwaysShowControls: typeof input.alwaysShowControls === 'boolean'
-        ? input.alwaysShowControls
-        : DEFAULTS.alwaysShowControls,
+      alwaysShowControls,
+      hideControls: !alwaysShowControls && input.hideControls === true,
       thinProgressBar: typeof input.thinProgressBar === 'boolean'
         ? input.thinProgressBar
         : DEFAULTS.thinProgressBar,
@@ -201,7 +205,8 @@
   const COMMANDS = Object.freeze({
     TOGGLE_ENHANCEMENTS: 'toggle-enhancements',
     CYCLE_PROFILE: 'cycle-profile',
-    TOGGLE_ALWAYS_SHOW: 'toggle-always-show'
+    TOGGLE_ALWAYS_SHOW: 'toggle-always-show',
+    TOGGLE_HIDE_CONTROLS: 'toggle-hide-controls'
   });
 
   function applyCommand(settings, commandName) {
@@ -220,7 +225,19 @@
         });
       }
       case COMMANDS.TOGGLE_ALWAYS_SHOW:
-        return normalizeSettings({ ...current, alwaysShowControls: !current.alwaysShowControls });
+        return normalizeSettings({
+          ...current,
+          alwaysShowControls: !current.alwaysShowControls,
+          hideControls: current.alwaysShowControls ? current.hideControls : false
+        });
+      case COMMANDS.TOGGLE_HIDE_CONTROLS: {
+        const hideControls = !current.hideControls;
+        return normalizeSettings({
+          ...current,
+          hideControls,
+          alwaysShowControls: hideControls ? false : current.alwaysShowControls
+        });
+      }
       default:
         return current;
     }

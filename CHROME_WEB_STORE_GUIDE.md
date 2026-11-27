@@ -54,7 +54,7 @@ HOW TO USE
 3. Choose Clear Controls or Strong Contrast.
 4. New installs start with recommended settings; use "Use recommended settings" in the popup to apply them any time.
 5. Optionally keep controls visible, enlarge the progress bar or pointer, pick a highlight color, or customize the background.
-6. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to toggle keep-controls-visible. The on-player style hint shows the assigned shortcut.
+6. Press Alt+Shift+Y to toggle enhancements, Alt+Shift+J to cycle styles, Alt+Shift+V to keep controls visible, and Alt+Shift+H to hide or show controls. The on-player style hint shows the assigned shortcut.
 7. Use the "Restore YouTube's look" button or master switch at any time to turn every change off; your choices are kept for later.
 
 Designed for viewers who want to see their place in a video at a glance, and for anyone who finds transparent controls difficult to locate, read, or operate.

@@ -236,6 +236,7 @@ function applySettings(value) {
     root.removeAttribute('data-ytoc-enabled');
     root.removeAttribute('data-ytoc-profile');
     root.removeAttribute('data-ytoc-always-show');
+    root.removeAttribute('data-ytoc-hide-controls');
     root.removeAttribute('data-ytoc-thin-progress');
     root.removeAttribute('data-ytoc-thin-progress-time');
     root.removeAttribute('data-ytoc-progress');
@@ -253,6 +254,10 @@ function applySettings(value) {
   root.setAttribute('data-ytoc-enabled', 'true');
   root.setAttribute('data-ytoc-profile', currentSettings.accessibilityProfile);
   root.toggleAttribute('data-ytoc-always-show', currentSettings.alwaysShowControls);
+  root.toggleAttribute(
+    'data-ytoc-hide-controls',
+    currentSettings.hideControls && !window.location.pathname.startsWith('/shorts/')
+  );
   root.toggleAttribute('data-ytoc-thin-progress', currentSettings.thinProgressBar);
   root.toggleAttribute(
     'data-ytoc-thin-progress-time',
@@ -420,6 +425,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 });
 
 document.addEventListener('yt-navigate-finish', () => {
+  applySettings(currentSettings);
   if (playerHintRetryTimer) clearTimeout(playerHintRetryTimer);
   playerHintRetryTimer = null;
   playerHintRetryCount = 0;

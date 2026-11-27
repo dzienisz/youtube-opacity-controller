@@ -44,6 +44,9 @@ chrome.commands.onCommand.addListener(command => {
         case 'toggle-always-show':
           sendHud(message(next.alwaysShowControls ? 'hudControlsVisible' : 'hudControlsAutoHide'));
           break;
+        case 'toggle-hide-controls':
+          sendHud(message(next.hideControls ? 'hudHideControlsOn' : 'hudHideControlsOff'));
+          break;
         default:
           break;
       }
