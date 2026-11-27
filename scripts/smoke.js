@@ -418,6 +418,7 @@ async function updateSyncSettings(worker, settings) {
 async function assertThinProgressBehavior(page, worker) {
   await updateSyncSettings(worker, {
     alwaysShowControls: false,
+    hideControls: true,
     thinProgressBar: true,
     thinProgressTime: false
   });
@@ -433,8 +434,23 @@ async function assertThinProgressBehavior(page, worker) {
     const video = player.querySelector('video');
     video.muted = true;
     player.classList.add('ytp-autohide');
-    return video.play();
   });
+  await page.waitForFunction(() => {
+    const poster = document.querySelector('#movie_player .ytp-cued-thumbnail-overlay');
+    const playButton = document.querySelector('#movie_player .ytp-large-play-button');
+    return document.documentElement.hasAttribute('data-ytoc-hide-controls')
+      && getComputedStyle(poster).visibility !== 'hidden'
+      && getComputedStyle(poster).pointerEvents !== 'none'
+      && getComputedStyle(playButton).visibility === 'hidden';
+  });
+  await page.locator('#movie_player').click({ position: { x: 24, y: 24 } });
+  await page.waitForFunction(() => {
+    const video = document.querySelector('#movie_player video');
+    return !video.paused && video.currentTime > 0
+      && !document.querySelector('#movie_player .ytp-cued-thumbnail-overlay');
+  });
+  await updateSyncSettings(worker, { hideControls: false });
+  await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
   try {
     await page.waitForFunction(() => {
       const video = document.querySelector('#movie_player video');

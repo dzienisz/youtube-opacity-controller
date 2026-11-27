@@ -75,7 +75,7 @@
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-gradient-top,
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-gradient-bottom,
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-large-play-button,
-:root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-cued-thumbnail-overlay,
+:root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-bezel,
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-watermark,
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-pause-overlay,
 :root[data-ytoc-enabled][data-ytoc-hide-controls] #movie_player .ytp-pause-overlay-container,
