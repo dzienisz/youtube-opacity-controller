@@ -21,8 +21,7 @@ headlines and arranging real captures on a branded background is fine.
    buttons fit without a scrollbar.
 3. `screenshot3.png`: before/after comparison of the clearer controls (previous
    `screenshot2.png`).
-4. `screenshot4.png`: highlight colors on the larger progress bar (previous
-   `screenshot3.png`).
+4. `screenshot4.png`: custom progress-bar color, gradient and handle icon, with controls visible.
 5. `screenshot5.png`: YouTube embedded on another site (previous
    `screenshot5.png`).
 

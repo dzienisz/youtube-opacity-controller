@@ -1,6 +1,6 @@
 {
   "appName": { "message": "YouTube 控件与进度条" },
-  "appDesc": { "message": "YouTube 隐藏控件时，进度条仍然可见，全屏时也一样。另有更清晰、更大的控件。" },
+  "appDesc": { "message": "YouTube 隐藏控件时，进度条仍然可见，全屏时也一样。自定义进度条颜色和图标。" },
   "eyebrow": { "message": "YouTube 控件" },
   "headerTitle": { "message": "清晰看清控件" },
   "enableToggleLabel": { "message": "启用 YouTube 控件增强" },

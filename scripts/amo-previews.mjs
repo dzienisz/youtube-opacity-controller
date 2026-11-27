@@ -14,7 +14,7 @@ export const PREVIEW_CAPTIONS = [
   'A progress bar stays visible when controls hide, also in full screen',
   'Updated popup with clearer controls and thin-progress options',
   'Before and after: clearer controls and a larger progress bar',
-  'Highlight colors for the larger progress bar',
+  'Custom progress bar colors, gradient and handle icons',
   'Also works in YouTube videos embedded on other sites'
 ];
 

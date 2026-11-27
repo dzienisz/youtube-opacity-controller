@@ -1,6 +1,6 @@
 {
   "appName": { "message": "Controles do YouTube e barra de progresso" },
-  "appDesc": { "message": "Barra de progresso visível quando o YouTube oculta os controles, também em tela cheia. E controles mais claros e maiores." },
+  "appDesc": { "message": "Barra de progresso visível quando o YouTube oculta os controles, também em tela cheia. Cores e ícones personalizáveis para a barra." },
   "eyebrow": { "message": "Controles do YouTube" },
   "headerTitle": { "message": "Veja os controles com clareza" },
   "enableToggleLabel": { "message": "Ativar melhorias nos controles do YouTube" },

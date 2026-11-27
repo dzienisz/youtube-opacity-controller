@@ -14,7 +14,7 @@
 ### Short Description
 
 ```text
-A progress bar that stays visible when YouTube hides the controls, also in full screen. Plus clearer, larger controls.
+A progress bar that stays visible when YouTube hides the controls, also in full screen. Custom colors, icons and clearer controls.
 ```
 
 ### Detailed Description
@@ -23,6 +23,8 @@ A progress bar that stays visible when YouTube hides the controls, also in full 
 Keep track of where you are in a YouTube video, and see the player controls clearly.
 
 When YouTube hides the controls, YouTube Controls & Progress Bar keeps a thin progress bar at the bottom of the video, also in full screen and in the miniplayer. Turn on the time next to it to see how far you are without moving the mouse.
+
+Make the progress bar yours: pick a color or your own two-color gradient, and swap the round handle for a star, heart, bolt or music note.
 
 It also makes the player controls easier to see and use on bright and busy videos, without changing your whole browser or operating system.
 
@@ -33,7 +35,7 @@ FEATURES
 • Clear Controls style with an adjustable dark control background
 • Strong Contrast style for stronger, clearer controls
 • Bigger progress bar with a larger, easier-to-grab handle
-• Highlight colors for the progress bar, handle, icons, and time
+• Custom progress bar: your own color or gradient, and a star, heart, bolt or note handle
 • Keyboard shortcuts with an on-player confirmation, rebindable at chrome://extensions/shortcuts
 • Larger mouse pointer over the video
 • Keep Controls Visible, with the progress bar and time still moving
@@ -67,7 +69,7 @@ Upload 1–5 screenshots at 1280×800 or 640×400, in this order:
 1. Thin progress bar and time while controls are hidden: **A progress bar that stays visible** / **Even when YouTube hides the controls, also in full screen**.
 2. Re-captured popup showing the updated visibility options.
 3. Before/after view of the clearer YouTube controls.
-4. Highlight colors for the larger progress bar.
+4. Custom progress bar colors, gradient and handle icons.
 5. Embedded YouTube player.
 
 Do not claim complete WCAG compliance, screen-reader remediation for YouTube, or support outside desktop Chrome/Chromium.
