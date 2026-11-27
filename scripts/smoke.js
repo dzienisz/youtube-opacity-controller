@@ -938,13 +938,22 @@ async function main() {
     await mini.waitForFunction(() => {
       const player = document.querySelector('#movie_player');
       const video = player?.querySelector('video');
-      const controls = player?.querySelector('.ytp-miniplayer-ui');
+      const controls = player?.querySelector('.ytp-miniplayer-controls');
+      const time = player?.querySelector('.ytp-time-display');
+      const closeButton = player?.querySelector('.ytp-miniplayer-close-button');
+      const expandButton = player?.querySelector('.ytp-miniplayer-expand-watch-page-button');
       const bar = player?.querySelector('.ytoc-thin-progress');
       return document.documentElement.hasAttribute('data-ytoc-hide-controls')
         && video?.readyState >= 1
         && Number.isFinite(video.duration)
         && getComputedStyle(controls).visibility === 'hidden'
         && getComputedStyle(controls).pointerEvents === 'none'
+        && getComputedStyle(time).visibility === 'hidden'
+        && getComputedStyle(time).pointerEvents === 'none'
+        && getComputedStyle(closeButton).visibility !== 'hidden'
+        && getComputedStyle(closeButton).pointerEvents !== 'none'
+        && getComputedStyle(expandButton).visibility !== 'hidden'
+        && getComputedStyle(expandButton).pointerEvents !== 'none'
         && getComputedStyle(bar).display === 'block';
     }, null, { timeout: 15000 });
     await mini.locator('#movie_player').click({ position: { x: 160, y: 100 } });
