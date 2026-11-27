@@ -10,16 +10,28 @@
       height: 225px;
       background: #000;
     }
+    #movie_player video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
     .ytp-miniplayer-ui {
       position: absolute;
       inset: 0;
     }
     .ytp-miniplayer-close-button,
-    .ytp-play-button {
+    .ytp-play-button,
+    .ytp-miniplayer-expand-watch-page-button {
       width: 40px;
       height: 40px;
       border: 0;
       background: transparent;
+    }
+    .ytp-miniplayer-expand-watch-page-button {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     .ytp-miniplayer-close-button {
       position: absolute;
@@ -57,7 +69,9 @@
 </head>
 <body>
   <div id="movie_player" class="html5-video-player ytp-delhi-modern ytp-player-minimized">
+    <video src="/thin-progress.webm" muted></video>
     <div class="ytp-miniplayer-ui">
+      <button class="ytp-miniplayer-expand-watch-page-button ytp-button" aria-label="Expand"><svg><path d="M0 0h10v10z"/></svg></button>
       <button class="ytp-miniplayer-close-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
       <div class="ytp-miniplayer-controls">
         <button class="ytp-play-button ytp-button"><svg><path d="M0 0h10v10z"/></svg></button>
@@ -78,5 +92,13 @@
       </div>
     </div>
   </div>
+  <script>
+    const player = document.querySelector('#movie_player');
+    const video = player.querySelector('video');
+    player.addEventListener('click', () => {
+      if (video.paused) video.play();
+      else video.pause();
+    });
+  </script>
 </body>
 </html>

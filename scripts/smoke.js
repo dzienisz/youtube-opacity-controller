@@ -418,6 +418,7 @@ async function updateSyncSettings(worker, settings) {
 async function assertThinProgressBehavior(page, worker) {
   await updateSyncSettings(worker, {
     alwaysShowControls: false,
+    hideControls: true,
     thinProgressBar: true,
     thinProgressTime: false
   });
@@ -433,8 +434,23 @@ async function assertThinProgressBehavior(page, worker) {
     const video = player.querySelector('video');
     video.muted = true;
     player.classList.add('ytp-autohide');
-    return video.play();
   });
+  await page.waitForFunction(() => {
+    const poster = document.querySelector('#movie_player .ytp-cued-thumbnail-overlay');
+    const playButton = document.querySelector('#movie_player .ytp-large-play-button');
+    return document.documentElement.hasAttribute('data-ytoc-hide-controls')
+      && getComputedStyle(poster).visibility !== 'hidden'
+      && getComputedStyle(poster).pointerEvents !== 'none'
+      && getComputedStyle(playButton).visibility === 'hidden';
+  });
+  await page.locator('#movie_player').click({ position: { x: 24, y: 24 } });
+  await page.waitForFunction(() => {
+    const video = document.querySelector('#movie_player video');
+    return !video.paused && video.currentTime > 0
+      && !document.querySelector('#movie_player .ytp-cued-thumbnail-overlay');
+  });
+  await updateSyncSettings(worker, { hideControls: false });
+  await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
   try {
     await page.waitForFunction(() => {
       const video = document.querySelector('#movie_player video');
@@ -913,6 +929,42 @@ async function main() {
         && list
         && getComputedStyle(list).height === '12px';
     }, null, { timeout: 15000 });
+    await updateSyncSettings(worker, {
+      hideControls: true,
+      alwaysShowControls: false,
+      thinProgressBar: true,
+      thinProgressTime: false
+    });
+    await mini.waitForFunction(() => {
+      const player = document.querySelector('#movie_player');
+      const video = player?.querySelector('video');
+      const controls = player?.querySelector('.ytp-miniplayer-controls');
+      const time = player?.querySelector('.ytp-time-display');
+      const closeButton = player?.querySelector('.ytp-miniplayer-close-button');
+      const expandButton = player?.querySelector('.ytp-miniplayer-expand-watch-page-button');
+      const bar = player?.querySelector('.ytoc-thin-progress');
+      return document.documentElement.hasAttribute('data-ytoc-hide-controls')
+        && video?.readyState >= 1
+        && Number.isFinite(video.duration)
+        && getComputedStyle(controls).visibility === 'hidden'
+        && getComputedStyle(controls).pointerEvents === 'none'
+        && getComputedStyle(time).visibility === 'hidden'
+        && getComputedStyle(time).pointerEvents === 'none'
+        && getComputedStyle(closeButton).visibility !== 'hidden'
+        && getComputedStyle(closeButton).pointerEvents !== 'none'
+        && getComputedStyle(expandButton).visibility !== 'hidden'
+        && getComputedStyle(expandButton).pointerEvents !== 'none'
+        && getComputedStyle(bar).display === 'block';
+    }, null, { timeout: 15000 });
+    await mini.locator('#movie_player').click({ position: { x: 160, y: 100 } });
+    await mini.waitForFunction(() => {
+      const video = document.querySelector('#movie_player video');
+      return !video.paused && video.currentTime > 0;
+    });
+    await mini.locator('#movie_player').click({ position: { x: 160, y: 100 } });
+    await mini.waitForFunction(() => document.querySelector('#movie_player video').paused);
+    await updateSyncSettings(worker, { hideControls: false });
+    await mini.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
     const miniStyles = await mini.locator('#movie_player').evaluate(player => {
       const playerBox = player.getBoundingClientRect();
       const barBox = player.querySelector('.ytp-progress-bar-container').getBoundingClientRect();
@@ -1056,6 +1108,36 @@ async function main() {
     await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-thin-progress'));
     const thinBarOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusThinProgressBarOn'));
     await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, thinBarOnStatus);
+
+    await popup.locator('#alwaysShowControls').uncheck();
+    await popup.locator('#hideControls').check();
+    await page.locator('#movie_player').evaluate(player => player.classList.remove('ytp-autohide'));
+    await page.waitForFunction(() => {
+      const html = document.documentElement;
+      const chrome = document.querySelector('#movie_player .ytp-chrome-bottom');
+      const bar = document.querySelector('#movie_player .ytoc-thin-progress');
+      return html.hasAttribute('data-ytoc-hide-controls')
+        && !html.hasAttribute('data-ytoc-always-show')
+        && getComputedStyle(chrome).visibility === 'hidden'
+        && getComputedStyle(chrome).pointerEvents === 'none'
+        && getComputedStyle(bar).display === 'block';
+    });
+    const hideOnStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusHideControlsOn'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, hideOnStatus);
+    await popup.locator('#alwaysShowControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-always-show')
+      && !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
+    await popup.locator('#hideControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-hide-controls')
+      && !document.documentElement.hasAttribute('data-ytoc-always-show'));
+    await popup.locator('#hideControls').uncheck();
+    await page.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
+    await page.locator('#movie_player').evaluate(player => player.classList.add('ytp-autohide'));
+    const hideOffStatus = await popup.evaluate(() => chrome.i18n.getMessage('statusHideControlsOff'));
+    await popup.waitForFunction(expected => document.getElementById('status').textContent === expected, hideOffStatus);
+    await popup.locator('#alwaysShowControls').check();
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-ytoc-always-show')
+      && !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
 
     await popup.locator('#restoreYouTube').click();
     await page.waitForFunction(() => {
@@ -1308,6 +1390,37 @@ async function main() {
         && html.getAttribute('data-ytoc-progress') === 'large'
         && html.getAttribute('data-ytoc-highlight') === 'yellow';
     }, null, { timeout: 15000 });
+
+    await updateSyncSettings(worker, {
+      hideControls: true,
+      alwaysShowControls: false,
+      thinProgressBar: true,
+      thinProgressTime: false
+    });
+    await embed.waitForFunction(() => {
+      const player = document.querySelector('#movie_player');
+      const video = player?.querySelector('video');
+      const overlay = player?.querySelector('#player-control-overlay');
+      const controls = player?.querySelector('#player-controls');
+      const bar = player?.querySelector('.ytoc-thin-progress');
+      return document.documentElement.hasAttribute('data-ytoc-hide-controls')
+        && overlay?.parentElement === player
+        && video?.readyState >= 1
+        && Number.isFinite(video.duration)
+        && getComputedStyle(overlay).visibility === 'hidden'
+        && getComputedStyle(overlay).pointerEvents === 'none'
+        && getComputedStyle(controls).visibility === 'hidden'
+        && getComputedStyle(bar).display === 'block';
+    }, null, { timeout: 15000 });
+    await embed.locator('#movie_player').click({ position: { x: 40, y: 100 } });
+    await embed.waitForFunction(() => {
+      const video = document.querySelector('#movie_player video');
+      return !video.paused && video.currentTime > 0;
+    });
+    await embed.locator('#movie_player').click({ position: { x: 40, y: 100 } });
+    await embed.waitForFunction(() => document.querySelector('#movie_player video').paused);
+    await updateSyncSettings(worker, { hideControls: false });
+    await embed.waitForFunction(() => !document.documentElement.hasAttribute('data-ytoc-hide-controls'));
 
     const fillStyle = await embed.locator('.ytChapteredProgressBarChapteredPlayerBarFill')
       .evaluate(el => {

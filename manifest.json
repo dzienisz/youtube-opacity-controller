@@ -23,6 +23,10 @@
     "toggle-always-show": {
       "suggested_key": { "default": "Alt+Shift+V" },
       "description": "__MSG_cmdToggleAlwaysShow__"
+    },
+    "toggle-hide-controls": {
+      "suggested_key": { "default": "Alt+Shift+H" },
+      "description": "__MSG_cmdToggleHideControls__"
     }
   },
   "action": {

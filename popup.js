@@ -22,6 +22,7 @@ const extensionEnabled = document.getElementById('extensionEnabled');
 const settingsPanel = document.getElementById('settingsPanel');
 const profileInputs = Array.from(document.querySelectorAll('[name="accessibilityProfile"]'));
 const alwaysShowControls = document.getElementById('alwaysShowControls');
+const hideControls = document.getElementById('hideControls');
 const thinProgressBar = document.getElementById('thinProgressBar');
 const thinProgressTime = document.getElementById('thinProgressTime');
 const thinProgressTimeOption = document.getElementById('thinProgressTimeOption');
@@ -99,6 +100,7 @@ function updateControls(settings) {
     input.checked = input.value === settings.accessibilityProfile;
   });
   alwaysShowControls.checked = settings.alwaysShowControls;
+  hideControls.checked = settings.hideControls;
   thinProgressBar.checked = settings.thinProgressBar;
   thinProgressTime.checked = settings.thinProgressTime;
   thinProgressTime.disabled = !settings.extensionEnabled || !settings.thinProgressBar;
@@ -177,7 +179,17 @@ profileInputs.forEach(input => {
 });
 
 alwaysShowControls.addEventListener('change', () => {
-  applyUpdate({ alwaysShowControls: alwaysShowControls.checked }, t(alwaysShowControls.checked ? 'statusControlsVisible' : 'statusControlsAutoHide'));
+  applyUpdate({
+    alwaysShowControls: alwaysShowControls.checked,
+    ...(alwaysShowControls.checked ? { hideControls: false } : {})
+  }, t(alwaysShowControls.checked ? 'statusControlsVisible' : 'statusControlsAutoHide'));
+});
+
+hideControls.addEventListener('change', () => {
+  applyUpdate({
+    hideControls: hideControls.checked,
+    ...(hideControls.checked ? { alwaysShowControls: false } : {})
+  }, t(hideControls.checked ? 'statusHideControlsOn' : 'statusHideControlsOff'));
 });
 
 thinProgressBar.addEventListener('change', () => {

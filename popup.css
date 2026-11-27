@@ -33,7 +33,7 @@ summary {
 }
 
 .container {
-  padding: 8px 10px;
+  padding: 4px 10px;
 }
 
 .header {
@@ -125,8 +125,8 @@ button:focus-visible {
 
 .profiles {
   display: grid;
-  gap: 4px;
-  margin: 6px 0 0;
+  gap: 3px;
+  margin: 4px 0 0;
   padding: 0;
   border: 0;
 }
@@ -141,8 +141,8 @@ button:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 38px;
-  padding: 4px 8px;
+  min-height: 32px;
+  padding: 2px 8px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
@@ -194,7 +194,7 @@ button:focus-visible {
   justify-content: space-between;
   gap: 4px;
   margin-top: 6px;
-  padding: 4px 8px;
+  padding: 2px 8px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
@@ -212,7 +212,7 @@ button:focus-visible {
 }
 
 .primary-option + .primary-option {
-  margin-top: 6px;
+  margin-top: 3px;
 }
 
 .option-row.disabled-option {
@@ -233,7 +233,7 @@ button:focus-visible {
 }
 
 .customize {
-  margin-top: 6px;
+  margin-top: 4px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);

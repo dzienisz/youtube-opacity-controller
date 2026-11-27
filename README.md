@@ -79,6 +79,7 @@ Changes apply immediately and persist across browser sessions.
 | `Alt+Shift+Y` | Toggle all control enhancements on or off |
 | `Alt+Shift+J` | Cycle between Clear Controls and Strong Contrast |
 | `Alt+Shift+V` | Toggle Keep Controls Visible |
+| `Alt+Shift+H` | Toggle Hide Controls |
 
 Each press shows a small confirmation on the player, and the style hint reflects the assigned shortcut. Shortcuts can be rebound at `chrome://extensions/shortcuts`.
 

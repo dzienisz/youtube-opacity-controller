@@ -13,6 +13,7 @@ test('migrates legacy settings without losing user preferences', () => {
     accessibilityProfile: 'standard',
     overlayOpacity: 0.42,
     alwaysShowControls: true,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: 'default',
@@ -42,6 +43,7 @@ test('schema 3 partial settings are filled from legacy defaults', () => {
     accessibilityProfile: 'standard',
     overlayOpacity: 0.7,
     alwaysShowControls: true,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: 'default',
@@ -76,6 +78,20 @@ test('schema 7 settings preserve their stored values', () => {
   };
 
   assert.deepEqual(settings.migrateSettings(stored), stored);
+});
+
+test('schema 7 hide-controls defaults false when missing and preserves stored values', () => {
+  const missing = { ...settings.RECOMMENDED };
+  delete missing.hideControls;
+  assert.equal(settings.migrateSettings(missing).hideControls, false);
+  assert.equal(settings.migrateSettings({ ...settings.RECOMMENDED, hideControls: true }).hideControls, true);
+});
+
+test('normalization keeps always-show when both control modes are stored', () => {
+  assert.deepEqual(
+    settings.normalizeSettings({ alwaysShowControls: true, hideControls: true }),
+    { ...settings.DEFAULTS, alwaysShowControls: true, hideControls: false }
+  );
 });
 
 test('schema 4 settings enable readable captions and preserve other values', () => {
@@ -137,6 +153,7 @@ test('migrates schema 2 settings preserving new option defaults', () => {
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0.9,
     alwaysShowControls: true,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: 'default',
@@ -266,6 +283,7 @@ test('normalizes invalid and out-of-range settings', () => {
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 1,
     alwaysShowControls: false,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: 'large',
@@ -297,6 +315,7 @@ test('applies storage changes and normalizes the result', () => {
     accessibilityProfile: 'high-contrast',
     overlayOpacity: 0,
     alwaysShowControls: false,
+    hideControls: false,
     thinProgressBar: true,
     thinProgressTime: false,
     progressBarSize: 'large',
@@ -356,7 +375,19 @@ test('applyCommand cycle-profile advances profile, opacity, and re-enables', () 
 test('applyCommand toggles always-show controls', () => {
   const on = settings.applyCommand(settings.DEFAULTS, 'toggle-always-show');
   assert.equal(on.alwaysShowControls, true);
+  assert.equal(on.hideControls, false);
+  const off = settings.applyCommand({ ...settings.DEFAULTS, hideControls: true }, 'toggle-always-show');
+  assert.equal(off.alwaysShowControls, true);
+  assert.equal(off.hideControls, false);
   assert.equal(settings.applyCommand(on, 'toggle-always-show').alwaysShowControls, false);
+});
+
+test('applyCommand toggles hide-controls and makes it exclusive with always-show', () => {
+  const on = settings.applyCommand({ ...settings.DEFAULTS, alwaysShowControls: true }, 'toggle-hide-controls');
+  assert.equal(on.hideControls, true);
+  assert.equal(on.alwaysShowControls, false);
+  const off = settings.applyCommand(on, 'toggle-hide-controls');
+  assert.equal(off.hideControls, false);
 });
 
 test('applyCommand returns normalized settings for unknown commands', () => {
